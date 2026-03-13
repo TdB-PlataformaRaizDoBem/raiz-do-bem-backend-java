@@ -1,8 +1,8 @@
 package RaizDoBem.Model;
 
 public class TipoBeneficiario {
-    private int idTipoBeneficiario;
-    private String tipoBeneficiario;
+    private final int idTipoBeneficiario;
+    private final String tipoBeneficiario;
 
     public int getIdTipoBeneficiario() {
         return idTipoBeneficiario;

@@ -66,12 +66,22 @@ public class Endereco {
         this.tipoEndereco = tipoEndereco;
     }
 
-    public Endereco(String logradouro, String cep, String numero, String cidade, String estado) {
+    public Endereco(int idEndereco, String logradouro, String cep, String numero, String cidade, String estado) {
+        this.idEndereco = idEndereco;
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
         this.cidade = cidade;
         this.estado = estado;
         //this.tipoEndereco = tipoEndereco;
+    }
+
+    @Override
+    public String toString() {
+        return idEndereco + " - " + logradouro + ", " + numero + " - Cep: " + cep +
+                "\n    " + cidade + " - " + estado;
+        //", tipoEndereco=" + tipoEndereco +
+        //                '}';
+
     }
 }

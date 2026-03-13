@@ -3,17 +3,11 @@ package RaizDoBem.Model;
 import java.time.LocalDate;
 
 public class Dentista extends Colaborador{
-    private int idDentista;
     private String croDentista;
     private String especialidade;
     private boolean isDisponivel;
-    private String nivelDentista;
     private Endereco endResidencial;
     private Endereco endProfissional;
-
-    public int getIdDentista() {
-        return idDentista;
-    }
 
     public String getCroDentista() {
         return croDentista;
@@ -27,20 +21,12 @@ public class Dentista extends Colaborador{
         return isDisponivel;
     }
 
-    public String getNivelDentista() {
-        return nivelDentista;
-    }
-
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
     }
 
     public void setDisponivel(boolean disponivel) {
         this.isDisponivel = disponivel;
-    }
-
-    public void setNivelDentista(String nivelDentista) {
-        this.nivelDentista = nivelDentista;
     }
 
     public Endereco getEndResidencial() {
@@ -59,13 +45,11 @@ public class Dentista extends Colaborador{
         this.endProfissional = endProfissional;
     }
 
-    public Dentista(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, String senha, int idDentista, String croDentista, String especialidade, boolean disponivel, String nivelDentista, Endereco endResidencial, Endereco endProfissional) {
-        super(idColaborador, cpf, nomeCompleto, dataNascimento, email, senha);
-        this.idDentista = idDentista;
+    public Dentista(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, String croDentista, String especialidade, boolean isDisponivel, Endereco endResidencial, Endereco endProfissional) {
+        super(idColaborador, cpf, nomeCompleto, dataNascimento, email);
         this.croDentista = croDentista;
         this.especialidade = especialidade;
-        this.isDisponivel = disponivel;
-        this.nivelDentista = nivelDentista;
+        this.isDisponivel = isDisponivel;
         this.endResidencial = endResidencial;
         this.endProfissional = endProfissional;
     }

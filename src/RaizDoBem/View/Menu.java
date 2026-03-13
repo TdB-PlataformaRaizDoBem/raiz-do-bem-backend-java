@@ -38,6 +38,7 @@
 //    public void exibirMenuInicial(){
 //        sc = new Scanner(System.in);
 //        do{
+//             seja bem-vindo coordenador, simular login
 //            System.out.println("--- Menu Inicial ---");
 //            System.out.println("1. Pedidos de ajuda");
 //            System.out.println("2. Beneficiários");
@@ -85,37 +86,7 @@
 //
 //
 //    }
-//    public void menuPedidos(Scanner sc){
-//        System.out.println("--- Pedidos de ajuda ---");
-//        System.out.println("1. Adicionar pedido de ajuda");
-//        System.out.println("2. Listar pedidos de ajuda");
-//        System.out.println("3. Voltar ao menu principal");
-//        System.out.println("0. Encerrar programa");
-//        System.out.print("Selecione uma opção: ");
-//        int opc = sc.nextInt();
-//        sc.nextLine();
-//
-//        switch (opc){
-//            case 1:
-//                gerenciaPedido.receberSalvarDados();
-//                pausa();
-//                break;
-//            case 2:
-//                gerenciaPedido.listarTodos();
-//                pausa();
-//                break;
-//            case 3:
-//                System.out.println("Voltando ao menu principal...");
-//                pausa();
-//                break;
-//            case 0:
-//                System.out.println("Encerrando programa...");
-//                opcao = 0;
-//                break;
-//            default:
-//                System.out.println("Opção Inválida!");
-//        }
-//    }
+
 //    public void menuBeneficiarios(Scanner sc){
 //        System.out.println("--- Beneficiários ---");
 //        System.out.println("1. Adicionar beneficiário");
@@ -145,99 +116,6 @@
 //                break;
 //            default:
 //                System.out.println("Opção Inválida!");
-//        }
-//    }
-//    public void menuDentistas(Scanner sc){
-//        System.out.println("--- Dentistas ---");
-//        System.out.println("1. Adicionar dentista");
-//        System.out.println("2. Listar dentistas");
-//        System.out.println("3. Voltar ao menu principal");
-//        System.out.println("0. Encerrar programa");
-//        System.out.print("Selecione uma opção: ");
-//        int opc = sc.nextInt();
-//        sc.nextLine();
-//
-//        switch (opc){
-//            case 1:
-//                gerenciaDentistas.receberSalvarDados();
-//                pausa();
-//                break;
-//            case 2:
-//                gerenciaDentistas.listarTodos();
-//                pausa();
-//                break;
-//            case 3:
-//                System.out.println("Voltando ao menu principal...");
-//                pausa();
-//                break;
-//            case 0:
-//                System.out.println("Encerrando programa...");
-//                opcao = 0;
-//                break;
-//            default:
-//                System.out.println("Opção Inválida");
-//        }
-//    }
-//    public void menuAtendimentos(Scanner sc){
-//        System.out.println("--- Atendimentos ---");
-//        System.out.println("1. Adicionar atendimentos");
-//        System.out.println("2. Listar atendimentos");
-//        System.out.println("3. Voltar ao menu principal");
-//        System.out.println("0. Encerrar programa");
-//        System.out.print("Selecione uma opção: ");
-//        int opc = sc.nextInt();
-//        sc.nextLine();
-//
-//        switch (opc){
-//            case 1:
-//                gerenciaAtendimentos.receberSalvarDados();
-//                pausa();
-//                break;
-//            case 2:
-//                gerenciaAtendimentos.listarTodos();
-//                pausa();
-//                break;
-//            case 3:
-//                System.out.println("Voltando ao menu principal...");
-//                pausa();
-//                break;
-//            case 0:
-//                System.out.println("Encerrando programa...");
-//                opcao = 0;
-//                break;
-//            default:
-//                System.out.println("Opção Inválida");
-//        }
-//    }
-//    public void menuEnderecos(Scanner sc){
-//        System.out.println("--- Endereços ---");
-//        System.out.println("1. Adicionar endereço");
-//        System.out.println("2. Listar endereços");
-//        System.out.println("3. Voltar ao menu principal");
-//        System.out.println("0. Encerrar programa");
-//        System.out.print("Selecione uma opção: ");
-//        int opc = sc.nextInt();
-//        sc.nextLine();
-//
-//        switch (opc){
-//            case 1:
-//                gerenciaEndereco.receberSalvarDados();
-//                pausa();
-//                break;
-//            case 2:
-//                gerenciaEndereco.listarTodos();
-//                pausa();
-//                break;
-//            case 3:
-//                System.out.println("Voltando ao menu principal...");
-//                pausa();
-//                break;
-//            case 0:
-//                System.out.println("Encerrando programa...");
-//                opcao = 0;
-//                break;
-//            default:
-//                System.out.println("Opção Inválida");
 //        }
 //    }
 //    public void pausa(){

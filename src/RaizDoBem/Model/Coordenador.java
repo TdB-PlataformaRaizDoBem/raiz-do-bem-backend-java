@@ -20,7 +20,7 @@ public class Coordenador extends Colaborador {
     }
 
     public Coordenador(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, String senha, int idCoordenador, LocalDate dataContratacao, String nivelAcesso) {
-        super(idColaborador, cpf, nomeCompleto, dataNascimento, email, senha);
+        super(idColaborador, cpf, nomeCompleto, dataNascimento, email);
         this.idCoordenador = idCoordenador;
         this.dataContratacao = dataContratacao;
         this.nivelAcesso = nivelAcesso;

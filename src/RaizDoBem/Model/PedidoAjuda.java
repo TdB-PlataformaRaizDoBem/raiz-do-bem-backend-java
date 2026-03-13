@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class PedidoAjuda {
     private int idPedido;
-    private String descricao;
+    private String descricaoProblema;
     private LocalDate dataPedido;
     private String urgencia;
     private String statusPedido;
@@ -13,8 +13,8 @@ public class PedidoAjuda {
         return idPedido;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricaoProblema() {
+        return descricaoProblema;
     }
 
     public LocalDate getDataPedido() {
@@ -33,8 +33,8 @@ public class PedidoAjuda {
         this.idPedido = idPedido;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescricaoProblema(String descricaoProblema) {
+        this.descricaoProblema = descricaoProblema;
     }
 
     public void setDataPedido(LocalDate dataPedido) {
@@ -49,9 +49,9 @@ public class PedidoAjuda {
         this.statusPedido = statusPedido;
     }
 
-    public PedidoAjuda(int idPedido, String descricao, LocalDate dataPedido, String urgencia, String statusPedido) {
+    public PedidoAjuda(int idPedido, String descricaoProblema, LocalDate dataPedido, String urgencia, String statusPedido) {
         this.idPedido = idPedido;
-        this.descricao = descricao;
+        this.descricaoProblema = descricaoProblema;
         this.dataPedido = dataPedido;
         this.urgencia = urgencia;
         this.statusPedido = statusPedido;

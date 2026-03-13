@@ -7,7 +7,6 @@ public class Beneficiario{
     private String cpfBeneficiario;
     private String nomeCompleto;
     private LocalDate dataNascimento;
-    private String sexo;
     private TipoBeneficiario tipoBeneficiario;
     private Endereco endereco;
 
@@ -27,20 +26,12 @@ public class Beneficiario{
         return dataNascimento;
     }
 
-    public String getSexo() {
-        return sexo;
-    }
-
     public TipoBeneficiario getTipoBeneficiario() {
         return tipoBeneficiario;
     }
 
     public void setNomeCompleto(String nomeCompleto) {
         this.nomeCompleto = nomeCompleto;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
 
     public void setTipoBeneficiario(TipoBeneficiario tipoBeneficiario) {
@@ -55,12 +46,11 @@ public class Beneficiario{
         this.endereco = endereco;
     }
 
-    public Beneficiario(int idBeneficiario, String cpfBeneficiario, String nomeCompleto, LocalDate dataNascimento, String sexo, TipoBeneficiario tipoBeneficiario, Endereco endereco) {
+    public Beneficiario(int idBeneficiario, String cpfBeneficiario, String nomeCompleto, LocalDate dataNascimento, TipoBeneficiario tipoBeneficiario, Endereco endereco) {
         this.idBeneficiario = idBeneficiario;
         this.cpfBeneficiario = cpfBeneficiario;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
-        this.sexo = sexo;
         this.tipoBeneficiario = tipoBeneficiario;
         this.endereco = endereco;
     }

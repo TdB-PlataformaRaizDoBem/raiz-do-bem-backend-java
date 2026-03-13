@@ -72,10 +72,10 @@ public class Main {
 //        );
 //        menu.exibirMenuInicial();
        // Connection conexao = Conexao.conectarAoBanco();
-        Endereco end1 = new Endereco("Rua João Távora", "03978020", "231", "São Paulo",
-                "São Paulo");
+      //  Endereco end1 = new Endereco("Rua João Távora", "03978020", "231", "São Paulo", "São Paulo");
 
         EnderecoDAO enderecoDAO = new EnderecoDAO();
-        enderecoDAO.adicionar(end1);
+        enderecoDAO.listarTodos();
+  //      enderecoDAO.adicionar(end1);
     }
 }

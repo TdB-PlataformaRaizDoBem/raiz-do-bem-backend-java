@@ -8,7 +8,6 @@ public class Colaborador {
     private String nomeCompleto;
     private LocalDate dataNascimento;
     private String email;
-    private String senha;
 
     public int getIdColaborador() {
         return idColaborador;
@@ -30,17 +29,13 @@ public class Colaborador {
         return email;
     }
 
-    public String getSenha() {
-        return senha;
-    }
 
-    public Colaborador(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, String senha) {
+    public Colaborador(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email) {
         this.idColaborador = idColaborador;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
         this.email = email;
-        this.senha = senha;
     }
 
     public boolean login(){

@@ -28,7 +28,7 @@ public class GerenciaPedido implements Gerenciador<PedidoAjuda>{
 
             System.out.println("-----------------------------------------");
             System.out.println("ID do pedido: " + pedido.getIdPedido());
-            System.out.println("Descrição: " + pedido.getDescricao());
+            System.out.println("Descrição: " + pedido.getDescricaoProblema());
             System.out.println("Data do pedido: " + dataFormatada);
             System.out.println("Urgência: " + pedido.getUrgencia());
             System.out.println("Status: " + pedido.getStatusPedido());

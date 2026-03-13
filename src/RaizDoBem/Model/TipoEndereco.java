@@ -1,8 +1,8 @@
 package RaizDoBem.Model;
 
 public class TipoEndereco {
-    private int idTipoEndereco;
-    private String tipoEndereco;
+    private final int idTipoEndereco;
+    private final String tipoEndereco;
 
     public int getIdTipoEndereco() {
         return idTipoEndereco;
