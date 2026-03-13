@@ -14,9 +14,9 @@ public class EnderecoDAO {
     public void adicionar(Endereco endereco){
         String querySql = "INSERT INTO Endereco (logradouro, cep, numero, cidade, estado) VALUES (?, ?, ?, ?, ?)";
 
-        try{
-            Connection conexao = Conexao.conectarAoBanco();
+        try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
+            ){
 
             ps.setString(1, endereco.getLogradouro());
             ps.setString(2, endereco.getCep());
@@ -33,9 +33,9 @@ public class EnderecoDAO {
     }
     public void listarTodos(){
         String querySql = "SELECT * FROM Endereco";
-        try{
-            Connection conexao = Conexao.conectarAoBanco();
-            PreparedStatement ps = conexao.prepareStatement(querySql);
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);){
+
             ResultSet response;
             Endereco endereco;
 
