@@ -8,6 +8,7 @@ public class Colaborador {
     private String nomeCompleto;
     private LocalDate dataNascimento;
     private String email;
+    private Endereco endereco;
 
     public int getIdColaborador() {
         return idColaborador;
@@ -29,13 +30,17 @@ public class Colaborador {
         return email;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
 
-    public Colaborador(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email) {
+    public Colaborador(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco) {
         this.idColaborador = idColaborador;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
         this.email = email;
+        this.endereco = endereco;
     }
 
     public boolean login(){

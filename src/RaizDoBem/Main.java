@@ -72,9 +72,15 @@ public class Main {
 //        );
 //        menu.exibirMenuInicial();
        // Connection conexao = Conexao.conectarAoBanco();
-      //  Endereco end1 = new Endereco("Rua João Távora", "03978020", "231", "São Paulo", "São Paulo");
+//      Endereco end1 = new Endereco("Rua João Távora", "03978020", "231", "São Paulo", "São Paulo");
+//      Endereco end2 = new Endereco("Avenida Paulista", "01310946", "1200", "São Paulo", "São Paulo");
+//      Endereco end3 = new Endereco("Avenida dos Estados", "09290520", "93", "Santo André", "São Paulo");
 
         EnderecoDAO enderecoDAO = new EnderecoDAO();
+//      //  enderecoDAO.adicionar(end2);
+//        enderecoDAO.adicionar(end1);
+//        enderecoDAO.adicionar(end2);
+//        enderecoDAO.adicionar(end3);
         enderecoDAO.listarTodos();
   //      enderecoDAO.adicionar(end1);
     }

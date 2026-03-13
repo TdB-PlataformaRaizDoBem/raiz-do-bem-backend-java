@@ -49,9 +49,9 @@
 //            System.out.println("Nível do dentista: " + dentista.getNivelDentista());
 //
 //            System.out.println("\nEndereço residencial do Dentista: ");
-//            System.out.println(dentista.getEndResidencial().getLogradouro() + ", " + dentista.getEndResidencial().getNumero());
-//            System.out.println("CEP: " + dentista.getEndResidencial().getCep());
-//            System.out.println(dentista.getEndResidencial().getCidade() + " - " + dentista.getEndResidencial().getEstado());
+//            System.out.println(dentista.getEndereco().getLogradouro() + ", " + dentista.getEndereco().getNumero());
+//            System.out.println("CEP: " + dentista.getEndereco().getCep());
+//            System.out.println(dentista.getEndereco().getCidade() + " - " + dentista.getEndereco().getEstado());
 //
 //            System.out.println("\nEndereço profissional do Dentista: ");
 //            System.out.println(dentista.getEndProfissional().getLogradouro() + ", " + dentista.getEndProfissional().getNumero());

@@ -6,8 +6,6 @@ public class Dentista extends Colaborador{
     private String croDentista;
     private String especialidade;
     private boolean isDisponivel;
-    private Endereco endResidencial;
-    private Endereco endProfissional;
 
     public String getCroDentista() {
         return croDentista;
@@ -29,28 +27,10 @@ public class Dentista extends Colaborador{
         this.isDisponivel = disponivel;
     }
 
-    public Endereco getEndResidencial() {
-        return endResidencial;
-    }
-
-    public void setEndResidencial(Endereco endResidencial) {
-        this.endResidencial = endResidencial;
-    }
-
-    public Endereco getEndProfissional() {
-        return endProfissional;
-    }
-
-    public void setEndProfissional(Endereco endProfissional) {
-        this.endProfissional = endProfissional;
-    }
-
-    public Dentista(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, String croDentista, String especialidade, boolean isDisponivel, Endereco endResidencial, Endereco endProfissional) {
-        super(idColaborador, cpf, nomeCompleto, dataNascimento, email);
+    public Dentista(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco, String croDentista, String especialidade, boolean isDisponivel) {
+        super(idColaborador, cpf, nomeCompleto, dataNascimento, email, endereco);
         this.croDentista = croDentista;
         this.especialidade = especialidade;
         this.isDisponivel = isDisponivel;
-        this.endResidencial = endResidencial;
-        this.endProfissional = endProfissional;
     }
 }

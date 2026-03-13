@@ -6,7 +6,6 @@ public class PedidoAjuda {
     private int idPedido;
     private String descricaoProblema;
     private LocalDate dataPedido;
-    private String urgencia;
     private String statusPedido;
 
     public int getIdPedido() {
@@ -19,10 +18,6 @@ public class PedidoAjuda {
 
     public LocalDate getDataPedido() {
         return dataPedido;
-    }
-
-    public String getUrgencia() {
-        return urgencia;
     }
 
     public String getStatusPedido() {
@@ -41,19 +36,15 @@ public class PedidoAjuda {
         this.dataPedido = dataPedido;
     }
 
-    public void setUrgencia(String urgencia) {
-        this.urgencia = urgencia;
-    }
 
     public void setStatusPedido(String statusPedido) {
         this.statusPedido = statusPedido;
     }
 
-    public PedidoAjuda(int idPedido, String descricaoProblema, LocalDate dataPedido, String urgencia, String statusPedido) {
+    public PedidoAjuda(int idPedido, String descricaoProblema, LocalDate dataPedido, String statusPedido) {
         this.idPedido = idPedido;
         this.descricaoProblema = descricaoProblema;
         this.dataPedido = dataPedido;
-        this.urgencia = urgencia;
         this.statusPedido = statusPedido;
     }
 }

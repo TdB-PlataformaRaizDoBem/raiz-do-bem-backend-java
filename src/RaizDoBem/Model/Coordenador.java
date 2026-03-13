@@ -19,11 +19,10 @@ public class Coordenador extends Colaborador {
         return nivelAcesso;
     }
 
-    public Coordenador(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, String senha, int idCoordenador, LocalDate dataContratacao, String nivelAcesso) {
-        super(idColaborador, cpf, nomeCompleto, dataNascimento, email);
+    public Coordenador(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco, int idCoordenador, LocalDate dataContratacao, String nivelAcesso) {
+        super(idColaborador, cpf, nomeCompleto, dataNascimento, email, endereco);
         this.idCoordenador = idCoordenador;
         this.dataContratacao = dataContratacao;
         this.nivelAcesso = nivelAcesso;
     }
-
 }
