@@ -66,12 +66,12 @@ public class Endereco {
         this.tipoEndereco = tipoEndereco;
     }
 
-    public Endereco(String logradouro, String cep, String numero, String cidade, String estado, TipoEndereco tipoEndereco) {
+    public Endereco(String logradouro, String cep, String numero, String cidade, String estado) {
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
         this.cidade = cidade;
         this.estado = estado;
-        this.tipoEndereco = tipoEndereco;
+        //this.tipoEndereco = tipoEndereco;
     }
 }

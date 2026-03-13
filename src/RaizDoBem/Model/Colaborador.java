@@ -5,7 +5,6 @@ import java.time.LocalDate;
 public class Colaborador {
     private int idColaborador;
     private String cpf;
-    private String rg;
     private String nomeCompleto;
     private LocalDate dataNascimento;
     private String email;
@@ -17,10 +16,6 @@ public class Colaborador {
 
     public String getCpf() {
         return cpf;
-    }
-
-    public String getRg() {
-        return rg;
     }
 
     public String getNomeCompleto() {
@@ -39,10 +34,9 @@ public class Colaborador {
         return senha;
     }
 
-    public Colaborador(int idColaborador, String cpf, String rg, String nomeCompleto, LocalDate dataNascimento, String email, String senha) {
+    public Colaborador(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, String senha) {
         this.idColaborador = idColaborador;
         this.cpf = cpf;
-        this.rg = rg;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
         this.email = email;

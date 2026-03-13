@@ -6,7 +6,7 @@ public class Dentista extends Colaborador{
     private int idDentista;
     private String croDentista;
     private String especialidade;
-    private boolean disponivel;
+    private boolean isDisponivel;
     private String nivelDentista;
     private Endereco endResidencial;
     private Endereco endProfissional;
@@ -24,7 +24,7 @@ public class Dentista extends Colaborador{
     }
 
     public boolean isDisponivel() {
-        return disponivel;
+        return isDisponivel;
     }
 
     public String getNivelDentista() {
@@ -36,7 +36,7 @@ public class Dentista extends Colaborador{
     }
 
     public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
+        this.isDisponivel = disponivel;
     }
 
     public void setNivelDentista(String nivelDentista) {
@@ -59,12 +59,12 @@ public class Dentista extends Colaborador{
         this.endProfissional = endProfissional;
     }
 
-    public Dentista(int idColaborador, String cpf, String rg, String nomeCompleto, LocalDate dataNascimento, String email, String senha, int idDentista, String croDentista, String especialidade, boolean disponivel, String nivelDentista, Endereco endResidencial, Endereco endProfissional) {
-        super(idColaborador, cpf, rg, nomeCompleto, dataNascimento, email, senha);
+    public Dentista(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, String senha, int idDentista, String croDentista, String especialidade, boolean disponivel, String nivelDentista, Endereco endResidencial, Endereco endProfissional) {
+        super(idColaborador, cpf, nomeCompleto, dataNascimento, email, senha);
         this.idDentista = idDentista;
         this.croDentista = croDentista;
         this.especialidade = especialidade;
-        this.disponivel = disponivel;
+        this.isDisponivel = disponivel;
         this.nivelDentista = nivelDentista;
         this.endResidencial = endResidencial;
         this.endProfissional = endProfissional;
