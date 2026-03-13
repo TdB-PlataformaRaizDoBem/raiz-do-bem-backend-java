@@ -1,71 +1,110 @@
 # RaizDoBem
 
-Projeto acadêmico desenvolvido para o **Challenge FIAP 2025-2026** do **1º ano de Análise e Desenvolvimento de Sistemas**, em colaboração com a **ONG Turma do Bem**.
+Projeto acadêmico desenvolvido para o **Challenge FIAP 2025-2026** do **1º ano de Análise e Desenvolvimento de Sistemas (ADS)**, em colaboração com a **ONG Turma do Bem**.
 
-O sistema foi criado para apoiar a organização de informações relacionadas a atendimentos odontológicos sociais, com foco no cadastro e gerenciamento de entidades como beneficiários, dentistas, pedidos de ajuda, atendimentos e endereços.
+O `RaizDoBem` está sendo retomado e preparado para a **Sprint 3**, com foco principal em **persistência de dados com Oracle Database**. Nesta fase, o projeto consolida a base Java orientada a objetos, organiza a arquitetura em camadas e começa a migrar do fluxo em memória para operações apoiadas por banco de dados.
+
+## Sumário
+
+- [Visão geral](#visão-geral)
+- [Contexto do Challenge](#contexto-do-challenge)
+- [Objetivo da Sprint 3](#objetivo-da-sprint-3)
+- [Estado atual do projeto](#estado-atual-do-projeto)
+- [Últimas atualizações mapeadas no repositório](#últimas-atualizações-mapeadas-no-repositório)
+- [Arquitetura atual](#arquitetura-atual)
+- [Entidades do domínio](#entidades-do-domínio)
+- [Persistência com Oracle](#persistência-com-oracle)
+- [Estrutura de pastas](#estrutura-de-pastas)
+- [Como configurar](#como-configurar)
+- [Como executar](#como-executar)
+- [O que já está implementado](#o-que-já-está-implementado)
+- [Pontos de atenção](#pontos-de-atenção)
+- [Próximos passos da Sprint 3](#próximos-passos-da-sprint-3)
+- [Valor acadêmico e social](#valor-acadêmico-e-social)
+
+## Visão geral
+
+O projeto foi pensado para apoiar a organização de informações relacionadas a atendimentos odontológicos sociais. A solução modela beneficiários, dentistas, atendimentos, pedidos de ajuda, endereços e perfis de colaboração, preparando a aplicação para evoluir de um protótipo em console para uma base com persistência relacional.
+
+Hoje, o código mostra com clareza uma **fase de transição**:
+
+- parte da estrutura original em memória ainda existe em `Controller` e `View`;
+- a camada `DAO` já foi iniciada para suportar persistência;
+- a integração mais concreta neste momento está em `EnderecoDAO`;
+- o `Main` atual está focado em testar acesso ao banco e listagem de endereços.
 
 ## Contexto do Challenge
 
-O `RaizDoBem` nasce como uma solução acadêmica voltada para uma necessidade social real: estruturar, de forma simples e evolutiva, o controle de dados de uma operação ligada ao atendimento odontológico solidário.
+O `RaizDoBem` faz parte do **Challenge FIAP 2025-2026**, no contexto do **1º ano de ADS**, e está alinhado a uma proposta de aplicação prática de:
 
-No contexto do Challenge, a proposta do projeto é unir:
-
+- orientação a objetos em Java;
 - modelagem de domínio;
-- lógica de negócio em Java;
-- organização por camadas;
+- separação por camadas;
 - evolução incremental por sprint;
-- integração com banco de dados Oracle.
+- persistência com banco de dados Oracle;
+- conexão entre tecnologia e impacto social.
 
-Nesta fase do projeto, o principal objetivo técnico é preparar e consolidar a **Sprint 3**, cujo foco está na **persistência em banco de dados Oracle**.
+A colaboração com a **Turma do Bem** fortalece o propósito do projeto ao aproximar a solução de um cenário real de atendimento e organização de dados voltados a ações sociais na área odontológica.
 
-## Objetivo do sistema
+## Objetivo da Sprint 3
 
-O sistema busca centralizar o registro e a consulta de dados importantes para o fluxo de atendimento, permitindo evoluir de uma aplicação inicialmente voltada à execução em memória para uma base mais estruturada, persistente e preparada para crescer.
+A Sprint 3 concentra os esforços na **persistência em banco de dados Oracle**, consolidando a fundação técnica para as próximas entregas.
 
-Entre os objetivos do projeto, estão:
+### Prioridades atuais
 
-- organizar pedidos de ajuda;
-- cadastrar beneficiários;
-- cadastrar dentistas;
-- registrar atendimentos;
-- armazenar endereços;
-- iniciar a persistência relacional com Oracle Database.
-
-## Foco atual: Sprint 3
-
-A Sprint 3 marca a transição do projeto para uma arquitetura mais próxima de um sistema real, com ênfase em persistência de dados.
-
-### Prioridades da Sprint 3
-
-- configurar conexão com banco Oracle via JDBC;
+- configurar conexão JDBC com Oracle;
+- validar leitura de credenciais por arquivo externo;
 - estruturar os DAOs do sistema;
-- persistir dados em banco em vez de manter apenas armazenamento temporário em memória;
-- consolidar a camada de modelos;
-- preparar a aplicação para expansão nas próximas entregas.
+- substituir gradualmente listas em memória por acesso real ao banco;
+- estabilizar o fluxo principal para operações persistidas.
 
-### Situação atual da Sprint 3
+## Estado atual do projeto
 
-Com base no código do repositório, o projeto já possui:
+Com base na análise do repositório, o estado atual pode ser resumido assim:
 
-- classe de conexão com banco em `src/RaizDoBem/Model/Conexao.java`;
-- arquivo de configuração de exemplo em `config.properties.example`;
-- implementação concreta de inserção de endereço em banco por meio de `src/RaizDoBem/DAO/EnderecoDAO.java`;
-- estrutura de pacotes `Model`, `DAO`, `Controller` e `View` organizada para evolução.
+### O que está ativo no código hoje
 
-Ao mesmo tempo, o repositório mostra que a persistência ainda está **parcialmente implementada**:
+- a conexão com banco está centralizada em `src/RaizDoBem/Model/Conexao.java`;
+- a classe `src/RaizDoBem/DAO/EnderecoDAO.java` já executa operações de **insert** e **listagem**;
+- o `main` atual em `src/RaizDoBem/Main.java` instancia `EnderecoDAO` e chama `listarTodos()`;
+- a organização em pacotes `Model`, `DAO`, `Controller` e `View` já está estabelecida.
 
-- o fluxo principal ativo hoje está concentrado no teste de gravação de endereço;
-- vários DAOs ainda estão como estrutura inicial, sem implementação completa;
-- parte dos controllers e da view em console permanece comentada, indicando refatoração em andamento.
+### O que está em transição ou incompleto
 
-## Arquitetura do projeto
+- vários controllers antigos estão totalmente comentados;
+- o menu principal em console está comentado em `src/RaizDoBem/View/Menu.java`;
+- a maior parte dos demais DAOs ainda está apenas como estrutura vazia;
+- existem sinais de refatoração de relacionamento entre classes e adaptação do domínio para a nova fase de persistência.
 
-O projeto está organizado em pacotes que separam responsabilidades principais.
+## Últimas atualizações mapeadas no repositório
+
+Os commits recentes ajudam a entender a fase atual do projeto:
+
+- `6fb719b` — **refac 1.0.4: corrigindo alguns pontos de relacionamentos entre classes**
+- `90e764f` — **feat 1.0.3: listagem e insert pronto em Endereco - falta incluir tipo_endereco**
+- `35f7886` — **feat 1.0.2: criando casca de menu endereo, que servir como base para a sequncia**
+- `7243cc3` — **feat: v1 do cdigo ps sprint2, iniciando conexo com banco para sp3**
+- `4e2ce73` — **Primeiro commit do projeto, verso da Sprint 2 praticamente, apenas com cdigos dentro das pastas**
+
+### Leitura técnica dessas mudanças
+
+Esses commits mostram uma evolução coerente com a Sprint 3:
+
+1. a base da Sprint 2 foi preservada como estrutura inicial;
+2. a conexão com banco começou a ser integrada;
+3. a camada de menu passou a servir como esqueleto para futura retomada;
+4. a entidade `Endereco` virou o primeiro caso real de persistência;
+5. os relacionamentos entre classes começaram a ser ajustados para sustentar o modelo atual.
+
+## Arquitetura atual
+
+O projeto adota uma divisão por pacotes com responsabilidades bem separadas.
 
 ### `Model`
-Contém as entidades de domínio e a classe de conexão com o banco.
 
-Exemplos encontrados no repositório:
+Concentra as entidades do domínio e a infraestrutura de conexão com o banco.
+
+Classes identificadas:
 
 - `Atendimento`
 - `Beneficiario`
@@ -83,9 +122,10 @@ Exemplos encontrados no repositório:
 - `TipoEndereco`
 
 ### `DAO`
-Camada destinada ao acesso a dados e persistência.
 
-Arquivos identificados:
+Camada responsável pela persistência e acesso aos dados.
+
+Arquivos existentes:
 
 - `AtendimentoDAO`
 - `BeneficiarioDAO`
@@ -98,54 +138,55 @@ Arquivos identificados:
 - `EspecialidadeDAO`
 - `PedidoAjudaDAO`
 
-> Neste momento, a implementação funcional de persistência encontrada com clareza está em `EnderecoDAO`, responsável por inserir registros de endereço no banco Oracle.
+> No estado atual, a implementação funcional confirmada está concentrada em `EnderecoDAO`. Os demais arquivos dessa camada existem principalmente como preparação estrutural para a expansão da persistência.
 
 ### `Controller`
-Camada voltada ao gerenciamento das regras e do fluxo da aplicação.
 
-Arquivos identificados:
+Representa a camada de gerenciamento e regras de fluxo.
+
+Arquivos encontrados:
 
 - `GerenciaAtendimentos`
 - `GerenciaBeneficiarios`
 - `GerenciaDentistas`
-- `Gerenciador`
 - `GerenciaEndereco`
 - `GerenciaPedido`
+- `Gerenciador`
 
-> Parte dessa camada ainda reflete a abordagem anterior baseada em listas em memória e menus de console, servindo como base para refatoração.
+Observações:
+
+- `Gerenciador` segue ativo como interface genérica;
+- `GerenciaPedido` está implementado com lista em memória;
+- `GerenciaAtendimentos`, `GerenciaBeneficiarios`, `GerenciaDentistas` e `GerenciaEndereco` aparecem comentados, preservando a lógica anterior como base de refatoração.
 
 ### `View`
-Responsável pela interface em console.
 
-Arquivo encontrado:
+Camada de interface em console.
+
+Arquivos existentes:
 
 - `Menu`
+- `MenuAtendimentos`
+- `MenuBeneficiarios`
+- `MenuDentistas`
+- `MenuEnderecos`
+- `MenuPedidos`
 
-> O arquivo `src/RaizDoBem/View/Menu.java` está atualmente comentado no repositório, o que indica que o fluxo completo de navegação textual ainda está em revisão ou adaptação para a nova fase com persistência.
+Observações:
 
-## Estrutura de pastas
+- `Menu.java` está comentado;
+- alguns menus específicos existem apenas como casca ou classe vazia;
+- a navegação em console ainda não representa o fluxo principal da aplicação nesta fase.
 
-```text
-RaizDoBem/
-├─ config.properties
-├─ config.properties.example
-├─ src/
-│  └─ RaizDoBem/
-│     ├─ Main.java
-│     ├─ Controller/
-│     ├─ DAO/
-│     ├─ Model/
-│     └─ View/
-```
+## Entidades do domínio
 
-## Entidades principais do domínio
-
-A partir das classes do projeto, o domínio do sistema é composto principalmente por:
+A modelagem atual cobre os principais atores e registros do contexto de atendimento odontológico social.
 
 ### `Endereco`
-Representa o endereço associado a beneficiários e dentistas.
 
-Campos identificados na classe:
+Representa dados de localização e hoje é a entidade com integração mais direta com o banco.
+
+Campos presentes no modelo:
 
 - `idEndereco`
 - `logradouro`
@@ -156,35 +197,44 @@ Campos identificados na classe:
 - `tipoEndereco`
 
 ### `Beneficiario`
-Representa a pessoa atendida pelo projeto social.
 
-Campos identificados:
+Representa a pessoa beneficiada pelo atendimento.
+
+Campos observados no código atual:
 
 - `idBeneficiario`
 - `cpfBeneficiario`
 - `nomeCompleto`
 - `dataNascimento`
-- `sexo`
 - `tipoBeneficiario`
 - `endereco`
 
+> Importante: versões antigas comentadas do código sugerem que o modelo já teve outros atributos, como sexo, mas a classe ativa atual não contém esse campo.
+
 ### `Dentista`
-Representa o profissional associado aos atendimentos.
 
-Campos identificados:
+Representa o profissional vinculado aos atendimentos.
 
-- `idDentista`
+Campos observados:
+
 - `croDentista`
 - `especialidade`
 - `isDisponivel`
-- `nivelDentista`
-- `endResidencial`
-- `endProfissional`
+
+Como `Dentista` herda de `Colaborador`, ele também reutiliza dados como:
+
+- `idColaborador`
+- `cpf`
+- `nomeCompleto`
+- `dataNascimento`
+- `email`
+- `endereco`
 
 ### `Atendimento`
-Representa o vínculo entre beneficiário, dentista e ocorrência de atendimento.
 
-Campos identificados:
+Relaciona o atendimento em si com beneficiário e dentista.
+
+Campos observados:
 
 - `idAtendimento`
 - `descricao`
@@ -193,34 +243,45 @@ Campos identificados:
 - `dentista`
 
 ### `PedidoAjuda`
-Representa a solicitação inicial registrada para acompanhamento.
 
-## Fluxo atual da aplicação
+Representa uma solicitação inicial ou demanda registrada.
 
-O ponto de entrada do projeto está em `src/RaizDoBem/Main.java`.
+Campos presentes na classe atual:
 
-Hoje, o `main` mostra dois contextos no código:
+- `idPedido`
+- `descricaoProblema`
+- `dataPedido`
+- `statusPedido`
 
-1. um fluxo anterior, comentado, com criação manual de objetos e uso da interface de menu;
-2. um fluxo ativo, mais enxuto, focado em testar persistência de endereço no banco Oracle.
+### Outras classes auxiliares
 
-Na prática, o trecho atualmente executado faz:
+Também fazem parte do modelo:
 
-- instanciação de um objeto `Endereco`;
-- criação de `EnderecoDAO`;
-- chamada do método `adicionar(end1)` para inserir o endereço no banco.
-
-Isso mostra que o projeto já está direcionado para a camada de persistência, mesmo que a integração completa de todas as entidades ainda esteja em evolução.
+- `TipoBeneficiario`
+- `TipoEndereco`
+- `Sexo`
+- `Especialidade`
+- `Coordenador`
+- `DentistaEspecialidade`
+- `DentistaTipoBeneficiario`
 
 ## Persistência com Oracle
 
-A principal frente técnica do projeto neste momento é a integração com **Oracle Database** usando **JDBC**.
+Este é o principal foco técnico da fase atual do projeto.
 
-### Conexão com o banco
+### Conexão JDBC
 
-A conexão é feita pela classe `src/RaizDoBem/Model/Conexao.java`, que lê credenciais a partir de um arquivo `config.properties` na raiz do projeto.
+A conexão está centralizada em `src/RaizDoBem/Model/Conexao.java`.
 
-O arquivo de exemplo disponível no repositório é:
+A classe:
+
+- lê as propriedades a partir de `config.properties` na raiz do projeto;
+- recupera `db.url`, `db.user` e `db.password`;
+- abre a conexão usando `DriverManager.getConnection(...)`;
+- imprime uma mensagem de sucesso ao conectar.
+
+---
+Arquivo de exemplo versionado:
 
 ```properties
 db.driver=oracle.jdbc.OracleDriver
@@ -229,69 +290,86 @@ db.username=usuario
 db.password=senha
 ```
 
-### Observação importante
+### Ponto de atenção importante
 
-No código atual da classe `Conexao`, as propriedades lidas são:
+Existe uma inconsistência entre o arquivo de exemplo e o código:
 
-- `db.url`
-- `db.user`
-- `db.password`
+- `Conexao.java` lê `db.user`;
+- `config.properties.example` usa `db.username`.
 
-Já no arquivo `config.properties.example`, a chave apresentada para usuário é `db.username`.
+Para o projeto funcionar como está hoje, a chave precisa estar alinhada com **`db.user`**.
 
-Ou seja: antes de rodar o projeto, é importante alinhar esse nome no arquivo real de configuração para evitar erro de leitura da credencial.
+### Persistência implementada em `EnderecoDAO`
 
-## Persistência implementada até agora
-
-A implementação concreta identificada no repositório é a classe `EnderecoDAO`, com o método:
+A classe `src/RaizDoBem/DAO/EnderecoDAO.java` já possui:
 
 - `adicionar(Endereco endereco)`
+- `listarTodos()`
 
-Esse método executa um `INSERT` na tabela `Endereco` com os campos:
-
-- `logradouro`
-- `cep`
-- `numero`
-- `cidade`
-- `estado`
-
-### Query atualmente usada
+A operação de inserção usa a query:
 
 ```sql
 INSERT INTO Endereco (logradouro, cep, numero, cidade, estado)
 VALUES (?, ?, ?, ?, ?)
 ```
 
-## Requisitos para execução com Oracle
+Já a listagem faz uma consulta simples em toda a tabela e monta objetos `Endereco` a partir do `ResultSet`.
 
-Para executar a persistência corretamente, o ambiente precisa ter:
+### O que isso significa para a Sprint 3
 
-- Java configurado;
-- Oracle Database disponível;
-- driver JDBC do Oracle no classpath do projeto;
-- arquivo `config.properties` preenchido com as credenciais válidas;
-- tabela `Endereco` criada previamente no banco.
+Na prática, `Endereco` é hoje o **primeiro caso concreto de persistência Oracle no projeto**. Isso torna essa entidade a melhor referência para:
 
-## Exemplo de configuração
+- padronizar convenções da camada DAO;
+- definir nomes de tabela e colunas;
+- preparar CRUD completo;
+- replicar a estratégia para beneficiários, dentistas, pedidos e atendimentos.
 
-Crie um arquivo `config.properties` na raiz do projeto com base no exemplo do repositório.
+## Estrutura de pastas
 
-Sugestão prática, alinhada ao código atual de `Conexao.java`:
+```text
+RaizDoBem/
+├─ config.properties
+├─ config.properties.example
+├─ README.md
+├─ src/
+│  └─ RaizDoBem/
+│     ├─ Main.java
+│     ├─ Controller/
+│     ├─ DAO/
+│     ├─ Model/
+│     └─ View/
+```
+
+## Como configurar
+
+### 1. Preparar o Oracle Database
+
+Garanta que o ambiente Oracle esteja acessível pela URL JDBC definida no projeto.
+
+### 2. Criar o arquivo de configuração
+
+Use `config.properties.example` como base, mas ajuste o nome da propriedade do usuário para ficar compatível com o código atual.
+
+Exemplo compatível com `Conexao.java`:
 
 ```properties
 db.driver=oracle.jdbc.OracleDriver
-db.url=jdbc:oracle:thin:@SEU_IP:1521:XE
+db.url=jdbc:oracle:thin:@localhost:1521/FREEPDB1
 db.user=SEU_USUARIO
 db.password=SUA_SENHA
 ```
 
-## Exemplo mínimo de tabela Oracle
+### 3. Adicionar o driver JDBC do Oracle
 
-Como o repositório ainda não traz script SQL versionado, uma estrutura inicial coerente com o `EnderecoDAO` seria:
+O projeto depende do driver JDBC do Oracle disponível no classpath da IDE ou do módulo Java configurado localmente.
+
+### 4. Criar a tabela inicial usada pela camada DAO
+
+Como ainda não há script SQL oficial versionado no repositório, uma base mínima coerente com o código atual é:
 
 ```sql
 CREATE TABLE Endereco (
-    id_endereco NUMBER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    id NUMBER GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
     logradouro VARCHAR2(255) NOT NULL,
     cep VARCHAR2(20) NOT NULL,
     numero VARCHAR2(20) NOT NULL,
@@ -300,106 +378,104 @@ CREATE TABLE Endereco (
 );
 ```
 
-> Esse script é uma base sugerida para viabilizar a execução do código atual. Se a modelagem oficial do grupo já estiver definida de outra forma, ela deve prevalecer.
+> Esse script serve como ponto de partida para viabilizar a execução do código atual. Caso a modelagem oficial da equipe já tenha outro padrão, ela deve prevalecer.
 
 ## Como executar
 
-### 1. Configure o banco Oracle
+Com base no estado atual do projeto, o caminho de execução é simples:
 
-- crie o schema ou usuário que será utilizado;
-- crie a tabela `Endereco`;
-- garanta que o banco esteja acessível pela URL JDBC.
+1. configurar o Oracle;
+2. criar a tabela `Endereco`;
+3. criar ou ajustar `config.properties`;
+4. garantir o driver JDBC no projeto;
+5. executar `src/RaizDoBem/Main.java`.
 
-### 2. Configure o arquivo de propriedades
+No estado atual, o `main` faz o seguinte:
 
-Crie o arquivo `config.properties` na raiz do projeto usando o modelo de exemplo e ajustando as credenciais reais.
+- instancia `EnderecoDAO`;
+- chama `listarTodos()`;
+- usa a conexão Oracle para buscar os endereços existentes.
 
-### 3. Adicione o driver JDBC do Oracle ao projeto
+## O que já está implementado
 
-Na IDE, inclua o driver Oracle no classpath do módulo Java.
+### Já existe e está visível no código
 
-### 4. Execute a aplicação
+- modelagem de entidades principais do domínio;
+- separação em camadas `Model`, `DAO`, `Controller` e `View`;
+- conexão com Oracle via JDBC;
+- persistência inicial de `Endereco` com inserção;
+- listagem de endereços no banco;
+- interface `Gerenciador` para padronizar operações de controller;
+- controlador de pedidos ainda funcionando em memória.
 
-Rode a classe `src/RaizDoBem/Main.java`.
+### Estrutura pronta para expansão
 
-No estado atual do projeto, a execução tenta gravar um endereço de teste no banco configurado.
+- DAOs para outras entidades já criados como base;
+- menus específicos separados por contexto;
+- relacionamento entre classes sendo refinado;
+- projeto preparado para evoluir de protótipo para aplicação persistente.
 
-## Funcionalidades identificadas no repositório
+## Pontos de atenção
 
-### Já modeladas no domínio
-
-- pedidos de ajuda;
-- beneficiários;
-- dentistas;
-- atendimentos;
-- endereços;
-- papéis de colaboração e coordenação;
-- tipos e especialidades auxiliares.
-
-### Já estruturadas em código
-
-- modelos Java para as entidades principais;
-- camada DAO criada;
-- conexão com banco Oracle via JDBC;
-- teste de inserção de endereço em banco;
-- controllers para operações de cadastro e listagem em memória.
-
-### Ainda em evolução
-
-- persistência completa das demais entidades;
-- refatoração dos controllers para usar DAO em vez de listas locais;
-- retomada ou reestruturação do menu de console;
-- padronização completa entre modelo, banco e fluxo de execução;
-- criação de scripts SQL oficiais do projeto.
-
-## Pontos de atenção encontrados na análise
-
-Durante a análise do repositório, alguns pontos importantes apareceram:
+Durante a análise do repositório, apareceram alguns pontos importantes que merecem ficar documentados:
 
 1. **Persistência parcial**  
-   O projeto já iniciou a integração com Oracle, mas ela ainda não cobre todas as entidades.
+   A integração com Oracle já começou, mas ainda está consolidada principalmente em `EnderecoDAO`.
 
-2. **Inconsistência de configuração**  
-   O arquivo `config.properties.example` usa `db.username`, enquanto o código de `Conexao.java` lê `db.user`.
+2. **Fluxo principal ainda provisório**  
+   O `Main.java` atual está voltado a teste de listagem no banco, não à navegação completa por menus.
 
-3. **Fluxo principal temporário**  
-   O `Main.java` está, neste momento, focado em testar a inserção de endereço, e não em executar todo o sistema por menu.
+3. **Controllers e views em refatoração**  
+   Boa parte do fluxo anterior está comentada ou incompleta, o que indica migração em andamento da versão em memória.
 
-4. **Controllers e view comentados**  
-   Parte importante do fluxo anterior está comentada, sugerindo uma transição entre a versão em memória e a versão com banco.
+4. **Inconsistência de configuração**  
+   O exemplo usa `db.username`, mas o código lê `db.user`.
 
-5. **Ausência de documentação SQL no repositório**  
-   Não foi encontrado script oficial de criação das tabelas na análise do workspace.
+5. **Ausência de script SQL oficial versionado**  
+   Ainda não há no repositório um pacote formal de criação das tabelas.
 
-## Próximos passos recomendados para a Sprint 3
+6. **Domínio ainda em ajuste**  
+   Alguns arquivos comentados mostram assinaturas antigas de construtores e atributos que já não batem com as classes ativas atuais.
 
-Para consolidar a entrega da sprint, os próximos passos mais importantes são:
+7. **Existem sinais de inconsistência entre classes legadas**  
+   Parte do código preservado da versão anterior ainda não representa exatamente o modelo atual, então ele deve ser tratado como referência histórica e não como fluxo ativo.
 
-- padronizar o arquivo `config.properties` com a classe `Conexao`;
-- criar scripts SQL oficiais do projeto;
-- implementar os DAOs das demais entidades;
-- ligar os controllers à camada DAO;
-- restaurar ou refatorar a navegação da aplicação;
-- adicionar consultas e listagens vindo do banco;
-- tratar erros de conexão e SQL de forma mais robusta;
-- revisar nomes de tabelas, colunas e chaves do modelo relacional.
+## Próximos passos da Sprint 3
 
-## Valor do projeto
+Para fortalecer a entrega com foco em persistência Oracle, os próximos passos mais importantes são:
 
-Além da entrega acadêmica, o `RaizDoBem` representa uma construção importante de base técnica:
+- padronizar `config.properties.example` com `Conexao.java`;
+- versionar scripts SQL oficiais do projeto;
+- completar o CRUD de `Endereco`;
+- implementar os DAOs de `Beneficiario`, `Dentista`, `PedidoAjuda` e `Atendimento`;
+- migrar controllers para consumo real dos DAOs;
+- retomar o menu de console usando dados persistidos;
+- revisar relacionamentos entre entidades e banco;
+- tratar exceções SQL com mais clareza;
+- consolidar uma rotina de testes para conexão e operações básicas.
 
-- aplica conceitos de orientação a objetos;
-- exercita separação por camadas;
-- aproxima o sistema de um cenário real com banco relacional;
-- conecta tecnologia a um contexto social relevante em parceria com a Turma do Bem.
+## Valor acadêmico e social
+
+O `RaizDoBem` tem valor em duas frentes complementares.
+
+### Acadêmica
+
+O projeto exercita competências centrais do curso:
+
+- Java orientado a objetos;
+- modelagem de domínio;
+- organização por camadas;
+- integração com banco relacional;
+- evolução incremental por sprint.
+
+### Social
+
+Ao ser desenvolvido em colaboração com a **ONG Turma do Bem**, o projeto reforça a aplicação da tecnologia em um contexto de impacto real, conectado à organização de atendimentos e informações relevantes para ações sociais na área odontológica.
+
+---
 
 ## Status atual
 
-**Projeto em retomada e preparação para a Sprint 3**, com foco principal em **persistência com Oracle Database**.
+**Projeto em retomada, com base da Sprint 2 preservada e preparação ativa para a Sprint 3, priorizando persistência com Oracle Database.**
 
-A estrutura do sistema já está desenhada, e o estágio atual mostra a transição da lógica local para uma base persistente, que deve servir como fundação para as próximas evoluções do Challenge.
-
-## Autores e contexto acadêmico
-
-Projeto desenvolvido para o **Challenge FIAP 2025-2026**, no **1º ano de ADS**, em colaboração com a **ONG Turma do Bem**, com objetivo de aplicar conhecimentos de desenvolvimento Java, modelagem de domínio e persistência de dados em um problema com impacto social.
-
+A estrutura já existe, a conexão com banco já foi iniciada, e `Endereco` hoje representa o primeiro módulo concreto dessa virada para uma aplicação mais próxima de um sistema real.

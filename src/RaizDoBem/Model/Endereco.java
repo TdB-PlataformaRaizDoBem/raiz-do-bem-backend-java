@@ -62,34 +62,31 @@ public class Endereco {
         return tipoEndereco;
     }
 
-    public void setTipoEndereco(TipoEndereco tipoEndereco) {
-        this.tipoEndereco = tipoEndereco;
-    }
-
-    public Endereco(int idEndereco, String logradouro, String cep, String numero, String cidade, String estado) {
+    public Endereco(int idEndereco, String logradouro, String cep, String numero, String cidade, String estado, int idTipoEndereco) {
         this.idEndereco = idEndereco;
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
         this.cidade = cidade;
         this.estado = estado;
-        //this.tipoEndereco = tipoEndereco;
+        this.tipoEndereco = new TipoEndereco();
+        this.tipoEndereco.setIdTipoEndereco(idTipoEndereco);
     }
 
-    public Endereco(String logradouro, String cep, String numero, String cidade, String estado) {
+    public Endereco(String logradouro, String cep, String numero, String cidade, String estado, int idTipoEndereco) {
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
         this.cidade = cidade;
         this.estado = estado;
+        this.tipoEndereco = new TipoEndereco();
+        this.tipoEndereco.setIdTipoEndereco(idTipoEndereco);
     }
 
     @Override
     public String toString() {
         return idEndereco + " - " + logradouro + ", " + numero + " - Cep: " + cep +
-                "\n    " + cidade + " - " + estado;
-        //", tipoEndereco=" + tipoEndereco +
-        //                '}';
+                "\n    " + cidade + " - " + estado + "\nEndereço: " + tipoEndereco.getLocalizacao();
 
     }
 }

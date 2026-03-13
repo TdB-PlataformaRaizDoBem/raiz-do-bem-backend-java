@@ -33,7 +33,7 @@
 //            System.out.println("Número: " + endereco.getNumero());
 //            System.out.println("Cidade: " + endereco.getCidade());
 //            System.out.println("Estado: " + endereco.getEstado());
-//            System.out.println("Tipo de endereço: " + endereco.getTipoEndereco());
+//            System.out.println("Tipo de endereço: " + endereco.getLocalizacao());
 //            System.out.println("-----------------------------------------");
 //        }
 //        return enderecos;

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class EnderecoDAO {
 
     public void adicionar(Endereco endereco){
-        String querySql = "INSERT INTO Endereco (logradouro, cep, numero, cidade, estado) VALUES (?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Endereco (logradouro, cep, numero, cidade, estado, id_tipo_endereco) VALUES (?, ?, ?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -23,12 +23,13 @@ public class EnderecoDAO {
             ps.setString(3, endereco.getNumero());
             ps.setString(4, endereco.getCidade());
             ps.setString(5, endereco.getEstado());
+            ps.setInt(6, endereco.getTipoEndereco().getIdTipoEndereco());
 
             ps.executeUpdate();
             System.out.println("Endereço criado e adicionado com sucesso!!");
         }
         catch (SQLException exception){
-            System.out.println("Erro ao adicionar endereço:" + exception.getMessage());
+            System.out.println("Erro ao adicionar endereço: " + exception.getMessage());
         }
     }
     public void listarTodos(){
@@ -48,10 +49,10 @@ public class EnderecoDAO {
                 String numero = response.getString("numero");
                 String cidade = response.getString("cidade");
                 String estado = response.getString("estado");
+                int idTipoEndereco = response.getInt("id_tipo_endereco");
 
-                endereco = new Endereco(id, logradouro, cep, numero, cidade, estado);
+                endereco = new Endereco(id, logradouro, cep, numero, cidade, estado, idTipoEndereco);
                 System.out.println(endereco);
-                //TipoEndereco  = response.getString("logradouro");
             }
         }
         catch (SQLException exception){

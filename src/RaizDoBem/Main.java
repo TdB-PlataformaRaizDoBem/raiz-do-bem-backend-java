@@ -1,15 +1,14 @@
 package RaizDoBem;
 
-import RaizDoBem.Controller.*;
 import RaizDoBem.DAO.EnderecoDAO;
 import RaizDoBem.Model.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
 //import RaizDoBem.View.Menu;
 
-import java.sql.*;
-import java.time.LocalDate;
-import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.Executor;
 
 public class Main {
     public static void main(String[] args) {
@@ -72,16 +71,32 @@ public class Main {
 //        );
 //        menu.exibirMenuInicial();
        // Connection conexao = Conexao.conectarAoBanco();
-//      Endereco end1 = new Endereco("Rua João Távora", "03978020", "231", "São Paulo", "São Paulo");
-//      Endereco end2 = new Endereco("Avenida Paulista", "01310946", "1200", "São Paulo", "São Paulo");
-//      Endereco end3 = new Endereco("Avenida dos Estados", "09290520", "93", "Santo André", "São Paulo");
+        TipoEndereco tipoEndereco1 = new TipoEndereco(1, "Residencial");
+        TipoEndereco tipoEndereco2 = new TipoEndereco(2, "Profissional");
+         Endereco end1 = new Endereco("Rua João Távora", "03978020", "231", "São Paulo", "São Paulo",1);
+//         Endereco end2 = new Endereco("Avenida Paulista", "01310946", "1200", "São Paulo", "São Paulo");
+//         Endereco end3 = new Endereco("Avenida dos Estados", "09290520", "93", "Santo André", "São Paulo");
 
         EnderecoDAO enderecoDAO = new EnderecoDAO();
 //      //  enderecoDAO.adicionar(end2);
-//        enderecoDAO.adicionar(end1);
+        enderecoDAO.adicionar(end1);
 //        enderecoDAO.adicionar(end2);
 //        enderecoDAO.adicionar(end3);
         enderecoDAO.listarTodos();
+
+//        Dentista dentista = new Dentista();
+//        dentista.setId(10L);
+//        dentista.setNomeCompleto("Paulo Cavalcante");
+//        dentista.setCro("SP-123456");
+
+
+
+
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//
+//
+//        String endereco = gson.toJson(end1);
+//        System.out.println(endereco);
   //      enderecoDAO.adicionar(end1);
     }
 }
