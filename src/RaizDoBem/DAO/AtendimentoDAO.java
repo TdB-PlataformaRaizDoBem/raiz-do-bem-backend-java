@@ -21,7 +21,7 @@ public class AtendimentoDAO {
             System.out.println("Dentista criado e adicionado com sucesso!!");
         }
         catch (SQLException exception){
-            System.out.println("Erro ao adicionar endereço: " + exception.getMessage());
+            System.out.println("Erro ao adicionar novo atendimento: " + exception.getMessage());
         }
     }
     public void listarTodos(){
@@ -46,7 +46,7 @@ public class AtendimentoDAO {
             }
         }
         catch (SQLException exception){
-            System.out.println("Erro ao adicionar endereço:" + exception.getMessage());
+            System.out.println("Erro ao listar atendimentos:" + exception.getMessage());
         }
     }
 }

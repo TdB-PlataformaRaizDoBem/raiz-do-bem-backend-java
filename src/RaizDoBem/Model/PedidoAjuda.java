@@ -5,8 +5,12 @@ import java.time.LocalDate;
 public class PedidoAjuda {
     private int idPedido;
     private String descricaoProblema;
+    private String nomeCompleto;
+    private String telefone;
+    private String email;
     private LocalDate dataPedido;
-    private String statusPedido;
+    private Coordenador coordenador;
+    private StatusPedido status;
 
     public int getIdPedido() {
         return idPedido;
@@ -16,35 +20,58 @@ public class PedidoAjuda {
         return descricaoProblema;
     }
 
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     public LocalDate getDataPedido() {
         return dataPedido;
     }
 
-    public String getStatusPedido() {
-        return statusPedido;
+    public StatusPedido getStatus() {
+        return status;
     }
 
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
+    public Coordenador getCoordenador() {
+        return coordenador;
     }
 
-    public void setDescricaoProblema(String descricaoProblema) {
+    public PedidoAjuda setDescricaoProblema(String descricaoProblema) {
         this.descricaoProblema = descricaoProblema;
+        return this;
     }
 
-    public void setDataPedido(LocalDate dataPedido) {
-        this.dataPedido = dataPedido;
+    public PedidoAjuda setTelefone(String telefone) {
+        this.telefone = telefone;
+        return this;
     }
 
-
-    public void setStatusPedido(String statusPedido) {
-        this.statusPedido = statusPedido;
+    public PedidoAjuda setEmail(String email) {
+        this.email = email;
+        return this;
     }
 
-    public PedidoAjuda(int idPedido, String descricaoProblema, LocalDate dataPedido, String statusPedido) {
+    public PedidoAjuda setStatus(StatusPedido status) {
+        this.status = status;
+        return this;
+    }
+
+    public PedidoAjuda(int idPedido, String descricaoProblema, String nomeCompleto, String telefone, String email, LocalDate dataPedido, Coordenador coordenador, StatusPedido status) {
         this.idPedido = idPedido;
         this.descricaoProblema = descricaoProblema;
+        this.nomeCompleto = nomeCompleto;
+        this.telefone = telefone;
+        this.email = email;
         this.dataPedido = dataPedido;
-        this.statusPedido = statusPedido;
+        this.coordenador = coordenador;
+        this.status = status;
     }
 }
