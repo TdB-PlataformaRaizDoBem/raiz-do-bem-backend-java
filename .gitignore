@@ -1,0 +1,25 @@
+### Java/Maven ###
+target/
+*.class
+
+### Segurança (Importante!) ###
+config.properties
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+out/
+gen/
+
+### VS Code ###
+.vscode/
+
+### Eclipse ###
+.settings/
+.bin/
+.classpath
+.project
+
+### Mac/Windows sistemas ###
+.DS_Store
+Thumbs.db
