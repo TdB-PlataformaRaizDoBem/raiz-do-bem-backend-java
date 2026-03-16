@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class EnderecoDAO {
-
     public void adicionar(Endereco endereco){
         String querySql = "INSERT INTO Endereco (logradouro, cep, numero, cidade, estado, id_tipo_endereco) VALUES (?, ?, ?, ?, ?, ?)";
 

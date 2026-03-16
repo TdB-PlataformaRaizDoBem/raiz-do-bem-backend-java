@@ -86,7 +86,7 @@ public class Endereco {
     @Override
     public String toString() {
         return idEndereco + " - " + logradouro + ", " + numero + " - Cep: " + cep +
-                "\n    " + cidade + " - " + estado + "\nEndereço: " + tipoEndereco.getLocalizacao();
+                "\n    " + cidade + " - " + estado + "\n    Endereço: " + tipoEndereco.getLocalizacao();
 
     }
 }
