@@ -87,7 +87,7 @@ public class EnderecoDAO {
             }
         }
         catch (SQLException exception){
-            System.out.println("Erro ao listar endereços:" + exception.getMessage());
+            System.out.println("Erro ao listar endereços: " + exception.getMessage());
         }
     }
     public void listarPorCidade(String cidadeEscolhida){

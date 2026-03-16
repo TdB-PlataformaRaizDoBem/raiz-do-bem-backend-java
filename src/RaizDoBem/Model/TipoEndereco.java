@@ -25,9 +25,9 @@ public class TipoEndereco {
     public TipoEndereco() {
     }
 
-    public TipoEndereco(int idTipoEndereco, String tipoEndereco) {
+    public TipoEndereco(int idTipoEndereco, String localizacao) {
         this.idTipoEndereco = idTipoEndereco;
-        this.localizacao = tipoEndereco;
+        this.localizacao = localizacao;
     }
 
     @Override

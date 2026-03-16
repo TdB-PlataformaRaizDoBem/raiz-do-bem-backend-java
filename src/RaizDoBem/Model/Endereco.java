@@ -84,8 +84,6 @@ public class Endereco {
         this.tipoEndereco.setIdTipoEndereco(idTipoEndereco);
     }
 
-
-
     @Override
     public String toString() {
         return "\n" + idEndereco + " - " + logradouro + ", " + numero + " - Cep: " + cep +

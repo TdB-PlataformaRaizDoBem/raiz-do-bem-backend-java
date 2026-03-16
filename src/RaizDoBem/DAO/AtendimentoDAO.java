@@ -46,7 +46,7 @@ public class AtendimentoDAO {
             }
         }
         catch (SQLException exception){
-            System.out.println("Erro ao listar atendimentos:" + exception.getMessage());
+            System.out.println("Erro ao listar atendimentos: " + exception.getMessage());
         }
     }
 }

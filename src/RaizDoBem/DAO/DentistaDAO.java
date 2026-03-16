@@ -1,24 +1,13 @@
 package RaizDoBem.DAO;
 
-import RaizDoBem.Model.Conexao;
-import RaizDoBem.Model.Coordenador;
-import RaizDoBem.Model.Dentista;
-import RaizDoBem.Model.Endereco;
+import RaizDoBem.Model.*;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 
 public class DentistaDAO {
     public void adicionar(Dentista dentista){
         String querySql = "INSERT INTO Dentista (cpf, nome_completo, data_nascimento, email, id_endereco, cro, disponivel ) VALUES (?, ?, ?, ?, ?, ?, ?)";
-//            public Dentista(int idColaborador, String cpf, String nomeCompleto, LocalDate
-//        dataNascimento, String email, Endereco endereco, String croDentista boolean isDisponivel) {
-//            super(idColaborador, cpf, nomeCompleto, dataNascimento, email, endereco);
-//            this.croDentista = croDentista;
-//            this.isDisponivel = isDisponivel;
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -37,6 +26,31 @@ public class DentistaDAO {
         }
         catch (SQLException exception){
             System.out.println("Erro ao adicionar dentista: " + exception.getMessage());
+        }
+    }
+    public void listarTodos(){
+        String querySql = "SELECT * FROM Dentista";
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);){
+
+            ResultSet response;
+            Dentista dentista;
+
+            response = ps.executeQuery();
+            System.out.println("Listagem dos dentistas: ");
+            while(response.next()){
+                int id = response.getInt("id");
+                String descricao = response.getString("descricao");
+                LocalDate dataAtendimento = response.getDate("data").toLocalDate();
+                int idBeneficiario = response.getInt("id_beneficiario");
+                int idDentista = response.getInt("id_dentista");
+
+                //dentista = new Atendimento(id, descricao, dataAtendimento, idBeneficiario, idDentista);
+                //System.out.println(dentista);
+            }
+        }
+        catch (SQLException exception){
+            System.out.println("Erro ao listar atendimentos: " + exception.getMessage());
         }
     }
 }

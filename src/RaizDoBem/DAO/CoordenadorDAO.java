@@ -1,12 +1,10 @@
 package RaizDoBem.DAO;
 
+import RaizDoBem.Model.Atendimento;
 import RaizDoBem.Model.Conexao;
 import RaizDoBem.Model.Coordenador;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 
 public class CoordenadorDAO {
@@ -30,6 +28,32 @@ public class CoordenadorDAO {
         }
         catch (SQLException exception){
             System.out.println("Erro ao adicionar coordenador: " + exception.getMessage());
+        }
+    }
+
+    public void listarTodos(){
+        String querySql = "SELECT * FROM Coordenador";
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);){
+
+            ResultSet response;
+            Coordenador coordenador;
+
+            response = ps.executeQuery();
+            System.out.println("Listagem dos coordenadores: ");
+            while(response.next()){
+                int id = response.getInt("id");
+                String descricao = response.getString("descricao");
+                LocalDate dataAtendimento = response.getDate("data").toLocalDate();
+                int idBeneficiario = response.getInt("id_beneficiario");
+                int idDentista = response.getInt("id_dentista");
+
+                // coordenador = new Coordenador(id, cpf, nomeCompleto, dataNascimento, email, id_endereco, data_contratacao, nivelAcesso)
+                //System.out.println(coordenador);
+            }
+        }
+        catch (SQLException exception){
+            System.out.println("Erro ao listar coordenadores: " + exception.getMessage());
         }
     }
 }

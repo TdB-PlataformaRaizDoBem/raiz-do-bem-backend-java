@@ -1,8 +1,8 @@
 package RaizDoBem.Model;
 
 public class StatusPedido {
-    private int idStatus;
-    private String situacao;
+    private final int idStatus;
+    private final String situacao;
 
     public int getIdStatus() {
         return idStatus;

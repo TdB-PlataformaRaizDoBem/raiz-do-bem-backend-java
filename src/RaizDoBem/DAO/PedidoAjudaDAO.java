@@ -43,7 +43,7 @@ public class PedidoAjudaDAO {
                 String nomeCompleto = response.getString("nome_completo");
                 String telefone = response.getString("telefone");
                 String email = response.getString("email");
-                String data = response.getString("data");
+                Date data = response.getDate("data");
                 int idCoordenador = response.getInt("id_coordenador");
                 int idStatusPedido = response.getInt("id_status_pedido");
 
@@ -52,7 +52,7 @@ public class PedidoAjudaDAO {
             }
         }
         catch (SQLException exception){
-            System.out.println("Erro ao listar pedidos de ajuda:" + exception.getMessage());
+            System.out.println("Erro ao listar pedidos de ajuda: " + exception.getMessage());
         }
     }
 }
