@@ -3,20 +3,21 @@ package RaizDoBem.Model;
 import java.time.LocalDate;
 
 public class Beneficiario{
-    private int idBeneficiario;
-    private String cpfBeneficiario;
+    private int id;
+    private String cpf;
     private String nomeCompleto;
     private LocalDate dataNascimento;
     private Sexo sexo;
     private TipoBeneficiario tipoBeneficiario;
     private Endereco endereco;
+    private PedidoAjuda pedidoAjuda;
 
-    public int getIdBeneficiario() {
-        return idBeneficiario;
+    public int getId() {
+        return id;
     }
 
-    public String getCpfBeneficiario() {
-        return cpfBeneficiario;
+    public String getCpf() {
+        return cpf;
     }
 
     public String getNomeCompleto() {
@@ -47,19 +48,18 @@ public class Beneficiario{
         this.tipoBeneficiario = tipoBeneficiario;
     }
 
-
-
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
-    public Beneficiario(int idBeneficiario, String cpfBeneficiario, String nomeCompleto, LocalDate dataNascimento, Sexo sexo, TipoBeneficiario tipoBeneficiario, Endereco endereco) {
-        this.idBeneficiario = idBeneficiario;
-        this.cpfBeneficiario = cpfBeneficiario;
+    public Beneficiario(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, Sexo sexo, TipoBeneficiario tipoBeneficiario, Endereco endereco, PedidoAjuda pedidoAjuda) {
+        this.id = id;
+        this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
         this.sexo = sexo;
         this.tipoBeneficiario = tipoBeneficiario;
         this.endereco = endereco;
+        this.pedidoAjuda = pedidoAjuda;
     }
 }

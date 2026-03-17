@@ -1,7 +1,6 @@
 package RaizDoBem.DAO;
 
 import RaizDoBem.Model.Conexao;
-import RaizDoBem.Model.Endereco;
 import RaizDoBem.Model.PedidoAjuda;
 
 import java.sql.*;
@@ -17,9 +16,9 @@ public class PedidoAjudaDAO {
             ps.setString(2, pedido.getNomeCompleto());
             ps.setString(3, pedido.getTelefone());
             ps.setString(4, pedido.getEmail());
-            ps.setDate(5, Date.valueOf(pedido.getDataPedido()));
+            ps.setDate(5, Date.valueOf(pedido.getData()));
             ps.setInt(5, pedido.getCoordenador().getIdCoordenador());
-            ps.setInt(6, pedido.getStatus().getIdStatus());
+            ps.setInt(6, pedido.getStatus().getId());
 
             ps.executeUpdate();
             System.out.println("Pedido de ajuda criado e adicionado com sucesso!!");

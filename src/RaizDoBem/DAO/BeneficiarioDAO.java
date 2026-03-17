@@ -16,12 +16,12 @@ public class BeneficiarioDAO {
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
 
-            ps.setString(1, beneficiario.getCpfBeneficiario());
+            ps.setString(1, beneficiario.getCpf());
             ps.setString(2, beneficiario.getNomeCompleto());
             ps.setDate(3, Date.valueOf(beneficiario.getDataNascimento()));
-            ps.setInt(4, beneficiario.getSexo().getIdSexo());
-            ps.setInt(5, beneficiario.getTipoBeneficiario().getIdTipoBeneficiario());
-            ps.setInt(6, beneficiario.getEndereco().getIdEndereco());
+            ps.setInt(4, beneficiario.getSexo().getId());
+            ps.setInt(5, beneficiario.getTipoBeneficiario().getId());
+            ps.setInt(6, beneficiario.getEndereco().getId());
 
             ps.executeUpdate();
             System.out.println("Beneficiário criado e adicionado com sucesso!!");

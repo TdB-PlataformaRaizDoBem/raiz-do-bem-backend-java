@@ -3,17 +3,17 @@ package RaizDoBem.Model;
 import java.time.LocalDate;
 
 public class PedidoAjuda {
-    private int idPedido;
+    private int id;
     private String descricaoProblema;
     private String nomeCompleto;
     private String telefone;
     private String email;
-    private LocalDate dataPedido;
+    private LocalDate data;
     private Coordenador coordenador;
     private StatusPedido status;
 
-    public int getIdPedido() {
-        return idPedido;
+    public int getId() {
+        return id;
     }
 
     public String getDescricaoProblema() {
@@ -32,8 +32,8 @@ public class PedidoAjuda {
         return email;
     }
 
-    public LocalDate getDataPedido() {
-        return dataPedido;
+    public LocalDate getData() {
+        return data;
     }
 
     public StatusPedido getStatus() {
@@ -64,13 +64,13 @@ public class PedidoAjuda {
         return this;
     }
 
-    public PedidoAjuda(int idPedido, String descricaoProblema, String nomeCompleto, String telefone, String email, LocalDate dataPedido, Coordenador coordenador, StatusPedido status) {
-        this.idPedido = idPedido;
+    public PedidoAjuda(int id, String descricaoProblema, String nomeCompleto, String telefone, String email, LocalDate data, Coordenador coordenador, StatusPedido status) {
+        this.id = id;
         this.descricaoProblema = descricaoProblema;
         this.nomeCompleto = nomeCompleto;
         this.telefone = telefone;
         this.email = email;
-        this.dataPedido = dataPedido;
+        this.data = data;
         this.coordenador = coordenador;
         this.status = status;
     }

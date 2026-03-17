@@ -1,21 +1,16 @@
 package RaizDoBem.Model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 public class Atendimento {
-    private int idAtendimento;
+    private int id;
     private String descricao;
-    private LocalDate dataAtendimento;
+    private LocalDate data;
     private Beneficiario beneficiario;
     private Dentista dentista;
 
-    public int getIdAtendimento() {
-        return idAtendimento;
-    }
-
-    public void setIdAtendimento(int idAtendimento) {
-        this.idAtendimento = idAtendimento;
+    public int getId() {
+        return id;
     }
 
     public String getDescricao() {
@@ -26,12 +21,12 @@ public class Atendimento {
         this.descricao = descricao;
     }
 
-    public LocalDate getDataAtendimento() {
-        return dataAtendimento;
+    public LocalDate getData() {
+        return data;
     }
 
-    public void setDataAtendimento(LocalDate dataAtendimento) {
-        this.dataAtendimento = dataAtendimento;
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
     public Beneficiario getBeneficiario() {
@@ -50,10 +45,10 @@ public class Atendimento {
         this.dentista = dentista;
     }
 
-    public Atendimento(int idAtendimento, String descricao, LocalDate dataAtendimento, Beneficiario beneficiario, Dentista dentista) {
-        this.idAtendimento = idAtendimento;
+    public Atendimento(int id, String descricao, LocalDate data, Beneficiario beneficiario, Dentista dentista) {
+        this.id = id;
         this.descricao = descricao;
-        this.dataAtendimento = dataAtendimento;
+        this.data = data;
         this.beneficiario = beneficiario;
         this.dentista = dentista;
     }

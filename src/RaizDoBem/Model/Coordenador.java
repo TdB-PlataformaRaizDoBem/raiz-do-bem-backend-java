@@ -3,13 +3,8 @@ package RaizDoBem.Model;
 import java.time.LocalDate;
 
 public class Coordenador extends Colaborador {
-    private int idCoordenador;
     private LocalDate dataContratacao;
     private String nivelAcesso;
-
-    public int getIdCoordenador() {
-        return idCoordenador;
-    }
 
     public LocalDate getDataContratacao() {
         return dataContratacao;
@@ -19,9 +14,8 @@ public class Coordenador extends Colaborador {
         return nivelAcesso;
     }
 
-    public Coordenador(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco, int idCoordenador, LocalDate dataContratacao, String nivelAcesso) {
-        super(idColaborador, cpf, nomeCompleto, dataNascimento, email, endereco);
-        this.idCoordenador = idCoordenador;
+    public Coordenador(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco, Sexo sexo, LocalDate dataContratacao, String nivelAcesso) {
+        super(idColaborador, cpf, nomeCompleto, dataNascimento, email, endereco, sexo);
         this.dataContratacao = dataContratacao;
         this.nivelAcesso = nivelAcesso;
     }

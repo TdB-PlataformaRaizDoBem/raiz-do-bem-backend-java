@@ -1,19 +1,19 @@
 package RaizDoBem.Model;
 
 public class StatusPedido {
-    private final int idStatus;
+    private final int id;
     private final String situacao;
 
-    public int getIdStatus() {
-        return idStatus;
+    public int getId() {
+        return id;
     }
 
     public String getSituacao() {
         return situacao;
     }
 
-    public StatusPedido(int idStatus, String situacao) {
-        this.idStatus = idStatus;
+    public StatusPedido(int id, String situacao) {
+        this.id = id;
         this.situacao = situacao;
     }
 }

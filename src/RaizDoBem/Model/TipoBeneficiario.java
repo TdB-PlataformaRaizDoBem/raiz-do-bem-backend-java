@@ -1,24 +1,24 @@
 package RaizDoBem.Model;
 
 public class TipoBeneficiario {
-    private final int idTipoBeneficiario;
-    private final String tipoBeneficiario;
+    private final int id;
+    private final String programa;
 
-    public int getIdTipoBeneficiario() {
-        return idTipoBeneficiario;
+    public int getId() {
+        return id;
     }
 
-    public String getTipoBeneficiario() {
-        return tipoBeneficiario;
+    public String getPrograma() {
+        return programa;
     }
 
-    public TipoBeneficiario(int idTipoBeneficiario, String tipoBeneficiario) {
-        this.idTipoBeneficiario = idTipoBeneficiario;
-        this.tipoBeneficiario = tipoBeneficiario;
+    public TipoBeneficiario(int id, String programa) {
+        this.id = id;
+        this.programa = programa;
     }
 
     @Override
     public String toString() {
-        return tipoBeneficiario;
+        return programa;
     }
 }

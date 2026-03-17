@@ -1,19 +1,19 @@
 package RaizDoBem.Model;
 
 public class Especialidade {
-    private int idEspecialidade;
+    private int id;
     private String descricao;
 
-    public int getIdEspecialidade() {
-        return idEspecialidade;
+    public int getId() {
+        return id;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public Especialidade(int idEspecialidade, String descricao) {
-        this.idEspecialidade = idEspecialidade;
+    public Especialidade(int id, String descricao) {
+        this.id = id;
         this.descricao = descricao;
     }
 }

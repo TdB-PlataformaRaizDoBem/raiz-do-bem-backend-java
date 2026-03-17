@@ -13,9 +13,9 @@ public class AtendimentoDAO {
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
             ps.setString(1, atendimento.getDescricao());
-            ps.setDate(2, Date.valueOf(atendimento.getDataAtendimento()));
-            ps.setInt(3, atendimento.getBeneficiario().getIdBeneficiario());
-            ps.setInt(4, atendimento.getDentista().getIdColaborador());
+            ps.setDate(2, Date.valueOf(atendimento.getData()));
+            ps.setInt(3, atendimento.getBeneficiario().getId());
+            ps.setInt(4, atendimento.getDentista().getId());
 
             ps.executeUpdate();
             System.out.println("Dentista criado e adicionado com sucesso!!");

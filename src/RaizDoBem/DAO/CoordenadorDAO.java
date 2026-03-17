@@ -1,6 +1,5 @@
 package RaizDoBem.DAO;
 
-import RaizDoBem.Model.Atendimento;
 import RaizDoBem.Model.Conexao;
 import RaizDoBem.Model.Coordenador;
 
@@ -19,7 +18,7 @@ public class CoordenadorDAO {
             ps.setString(2, coord.getNomeCompleto());
             ps.setDate(3, Date.valueOf(coord.getDataNascimento()));
             ps.setString(4, coord.getEmail());
-            ps.setInt(5, coord.getEndereco().getIdEndereco());
+            ps.setInt(5, coord.getEndereco().getId());
             ps.setDate(6, Date.valueOf(coord.getDataContratacao()));
             ps.setString(7, coord.getNivelAcesso());
 

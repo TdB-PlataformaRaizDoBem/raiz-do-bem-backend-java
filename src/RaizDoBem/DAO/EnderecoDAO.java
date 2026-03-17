@@ -2,7 +2,6 @@ package RaizDoBem.DAO;
 
 import RaizDoBem.Model.Conexao;
 import RaizDoBem.Model.Endereco;
-import RaizDoBem.Model.TipoEndereco;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +21,7 @@ public class EnderecoDAO {
             ps.setString(3, endereco.getNumero());
             ps.setString(4, endereco.getCidade());
             ps.setString(5, endereco.getEstado());
-            ps.setInt(6, endereco.getTipoEndereco().getIdTipoEndereco());
+            ps.setInt(6, endereco.getTipoEndereco().getId());
 
             ps.executeUpdate();
             System.out.println("Endereço criado e adicionado com sucesso!!");

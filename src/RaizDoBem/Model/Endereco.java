@@ -1,8 +1,7 @@
 package RaizDoBem.Model;
 
-//Verificado Sp02
 public class Endereco {
-    private int idEndereco;
+    private int id;
     private String logradouro;
     private String cep;
     private String numero;
@@ -10,12 +9,12 @@ public class Endereco {
     private String estado;
     private TipoEndereco tipoEndereco;
 
-    public int getIdEndereco() {
-        return idEndereco;
+    public int getId() {
+        return id;
     }
 
-    public void setIdEndereco(int idEndereco) {
-        this.idEndereco = idEndereco;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLogradouro() {
@@ -62,15 +61,15 @@ public class Endereco {
         return tipoEndereco;
     }
 
-    public Endereco(int idEndereco, String logradouro, String cep, String numero, String cidade, String estado, int idTipoEndereco, String tipoEndereco) {
-        this.idEndereco = idEndereco;
+    public Endereco(int id, String logradouro, String cep, String numero, String cidade, String estado, int idTipoEndereco, String tipoEndereco) {
+        this.id = id;
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
         this.cidade = cidade;
         this.estado = estado;
         this.tipoEndereco = new TipoEndereco();
-        this.tipoEndereco.setIdTipoEndereco(idTipoEndereco);
+        this.tipoEndereco.setId(idTipoEndereco);
         this.tipoEndereco.setLocalizacao(tipoEndereco);
     }
 
@@ -81,12 +80,12 @@ public class Endereco {
         this.cidade = cidade;
         this.estado = estado;
         this.tipoEndereco = new TipoEndereco();
-        this.tipoEndereco.setIdTipoEndereco(idTipoEndereco);
+        this.tipoEndereco.setId(idTipoEndereco);
     }
 
     @Override
     public String toString() {
-        return "\n" + idEndereco + " - " + logradouro + ", " + numero + " - Cep: " + cep +
+        return "\n" + id + " - " + logradouro + ", " + numero + " - Cep: " + cep +
                 "\n    " + cidade + " - " + estado + "\n    Endereço: " + tipoEndereco.getLocalizacao();
 
     }

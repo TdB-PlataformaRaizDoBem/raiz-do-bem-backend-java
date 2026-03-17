@@ -17,7 +17,7 @@ public class DentistaDAO {
             ps.setString(2, dentista.getNomeCompleto());
             ps.setDate(3, Date.valueOf(dentista.getDataNascimento()));
             ps.setString(4, dentista.getEmail());
-            ps.setInt(5, dentista.getEndereco().getIdEndereco());
+            ps.setInt(5, dentista.getEndereco().getId());
             ps.setString(6, dentista.getCroDentista());
             ps.setBoolean(7, dentista.isDisponivel());
 

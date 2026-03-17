@@ -1,19 +1,19 @@
 package RaizDoBem.Model;
 
 public class TipoEndereco {
-    private int idTipoEndereco;
+    private int id;
     private String localizacao;
 
-    public int getIdTipoEndereco() {
-        return idTipoEndereco;
+    public int getId() {
+        return id;
     }
 
     public String getLocalizacao() {
         return localizacao;
     }
 
-    public TipoEndereco setIdTipoEndereco(int idTipoEndereco) {
-        this.idTipoEndereco = idTipoEndereco;
+    public TipoEndereco setId(int id) {
+        this.id = id;
         return this;
     }
 
@@ -25,8 +25,8 @@ public class TipoEndereco {
     public TipoEndereco() {
     }
 
-    public TipoEndereco(int idTipoEndereco, String localizacao) {
-        this.idTipoEndereco = idTipoEndereco;
+    public TipoEndereco(int id, String localizacao) {
+        this.id = id;
         this.localizacao = localizacao;
     }
 

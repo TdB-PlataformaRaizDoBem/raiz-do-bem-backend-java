@@ -3,24 +3,24 @@ package RaizDoBem.Model;
 import java.time.LocalDate;
 
 public class Dentista extends Colaborador{
-    private String croDentista;
-    private boolean isDisponivel;
+    private final String croDentista;
+    private boolean disponivel;
 
     public String getCroDentista() {
         return croDentista;
     }
 
     public boolean isDisponivel() {
-        return isDisponivel;
+        return disponivel;
     }
 
     public void setDisponivel(boolean disponivel) {
-        this.isDisponivel = disponivel;
+        this.disponivel = disponivel;
     }
 
-    public Dentista(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco, String croDentista, boolean isDisponivel) {
-        super(idColaborador, cpf, nomeCompleto, dataNascimento, email, endereco);
+    public Dentista(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco, Sexo sexo, String croDentista, boolean disponivel) {
+        super(idColaborador, cpf, nomeCompleto, dataNascimento, email, endereco, sexo);
         this.croDentista = croDentista;
-        this.isDisponivel = isDisponivel;
+        this.disponivel = disponivel;
     }
 }

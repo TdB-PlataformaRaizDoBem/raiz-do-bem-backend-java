@@ -3,15 +3,16 @@ package RaizDoBem.Model;
 import java.time.LocalDate;
 
 public class Colaborador {
-    private int idColaborador;
+    private int id;
     private String cpf;
     private String nomeCompleto;
     private LocalDate dataNascimento;
     private String email;
     private Endereco endereco;
+    private Sexo sexo;
 
-    public int getIdColaborador() {
-        return idColaborador;
+    public int getId() {
+        return id;
     }
 
     public String getCpf() {
@@ -34,13 +35,14 @@ public class Colaborador {
         return endereco;
     }
 
-    public Colaborador(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco) {
-        this.idColaborador = idColaborador;
+    public Colaborador(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco, Sexo sexo) {
+        this.id = id;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
         this.email = email;
         this.endereco = endereco;
+        this.sexo = sexo;
     }
 
     public boolean login(){
