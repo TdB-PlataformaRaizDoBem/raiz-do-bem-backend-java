@@ -32,4 +32,18 @@ public class BeneficiarioDAO {
             System.out.println("Erro ao adicionar beneficiário: " + exception.getMessage());
         }
     }
+
+    public void excluirBeneficiario(int idSelecionado){
+        String querySql = "DELETE FROM beneficiario WHERE id = " + idSelecionado;
+
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);){
+
+            ps.executeUpdate();
+            System.out.println("Beneficiario ID - (" + idSelecionado + ") foi excluído do banco de dados");
+        }
+        catch (SQLException exception){
+            System.out.println("Erro ao excluir beneficiário: " + exception.getMessage());
+        }
+    }
 }

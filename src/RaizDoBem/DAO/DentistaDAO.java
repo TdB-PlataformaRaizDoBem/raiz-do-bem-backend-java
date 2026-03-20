@@ -56,4 +56,17 @@ public class DentistaDAO {
             System.out.println("Erro ao listar atendimentos: " + exception.getMessage());
         }
     }
+    public void excluirDentista(int idSelecionado){
+        String querySql = "DELETE FROM dentista WHERE id = " + idSelecionado;
+
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);){
+
+            ps.executeUpdate();
+            System.out.println("Dentista ID - (" + idSelecionado + ") foi excluído do banco de dados");
+        }
+        catch (SQLException exception){
+            System.out.println("Erro ao excluir dentista: " + exception.getMessage());
+        }
+    }
 }

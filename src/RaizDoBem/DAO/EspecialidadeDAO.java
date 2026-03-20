@@ -40,12 +40,26 @@ public class EspecialidadeDAO {
                 int id = response.getInt("id");
                 String descricao = response.getString("descricao");
 
-                //descricao = new Especialidade(id, descricao);
-                System.out.println(descricao);
+                especialidade = new Especialidade(id, descricao);
+                System.out.println(especialidade);
             }
         }
         catch (SQLException exception){
-            System.out.println("Erro ao listar endereços:" + exception.getMessage());
+            System.out.println("Erro ao listar especialidades:" + exception.getMessage());
+        }
+    }
+
+    public void excluirEspecialidade(int idSelecionado){
+        String querySql = "DELETE FROM especialidade WHERE id = " + idSelecionado;
+
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);){
+
+            ps.executeUpdate();
+            System.out.println("Especialidade ID - (" + idSelecionado + ") foi excluída do banco de dados");
+        }
+        catch (SQLException exception){
+            System.out.println("Erro ao excluir especialidade: " + exception.getMessage());
         }
     }
 }

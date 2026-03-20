@@ -74,4 +74,13 @@ public class PedidoAjuda {
         this.data = data;
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + ", CPF: " + cpf + "\nDescrição: " + descricaoProblema + "\nNomeCompleto" + nomeCompleto +
+                "\nTelefone:" + telefone +
+                ", Email" + email +
+                "\nData do pedido de ajuda: " + data +
+                ", status: " + status;
+    }
 }

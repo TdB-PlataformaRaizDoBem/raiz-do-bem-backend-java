@@ -49,4 +49,18 @@ public class AtendimentoDAO {
             System.out.println("Erro ao listar atendimentos: " + exception.getMessage());
         }
     }
+
+    public void excluirAtendimento(int idSelecionado){
+        String querySql = "DELETE FROM atendimento WHERE id = " + idSelecionado;
+
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);){
+
+            ps.executeUpdate();
+            System.out.println("Atendimento ID - (" + idSelecionado + ") foi excluído do banco de dados");
+        }
+        catch (SQLException exception){
+            System.out.println("Erro ao excluir atendimento: " + exception.getMessage());
+        }
+    }
 }

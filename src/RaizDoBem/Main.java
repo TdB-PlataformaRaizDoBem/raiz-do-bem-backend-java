@@ -74,8 +74,8 @@ public class Main {
        // Connection conexao = Conexao.conectarAoBanco();
         TipoEndereco tipoEndereco1 = new TipoEndereco(1, "Residencial");
         TipoEndereco tipoEndereco2 = new TipoEndereco(2, "Profissional");
-        Endereco end1 = new Endereco("Rua João Távora", "03978020", "231", "São Paulo", "São Paulo",1);
-         Endereco end2 = new Endereco("Avenida Paulista", "01310946", "1200", "São Paulo", "São Paulo", 2);
+        Endereco end1 = new Endereco("Rua João Távora", "03978020", "231", "Jardim Adutora", "São Paulo", "São Paulo",1);
+        Endereco end2 = new Endereco("Avenida Paulista", "01310946", "1200","Jardim Paulista", "São Paulo", "São Paulo", 2);
 //         Endereco end3 = new Endereco("Avenida dos Estados", "09290520", "93", "Santo André", "São Paulo");
 
         EnderecoDAO enderecoDAO = new EnderecoDAO();

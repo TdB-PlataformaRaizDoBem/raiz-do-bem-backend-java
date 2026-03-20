@@ -16,4 +16,10 @@ public class StatusPedido {
         this.id = id;
         this.situacao = situacao;
     }
+
+    @Override
+    public String toString() {
+        return "\n" + id + " - Status: " + situacao;
+
+    }
 }

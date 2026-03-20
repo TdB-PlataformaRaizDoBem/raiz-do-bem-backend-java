@@ -60,4 +60,18 @@ public class CoordenadorDAO {
             System.out.println("Erro ao listar coordenadores: " + exception.getMessage());
         }
     }
+
+    public void excluirCoordenador(int idSelecionado){
+        String querySql = "DELETE FROM coordenador WHERE id = " + idSelecionado;
+
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);){
+
+            ps.executeUpdate();
+            System.out.println("Coordenador ID - (" + idSelecionado + ") foi excluído do banco de dados");
+        }
+        catch (SQLException exception){
+            System.out.println("Erro ao excluir coordenador: " + exception.getMessage());
+        }
+    }
 }
