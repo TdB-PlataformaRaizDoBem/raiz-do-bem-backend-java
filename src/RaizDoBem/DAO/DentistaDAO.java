@@ -45,6 +45,7 @@ public class DentistaDAO {
                 LocalDate dataNascimento = response.getDate("data_nascimento").toLocalDate();
                 String email = response.getString("email");
                 int idEndereco = response.getInt("id_endereco");
+                int idSexo = response.getInt("id_sexo");
                 String croDentista = response.getString("cro");
                 String disponibilidade = response.getString("disponibilidade");
 
@@ -56,6 +57,36 @@ public class DentistaDAO {
             System.out.println("Erro ao listar atendimentos: " + exception.getMessage());
         }
     }
+    public void listarPorCidade(String cidadeEscolhida){
+        String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.cidade = '" + cidadeEscolhida + "'";
+
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);
+        ){
+
+            ResultSet response;
+            Dentista dentista;
+
+            response = ps.executeQuery();
+            System.out.println("Listagem dos dentistas da cidade: (" + cidadeEscolhida + "): ");
+            while(response.next()){
+                int id = response.getInt("id");
+                String cpf = response.getString("cpf");
+                String nomeCompleto = response.getString("nome_completo");
+                LocalDate dataNascimento = response.getDate("data_nascimento").toLocalDate();
+                String email = response.getString("email");
+                String croDentista = response.getString("cro");
+                String disponibilidade = response.getString("disponibilidade");
+
+//                dentista = new Dentista(id, logradouro, cep, numero, bairro, cidade, estado, idTipoEndereco, tipoEndereco);
+//                System.out.println(dentista);
+            }
+        }
+        catch (SQLException exception){
+            System.out.println("Erro ao listar dentistas da cidade (" + cidadeEscolhida +  "): " + exception.getMessage());
+        }
+    }
+    public void atualizarDentista(int idSelecionado){}
     public void excluirDentista(int idSelecionado){
         String querySql = "DELETE FROM dentista WHERE id = " + idSelecionado;
 

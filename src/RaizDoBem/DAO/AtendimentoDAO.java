@@ -49,7 +49,8 @@ public class AtendimentoDAO {
             System.out.println("Erro ao listar atendimentos: " + exception.getMessage());
         }
     }
-
+    public void encontrarAtendimentoBeneficiario(){}
+    public void encontrarAtendimentosDentista(){}
     public void excluirAtendimento(int idSelecionado){
         String querySql = "DELETE FROM atendimento WHERE id = " + idSelecionado;
 

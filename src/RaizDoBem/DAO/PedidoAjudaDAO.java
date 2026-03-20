@@ -4,6 +4,7 @@ import RaizDoBem.Model.Conexao;
 import RaizDoBem.Model.PedidoAjuda;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class PedidoAjudaDAO {
     public void adicionar(PedidoAjuda pedido){
@@ -46,12 +47,31 @@ public class PedidoAjudaDAO {
                 Date data = response.getDate("data");
                 int idStatusPedido = response.getInt("id_status_pedido");
 
-//                pedido = new PedidoAjuda(id, descricaoProblema, nomeCompleto, telefone, email, data, idStatusPedido);
+//                pedido = new PedidoAjuda(id, cpf, descricaoProblema, nomeCompleto, telefone, email, data, idStatusPedido);
 //                System.out.println(pedido);
             }
         }
         catch (SQLException exception){
             System.out.println("Erro ao listar pedidos de ajuda: " + exception.getMessage());
+        }
+    }
+    public void listarPedidoUnico(String cpf){}
+    public void listarPedidosData(LocalDate data){}
+    public void atualizarPedido(int idSelecionado){
+
+    }
+    public void excluirPedido(int idSelecionado){
+        String querySql = "DELETE FROM pedido_ajuda WHERE id = " + idSelecionado;
+
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);
+        ){
+
+            ps.executeUpdate();
+            System.out.println("Pedido de Ajuda ID - (" + idSelecionado + ") foi excluído do banco de dados");
+        }
+        catch (SQLException exception){
+            System.out.println("Erro ao excluir pedido de ajuda: " + exception.getMessage());
         }
     }
 }

@@ -1,6 +1,6 @@
 package RaizDoBem.View;
 
-import RaizDoBem.Controller.*;
+//import RaizDoBem.Controller.*;
 
 import java.util.Scanner;
 
@@ -39,14 +39,14 @@ public class Menu {
         sc = new Scanner(System.in);
         do{
         //     seja bem-vindo coordenador, simular login
-            System.out.println("--- Menu Inicial ---");
-            System.out.println("1. Pedidos de ajuda");
-            System.out.println("2. Beneficiários");
-            System.out.println("3. Dentistas");
-            System.out.println("4. Atendimentos");
-            System.out.println("5. Endereços");
-            System.out.println("0. Encerrar programa");
-            System.out.println("Selecione uma opção: ");
+            System.out.println("\n      Menu Inicial      ");
+            System.out.println("        1. Pedidos de ajuda");
+            System.out.println("        2. Beneficiários");
+            System.out.println("        3. Dentistas");
+            System.out.println("        4. Atendimentos");
+            System.out.println("        5. Endereços");
+            System.out.println("        0. Encerrar programa");
+            System.out.print("Selecione uma opção: ");
             opcao = sc.nextInt();
 
             String escolha = "";

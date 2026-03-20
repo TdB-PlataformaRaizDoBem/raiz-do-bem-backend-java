@@ -1,7 +1,6 @@
 package RaizDoBem.DAO;
 
 import RaizDoBem.Model.Conexao;
-import RaizDoBem.Model.Endereco;
 import RaizDoBem.Model.Especialidade;
 
 import java.sql.Connection;
@@ -48,7 +47,6 @@ public class EspecialidadeDAO {
             System.out.println("Erro ao listar especialidades:" + exception.getMessage());
         }
     }
-
     public void excluirEspecialidade(int idSelecionado){
         String querySql = "DELETE FROM especialidade WHERE id = " + idSelecionado;
 
