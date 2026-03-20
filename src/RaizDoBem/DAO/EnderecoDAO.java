@@ -9,6 +9,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class EnderecoDAO {
+    private Endereco mapeamento(ResultSet response) throws SQLException {
+        return new Endereco(
+                response.getInt("id"),
+                response.getString("logradouro"),
+                response.getString("cep"),
+                response.getString("numero"),
+                response.getString("bairro"),
+                response.getString("cidade"),
+                response.getString("estado"),
+                response.getInt("id_tipo_endereco"),
+                response.getString("localizacao")
+        );
+    }
     public void adicionar(Endereco endereco){
         String querySql = "INSERT INTO Endereco (logradouro, cep, numero, bairro, cidade, estado, id_tipo_endereco) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -35,35 +48,14 @@ public class EnderecoDAO {
         String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco";
 
         try(Connection conexao = Conexao.conectarAoBanco();
-            PreparedStatement ps = conexao.prepareStatement(querySql);){
+            PreparedStatement ps = conexao.prepareStatement(querySql);) {
 
-            ResultSet response;
-            Endereco endereco;
-
-            response = ps.executeQuery();
-            System.out.println("Listagem dos endereços: ");
-            while(response.next()){
-                int id = response.getInt("id");
-                String logradouro = response.getString("logradouro");
-                String cep = response.getString("cep");
-                String numero = response.getString("numero");
-                String bairro = response.getString("bairro");
-                String cidade = response.getString("cidade");
-                String estado = response.getString("estado");
-                int idTipoEndereco = response.getInt("id_tipo_endereco");
-                String tipoEndereco = response.getString("localizacao");
-
-                endereco = new Endereco(
-                        id,
-                        logradouro,
-                        cep,
-                        numero,
-                        bairro,
-                        cidade,
-                        estado,
-                        idTipoEndereco,
-                        tipoEndereco);
-                System.out.println(endereco);
+            try(ResultSet response = ps.executeQuery();){
+                System.out.println("Listagem dos endereços: ");
+                while(response.next()){
+                    Endereco endereco = mapeamento(response);
+                    System.out.println(endereco);
+                }
             }
         }
         catch (SQLException exception){
@@ -73,38 +65,16 @@ public class EnderecoDAO {
     public void listarPorId(int idselecionado){
         String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.id = " + idselecionado;
 
-
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
             ){
 
-            ResultSet response;
-            Endereco endereco;
-
-            response = ps.executeQuery();
-            System.out.println("Endereço com ID - " + idselecionado + ": ");
-            while(response.next()){
-                int id = response.getInt("id");
-                String logradouro = response.getString("logradouro");
-                String cep = response.getString("cep");
-                String numero = response.getString("numero");
-                String bairro = response.getString("bairro");
-                String cidade = response.getString("cidade");
-                String estado = response.getString("estado");
-                int idTipoEndereco = response.getInt("id_tipo_endereco");
-                String tipoEndereco = response.getString("localizacao");
-
-                endereco = new Endereco(
-                        id,
-                        logradouro,
-                        cep,
-                        numero,
-                        bairro,
-                        cidade,
-                        estado,
-                        idTipoEndereco,
-                        tipoEndereco);
-                System.out.println(endereco);
+            try(ResultSet response = ps.executeQuery();){
+                System.out.println("Endereço com ID - " + idselecionado + ": ");
+                while(response.next()){
+                    Endereco endereco = mapeamento(response);
+                    System.out.println(endereco);
+                }
             }
         }
         catch (SQLException exception){
@@ -118,33 +88,12 @@ public class EnderecoDAO {
             PreparedStatement ps = conexao.prepareStatement(querySql);
             ){
 
-            ResultSet response;
-            Endereco endereco;
-
-            response = ps.executeQuery();
-            System.out.println("Listagem dos endereços da cidade (" + cidadeEscolhida + "): ");
-            while(response.next()){
-                int id = response.getInt("id");
-                String logradouro = response.getString("logradouro");
-                String cep = response.getString("cep");
-                String numero = response.getString("numero");
-                String bairro = response.getString("bairro");
-                String cidade = response.getString("cidade");
-                String estado = response.getString("estado");
-                int idTipoEndereco = response.getInt("id_tipo_endereco");
-                String tipoEndereco = response.getString("localizacao");
-
-                endereco = new Endereco(
-                        id,
-                        logradouro,
-                        cep,
-                        numero,
-                        bairro,
-                        cidade,
-                        estado,
-                        idTipoEndereco,
-                        tipoEndereco);
-                System.out.println(endereco);
+            try(ResultSet response = ps.executeQuery();){
+                System.out.println("Listagem dos endereços da cidade (" + cidadeEscolhida + "): ");
+                while(response.next()) {
+                    Endereco endereco = mapeamento(response);
+                    System.out.println(endereco);
+                }
             }
         }
         catch (SQLException exception){

@@ -51,6 +51,11 @@ public class Beneficiario{
         return endereco;
     }
 
+    public Beneficiario setId(int id) {
+        this.id = id;
+        return this;
+    }
+
     public void setNomeCompleto(String nomeCompleto) {
         this.nomeCompleto = nomeCompleto;
     }
@@ -109,5 +114,8 @@ public class Beneficiario{
 
     public Beneficiario(String cpf, String nomeCompleto, LocalDate dataNascimento, String telefone, String email, int idSexo, int idPrograma, int idEndereco, int idPedido, int idColaborador) {
         this(0, cpf, nomeCompleto, dataNascimento, telefone, email, idSexo, idPrograma, idEndereco, idPedido, idColaborador);
+    }
+
+    public Beneficiario() {
     }
 }

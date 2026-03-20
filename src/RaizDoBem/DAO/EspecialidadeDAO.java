@@ -30,18 +30,16 @@ public class EspecialidadeDAO {
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
 
-            ResultSet response;
-            Especialidade especialidade;
-
-            response = ps.executeQuery();
+        try(ResultSet response = ps.executeQuery();){
             System.out.println("Listagem dos endereços: ");
             while(response.next()){
                 int id = response.getInt("id");
                 String descricao = response.getString("descricao");
 
-                especialidade = new Especialidade(id, descricao);
+                Especialidade especialidade = new Especialidade(id, descricao);
                 System.out.println(especialidade);
             }
+        }
         }
         catch (SQLException exception){
             System.out.println("Erro ao listar especialidades:" + exception.getMessage());

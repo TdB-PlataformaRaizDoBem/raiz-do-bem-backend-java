@@ -6,6 +6,30 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class DentistaDAO {
+    private Dentista mapeamento(ResultSet response) throws SQLException {
+        int id = response.getInt("id_colaborador");
+        String cpf = response.getString("cpf");
+        String nomeCompleto = response.getString("nome_completo");
+        LocalDate dataNascimento = response.getDate("data_nascimento").toLocalDate();
+        String email = response.getString("email");
+        int idEndereco = response.getInt("id_endereco");
+        String logradouro = response.getString("logradouro");
+        int idSexo = response.getInt("id_sexo");
+        String sexo = response.getString("tipo");
+        String croDentista = response.getString("cro");
+        String disponibilidade = response.getString("disponibilidade");
+
+        return new Dentista(
+                id,
+                cpf,
+                nomeCompleto,
+                dataNascimento,
+                email,
+                idEndereco,
+                idSexo,
+                croDentista,
+                disponibilidade);
+    }
     public void adicionar(Dentista dentista){
         String querySql = "INSERT INTO Dentista (cpf, nome_completo, data_nascimento, email, id_endereco, id_sexo, cro, disponivel) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -35,35 +59,12 @@ public class DentistaDAO {
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
 
-            ResultSet response;
-            Dentista dentista;
-
-            response = ps.executeQuery();
-            System.out.println("Listagem dos dentistas: ");
-            while(response.next()){
-                int id = response.getInt("id_colaborador");
-                String cpf = response.getString("cpf");
-                String nomeCompleto = response.getString("nome_completo");
-                LocalDate dataNascimento = response.getDate("data_nascimento").toLocalDate();
-                String email = response.getString("email");
-                int idEndereco = response.getInt("id_endereco");
-                String logradouro = response.getString("logradouro");
-                int idSexo = response.getInt("id_sexo");
-                String tipo = response.getString("tipo");
-                String croDentista = response.getString("cro");
-                String disponibilidade = response.getString("disponibilidade");
-
-                dentista = new Dentista(
-                        id,
-                        cpf,
-                        nomeCompleto,
-                        dataNascimento,
-                        email,
-                        idEndereco,
-                        idSexo,
-                        croDentista,
-                        disponibilidade);
-                System.out.println(dentista);
+            try(ResultSet response = ps.executeQuery();){
+                System.out.println("Listagem dos dentistas: ");
+                while(response.next()){
+                    Dentista dentista = mapeamento(response);
+                    System.out.println(dentista);
+                }
             }
         }
         catch (SQLException exception){
@@ -77,35 +78,12 @@ public class DentistaDAO {
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
 
-            ResultSet response;
-            Dentista dentista;
-
-            response = ps.executeQuery();
-            System.out.println("Listagem dos dentistas da cidade: (" + cidadeEscolhida + "): ");
-            while(response.next()){
-                int id = response.getInt("id_colaborador");
-                String cpf = response.getString("cpf");
-                String nomeCompleto = response.getString("nome_completo");
-                LocalDate dataNascimento = response.getDate("data_nascimento").toLocalDate();
-                String email = response.getString("email");
-                int idEndereco = response.getInt("id_endereco");
-                String logradouro = response.getString("logradouro");
-                int idSexo = response.getInt("id_sexo");
-                String tipo = response.getString("tipo");
-                String croDentista = response.getString("cro");
-                String disponibilidade = response.getString("disponibilidade");
-
-                dentista = new Dentista(
-                        id,
-                        cpf,
-                        nomeCompleto,
-                        dataNascimento,
-                        email,
-                        idEndereco,
-                        idSexo,
-                        croDentista,
-                        disponibilidade);
-                System.out.println(dentista);
+            try(ResultSet response = ps.executeQuery();){
+                System.out.println("Listagem dos dentistas da cidade: (" + cidadeEscolhida + "): ");
+                while(response.next()){
+                    Dentista dentista = mapeamento(response);
+                    System.out.println(dentista);
+                }
             }
         }
         catch (SQLException exception){
@@ -118,35 +96,12 @@ public class DentistaDAO {
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
 
-            ResultSet response;
-            Dentista dentista;
-
-            response = ps.executeQuery();
-            System.out.println("Listagem dos dentistas: ");
-            while(response.next()){
-                int id = response.getInt("id_colaborador");
-                String cpf = response.getString("cpf");
-                String nomeCompleto = response.getString("nome_completo");
-                LocalDate dataNascimento = response.getDate("data_nascimento").toLocalDate();
-                String email = response.getString("email");
-                int idEndereco = response.getInt("id_endereco");
-                String logradouro = response.getString("logradouro");
-                int idSexo = response.getInt("id_sexo");
-                String tipo = response.getString("tipo");
-                String croDentista = response.getString("cro");
-                String disponibilidade = response.getString("disponibilidade");
-
-                dentista = new Dentista(
-                        id,
-                        cpf,
-                        nomeCompleto,
-                        dataNascimento,
-                        email,
-                        idEndereco,
-                        idSexo,
-                        croDentista,
-                        disponibilidade);
-                System.out.println(dentista);
+            try(ResultSet response = ps.executeQuery();){
+                System.out.println("Listagem dos dentistas disponíveis: ");
+                while(response.next()){
+                    Dentista dentista = mapeamento(response);
+                    System.out.println(dentista);
+                }
             }
         }
         catch (SQLException exception){

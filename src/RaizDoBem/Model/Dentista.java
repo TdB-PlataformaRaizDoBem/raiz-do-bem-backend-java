@@ -23,14 +23,12 @@ public class Dentista extends Colaborador{
         return this;
     }
 
-    // Construtor com ID (para SELECT do banco)
     public Dentista(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, int idEndereco, int idSexo, String croDentista, String disponibilidade) {
         super(id, cpf, nomeCompleto, dataNascimento, email, idEndereco, idSexo);
         this.croDentista = croDentista;
         this.disponibilidade = disponibilidade;
     }
 
-    // Construtor sem ID (para INSERT no banco)
     public Dentista(String cpf, String nomeCompleto, LocalDate dataNascimento, String email, int idEndereco, int idSexo, String croDentista, String disponibilidade) {
         this(0, cpf, nomeCompleto, dataNascimento, email, idEndereco, idSexo, croDentista, disponibilidade);
     }

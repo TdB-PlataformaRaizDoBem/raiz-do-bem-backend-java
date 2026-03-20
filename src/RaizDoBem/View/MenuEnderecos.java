@@ -3,6 +3,7 @@ package RaizDoBem.View;
 import RaizDoBem.DAO.EnderecoDAO;
 import RaizDoBem.Model.Endereco;
 
+import java.sql.*;
 import java.util.Scanner;
 
 public class MenuEnderecos {

@@ -45,11 +45,15 @@ public class Atendimento {
         this.dentista = dentista;
     }
 
-    public Atendimento(int id, String descricaoAtendimento, LocalDate data, Beneficiario beneficiario, Dentista dentista) {
+    public Atendimento(int id, String descricaoAtendimento, LocalDate data, int idBeneficiario, int idDentista) {
         this.id = id;
         this.descricaoAtendimento = descricaoAtendimento;
         this.data = data;
-        this.beneficiario = beneficiario;
-        this.dentista = dentista;
+
+        this.beneficiario = new Beneficiario();
+        this.beneficiario.setId(idBeneficiario);
+
+        this.dentista = new Dentista();
+        this.beneficiario.setId(idDentista);
     }
 }

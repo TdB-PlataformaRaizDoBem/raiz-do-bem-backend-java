@@ -8,20 +8,11 @@ public class Menu {
     private int opcao;
     private String escolhido;
     private Scanner sc;
+    MenuAtendimentos menuAtendimentos = new MenuAtendimentos();
+    MenuBeneficiarios menuBeneficiarios = new MenuBeneficiarios();
     MenuEnderecos menuEndereco = new MenuEnderecos();
-//    GerenciaPedido gerenciaPedido = new GerenciaPedido();
-//    GerenciaEndereco gerenciaEndereco = new GerenciaEndereco();
-//    GerenciaBeneficiarios gerenciaBeneficiarios = new GerenciaBeneficiarios(gerenciaEndereco);
-//    GerenciaDentistas gerenciaDentistas = new GerenciaDentistas();
-//    GerenciaAtendimentos gerenciaAtendimentos = new GerenciaAtendimentos(gerenciaBeneficiarios, gerenciaDentistas);
-//
-//    public Menu(GerenciaPedido gerenciaPedido, GerenciaEndereco gerenciaEndereco, GerenciaBeneficiarios gerenciaBeneficiarios, GerenciaDentistas gerenciaDentistas, GerenciaAtendimentos gerenciaAtendimentos) {
-//        this.gerenciaPedido = gerenciaPedido;
-//        this.gerenciaEndereco = gerenciaEndereco;
-//        this.gerenciaBeneficiarios = gerenciaBeneficiarios;
-//        this.gerenciaDentistas = gerenciaDentistas;
-//        this.gerenciaAtendimentos = gerenciaAtendimentos;
-//    }
+    MenuDentistas menuDentistas = new MenuDentistas();
+    MenuPedidos menuPedidos = new MenuPedidos();
 
     public int getOpcao() {
         return opcao;
@@ -54,22 +45,21 @@ public class Menu {
                 case 1:
                     escolha = "1. Pedidos de ajuda";
                     System.out.println("Você selecionou: " + escolha);
-                    //menuPedidos(sc);
                     break;
                 case 2:
                     escolha = "2. Beneficiários";
                     System.out.println("Você selecionou: " + escolha);
-                   // menuBeneficiarios(sc);
+                    menuBeneficiarios.menuBeneficiarios();
                     break;
                 case 3:
                     escolha = "3. Dentistas";
                     System.out.println("Você selecionou: " + escolha);
-                    //menuDentistas(sc);
+                    menuDentistas.menu();
                     break;
                 case 4:
                     escolha = "4. Atendimentos";
                     System.out.println("Você selecionou: " + escolha);
-                    //menuAtendimentos(sc);
+                    menuAtendimentos.menuAtendimentos();
                     break;
                 case 5:
                     escolha = "5. Endereços";
@@ -84,7 +74,6 @@ public class Menu {
             }
         } while(opcao!=0);
     }
-
 
     public void pausa(){
         System.out.println("Digite qualquer tecla...");

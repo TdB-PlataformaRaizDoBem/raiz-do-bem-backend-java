@@ -1,43 +1,58 @@
 package RaizDoBem.View;
 
 import RaizDoBem.DAO.BeneficiarioDAO;
+import RaizDoBem.Model.Beneficiario;
 
 import java.util.Scanner;
 
 public class MenuBeneficiarios {
-        public void menuBeneficiarios(Scanner sc){
+    public void menuBeneficiarios(){
+        Scanner sc = new Scanner(System.in);
         BeneficiarioDAO beneficiarioDAO = new BeneficiarioDAO();
-        System.out.println("--- Beneficiários ---");
-        System.out.println("1. Adicionar beneficiário");
-        System.out.println("2. Listar todos os beneficiários");
-        System.out.println("3. Mostrar beneficiário pelo 'parâmetro'");
-        System.out.println("4. Atualizar beneficiário");
-        System.out.println("5. Excluir beneficiário");
-        System.out.println("6. Voltar ao menu principal");
-        System.out.println("0. Encerrar programa");
+        Beneficiario beneficiario = null;
+        int id = 0;
+        System.out.println("\n      Gerenciar Beneficiários     ");
+        System.out.println("        1.  Adicionar beneficiário");
+        System.out.println("        2.  Listar todos os beneficiários");
+        System.out.println("        3.  Listar beneficiário único");
+        System.out.println("        4.  Listar beneficiários por programa");
+        System.out.println("        5.  Listar beneficiários por cidade");
+        System.out.println("        6.  Atualizar beneficiário");
+        System.out.println("        7.  Excluir beneficiário");
+        System.out.println("        8.  Voltar ao menu principal");
+        System.out.println("        0.  Encerrar programa");
         System.out.print("Selecione uma opção: ");
         int opc = sc.nextInt();
         sc.nextLine();
 
         switch (opc){
             case 1:
-                //beneficiarioDAO.adicionar();
+                beneficiarioDAO.adicionar(beneficiario);
                 break;
             case 2:
-                //beneficiarioDAO.listarTodos();
+                beneficiarioDAO.listarTodos();
                 break;
             case 3:
-                System.out.println("Voltando ao menu principal...");
+                beneficiarioDAO.listarBeneficiarioUnico();
                 break;
             case 4:
+                beneficiarioDAO.listarPorPrograma();
                 break;
             case 5:
+                beneficiarioDAO.listarPorCidade();
                 break;
             case 6:
+                beneficiarioDAO.atualizarBeneficiario(id);
+                break;
+            case 7:
+                beneficiarioDAO.excluirBeneficiario(id);
+                break;
+            case 8:
+                System.out.println("Voltando ao menu principal...");
                 break;
             case 0:
                 System.out.println("Encerrando programa...");
-                break;
+                System.exit(0);
             default:
                 System.out.println("Opção Inválida!");
         }

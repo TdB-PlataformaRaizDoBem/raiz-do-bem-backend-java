@@ -69,7 +69,7 @@ public class PedidoAjuda {
         return this;
     }
 
-    public PedidoAjuda(int id, String cpf,  String descricaoProblema, String nomeCompleto, String telefone, String email, LocalDate data, StatusPedido status) {
+    public PedidoAjuda(int id, String cpf,  String descricaoProblema, String nomeCompleto, String telefone, String email, LocalDate data, int idStatusPedido) {
         this.id = id;
         this.cpf = cpf;
         this.descricaoProblema = descricaoProblema;
@@ -77,7 +77,8 @@ public class PedidoAjuda {
         this.telefone = telefone;
         this.email = email;
         this.data = data;
-        this.status = status;
+        this.status = new StatusPedido();
+        this.status.setId(idStatusPedido);
     }
 
     public PedidoAjuda() {

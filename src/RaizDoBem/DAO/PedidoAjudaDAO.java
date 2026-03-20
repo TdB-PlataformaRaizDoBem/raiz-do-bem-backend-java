@@ -33,9 +33,7 @@ public class PedidoAjudaDAO {
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
 
-            ResultSet response;
-
-            response = ps.executeQuery();
+            ResultSet response = ps.executeQuery();
             System.out.println("Listagem dos pedidos de ajuda: ");
             while(response.next()){
                 int id = response.getInt("id");
@@ -44,11 +42,21 @@ public class PedidoAjudaDAO {
                 String nomeCompleto = response.getString("nome_completo");
                 String telefone = response.getString("telefone");
                 String email = response.getString("email");
-                Date data = response.getDate("data");
+                LocalDate data = response.getDate("data").toLocalDate();
                 int idStatusPedido = response.getInt("id_status_pedido");
 
-//                pedido = new PedidoAjuda(id, cpf, descricaoProblema, nomeCompleto, telefone, email, data, idStatusPedido);
-//                System.out.println(pedido);
+                PedidoAjuda pedido = new PedidoAjuda(
+                        id,
+                        cpf,
+                        descricaoProblema,
+                        nomeCompleto,
+                        telefone,
+                        email,
+                        data,
+                        idStatusPedido
+                );
+
+              System.out.println(pedido);
             }
         }
         catch (SQLException exception){
