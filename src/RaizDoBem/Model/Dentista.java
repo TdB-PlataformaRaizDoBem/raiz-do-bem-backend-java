@@ -3,24 +3,39 @@ package RaizDoBem.Model;
 import java.time.LocalDate;
 
 public class Dentista extends Colaborador{
-    private final String croDentista;
-    private boolean disponibilidade;
+    private String croDentista;
+    private String disponibilidade;
 
     public String getCroDentista() {
         return croDentista;
     }
 
-    public boolean isDisponibilidade() {
+    public void setCroDentista(String croDentista) {
+        this.croDentista = croDentista;
+    }
+
+    public String getDisponibilidade() {
         return disponibilidade;
     }
 
-    public void setDisponibilidade(boolean disponibilidade) {
+    public Dentista setDisponibilidade(String disponibilidade) {
+        this.disponibilidade = disponibilidade;
+        return this;
+    }
+
+    // Construtor com ID (para SELECT do banco)
+    public Dentista(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, int idEndereco, int idSexo, String croDentista, String disponibilidade) {
+        super(id, cpf, nomeCompleto, dataNascimento, email, idEndereco, idSexo);
+        this.croDentista = croDentista;
         this.disponibilidade = disponibilidade;
     }
 
-    public Dentista(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco, Sexo sexo, String croDentista, boolean disponibilidade) {
-        super(idColaborador, cpf, nomeCompleto, dataNascimento, email, endereco, sexo);
-        this.croDentista = croDentista;
-        this.disponibilidade = disponibilidade;
+    // Construtor sem ID (para INSERT no banco)
+    public Dentista(String cpf, String nomeCompleto, LocalDate dataNascimento, String email, int idEndereco, int idSexo, String croDentista, String disponibilidade) {
+        this(0, cpf, nomeCompleto, dataNascimento, email, idEndereco, idSexo, croDentista, disponibilidade);
+    }
+
+    public Dentista() {
+        super();
     }
 }

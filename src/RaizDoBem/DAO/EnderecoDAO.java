@@ -53,7 +53,8 @@ public class EnderecoDAO {
                 int idTipoEndereco = response.getInt("id_tipo_endereco");
                 String tipoEndereco = response.getString("localizacao");
 
-                endereco = new Endereco(id,
+                endereco = new Endereco(
+                        id,
                         logradouro,
                         cep,
                         numero,
@@ -93,7 +94,8 @@ public class EnderecoDAO {
                 int idTipoEndereco = response.getInt("id_tipo_endereco");
                 String tipoEndereco = response.getString("localizacao");
 
-                endereco = new Endereco(id,
+                endereco = new Endereco(
+                        id,
                         logradouro,
                         cep,
                         numero,
@@ -132,7 +134,8 @@ public class EnderecoDAO {
                 int idTipoEndereco = response.getInt("id_tipo_endereco");
                 String tipoEndereco = response.getString("localizacao");
 
-                endereco = new Endereco(id,
+                endereco = new Endereco(
+                        id,
                         logradouro,
                         cep,
                         numero,

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class DentistaDAO {
     public void adicionar(Dentista dentista){
-        String querySql = "INSERT INTO Dentista (cpf, nome_completo, data_nascimento, email, id_endereco, cro, disponivel) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Dentista (cpf, nome_completo, data_nascimento, email, id_endereco, id_sexo, cro, disponivel) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -18,8 +18,9 @@ public class DentistaDAO {
             ps.setDate(3, Date.valueOf(dentista.getDataNascimento()));
             ps.setString(4, dentista.getEmail());
             ps.setInt(5, dentista.getEndereco().getId());
-            ps.setString(6, dentista.getCroDentista());
-            ps.setBoolean(7, dentista.isDisponibilidade());
+            ps.setInt(6, dentista.getSexo().getId());
+            ps.setString(7, dentista.getCroDentista());
+            ps.setString(8, dentista.getDisponibilidade());
 
             ps.executeUpdate();
             System.out.println("Dentista criado e adicionado com sucesso!!");
@@ -29,7 +30,8 @@ public class DentistaDAO {
         }
     }
     public void listarTodos(){
-        String querySql = "SELECT * FROM Dentista";
+        String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento,c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero FROM Dentista d, Colaborador c, Sexo s, Endereco e";
+
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
 
@@ -39,18 +41,29 @@ public class DentistaDAO {
             response = ps.executeQuery();
             System.out.println("Listagem dos dentistas: ");
             while(response.next()){
-                int id = response.getInt("id");
-                String descricao = response.getString("cpf");
+                int id = response.getInt("id_colaborador");
+                String cpf = response.getString("cpf");
                 String nomeCompleto = response.getString("nome_completo");
                 LocalDate dataNascimento = response.getDate("data_nascimento").toLocalDate();
                 String email = response.getString("email");
                 int idEndereco = response.getInt("id_endereco");
+                String logradouro = response.getString("logradouro");
                 int idSexo = response.getInt("id_sexo");
+                String tipo = response.getString("tipo");
                 String croDentista = response.getString("cro");
                 String disponibilidade = response.getString("disponibilidade");
 
-                //dentista = new Atendimento(id, descricao, dataAtendimento, idBeneficiario, idDentista);
-                //System.out.println(dentista);
+                dentista = new Dentista(
+                        id,
+                        cpf,
+                        nomeCompleto,
+                        dataNascimento,
+                        email,
+                        idEndereco,
+                        idSexo,
+                        croDentista,
+                        disponibilidade);
+                System.out.println(dentista);
             }
         }
         catch (SQLException exception){
@@ -58,7 +71,7 @@ public class DentistaDAO {
         }
     }
     public void listarPorCidade(String cidadeEscolhida){
-        String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.cidade = '" + cidadeEscolhida + "'";
+        String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento, c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero FROM Dentista d, Colaborador c, Sexo s, Endereco e WHERE e.cidade  = '" + cidadeEscolhida + "'";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -70,20 +83,74 @@ public class DentistaDAO {
             response = ps.executeQuery();
             System.out.println("Listagem dos dentistas da cidade: (" + cidadeEscolhida + "): ");
             while(response.next()){
-                int id = response.getInt("id");
+                int id = response.getInt("id_colaborador");
                 String cpf = response.getString("cpf");
                 String nomeCompleto = response.getString("nome_completo");
                 LocalDate dataNascimento = response.getDate("data_nascimento").toLocalDate();
                 String email = response.getString("email");
+                int idEndereco = response.getInt("id_endereco");
+                String logradouro = response.getString("logradouro");
+                int idSexo = response.getInt("id_sexo");
+                String tipo = response.getString("tipo");
                 String croDentista = response.getString("cro");
                 String disponibilidade = response.getString("disponibilidade");
 
-//                dentista = new Dentista(id, logradouro, cep, numero, bairro, cidade, estado, idTipoEndereco, tipoEndereco);
-//                System.out.println(dentista);
+                dentista = new Dentista(
+                        id,
+                        cpf,
+                        nomeCompleto,
+                        dataNascimento,
+                        email,
+                        idEndereco,
+                        idSexo,
+                        croDentista,
+                        disponibilidade);
+                System.out.println(dentista);
             }
         }
         catch (SQLException exception){
             System.out.println("Erro ao listar dentistas da cidade (" + cidadeEscolhida +  "): " + exception.getMessage());
+        }
+    }
+    public void listarDisponiveis(){
+        String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento, c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero, e.cidade FROM Dentista d, Coordenador c, Endereco e, Sexo s WHERE d.id_coordenador = c.id AND e.disponibilidade = 'Sim'";
+
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);){
+
+            ResultSet response;
+            Dentista dentista;
+
+            response = ps.executeQuery();
+            System.out.println("Listagem dos dentistas: ");
+            while(response.next()){
+                int id = response.getInt("id_colaborador");
+                String cpf = response.getString("cpf");
+                String nomeCompleto = response.getString("nome_completo");
+                LocalDate dataNascimento = response.getDate("data_nascimento").toLocalDate();
+                String email = response.getString("email");
+                int idEndereco = response.getInt("id_endereco");
+                String logradouro = response.getString("logradouro");
+                int idSexo = response.getInt("id_sexo");
+                String tipo = response.getString("tipo");
+                String croDentista = response.getString("cro");
+                String disponibilidade = response.getString("disponibilidade");
+
+                dentista = new Dentista(
+                        id,
+                        cpf,
+                        nomeCompleto,
+                        dataNascimento,
+                        email,
+                        idEndereco,
+                        idSexo,
+                        croDentista,
+                        disponibilidade);
+                System.out.println(dentista);
+            }
+        }
+        catch (SQLException exception){
+            System.out.println("Erro ao listar atendimentos: " + exception.getMessage());
         }
     }
     public void atualizarDentista(int idSelecionado){}

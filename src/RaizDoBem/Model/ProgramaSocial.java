@@ -1,8 +1,8 @@
 package RaizDoBem.Model;
 
 public class ProgramaSocial {
-    private final int id;
-    private final String programa;
+    private int id;
+    private String programa;
 
     public int getId() {
         return id;
@@ -12,9 +12,22 @@ public class ProgramaSocial {
         return programa;
     }
 
+    public ProgramaSocial setId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public ProgramaSocial setPrograma(String programa) {
+        this.programa = programa;
+        return this;
+    }
+
     public ProgramaSocial(int id, String programa) {
         this.id = id;
         this.programa = programa;
+    }
+
+    public ProgramaSocial() {
     }
 
     @Override

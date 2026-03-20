@@ -44,6 +44,11 @@ public class PedidoAjuda {
         return status;
     }
 
+    public PedidoAjuda setId(int id) {
+        this.id = id;
+        return this;
+    }
+
     public PedidoAjuda setDescricaoProblema(String descricaoProblema) {
         this.descricaoProblema = descricaoProblema;
         return this;
@@ -73,6 +78,9 @@ public class PedidoAjuda {
         this.email = email;
         this.data = data;
         this.status = status;
+    }
+
+    public PedidoAjuda() {
     }
 
     @Override
