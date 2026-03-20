@@ -4,23 +4,23 @@ import java.time.LocalDate;
 
 public class Dentista extends Colaborador{
     private final String croDentista;
-    private boolean disponivel;
+    private boolean disponibilidade;
 
     public String getCroDentista() {
         return croDentista;
     }
 
-    public boolean isDisponivel() {
-        return disponivel;
+    public boolean isDisponibilidade() {
+        return disponibilidade;
     }
 
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
+    public void setDisponibilidade(boolean disponibilidade) {
+        this.disponibilidade = disponibilidade;
     }
 
-    public Dentista(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco, Sexo sexo, String croDentista, boolean disponivel) {
+    public Dentista(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco, Sexo sexo, String croDentista, boolean disponibilidade) {
         super(idColaborador, cpf, nomeCompleto, dataNascimento, email, endereco, sexo);
         this.croDentista = croDentista;
-        this.disponivel = disponivel;
+        this.disponibilidade = disponibilidade;
     }
 }

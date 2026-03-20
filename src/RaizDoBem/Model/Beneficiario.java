@@ -7,10 +7,13 @@ public class Beneficiario{
     private String cpf;
     private String nomeCompleto;
     private LocalDate dataNascimento;
+    private String telefone;
+    private String email;
     private Sexo sexo;
-    private TipoBeneficiario tipoBeneficiario;
+    private ProgramaSocial programaSocial;
     private Endereco endereco;
     private PedidoAjuda pedidoAjuda;
+    private Coordenador coordenador;
 
     public int getId() {
         return id;
@@ -28,12 +31,20 @@ public class Beneficiario{
         return dataNascimento;
     }
 
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     public Sexo getSexo() {
         return sexo;
     }
 
-    public TipoBeneficiario getTipoBeneficiario() {
-        return tipoBeneficiario;
+    public ProgramaSocial getProgramaSocial() {
+        return programaSocial;
     }
 
     public Endereco getEndereco() {
@@ -44,22 +55,45 @@ public class Beneficiario{
         this.nomeCompleto = nomeCompleto;
     }
 
-    public void setTipoBeneficiario(TipoBeneficiario tipoBeneficiario) {
-        this.tipoBeneficiario = tipoBeneficiario;
+    public Beneficiario setTelefone(String telefone) {
+        this.telefone = telefone;
+        return this;
+    }
+
+    public Beneficiario setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public void setProgramaSocial(ProgramaSocial programaSocial) {
+        this.programaSocial = programaSocial;
     }
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 
-    public Beneficiario(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, Sexo sexo, TipoBeneficiario tipoBeneficiario, Endereco endereco, PedidoAjuda pedidoAjuda) {
+    public Beneficiario setPedidoAjuda(PedidoAjuda pedidoAjuda) {
+        this.pedidoAjuda = pedidoAjuda;
+        return this;
+    }
+
+    public Beneficiario setCoordenador(Coordenador coordenador) {
+        this.coordenador = coordenador;
+        return this;
+    }
+
+    public Beneficiario(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String telefone, String email, Sexo sexo, ProgramaSocial programaSocial, Endereco endereco, PedidoAjuda pedidoAjuda, Coordenador coordenador) {
         this.id = id;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.email = email;
         this.sexo = sexo;
-        this.tipoBeneficiario = tipoBeneficiario;
+        this.programaSocial = programaSocial;
         this.endereco = endereco;
         this.pedidoAjuda = pedidoAjuda;
+        this.coordenador = coordenador;
     }
 }

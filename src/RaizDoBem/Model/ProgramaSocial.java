@@ -1,6 +1,6 @@
 package RaizDoBem.Model;
 
-public class TipoBeneficiario {
+public class ProgramaSocial {
     private final int id;
     private final String programa;
 
@@ -12,7 +12,7 @@ public class TipoBeneficiario {
         return programa;
     }
 
-    public TipoBeneficiario(int id, String programa) {
+    public ProgramaSocial(int id, String programa) {
         this.id = id;
         this.programa = programa;
     }

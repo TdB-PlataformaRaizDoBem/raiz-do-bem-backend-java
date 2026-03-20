@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Atendimento {
     private int id;
-    private String descricao;
+    private String descricaoAtendimento;
     private LocalDate data;
     private Beneficiario beneficiario;
     private Dentista dentista;
@@ -13,12 +13,12 @@ public class Atendimento {
         return id;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getDescricaoAtendimento() {
+        return descricaoAtendimento;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setDescricaoAtendimento(String descricaoAtendimento) {
+        this.descricaoAtendimento = descricaoAtendimento;
     }
 
     public LocalDate getData() {
@@ -45,9 +45,9 @@ public class Atendimento {
         this.dentista = dentista;
     }
 
-    public Atendimento(int id, String descricao, LocalDate data, Beneficiario beneficiario, Dentista dentista) {
+    public Atendimento(int id, String descricaoAtendimento, LocalDate data, Beneficiario beneficiario, Dentista dentista) {
         this.id = id;
-        this.descricao = descricao;
+        this.descricaoAtendimento = descricaoAtendimento;
         this.data = data;
         this.beneficiario = beneficiario;
         this.dentista = dentista;

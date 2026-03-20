@@ -5,6 +5,7 @@ public class Endereco {
     private String logradouro;
     private String cep;
     private String numero;
+    private String bairro;
     private String cidade;
     private String estado;
     private TipoEndereco tipoEndereco;
@@ -41,6 +42,15 @@ public class Endereco {
         this.numero = numero;
     }
 
+    public String getBairro() {
+        return bairro;
+    }
+
+    public Endereco setBairro(String bairro) {
+        this.bairro = bairro;
+        return this;
+    }
+
     public String getCidade() {
         return cidade;
     }
@@ -61,11 +71,12 @@ public class Endereco {
         return tipoEndereco;
     }
 
-    public Endereco(int id, String logradouro, String cep, String numero, String cidade, String estado, int idTipoEndereco, String tipoEndereco) {
+    public Endereco(int id, String logradouro, String cep, String numero, String bairro, String cidade, String estado, int idTipoEndereco, String tipoEndereco) {
         this.id = id;
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
+        this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
         this.tipoEndereco = new TipoEndereco();
@@ -73,10 +84,11 @@ public class Endereco {
         this.tipoEndereco.setLocalizacao(tipoEndereco);
     }
 
-    public Endereco(String logradouro, String cep, String numero, String cidade, String estado, int idTipoEndereco) {
+    public Endereco(String logradouro, String cep, String numero, String bairro, String cidade, String estado, int idTipoEndereco) {
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
+        this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
         this.tipoEndereco = new TipoEndereco();

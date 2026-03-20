@@ -2,7 +2,7 @@
 //
 //import RaizDoBem.Model.Beneficiario;
 //import RaizDoBem.Model.Endereco;
-//import RaizDoBem.Model.TipoBeneficiario;
+//import RaizDoBem.Model.ProgramaSocial;
 //
 //import java.time.LocalDate;
 //import java.time.format.DateTimeFormatter;
@@ -78,7 +78,7 @@
 //        System.out.println("Sexo do beneficiário: ");
 //        String sexo = sc.nextLine();
 //
-//        TipoBeneficiario tp;
+//        ProgramaSocial tp;
 //        int opc;
 //        do{
 //            System.out.println("Qual o tipo desse beneficiário?");
@@ -87,9 +87,9 @@
 //            opc = sc.nextInt();
 //            sc.nextLine();
 //            if (opc==1){
-//                tp = new TipoBeneficiario(1, "Dentista do Bem");
+//                tp = new ProgramaSocial(1, "Dentista do Bem");
 //            } else if (opc==2){
-//                tp = new TipoBeneficiario(2, "Apolônias do Bem");
+//                tp = new ProgramaSocial(2, "Apolônias do Bem");
 //            }
 //            else{
 //                System.out.println("Opção Inválida!!!");

@@ -7,12 +7,12 @@ import java.time.LocalDate;
 
 public class AtendimentoDAO {
     public void adicionar(Atendimento atendimento){
-        String querySql = "INSERT INTO Atendimento (descricao, data, id_beneficiario, id_dentista) VALUES (?, ?, ?, ?)";
+        String querySql = "INSERT INTO Atendimento (descricao_atendimento, data, id_beneficiario, id_dentista) VALUES (?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
-            ps.setString(1, atendimento.getDescricao());
+            ps.setString(1, atendimento.getDescricaoAtendimento());
             ps.setDate(2, Date.valueOf(atendimento.getData()));
             ps.setInt(3, atendimento.getBeneficiario().getId());
             ps.setInt(4, atendimento.getDentista().getId());
@@ -36,7 +36,7 @@ public class AtendimentoDAO {
             System.out.println("Listagem dos atendimentos: ");
             while(response.next()){
                 int id = response.getInt("id");
-                String descricao = response.getString("descricao");
+                String descricaoAtendimento = response.getString("descricao_atendimento");
                 LocalDate dataAtendimento = response.getDate("data").toLocalDate();
                 int idBeneficiario = response.getInt("id_beneficiario");
                 int idDentista = response.getInt("id_dentista");

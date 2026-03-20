@@ -19,8 +19,8 @@ public class Main {
 //        c1.login();
 //
 //        //Criando os dois tipos de beneficiário do sistema.
-//        TipoBeneficiario tipoBeneficiario1 = new TipoBeneficiario(1, "Dentista do Bem");
-//        TipoBeneficiario tipoBeneficiario2 = new TipoBeneficiario(2, "Apolônias do Bem");
+//        ProgramaSocial tipoBeneficiario1 = new ProgramaSocial(1, "Dentista do Bem");
+//        ProgramaSocial tipoBeneficiario2 = new ProgramaSocial(2, "Apolônias do Bem");
 //
 //        //Criando os dois tipos de endereço do sistema.
 //        TipoEndereco tipoEndereco1 = new TipoEndereco(1, "Residencial");

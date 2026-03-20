@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class BeneficiarioDAO {
     public void adicionar(Beneficiario beneficiario){
-        String querySql = "INSERT INTO Beneficiario (cpf, nome_completo, data_nascimento, id_sexo, id_tipo_beneficiario, id_endereco) VALUES (?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Beneficiario (cpf, nome_completo, data_nascimento, telefone, email, id_sexo, id_programa_social, id_endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -19,9 +19,11 @@ public class BeneficiarioDAO {
             ps.setString(1, beneficiario.getCpf());
             ps.setString(2, beneficiario.getNomeCompleto());
             ps.setDate(3, Date.valueOf(beneficiario.getDataNascimento()));
-            ps.setInt(4, beneficiario.getSexo().getId());
-            ps.setInt(5, beneficiario.getTipoBeneficiario().getId());
-            ps.setInt(6, beneficiario.getEndereco().getId());
+            ps.setString(4, beneficiario.getTelefone());
+            ps.setString(5, beneficiario.getEmail());
+            ps.setInt(6, beneficiario.getSexo().getId());
+            ps.setInt(7, beneficiario.getProgramaSocial().getId());
+            ps.setInt(8, beneficiario.getEndereco().getId());
 
             ps.executeUpdate();
             System.out.println("Beneficiário criado e adicionado com sucesso!!");

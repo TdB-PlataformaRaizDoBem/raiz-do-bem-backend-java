@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 public class PedidoAjuda {
     private int id;
+    private String cpf;
     private String descricaoProblema;
     private String nomeCompleto;
     private String telefone;
     private String email;
     private LocalDate data;
-    private Coordenador coordenador;
     private StatusPedido status;
 
     public int getId() {
@@ -18,6 +18,10 @@ public class PedidoAjuda {
 
     public String getDescricaoProblema() {
         return descricaoProblema;
+    }
+
+    public String getCpf() {
+        return cpf;
     }
 
     public String getNomeCompleto() {
@@ -40,10 +44,6 @@ public class PedidoAjuda {
         return status;
     }
 
-    public Coordenador getCoordenador() {
-        return coordenador;
-    }
-
     public PedidoAjuda setDescricaoProblema(String descricaoProblema) {
         this.descricaoProblema = descricaoProblema;
         return this;
@@ -64,14 +64,14 @@ public class PedidoAjuda {
         return this;
     }
 
-    public PedidoAjuda(int id, String descricaoProblema, String nomeCompleto, String telefone, String email, LocalDate data, Coordenador coordenador, StatusPedido status) {
+    public PedidoAjuda(int id, String cpf,  String descricaoProblema, String nomeCompleto, String telefone, String email, LocalDate data, StatusPedido status) {
         this.id = id;
+        this.cpf = cpf;
         this.descricaoProblema = descricaoProblema;
         this.nomeCompleto = nomeCompleto;
         this.telefone = telefone;
         this.email = email;
         this.data = data;
-        this.coordenador = coordenador;
         this.status = status;
     }
 }

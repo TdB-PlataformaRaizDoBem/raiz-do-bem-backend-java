@@ -7,18 +7,18 @@ import java.sql.*;
 
 public class PedidoAjudaDAO {
     public void adicionar(PedidoAjuda pedido){
-        String querySql = "INSERT INTO Pedido_Ajuda (id, descricao_problema, nome_completo, telefone, email, data, id_coordenador, id_status_pedido) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Pedido_Ajuda (cpf, descricao_problema, nome_completo, telefone, email, data, id_status_pedido) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
-            ps.setString(1, pedido.getDescricaoProblema());
-            ps.setString(2, pedido.getNomeCompleto());
-            ps.setString(3, pedido.getTelefone());
-            ps.setString(4, pedido.getEmail());
-            ps.setDate(5, Date.valueOf(pedido.getData()));
-            ps.setInt(5, pedido.getCoordenador().getIdCoordenador());
-            ps.setInt(6, pedido.getStatus().getId());
+            ps.setString(1, pedido.getCpf());
+            ps.setString(2, pedido.getDescricaoProblema());
+            ps.setString(3, pedido.getNomeCompleto());
+            ps.setString(4, pedido.getTelefone());
+            ps.setString(5, pedido.getEmail());
+            ps.setDate(6, Date.valueOf(pedido.getData()));
+            ps.setInt(7, pedido.getStatus().getId());
 
             ps.executeUpdate();
             System.out.println("Pedido de ajuda criado e adicionado com sucesso!!");
@@ -38,15 +38,15 @@ public class PedidoAjudaDAO {
             System.out.println("Listagem dos pedidos de ajuda: ");
             while(response.next()){
                 int id = response.getInt("id");
-                String descricao = response.getString("descricao_problema");
+                String cpf = response.getString("cpf");
+                String descricaoProblema = response.getString("descricao_problema");
                 String nomeCompleto = response.getString("nome_completo");
                 String telefone = response.getString("telefone");
                 String email = response.getString("email");
                 Date data = response.getDate("data");
-                int idCoordenador = response.getInt("id_coordenador");
                 int idStatusPedido = response.getInt("id_status_pedido");
 
-//                pedido = new PedidoAjuda(id, descricao, nomeCompleto, telefone, email, data, idCoordenador, idStatusPedido);
+//                pedido = new PedidoAjuda(id, descricaoProblema, nomeCompleto, telefone, email, data, idStatusPedido);
 //                System.out.println(pedido);
             }
         }

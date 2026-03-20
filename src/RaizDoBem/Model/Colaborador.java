@@ -35,6 +35,10 @@ public class Colaborador {
         return endereco;
     }
 
+    public Sexo getSexo() {
+        return sexo;
+    }
+
     public Colaborador(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, Endereco endereco, Sexo sexo) {
         this.id = id;
         this.cpf = cpf;

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 public class CoordenadorDAO {
     public void adicionar(Coordenador coord){
-        String querySql = "INSERT INTO Coordenador (cpf, nome_completo, data_nascimento, email, id_endereco, data_contratacao, nivel_acesso) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Coordenador (cpf, nome_completo, data_nascimento, email, id_endereco, data_contratacao, nivel_acesso, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -21,6 +21,7 @@ public class CoordenadorDAO {
             ps.setInt(5, coord.getEndereco().getId());
             ps.setDate(6, Date.valueOf(coord.getDataContratacao()));
             ps.setString(7, coord.getNivelAcesso());
+            ps.setString(8, coord.getSenha());
 
             ps.executeUpdate();
             System.out.println("Coordenador criado e adicionado com sucesso!!");
@@ -42,12 +43,16 @@ public class CoordenadorDAO {
             System.out.println("Listagem dos coordenadores: ");
             while(response.next()){
                 int id = response.getInt("id");
-                String descricao = response.getString("descricao");
-                LocalDate dataAtendimento = response.getDate("data").toLocalDate();
-                int idBeneficiario = response.getInt("id_beneficiario");
-                int idDentista = response.getInt("id_dentista");
+                String descricao = response.getString("cpf");
+                String nomeCompleto = response.getString("nome_completo");
+                LocalDate dataNascimento = response.getDate("data_nascimento").toLocalDate();
+                String email = response.getString("email");
+                int idEndereco = response.getInt("id_endereco");
+                LocalDate data_contratacao = response.getDate("data_contratacao").toLocalDate();
+                String nivelAcesso = response.getString("nivel_acesso");
+                String senha = response.getString("senha");
 
-                // coordenador = new Coordenador(id, cpf, nomeCompleto, dataNascimento, email, id_endereco, data_contratacao, nivelAcesso)
+                //coordenador = new Coordenador(id, cpf, nomeCompleto, dataNascimento, email, id_endereco, data_contratacao, nivelAcesso, senha)
                 //System.out.println(coordenador);
             }
         }

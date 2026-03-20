@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class EnderecoDAO {
     public void adicionar(Endereco endereco){
-        String querySql = "INSERT INTO Endereco (logradouro, cep, numero, cidade, estado, id_tipo_endereco) VALUES (?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Endereco (logradouro, cep, numero, bairro, cidade, estado, id_tipo_endereco) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -19,9 +19,10 @@ public class EnderecoDAO {
             ps.setString(1, endereco.getLogradouro());
             ps.setString(2, endereco.getCep());
             ps.setString(3, endereco.getNumero());
-            ps.setString(4, endereco.getCidade());
-            ps.setString(5, endereco.getEstado());
-            ps.setInt(6, endereco.getTipoEndereco().getId());
+            ps.setString(4, endereco.getBairro());
+            ps.setString(5, endereco.getCidade());
+            ps.setString(6, endereco.getEstado());
+            ps.setInt(7, endereco.getTipoEndereco().getId());
 
             ps.executeUpdate();
             System.out.println("Endereço criado e adicionado com sucesso!!");
@@ -46,12 +47,13 @@ public class EnderecoDAO {
                 String logradouro = response.getString("logradouro");
                 String cep = response.getString("cep");
                 String numero = response.getString("numero");
+                String bairro = response.getString("bairro");
                 String cidade = response.getString("cidade");
                 String estado = response.getString("estado");
                 int idTipoEndereco = response.getInt("id_tipo_endereco");
                 String tipoEndereco = response.getString("localizacao");
 
-                endereco = new Endereco(id, logradouro, cep, numero, cidade, estado, idTipoEndereco, tipoEndereco);
+                endereco = new Endereco(id, logradouro, cep, numero, bairro, cidade, estado, idTipoEndereco, tipoEndereco);
                 System.out.println(endereco);
             }
         }
@@ -60,7 +62,7 @@ public class EnderecoDAO {
         }
     }
     public void listarPorId(int idselecionado){
-        String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.cidade, e.estado, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo\n" +
+        String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo\n" +
                 "WHERE tipo.id = e.id_tipo_endereco AND e.id = " + idselecionado;
 
         try(Connection conexao = Conexao.conectarAoBanco();
@@ -76,12 +78,13 @@ public class EnderecoDAO {
                 String logradouro = response.getString("logradouro");
                 String cep = response.getString("cep");
                 String numero = response.getString("numero");
+                String bairro = response.getString("bairro");
                 String cidade = response.getString("cidade");
                 String estado = response.getString("estado");
                 int idTipoEndereco = response.getInt("id_tipo_endereco");
                 String tipoEndereco = response.getString("localizacao");
 
-                endereco = new Endereco(id, logradouro, cep, numero, cidade, estado, idTipoEndereco, tipoEndereco);
+                endereco = new Endereco(id, logradouro, cep, numero, bairro, cidade, estado, idTipoEndereco, tipoEndereco);
                 System.out.println(endereco);
             }
         }
@@ -90,7 +93,7 @@ public class EnderecoDAO {
         }
     }
     public void listarPorCidade(String cidadeEscolhida){
-        String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.cidade = '" + cidadeEscolhida + "'";
+        String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.cidade = '" + cidadeEscolhida + "'";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
@@ -105,12 +108,13 @@ public class EnderecoDAO {
                 String logradouro = response.getString("logradouro");
                 String cep = response.getString("cep");
                 String numero = response.getString("numero");
+                String bairro = response.getString("bairro");
                 String cidade = response.getString("cidade");
                 String estado = response.getString("estado");
                 int idTipoEndereco = response.getInt("id_tipo_endereco");
                 String tipoEndereco = response.getString("localizacao");
 
-                endereco = new Endereco(id, logradouro, cep, numero, cidade, estado, idTipoEndereco, tipoEndereco);
+                endereco = new Endereco(id, logradouro, cep, numero, bairro, cidade, estado, idTipoEndereco, tipoEndereco);
                 System.out.println(endereco);
             }
         }
