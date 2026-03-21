@@ -1,9 +1,8 @@
 package RaizDoBem.View;
 
-import RaizDoBem.DAO.EnderecoDAO;
+import RaizDoBem.Model.DAO.EnderecoDAO;
 import RaizDoBem.Model.Endereco;
 
-import java.sql.*;
 import java.util.Scanner;
 
 /**
@@ -40,11 +39,12 @@ public class MenuEnderecos {
                 enderecoDAO.adicionar(e1);
                 break;
             case 2:
+                System.out.println("Listagem dos endereços: ");
                 enderecoDAO.listarTodos();
                 break;
             case 3:
                 id = endereco.entradaId();
-                enderecoDAO.listarPorId(id);
+                enderecoDAO.buscarPorId(id);
                 break;
             case 4:
                 String cidade = endereco.entradaCidade();
@@ -52,7 +52,13 @@ public class MenuEnderecos {
                 break;
             case 5:
                 id = endereco.entradaId();
-                enderecoDAO.atualizarEndereco(id);
+                Endereco enderecoMapeado = enderecoDAO.buscarPorId(id);
+                if(enderecoMapeado == null){
+                    System.out.println("Endereço não encontrado!!!");
+                    break;
+                }
+                Endereco novoEndereco = endereco.criarEndereco();
+                enderecoDAO.atualizarEndereco(id, novoEndereco);
                 break;
             case 6:
                 id = endereco.entradaId();

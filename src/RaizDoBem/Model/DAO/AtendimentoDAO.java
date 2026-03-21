@@ -1,4 +1,4 @@
-package RaizDoBem.DAO;
+package RaizDoBem.Model.DAO;
 
 import RaizDoBem.Model.*;
 
@@ -7,12 +7,14 @@ import java.time.LocalDate;
 
 /**
  * Classe de acesso a dados para a entidade Atendimento.
- * Responsável por realizar operações de CRUD (Create, Read, Update, Delete) relacionadas aos atendimentos.
+ * Responsável por realizar operações de Criação, Leitura, e atualização relacionadas aos atendimentos aos benefciários.
  * @author Paulo
  * @since 2026-03
  *
  */
 public class AtendimentoDAO {
+    /** O atendimento é o registro de um serviço prestado a um beneficiário, realizado por um dentista, numa data específica. O coordenador pode criar um atendimento para registrar um serviço prestado, listar os atendimentos realizados, e encontrar atendimentos relacionados a um beneficiário ou dentista específico.
+     * */
     public void adicionar(Atendimento atendimento){
         String querySql = "INSERT INTO Atendimento (descricao_atendimento, data, id_beneficiario, id_dentista) VALUES (?, ?, ?, ?)";
 
@@ -31,6 +33,7 @@ public class AtendimentoDAO {
             System.out.println("Erro ao adicionar novo atendimento: " + exception.getMessage());
         }
     }
+    /** O metodo listarTodos() é responsável por recuperar e exibir todos os registros de atendimentos presentes no banco de dados. Ele executa uma consulta SQL para selecionar todas as colunas da tabela Atendimento, e itera sobre os resultados para criar objetos Atendimento e exibi-los. */
     public void listarTodos(){
         String querySql = "SELECT * FROM Atendimento";
         try(Connection conexao = Conexao.conectarAoBanco();
@@ -56,19 +59,8 @@ public class AtendimentoDAO {
             System.out.println("Erro ao listar atendimentos: " + exception.getMessage());
         }
     }
+    /** O metodo encontrarAtendimentoBeneficiario() é responsável por recuperar e exibir os registros de atendimentos relacionados a um beneficiário específico. Ele executa uma consulta SQL que seleciona os atendimentos onde o id_beneficiario corresponde ao id do beneficiário fornecido como parâmetro, e itera sobre os resultados para criar objetos Atendimento e exibi-los. */
     public void encontrarAtendimentoBeneficiario(){}
+    /** O metodo encontrarAtendimentoDentista() é responsável por recuperar e exibir os registros de atendimentos relacionados a um dentista específico. Ele executa uma consulta SQL que seleciona os atendimentos onde o id_dentista corresponde ao id do dentista fornecido como parâmetro, e itera sobre os resultados para criar objetos Atendimento e exibi-los. */
     public void encontrarAtendimentosDentista(){}
-    public void excluirAtendimento(int idSelecionado){
-        String querySql = "DELETE FROM atendimento WHERE id = " + idSelecionado;
-
-        try(Connection conexao = Conexao.conectarAoBanco();
-            PreparedStatement ps = conexao.prepareStatement(querySql);){
-
-            ps.executeUpdate();
-            System.out.println("Atendimento ID - (" + idSelecionado + ") foi excluído do banco de dados");
-        }
-        catch (SQLException exception){
-            System.out.println("Erro ao excluir atendimento: " + exception.getMessage());
-        }
-    }
 }

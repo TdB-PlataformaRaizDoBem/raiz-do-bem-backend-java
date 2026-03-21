@@ -1,6 +1,6 @@
 package RaizDoBem.View;
 
-import RaizDoBem.DAO.AtendimentoDAO;
+import RaizDoBem.Model.DAO.AtendimentoDAO;
 import RaizDoBem.Model.Atendimento;
 
 import java.util.Scanner;
@@ -21,8 +21,7 @@ public class MenuAtendimentos {
         System.out.println("        3. Listar atendimentos por data");
         System.out.println("        4. Encontrar atendimento ao beneficiário");
         System.out.println("        5. Encontrar atendimentos de um dentista");
-        System.out.println("        6. Excluir atendimento");
-        System.out.println("        7. Voltar ao menu principal");
+        System.out.println("        6. Voltar ao menu principal");
         System.out.println("        0. Encerrar programa");
         System.out.print("Selecione uma opção: ");
         int opc = sc.nextInt();
@@ -46,9 +45,6 @@ public class MenuAtendimentos {
                 atendimentoDAO.encontrarAtendimentosDentista();
                 break;
             case 6:
-                int id = 0;
-                atendimentoDAO.excluirAtendimento(id);
-            case 7:
                 System.out.println("Voltando ao menu principal...");
                 break;
             case 0:

@@ -1,4 +1,4 @@
-package RaizDoBem.DAO;
+package RaizDoBem.Model.DAO;
 
 import RaizDoBem.Model.Conexao;
 import RaizDoBem.Model.Coordenador;
@@ -14,6 +14,10 @@ import java.time.LocalDate;
  *
  */
 public class CoordenadorDAO {
+    /**
+     * Metodo para adicionar um novo coordenador ao banco de dados.
+     * @param coord Objeto do tipo Coordenador contendo as informações do coordenador a ser adicionado.
+     */
     public void adicionar(Coordenador coord){
         String querySql = "INSERT INTO Coordenador (cpf, nome_completo, data_nascimento, email, id_endereco, data_contratacao, nivel_acesso, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -37,6 +41,8 @@ public class CoordenadorDAO {
             System.out.println("Erro ao adicionar coordenador: " + exception.getMessage());
         }
     }
+    /** O metodo listarTodos() é responsável por recuperar e exibir todos os registros de coordenadores presentes no banco de dados. Ele executa uma consulta SQL para selecionar as colunas relevantes da tabela Coordenador, e itera sobre os resultados para criar objetos Coordenador e exibi-los.
+     * */
     public void listarTodos(){
         String querySql = "SELECT * FROM Coordenador";
         try(Connection conexao = Conexao.conectarAoBanco();
@@ -75,6 +81,7 @@ public class CoordenadorDAO {
             System.out.println("Erro ao listar coordenadores: " + exception.getMessage());
         }
     }
+    /** O metodo listarAdministradores() é responsável por recuperar e exibir os registros de coordenadores que possuem o nível de acesso "ADMIN". Ele executa uma consulta SQL que seleciona os coordenadores onde o campo nivel_acesso é igual a "ADMIN", e itera sobre os resultados para criar objetos Coordenador e exibi-los. */
     public void listarAdministradores(){
         String querySql = "SELECT * FROM Coordenador WHERE nivel_acesso = 'ADMIN'";
         try(Connection conexao = Conexao.conectarAoBanco();
@@ -104,6 +111,9 @@ public class CoordenadorDAO {
             System.out.println("Erro ao listar coordenadores administradores: " + exception.getMessage());
         }
     }
+    /** O metodo atualizarCoordenador() é responsável por atualizar as informações de um coordenador específico. Ele recebe o id do coordenador a ser atualizado como parâmetro, e pode ser implementado para solicitar as novas informações do coordenador e executar uma consulta SQL de atualização para modificar os dados no banco de dados.
+     * @param idSelecionado O id do coordenador a ser atualizado.
+     * */
     public void excluirCoordenador(int idSelecionado){
         String querySql = "DELETE FROM coordenador WHERE id = " + idSelecionado;
 

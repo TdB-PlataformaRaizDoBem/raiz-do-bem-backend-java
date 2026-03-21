@@ -1,4 +1,4 @@
-package RaizDoBem.DAO;
+package RaizDoBem.Model.DAO;
 
 import RaizDoBem.Model.Conexao;
 import RaizDoBem.Model.Endereco;
@@ -16,7 +16,7 @@ import java.sql.SQLException;
  *
  */
 public class EnderecoDAO {
-    private Endereco mapeamento(ResultSet response) throws SQLException {
+    public Endereco mapeamento(ResultSet response) throws SQLException {
         return new Endereco(
                 response.getInt("id"),
                 response.getString("logradouro"),
@@ -30,7 +30,7 @@ public class EnderecoDAO {
         );
     }
     public void adicionar(Endereco endereco){
-        String querySql = "INSERT INTO Endereco (logradouro, cep, numero, bairro, cidade, estado, id_tipo_endereco) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Endereco logradouro, cep, numero, bairro, cidade, estado, id_tipo_endereco VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -58,7 +58,6 @@ public class EnderecoDAO {
             PreparedStatement ps = conexao.prepareStatement(querySql);) {
 
             try(ResultSet response = ps.executeQuery();){
-                System.out.println("Listagem dos endereços: ");
                 while(response.next()){
                     Endereco endereco = mapeamento(response);
                     System.out.println(endereco);
@@ -66,27 +65,26 @@ public class EnderecoDAO {
             }
         }
         catch (SQLException exception){
-            System.out.println("Erro ao listar endereços:" + exception.getMessage());
+            throw new RuntimeException("Erro ao listar endereços:" + exception.getMessage());
         }
     }
-    public void listarPorId(int idselecionado){
-        String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.id = " + idselecionado;
+    public Endereco buscarPorId(int idselecionado){
+        String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.id = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
             ){
+            ps.setInt(1, idselecionado);
 
             try(ResultSet response = ps.executeQuery();){
-                System.out.println("Endereço com ID - " + idselecionado + ": ");
-                while(response.next()){
-                    Endereco endereco = mapeamento(response);
-                    System.out.println(endereco);
-                }
+                if(response.next())
+                    return mapeamento(response);
             }
         }
         catch (SQLException exception){
             System.out.println("Erro ao listar endereços: " + exception.getMessage());
         }
+        return null;
     }
     public void listarPorCidade(String cidadeEscolhida){
         String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.cidade = '" + cidadeEscolhida + "'";
@@ -107,14 +105,12 @@ public class EnderecoDAO {
             System.out.println("Erro ao listar endereços da cidade (" + cidadeEscolhida +  "): " + exception.getMessage());
         }
     }
-    public void atualizarEndereco(int idSelecionado){
-        String querySql = "UPDATE Endereco SET (logradouro, cep, numero, bairro, cidade, estado, id_tipo_endereco) WHERE id = " + idSelecionado;
+    public void atualizarEndereco(int idSelecionado, Endereco endereco){
+        String querySql = "UPDATE Endereco SET logradouro = ?, cep = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, id_tipo_endereco = ? WHERE id = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
             ){
-
-            Endereco endereco = null;
 
             ps.setString(1, endereco.getLogradouro());
             ps.setString(2, endereco.getCep());
@@ -123,6 +119,7 @@ public class EnderecoDAO {
             ps.setString(5, endereco.getCidade());
             ps.setString(6, endereco.getEstado());
             ps.setInt(7, endereco.getTipoEndereco().getId());
+            ps.setInt(8, idSelecionado);
 
             ps.executeUpdate();
             System.out.println("Endereço ID - (" + idSelecionado + ") atualizado com sucesso!!");
@@ -132,17 +129,18 @@ public class EnderecoDAO {
         }
     }
     public void excluirEndereco(int idSelecionado){
-        String querySql = "DELETE FROM Endereco WHERE id = " + idSelecionado;
+        String querySql = "DELETE FROM Endereco WHERE id = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
             ){
 
+            ps.setInt(1, idSelecionado);
             ps.executeUpdate();
-            System.out.println("Endereço ID - (" + idSelecionado + ") foi excluído do banco de dados");
+            //System.out.println("Endereço ID - (" + idSelecionado + ") foi excluído do banco de dados");
         }
         catch (SQLException exception){
-            System.out.println("Erro ao excluir endereço: " + exception.getMessage());
+            throw new RuntimeException("Erro ao excluir endereço: " + exception.getMessage());
         }
     }
 }

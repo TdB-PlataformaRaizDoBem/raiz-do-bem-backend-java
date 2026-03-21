@@ -1,6 +1,6 @@
 package RaizDoBem.View;
 
-import RaizDoBem.DAO.BeneficiarioDAO;
+import RaizDoBem.Model.DAO.BeneficiarioDAO;
 import RaizDoBem.Model.Beneficiario;
 
 import java.util.Scanner;
@@ -14,7 +14,7 @@ public class MenuBeneficiarios {
     public void menuBeneficiarios(){
         Scanner sc = new Scanner(System.in);
         BeneficiarioDAO beneficiarioDAO = new BeneficiarioDAO();
-        Beneficiario beneficiario = null;
+        Beneficiario beneficiario = new Beneficiario();
         int id = 0;
         System.out.println("\n      Gerenciar Beneficiários     ");
         System.out.println("        1.  Adicionar beneficiário");
@@ -38,7 +38,12 @@ public class MenuBeneficiarios {
                 beneficiarioDAO.listarTodos();
                 break;
             case 3:
-                beneficiarioDAO.listarBeneficiarioUnico();
+                String cpf = "";
+                if(beneficiarioDAO.listarBeneficiarioUnico(cpf) == null){
+                    System.out.println("Beneficiário não encontrado!!!");
+                    break;
+                }
+                System.out.println("Beneficiário encontrado: " + beneficiarioDAO.listarBeneficiarioUnico(cpf));
                 break;
             case 4:
                 beneficiarioDAO.listarPorPrograma();

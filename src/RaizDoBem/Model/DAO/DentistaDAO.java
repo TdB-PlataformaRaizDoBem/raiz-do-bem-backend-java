@@ -1,4 +1,4 @@
-package RaizDoBem.DAO;
+package RaizDoBem.Model.DAO;
 
 import RaizDoBem.Model.*;
 
@@ -13,7 +13,7 @@ import java.time.LocalDate;
  *
  */
 public class DentistaDAO {
-    private Dentista mapeamento(ResultSet response) throws SQLException {
+    public Dentista mapeamento(ResultSet response) throws SQLException {
         int id = response.getInt("id_colaborador");
         String cpf = response.getString("cpf");
         String nomeCompleto = response.getString("nome_completo");
@@ -117,16 +117,15 @@ public class DentistaDAO {
     }
     public void atualizarDentista(int idSelecionado){}
     public void excluirDentista(int idSelecionado){
-        String querySql = "DELETE FROM dentista WHERE id = " + idSelecionado;
+        String querySql = "DELETE FROM dentista WHERE id = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
 
             ps.executeUpdate();
-            System.out.println("Dentista ID - (" + idSelecionado + ") foi excluído do banco de dados");
-        }
+            }
         catch (SQLException exception){
-            System.out.println("Erro ao excluir dentista: " + exception.getMessage());
+            throw new RuntimeException("Erro ao excluir dentista: " + exception.getMessage());
         }
     }
 }

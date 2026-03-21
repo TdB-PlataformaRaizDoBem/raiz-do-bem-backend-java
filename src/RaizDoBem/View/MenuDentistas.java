@@ -1,6 +1,6 @@
 package RaizDoBem.View;
 
-import RaizDoBem.DAO.DentistaDAO;
+import RaizDoBem.Model.DAO.DentistaDAO;
 import RaizDoBem.Model.Dentista;
 
 import java.util.Scanner;
@@ -44,6 +44,7 @@ public class MenuDentistas {
                 break;
             case 6:
                 dentistaDAO.excluirDentista(id);
+                //System.out.println("Dentista foi excluído com sucesso!!!");
                 break;
             case 7:
                 System.out.println("Voltando ao menu principal...");

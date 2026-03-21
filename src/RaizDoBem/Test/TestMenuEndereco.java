@@ -1,6 +1,6 @@
 package RaizDoBem.Test;
 
-import RaizDoBem.DAO.EnderecoDAO;
+import RaizDoBem.Model.DAO.EnderecoDAO;
 import RaizDoBem.Model.Endereco;
 
 public class TestMenuEndereco {
@@ -10,7 +10,7 @@ public class TestMenuEndereco {
 
     EnderecoDAO enderecoDAO = new EnderecoDAO();
 
-//        enderecoDAO.listarPorId(2);
+//        enderecoDAO.buscarPorId(2);
 //        enderecoDAO.listarPorCidade("São Paulo");
 //      //  enderecoDAO.adicionar(end2);
     //enderecoDAO.adicionar(end1);

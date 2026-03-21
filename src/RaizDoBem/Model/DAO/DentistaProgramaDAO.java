@@ -1,4 +1,4 @@
-package RaizDoBem.DAO;
+package RaizDoBem.Model.DAO;
 
 import RaizDoBem.Model.Conexao;
 import RaizDoBem.Model.DentistaPrograma;
