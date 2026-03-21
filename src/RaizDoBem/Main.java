@@ -1,6 +1,6 @@
 package RaizDoBem;
 
-import RaizDoBem.Model.*;
+import RaizDoBem.model.vo.TipoEndereco;
 
 //import RaizDoBem.View.Menu;
 
