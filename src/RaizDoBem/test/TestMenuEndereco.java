@@ -11,7 +11,7 @@ public class TestMenuEndereco {
     EnderecoDAO enderecoDAO = new EnderecoDAO();
 
 //        enderecoDAO.buscarPorId(2);
-//        enderecoDAO.listarPorCidade("São Paulo");
+//        enderecoDAO.listagemPorCidade("São Paulo");
 //      //  enderecoDAO.adicionar(end2);
     //enderecoDAO.adicionar(end1);
 //        enderecoDAO.adicionar(end2);

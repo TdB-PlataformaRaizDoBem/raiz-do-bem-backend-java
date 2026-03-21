@@ -1,41 +1,47 @@
 package RaizDoBem.view;
 
+import RaizDoBem.controller.EnderecoController;
 import RaizDoBem.model.vo.Endereco;
 
 import java.util.Scanner;
 
 /**
  * Classe de view para coletar entradas de Endereco via console.
+ *
  */
 public class EnderecoInput {
     private int id;
-    private String cidade;
-    Scanner sc  = new Scanner(System.in);
-    public Endereco criar(){
-        Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
+    EnderecoController controller = new EnderecoController();
 
+    public Endereco criar(){
         System.out.println("----- Criando novo endereço: -----");
 
-        System.out.println("Logradouro: ");
+        String cep;
+        do{
+            System.out.println("Digite o CEP (8 dígitos): ");
+            cep = sc.nextLine();
+            if(!controller.validarCep(cep)){
+                System.out.println("CEP inválido, digite exatamente 8 dígitos!!!");
+            }
+        } while(!controller.validarCep(cep));
+
+        System.out.println("Digite o logradouro: ");
         String logradouro = sc.nextLine();
 
-        System.out.println("CEP: ");
-        String cep = sc.nextLine();
-
-        System.out.println("Número: ");
+        System.out.println("Digite o número da casa: ");
         String numero = sc.nextLine();
 
-        System.out.println("Bairro: ");
+        System.out.println("Digite o bairro: ");
         String bairro = sc.nextLine();
 
-        System.out.println("Cidade: ");
-        String cidade = sc.nextLine();
+        String cidade = inputCidade();
 
-        System.out.println("Estado: ");
+        System.out.println("Digite o estado: ");
         String estado = sc.nextLine();
 
         int opc;
-        int idTipoEndereco = 0;
+        int idTipo = 0;
         do {
             System.out.println("Endereço residencial ou Profissional?");
             System.out.println("1. Residencial");
@@ -43,33 +49,30 @@ public class EnderecoInput {
             opc = sc.nextInt();
             sc.nextLine();
             if(opc==1) {
-                idTipoEndereco = 1;
+                idTipo = 1;
             }
             else if(opc==2) {
-                idTipoEndereco = 2;
+                idTipo = 2;
             }
             else{
                 System.out.println("Opção Inválida!!!");
             }
         } while (opc < 1 || opc > 2);
 
-        Endereco endereco = new Endereco(
+        return new Endereco(
                 logradouro,
                 cep,
                 numero,
                 bairro,
                 cidade,
                 estado,
-                idTipoEndereco
+                idTipo
         );
-        return endereco;
     }
 
     public String inputCidade(){
-        System.out.println("Digite a cidade, que deseja utilizar na busca: ");
-        cidade = sc.nextLine();
-
-        return cidade;
+        System.out.println("Digite a cidade: ");
+        return sc.nextLine();
     }
 
     public int inputId(){

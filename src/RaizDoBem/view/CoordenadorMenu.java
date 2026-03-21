@@ -10,6 +10,6 @@ public class CoordenadorMenu {
             System.out.println("        5.  Excluir coordenador");
             System.out.println("        6.  Voltar ao menu principal");
             System.out.println("        0.  Encerrar programa");
-
+            System.out.print("\nSelecione uma opção: ");
         }
 }

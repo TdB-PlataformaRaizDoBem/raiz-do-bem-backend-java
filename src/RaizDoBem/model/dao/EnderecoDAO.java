@@ -3,12 +3,15 @@ package RaizDoBem.model.dao;
 import RaizDoBem.model.vo.Conexao;
 import RaizDoBem.model.vo.Endereco;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.math.BigDecimal;
+import java.net.URL;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Classe de acesso a dados para a entidade Endereço, que armazena informações das pessoas registradas no sistema da Turma do Bem.
@@ -19,6 +22,7 @@ import java.util.List;
  *
  */
 public class EnderecoDAO {
+    List<Endereco> enderecos = new ArrayList<>();
     public Endereco mapeamento(ResultSet response) throws SQLException {
         return new Endereco(
                 response.getInt("id"),
@@ -56,8 +60,6 @@ public class EnderecoDAO {
     public List<Endereco> listarTodos(){
         String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco";
 
-        List<Endereco> enderecos = new ArrayList<>();
-
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
             ResultSet response = ps.executeQuery();) {
@@ -70,13 +72,13 @@ public class EnderecoDAO {
         }
         return enderecos;
     }
-    public Endereco buscarPorId(int idselecionado){
+    public Endereco buscarPorId(int id){
         String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.id = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
             ){
-            ps.setInt(1, idselecionado);
+            ps.setInt(1, id);
 
             try(ResultSet response = ps.executeQuery();){
                 if(response.next())
@@ -90,8 +92,6 @@ public class EnderecoDAO {
     }
     public List<Endereco> listarPorCidade(String cidade){
         String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.cidade = ?";
-
-        List<Endereco> enderecos = new ArrayList<>();
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -108,22 +108,17 @@ public class EnderecoDAO {
         }
         return enderecos;
     }
-    public void atualizar(int idSelecionado, Endereco endereco){
+    public void atualizar(int id, Endereco endereco){
         String querySql = "UPDATE Endereco SET logradouro = ?, cep = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, id_tipo_endereco = ? WHERE id = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
             ){
 
-            ps.setString(1, endereco.getLogradouro());
-            ps.setString(2, endereco.getCep());
-            ps.setString(3, endereco.getNumero());
-            ps.setString(4, endereco.getBairro());
-            ps.setString(5, endereco.getCidade());
-            ps.setString(6, endereco.getEstado());
-            ps.setInt(7, endereco.getTipoEndereco().getId());
-            ps.setInt(8, idSelecionado);
-
+            try(ResultSet response = ps.executeQuery();){
+                while(response.next())
+                    enderecos.add(mapeamento(response));
+            }
             ps.executeUpdate();
         }
         catch (SQLException exception){
@@ -139,7 +134,6 @@ public class EnderecoDAO {
 
             ps.setInt(1, id);
             ps.executeUpdate();
-            //System.out.println("Endereço ID - (" + idSelecionado + ") foi excluído do banco de dados");
         }
         catch (SQLException exception){
             throw new RuntimeException("Erro ao excluir endereço: " + exception.getMessage());

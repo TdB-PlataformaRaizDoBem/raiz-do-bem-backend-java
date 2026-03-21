@@ -20,6 +20,7 @@ import java.util.Scanner;
  */
 public class EnderecoMenu {
     public void menuEnderecos(){
+        Endereco endereco;
         EnderecoController controller = new EnderecoController();
         EnderecoInput enderecoInput = new EnderecoInput();
         Scanner sc = new Scanner(System.in);
@@ -35,13 +36,13 @@ public class EnderecoMenu {
         System.out.println("        6.  Excluir endereço");
         System.out.println("        7.  Voltar ao menu principal");
         System.out.println("        0.  Encerrar programa");
-        System.out.println("Selecione uma opção: ");
+        System.out.println("\nSelecione uma opção: ");
         int opc = sc.nextInt();
         sc.nextLine();
 
         switch (opc){
             case 1:
-                Endereco endereco = enderecoInput.criar();
+                endereco = enderecoInput.criar();
                 controller.criarEndereco(endereco);
                 break;
             case 2:
@@ -54,19 +55,21 @@ public class EnderecoMenu {
             case 3:
                 id = enderecoInput.inputId();
                 endereco = controller.buscaPorId(id);
+                System.out.println("Endereço encontrado: ");
                 System.out.println(endereco);
                 break;
             case 4:
                 String cidade = enderecoInput.inputCidade();
                 enderecos = controller.listagemPorCidade(cidade);
-                for (int i = 0; i < enderecos.size(); i++) {
-                    System.out.println(enderecos.get(i));
+                System.out.println("Listagem dos endereços da cidade: " + cidade);
+                for (Endereco e : enderecos) {
+                    System.out.println(e);
                 }
                 break;
             case 5:
                 id = enderecoInput.inputId();
-                Endereco novoEndereco = enderecoInput.criar();
-                controller.atualizarEndereco(id, novoEndereco);
+                endereco = enderecoInput.criar();
+                controller.atualizarEndereco(id, endereco);
                 System.out.println("Endereço "+ id + " atualizado com sucesso!!!");
                 break;
             case 6:

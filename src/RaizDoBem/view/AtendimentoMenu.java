@@ -23,7 +23,7 @@ public class AtendimentoMenu {
         System.out.println("        5. Encontrar atendimentos de um dentista");
         System.out.println("        6. Voltar ao menu principal");
         System.out.println("        0. Encerrar programa");
-        System.out.print("Selecione uma opção: ");
+        System.out.print("\nSelecione uma opção: ");
         int opc = sc.nextInt();
         sc.nextLine();
 

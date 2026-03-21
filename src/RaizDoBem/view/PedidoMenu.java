@@ -14,7 +14,7 @@ public class PedidoMenu {
         int id;
 
         System.out.println("\n      Gerenciar Pedidos de Ajuda     ");
-        System.out.println("        1.  Adicionar pedido de ajuda");
+        System.out.println("\n        1.  Adicionar pedido de ajuda");
         System.out.println("        2.  Listar todos os pedidos de ajuda");
         System.out.println("        3.  Buscar pedido de ajuda por CPF");
         System.out.println("        4.  Buscar pedidos por data");
@@ -22,7 +22,7 @@ public class PedidoMenu {
         System.out.println("        6.  Excluir pedido de ajuda");
         System.out.println("        7.  Voltar ao menu principal");
         System.out.println("        0.  Encerrar programa");
-        System.out.println("Selecione uma opção: ");
+        System.out.println("\nSelecione uma opção: ");
         int opc = sc.nextInt();
         sc.nextLine();
 

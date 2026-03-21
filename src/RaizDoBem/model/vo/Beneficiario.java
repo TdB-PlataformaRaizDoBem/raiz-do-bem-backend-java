@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Cada pessoa que passou pelo processo de solicitação de pedido de ajuda, e agora recebe atendimento da Turma do Bem. Contém informações pessoais, endereço, programa social associado, pedido de ajuda referência e coordenador responsável que o registrou.
  * @author Paulo
  * @since 2025-09
- * @param id Identificador único do beneficiário.
+ * @param int Identificador único do beneficiário.
  * @param cpf CPF do beneficiário, utilizado para identificação.
  * @param nomeCompleto Nome completo do beneficiário.
  * @param dataNascimento Data de nascimento do beneficiário.
@@ -18,9 +18,8 @@ import java.time.LocalDate;
  * @param pedidoAjuda Referência ao pedido de ajuda do beneficiário, utilizando a classe PedidoAjuda.
  * @param coordenador Referência ao coordenador responsável pelo beneficiário, utilizando a classe Coordenador.
  *
- *
  */
-public class Beneficiario{
+public class  Beneficiario{
     private int id;
     private String cpf;
     private String nomeCompleto;
@@ -147,5 +146,17 @@ public class Beneficiario{
      *
      */
      public Beneficiario() {
+    }
+
+    @Override
+    public String toString() {
+        return id + " - " + nomeCompleto +
+                " - CPF: " + cpf +
+                "| Data de nascimento: " + dataNascimento +
+                "\nTelefone: " + telefone + '\'' +
+                "Email: " + email + '\'' +
+                "Sexo: " + sexo +
+                "Programa: " + programaSocial +
+                "Endereco" + endereco.getLogradouro() + " - " + endereco.getNumero();
     }
 }

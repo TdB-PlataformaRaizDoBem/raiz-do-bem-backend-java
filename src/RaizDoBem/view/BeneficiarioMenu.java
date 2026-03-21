@@ -1,5 +1,6 @@
 package RaizDoBem.view;
 
+import RaizDoBem.controller.BeneficiarioController;
 import RaizDoBem.model.dao.BeneficiarioDAO;
 import RaizDoBem.model.vo.Beneficiario;
 
@@ -11,11 +12,12 @@ import java.util.Scanner;
  * @since 2026-03
  */
 public class BeneficiarioMenu {
-    public void menuBeneficiarios(){
+    public void menu(){
         Scanner sc = new Scanner(System.in);
-        BeneficiarioDAO beneficiarioDAO = new BeneficiarioDAO();
         Beneficiario beneficiario = new Beneficiario();
-        int id = 0;
+        BeneficiarioController controller = new BeneficiarioController();
+        String cpf = "";
+
         System.out.println("\n      Gerenciar Beneficiários     ");
         System.out.println("        1.  Adicionar beneficiário");
         System.out.println("        2.  Listar todos os beneficiários");
@@ -26,36 +28,40 @@ public class BeneficiarioMenu {
         System.out.println("        7.  Excluir beneficiário");
         System.out.println("        8.  Voltar ao menu principal");
         System.out.println("        0.  Encerrar programa");
-        System.out.print("Selecione uma opção: ");
+        System.out.print("\nSelecione uma opção: ");
         int opc = sc.nextInt();
         sc.nextLine();
 
         switch (opc){
             case 1:
-                beneficiarioDAO.adicionar(beneficiario);
+                controller.adicionar(beneficiario);
                 break;
             case 2:
-                beneficiarioDAO.listarTodos();
+                System.out.println("Listagem dos beneficiários: ");
+                controller.listarBeneficiarios();
                 break;
             case 3:
-                String cpf = "";
-                if(beneficiarioDAO.listarBeneficiarioUnico(cpf) == null){
+                beneficiario = controller.buscaPorCpf(cpf);
+                if(controller.buscaPorCpf(cpf) == null){
                     System.out.println("Beneficiário não encontrado!!!");
                     break;
                 }
-                System.out.println("Beneficiário encontrado: " + beneficiarioDAO.listarBeneficiarioUnico(cpf));
+                System.out.println("Beneficiário encontrado: ");
+                System.out.println(beneficiario);
                 break;
             case 4:
-                beneficiarioDAO.listarPorPrograma();
+                int id = 0;
+                controller.listagemPorPrograma(id);
                 break;
             case 5:
-                beneficiarioDAO.listarPorCidade();
+                String cidade = "";
+                controller.listagemPorCidade(cidade);
                 break;
             case 6:
-                beneficiarioDAO.atualizarBeneficiario(id);
+                controller.atualizarBeneficiario(cpf, beneficiario);
                 break;
             case 7:
-                beneficiarioDAO.excluirBeneficiario(id);
+                controller.excluirBeneficiario(cpf);
                 break;
             case 8:
                 System.out.println("Voltando ao menu principal...");

@@ -21,7 +21,7 @@ public class DentistaMenu {
         System.out.println("        6.  Excluir dentista");
         System.out.println("        7.  Voltar ao menu principal");
         System.out.println("        0.  Encerrar programa");
-        System.out.println("Selecione uma opção: ");
+        System.out.println("\nSelecione uma opção: ");
         int opc = sc.nextInt();
         sc.nextLine();
 

@@ -8,10 +8,10 @@ import java.util.Scanner;
  * Classe do menu inicial do sistema que serve para direcionar o usuário para as diferentes funcionalidades, como gerenciamento de pedidos de ajuda, beneficiários, dentistas, atendimentos e endereços. O menu é exibido em um loop até que o usuário escolha encerrar o programa.
  * @author Paulo
  * @since 2025-09
+ *
  */
 public class Menu {
     private int opcao;
-    private String escolhido;
     private Scanner sc;
     AtendimentoMenu atendimentoMenu = new AtendimentoMenu();
     BeneficiarioMenu beneficiarioMenu = new BeneficiarioMenu();
@@ -21,10 +21,6 @@ public class Menu {
 
     public int getOpcao() {
         return opcao;
-    }
-
-    public String getEscolhido() {
-        return escolhido;
     }
 
     public Scanner getSc() {
@@ -45,14 +41,14 @@ public class Menu {
         sc = new Scanner(System.in);
         do{
         //     seja bem-vindo coordenador, simular login
-            System.out.println("\n      Menu Inicial      ");
-            System.out.println("        1. Pedidos de ajuda");
+            System.out.println("\n      Menu Inicial Raiz do Bem      ");
+            System.out.println("\n        1. Pedidos de ajuda");
             System.out.println("        2. Beneficiários");
             System.out.println("        3. Dentistas");
             System.out.println("        4. Atendimentos");
             System.out.println("        5. Endereços");
             System.out.println("        0. Encerrar programa");
-            System.out.print("Selecione uma opção: ");
+            System.out.print("\nSelecione uma opção: ");
             opcao = sc.nextInt();
 
             String escolha = "";
@@ -60,11 +56,12 @@ public class Menu {
                 case 1:
                     escolha = "1. Pedidos de ajuda";
                     System.out.println("Você selecionou: " + escolha);
+                    pedidoMenu.menu();
                     break;
                 case 2:
                     escolha = "2. Beneficiários";
                     System.out.println("Você selecionou: " + escolha);
-                    beneficiarioMenu.menuBeneficiarios();
+                    beneficiarioMenu.menu();
                     break;
                 case 3:
                     escolha = "3. Dentistas";

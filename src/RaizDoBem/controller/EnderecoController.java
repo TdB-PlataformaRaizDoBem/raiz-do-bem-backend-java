@@ -2,7 +2,6 @@ package RaizDoBem.controller;
 
 import RaizDoBem.model.dao.EnderecoDAO;
 import RaizDoBem.model.vo.Endereco;
-import RaizDoBem.view.EnderecoInput;
 
 import java.util.List;
 
@@ -17,6 +16,7 @@ import java.util.List;
  */
 public class EnderecoController {
     private final EnderecoDAO enderecoDAO;
+    Endereco enderecoMapeado = new Endereco();
 
     public EnderecoController() {
         this.enderecoDAO = new EnderecoDAO();
@@ -39,8 +39,17 @@ public class EnderecoController {
         return enderecoDAO.listarPorCidade(cidade);
     }
 
+    public void atualizarEndereco(int id, Endereco enderecoAtualizado) {
+        enderecoMapeado = enderecoDAO.buscarPorId(id);
+
+        if(enderecoMapeado == null){
+            System.out.println("Endereço não encontrado!!!");
+            return;
+        }
+        enderecoDAO.atualizar(id, enderecoAtualizado);
+    }
     public void excluirEndereco(int id) {
-        Endereco enderecoMapeado = enderecoDAO.buscarPorId(id);
+        enderecoMapeado = enderecoDAO.buscarPorId(id);
 
         if(enderecoMapeado == null){
             System.out.println("Endereço não encontrado!!!");
@@ -49,13 +58,7 @@ public class EnderecoController {
         enderecoDAO.excluir(id);
     }
 
-    public void atualizarEndereco(int id, Endereco novoEndereco) {
-        Endereco enderecoMapeado = enderecoDAO.buscarPorId(id);
-
-        if(enderecoMapeado == null){
-            System.out.println("Endereço não encontrado!!!");
-            return;
-        }
-        enderecoDAO.atualizar(id, novoEndereco);
+    public boolean validarCep(String cep){
+        return ((cep!=null) && (cep.length()==8));
     }
 }

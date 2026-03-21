@@ -30,42 +30,7 @@
 //
 //    @Override
 //    public void receberSalvarDados() {
-//        Scanner sc = new Scanner(System.in);
-//
-//        System.out.println("----- Adicionar novo beneficiário: -----");
-//
-//        int idBeneficiario = (beneficiarios.size() + 1);
-//
-//        System.out.println("CPF do beneficiário: ");
-//        String cpf = sc.nextLine();
-//
-//        System.out.println("Nome completo do beneficiário: ");
-//        String nomeCompleto = sc.nextLine();
-//
-//        System.out.println("Data de nascimento do beneficiário: ");
-//        String dataNasc = sc.nextLine();
-//        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//        LocalDate dataNascimento = LocalDate.parse(dataNasc, formato);
-//
-//
-//        ProgramaSocial tp;
-//        int opc;
-//        do{
-//            System.out.println("Qual o tipo desse beneficiário?");
-//            System.out.println("1. Dentista do Bem");
-//            System.out.println("2. Apolônias do Bem");
-//            opc = sc.nextInt();
-//            sc.nextLine();
-//            if (opc==1){
-//                tp = new ProgramaSocial(1, "Dentista do Bem");
-//            } else if (opc==2){
-//                tp = new ProgramaSocial(2, "Apolônias do Bem");
-//            }
-//            else{
-//                System.out.println("Opção Inválida!!!");
-//                tp=null;
-//            }
-//        } while(opc<1 || opc>2);
+
 //
 //        System.out.println("Digite o ID do endereço do Beneficiário.");
 //        int idEndereco = sc.nextInt();
@@ -74,14 +39,6 @@
 //            System.out.println("Endereço não encontrado!!");
 //        }
 //
-//        Beneficiario beneficiario = new Beneficiario(
-//                idBeneficiario,
-//                cpf,
-//                nomeCompleto,
-//                dataNascimento,
-//                sexo,
-//                tp,
-//                enderecoBusca
-//        );
+
 //        beneficiarios.add(beneficiario);
 
