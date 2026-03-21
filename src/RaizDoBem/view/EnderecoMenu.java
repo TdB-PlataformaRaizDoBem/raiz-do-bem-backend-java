@@ -42,8 +42,17 @@ public class EnderecoMenu {
 
         switch (opc){
             case 1:
-                endereco = enderecoInput.criar();
-                controller.criarEndereco(endereco);
+                try{
+                    endereco = enderecoInput.criar();
+                    if(endereco!=null){
+                        controller.criarEndereco(endereco);
+                    }
+                    else{
+                        System.out.println("Endereço inválido!");
+                    }
+                } catch (Exception e){
+                    System.out.println("Não foi possível criar novo endereço!!! Erro: " + e.getMessage());
+                }
                 break;
             case 2:
                 enderecos = controller.listarEnderecos();

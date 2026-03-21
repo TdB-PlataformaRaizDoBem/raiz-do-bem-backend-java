@@ -22,8 +22,6 @@ public class Main {
 //
 //        //Testando classes que gerenciam pedidos de ajuda.
 //        PedidoAjuda pa1 = new PedidoAjuda(1, "Paciente com 16 anos, precisando de tratamento com dente quebrado e cáries.", LocalDate.now(), "Grave", "Primeiro pedido, esperando avaliação.");
-
-//
 //        //Criando alguns endereços para poder verificar na listagem
 //        Endereco e1 = new Endereco("Rua da Bela", "03921-000", "123", "São Paulo", "São Paulo",tipoEndereco1);
 //        Endereco e2 = new Endereco("Rua Horange Fito", "03341-233", "2222", "Rio de Janeiro", "Rio de Janeiro",tipoEndereco2);
@@ -51,7 +49,6 @@ public class Main {
 
         TipoEndereco tipoEndereco1 = new TipoEndereco(1, "Residencial");
         TipoEndereco tipoEndereco2 = new TipoEndereco(2, "Profissional");
-
 
 //        dentista.setId(10L);
 //        dentista.setNomeCompleto("Paulo Cavalcante");

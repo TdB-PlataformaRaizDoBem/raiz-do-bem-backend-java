@@ -71,7 +71,7 @@ public class PedidoAjudaDAO {
     }
     public void buscarPorCpf(String cpf){}
     public void listarPedidosData(LocalDate data){}
-    public void atualizarPedido(int idSelecionado, PedidoAjuda pedido){
+    public void atualizarPedido(int id, PedidoAjuda pedido){
         String querySql = "UPDATE Pedido_Ajuda SET id_status_pedido = ? WHERE id = ?";
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -88,13 +88,13 @@ public class PedidoAjudaDAO {
             throw new RuntimeException("Erro ao listar pedidos de ajuda: " + exception.getMessage());
         }
     }
-    public void excluirPedido(int idSelecionado){
+    public void excluirPedido(int id){
         String querySql = "DELETE FROM pedido_ajuda WHERE id = ? ";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
-            ps.setInt(1, idSelecionado);
+            ps.setInt(1, id);
             ps.executeUpdate();
         }
         catch (SQLException exception){

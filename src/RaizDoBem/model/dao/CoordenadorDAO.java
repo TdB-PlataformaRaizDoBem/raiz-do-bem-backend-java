@@ -14,6 +14,33 @@ import java.time.LocalDate;
  *
  */
 public class CoordenadorDAO {
+    public Coordenador mapeamento(ResultSet response) throws SQLException {
+        int id = response.getInt("id_colaborador");
+        String cpf = response.getString("cpf");
+        String nomeCompleto = response.getString("nome_completo");
+        LocalDate dataNascimento = response.getDate("data_nascimento").toLocalDate();
+        String email = response.getString("email");
+        int idEndereco = response.getInt("id_endereco");
+        String logradouro = response.getString("logradouro");
+        int idSexo = response.getInt("id_sexo");
+        String sexo = response.getString("tipo");
+        LocalDate dataContratacao = response.getDate("data_contratacao").toLocalDate();
+        String nivelAcesso = response.getString("nivel_acesso");
+        String senha = response.getString("senha");
+
+
+        return new Coordenador(
+                id,
+                cpf,
+                nomeCompleto,
+                dataNascimento,
+                email,
+                idEndereco,
+                idSexo,
+                dataContratacao,
+                nivelAcesso,
+                senha);
+    }
     /**
      * Metodo para adicionar um novo coordenador ao banco de dados.
      * @param coord Objeto do tipo Coordenador contendo as informações do coordenador a ser adicionado.
@@ -38,7 +65,7 @@ public class CoordenadorDAO {
             System.out.println("Coordenador criado e adicionado com sucesso!!");
         }
         catch (SQLException exception){
-            System.out.println("Erro ao adicionar coordenador: " + exception.getMessage());
+            throw new RuntimeException("Erro ao adicionar coordenador: " + exception.getMessage());
         }
     }
     /** O metodo listarTodos() é responsável por recuperar e exibir todos os registros de coordenadores presentes no banco de dados. Ele executa uma consulta SQL para selecionar as colunas relevantes da tabela Coordenador, e itera sobre os resultados para criar objetos Coordenador e exibi-los.

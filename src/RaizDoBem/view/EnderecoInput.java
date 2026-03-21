@@ -1,7 +1,9 @@
 package RaizDoBem.view;
 
 import RaizDoBem.controller.EnderecoController;
+import RaizDoBem.controller.ViaCepController;
 import RaizDoBem.model.vo.Endereco;
+import RaizDoBem.model.vo.ViaCep;
 
 import java.util.Scanner;
 
@@ -13,11 +15,17 @@ public class EnderecoInput {
     private int id;
     Scanner sc = new Scanner(System.in);
     EnderecoController controller = new EnderecoController();
+    ViaCepController viaCepController = new ViaCepController();
+
 
     public Endereco criar(){
         System.out.println("----- Criando novo endereço: -----");
 
         String cep;
+        String logradouro = "";
+        String bairro = "";
+        String cidade = "";
+        String estado = "";
         do{
             System.out.println("Digite o CEP (8 dígitos): ");
             cep = sc.nextLine();
@@ -26,19 +34,24 @@ public class EnderecoInput {
             }
         } while(!controller.validarCep(cep));
 
-        System.out.println("Digite o logradouro: ");
-        String logradouro = sc.nextLine();
+        ViaCep viaCep = null;
+        try{
+            viaCep = viaCepController.buscarInformacoesEndereco(cep);
+        }
+        catch(Exception e){
+            System.out.println("Falha ao verificar CEP! Erro:" + e.getMessage());
+        }
+
+        if(!viaCep.isErro()){
+            logradouro = viaCep.getLogradouro();
+            bairro = viaCep.getBairro();
+            cidade = viaCep.getLocalidade();
+            estado = viaCep.getUf();
+        }
 
         System.out.println("Digite o número da casa: ");
         String numero = sc.nextLine();
 
-        System.out.println("Digite o bairro: ");
-        String bairro = sc.nextLine();
-
-        String cidade = inputCidade();
-
-        System.out.println("Digite o estado: ");
-        String estado = sc.nextLine();
 
         int opc;
         int idTipo = 0;

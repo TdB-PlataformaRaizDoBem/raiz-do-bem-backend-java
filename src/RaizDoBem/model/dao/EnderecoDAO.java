@@ -22,7 +22,6 @@ import java.util.Map;
  *
  */
 public class EnderecoDAO {
-    List<Endereco> enderecos = new ArrayList<>();
     public Endereco mapeamento(ResultSet response) throws SQLException {
         return new Endereco(
                 response.getInt("id"),
@@ -59,6 +58,7 @@ public class EnderecoDAO {
     }
     public List<Endereco> listarTodos(){
         String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco";
+        List<Endereco> enderecos = new ArrayList<>();
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -93,6 +93,8 @@ public class EnderecoDAO {
     public List<Endereco> listarPorCidade(String cidade){
         String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.cidade = ?";
 
+        List<Endereco> enderecos = new ArrayList<>();
+
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);) {
 
@@ -115,10 +117,15 @@ public class EnderecoDAO {
             PreparedStatement ps = conexao.prepareStatement(querySql);
             ){
 
-            try(ResultSet response = ps.executeQuery();){
-                while(response.next())
-                    enderecos.add(mapeamento(response));
-            }
+            ps.setString(1, endereco.getLogradouro());
+            ps.setString(2, endereco.getCep());
+            ps.setString(3, endereco.getNumero());
+            ps.setString(4, endereco.getBairro());
+            ps.setString(5, endereco.getCidade());
+            ps.setString(6, endereco.getEstado());
+            ps.setInt(7, endereco.getTipoEndereco().getId());
+            ps.setInt(8, id);
+
             ps.executeUpdate();
         }
         catch (SQLException exception){
