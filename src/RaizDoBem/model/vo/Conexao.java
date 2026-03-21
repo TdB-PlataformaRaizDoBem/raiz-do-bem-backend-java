@@ -27,10 +27,7 @@ public class Conexao {
             String usuario = prop.getProperty("db.user");
             String senha = prop.getProperty("db.password");
 
-            Connection conexao = DriverManager.getConnection(url, usuario, senha);
-
-            System.out.println("Projeto conectado ao banco de dados!!");
-            return conexao;
+            return DriverManager.getConnection(url, usuario, senha);
         } catch (Exception exception) {
             throw new RuntimeException("Erro: ", exception);
         }

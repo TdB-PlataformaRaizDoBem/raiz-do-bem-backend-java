@@ -4,6 +4,7 @@ import RaizDoBem.controller.EnderecoController;
 import RaizDoBem.model.dao.EnderecoDAO;
 import RaizDoBem.model.vo.Endereco;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,10 +20,10 @@ import java.util.Scanner;
  */
 public class EnderecoMenu {
     public void menuEnderecos(){
-        EnderecoDAO enderecoDAO = new EnderecoDAO();
         EnderecoController controller = new EnderecoController();
         EnderecoInput enderecoInput = new EnderecoInput();
         Scanner sc = new Scanner(System.in);
+        List<Endereco> enderecos = new ArrayList<>();
         int id;
 
         System.out.println("\n      Gerenciar Endereços     ");
@@ -40,11 +41,11 @@ public class EnderecoMenu {
 
         switch (opc){
             case 1:
-                Endereco e1 = enderecoInput.criarEndereco();
-                enderecoDAO.adicionar(e1);
+                Endereco endereco = enderecoInput.criar();
+                controller.criarEndereco(endereco);
                 break;
             case 2:
-                List<Endereco> enderecos = controller.listarEnderecos();
+                enderecos = controller.listarEnderecos();
                 System.out.println("Listagem dos endereços: ");
                 for (int i = 0; i < enderecos.size(); i++) {
                     System.out.println(enderecos.get(i));
@@ -52,22 +53,26 @@ public class EnderecoMenu {
                 break;
             case 3:
                 id = enderecoInput.inputId();
-                enderecoDAO.buscarPorId(id);
+                endereco = controller.buscaPorId(id);
+                System.out.println(endereco);
                 break;
             case 4:
                 String cidade = enderecoInput.inputCidade();
-                enderecoDAO.listarPorCidade(cidade);
+                enderecos = controller.listagemPorCidade(cidade);
+                for (int i = 0; i < enderecos.size(); i++) {
+                    System.out.println(enderecos.get(i));
+                }
                 break;
             case 5:
                 id = enderecoInput.inputId();
-                Endereco novoEndereco = enderecoInput.criarEndereco();
+                Endereco novoEndereco = enderecoInput.criar();
                 controller.atualizarEndereco(id, novoEndereco);
-                System.out.println("Endereço atualizado com sucesso!!!");
+                System.out.println("Endereço "+ id + " atualizado com sucesso!!!");
                 break;
             case 6:
                 id = enderecoInput.inputId();
                 controller.excluirEndereco(id);
-                System.out.println("Endereço excluído com sucesso!!!");
+                System.out.println("Endereço "+ id + " excluído com sucesso!!!");
                 break;
             case 7:
                 System.out.println("Voltando ao menu principal...");

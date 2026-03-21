@@ -10,8 +10,8 @@ import java.util.Scanner;
 public class EnderecoInput {
     private int id;
     private String cidade;
-
-    public Endereco criarEndereco(){
+    Scanner sc  = new Scanner(System.in);
+    public Endereco criar(){
         Scanner sc = new Scanner(System.in);
 
         System.out.println("----- Criando novo endereço: -----");
@@ -66,7 +66,6 @@ public class EnderecoInput {
     }
 
     public String inputCidade(){
-        Scanner sc  = new Scanner(System.in);
         System.out.println("Digite a cidade, que deseja utilizar na busca: ");
         cidade = sc.nextLine();
 
@@ -74,8 +73,7 @@ public class EnderecoInput {
     }
 
     public int inputId(){
-        Scanner sc  = new Scanner(System.in);
-        System.out.println("Digite o ID que será utilizado como parâmetro: ");
+        System.out.println("Digite o ID: ");
         id = sc.nextInt();
         sc.nextLine();
 

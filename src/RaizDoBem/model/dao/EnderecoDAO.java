@@ -33,7 +33,7 @@ public class EnderecoDAO {
         );
     }
     public void adicionar(Endereco endereco){
-        String querySql = "INSERT INTO Endereco logradouro, cep, numero, bairro, cidade, estado, id_tipo_endereco VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Endereco (logradouro, cep, numero, bairro, cidade, estado, id_tipo_endereco) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -48,10 +48,9 @@ public class EnderecoDAO {
             ps.setInt(7, endereco.getTipoEndereco().getId());
 
             ps.executeUpdate();
-            System.out.println("Endereço criado e adicionado com sucesso!!");
         }
         catch (SQLException exception){
-            System.out.println("Erro ao adicionar endereço: " + exception.getMessage());
+            throw new RuntimeException("Erro ao adicionar endereço: " + exception.getMessage(), exception);
         }
     }
     public List<Endereco> listarTodos(){
@@ -126,7 +125,6 @@ public class EnderecoDAO {
             ps.setInt(8, idSelecionado);
 
             ps.executeUpdate();
-            System.out.println("Endereço ID - (" + idSelecionado + ") atualizado com sucesso!!");
         }
         catch (SQLException exception){
             throw new RuntimeException("Erro ao atualizar endereço: " + exception.getMessage());

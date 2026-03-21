@@ -2,6 +2,7 @@ package RaizDoBem.controller;
 
 import RaizDoBem.model.dao.EnderecoDAO;
 import RaizDoBem.model.vo.Endereco;
+import RaizDoBem.view.EnderecoInput;
 
 import java.util.List;
 
@@ -21,8 +22,21 @@ public class EnderecoController {
         this.enderecoDAO = new EnderecoDAO();
     }
 
+    public void criarEndereco(Endereco endereco){
+        if(endereco != null){
+            enderecoDAO.adicionar(endereco);
+            System.out.println("Endereço criado e adicionado!");
+        }
+    }
+
+    public Endereco buscaPorId(int id){
+        return enderecoDAO.buscarPorId(id);
+    }
     public List<Endereco> listarEnderecos(){
         return enderecoDAO.listarTodos();
+    }
+    public List<Endereco> listagemPorCidade(String cidade){
+        return enderecoDAO.listarPorCidade(cidade);
     }
 
     public void excluirEndereco(int id) {
