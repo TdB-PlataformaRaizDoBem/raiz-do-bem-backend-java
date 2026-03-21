@@ -3,6 +3,8 @@ package RaizDoBem.controller;
 import RaizDoBem.model.dao.EnderecoDAO;
 import RaizDoBem.model.vo.Endereco;
 
+import java.util.List;
+
 /**
  * Classe responsável por controlar as operações relacionadas aos endereços, como atualização, utilizando o EnderecoDAO para acessar os dados.
  * @author Paulo
@@ -17,6 +19,10 @@ public class EnderecoController {
 
     public EnderecoController() {
         this.enderecoDAO = new EnderecoDAO();
+    }
+
+    public List<Endereco> listarEnderecos(){
+        return enderecoDAO.listarTodos();
     }
 
     public void excluirEndereco(int id) {

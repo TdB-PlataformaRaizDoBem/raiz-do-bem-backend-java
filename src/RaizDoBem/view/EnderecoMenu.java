@@ -4,6 +4,7 @@ import RaizDoBem.controller.EnderecoController;
 import RaizDoBem.model.dao.EnderecoDAO;
 import RaizDoBem.model.vo.Endereco;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -43,8 +44,11 @@ public class EnderecoMenu {
                 enderecoDAO.adicionar(e1);
                 break;
             case 2:
+                List<Endereco> enderecos = controller.listarEnderecos();
                 System.out.println("Listagem dos endereços: ");
-                enderecoDAO.listarTodos();
+                for (int i = 0; i < enderecos.size(); i++) {
+                    System.out.println(enderecos.get(i));
+                }
                 break;
             case 3:
                 id = enderecoInput.inputId();

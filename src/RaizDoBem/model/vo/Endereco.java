@@ -58,9 +58,8 @@ public class Endereco {
         return bairro;
     }
 
-    public Endereco setBairro(String bairro) {
+    public void setBairro(String bairro) {
         this.bairro = bairro;
-        return this;
     }
 
     public String getCidade() {
