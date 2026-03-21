@@ -8,7 +8,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**
+ * Classe de acesso a dados para a entidade DentistaEspecialidade.
+ * Responsável por realizar operações de CRUD (Create, Read, Update, Delete) relacionadas às especialidades dos dentistas.
+ * @author Paulo
+ * @since 2026-03
+ *
+ */
 public class DentistaEspecialidadeDAO {
     public void adicionar(DentistaEspecialidade dentistaEspecialidade){
         String querySql = "INSERT INTO dentista_especialidade VALUES (?, ?)";

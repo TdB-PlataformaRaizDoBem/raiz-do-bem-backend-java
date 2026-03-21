@@ -1,22 +1,6 @@
 //package RaizDoBem.Controller;
 //
-//import RaizDoBem.Model.PedidoAjuda;
-//
-//import java.time.LocalDate;
-//import java.time.format.DateTimeFormatter;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Scanner;
-//
-//public class GerenciaPedido implements Gerenciador<PedidoAjuda>{
-//    private List<PedidoAjuda> pedidos = new ArrayList<>();
-//
-//    @Override
-//    public void adicionar(PedidoAjuda pedidoAjuda) {
-//        pedidos.add(pedidoAjuda);
-//        System.out.println("Pedido de ajuda adicionado.");
-//    }
-//
+
 //    @Override
 //    public List<PedidoAjuda> listarTodos() {
 //        System.out.println("----- Listando pedidos de ajuda: -----");

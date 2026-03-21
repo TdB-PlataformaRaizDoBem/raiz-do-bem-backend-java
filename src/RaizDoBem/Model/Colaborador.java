@@ -2,6 +2,18 @@ package RaizDoBem.Model;
 
 import java.time.LocalDate;
 
+/**
+ * Cada colaborador da ONG. Colaborador é a classe pai, que dá origem a Dentista e Coordenador. Contém informações pessoais, endereço e sexo do colaborador.
+ * @author Paulo
+ * @since 2025-09
+ * @param id Identificador único do colaborador.
+ * @param cpf CPF do colaborador, utilizado para identificação.
+ * @param nomeCompleto Nome completo do colaborador.
+ * @param dataNascimento Data de nascimento do colaborador.
+ * @param email Endereço de email do colaborador para contato.
+ * @param endereco Referência ao endereço do colaborador, utilizando a classe Endereco.
+ * @param sexo Referência ao sexo do colaborador, utilizando a classe Sexo.
+ */
 public class Colaborador {
     protected int id;
     protected String cpf;

@@ -5,6 +5,11 @@ import RaizDoBem.Model.Beneficiario;
 
 import java.util.Scanner;
 
+/**
+ * Menu de gerenciamento de beneficiários, permitindo ao usuário realizar operações como adicionar, listar, atualizar e excluir beneficiários do programa social. Esta classe interage com a classe BeneficiarioDAO para realizar as operações de acesso a dados.
+ * @author Paulo
+ * @since 2026-03
+ */
 public class MenuBeneficiarios {
     public void menuBeneficiarios(){
         Scanner sc = new Scanner(System.in);

@@ -5,6 +5,13 @@ import RaizDoBem.Model.*;
 import java.sql.*;
 import java.time.LocalDate;
 
+/**
+ * Classe de acesso a dados para os dentistas que prestarão serviço a ONG.
+ * Responsável por realizar operações de CRUD (Create, Read, Update, Delete) relacionadas aos dentistas.
+ * @author Paulo
+ * @since 2026-03
+ *
+ */
 public class DentistaDAO {
     private Dentista mapeamento(ResultSet response) throws SQLException {
         int id = response.getInt("id_colaborador");

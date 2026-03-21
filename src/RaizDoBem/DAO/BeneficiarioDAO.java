@@ -7,6 +7,11 @@ import RaizDoBem.Model.Endereco;
 import java.sql.*;
 import java.time.LocalDate;
 
+/**
+ * Classe responsável por realizar operações de acesso a dados relacionadas aos beneficiários da ONG. Contém métodos para adicionar, listar, atualizar e excluir beneficiários no banco de dados.
+ * @author Paulo
+ * @since 2026-03
+ */
 public class BeneficiarioDAO {
     private Beneficiario mapeamento(ResultSet response) throws SQLException {
         return new Beneficiario(

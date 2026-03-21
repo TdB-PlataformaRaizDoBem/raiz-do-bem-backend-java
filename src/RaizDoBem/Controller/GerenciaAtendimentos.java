@@ -1,30 +1,4 @@
-//package RaizDoBem.Controller;
-//
-//import RaizDoBem.Model.Atendimento;
-//import RaizDoBem.Model.Beneficiario;
-//import RaizDoBem.Model.Dentista;
-//
-//import java.time.LocalDate;
-//import java.time.format.DateTimeFormatter;
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Scanner;
-//
-//public class GerenciaAtendimentos implements Gerenciador<Atendimento>{
-//    private List<Atendimento> atendimentos = new ArrayList<>();
-//    private GerenciaBeneficiarios gerenciaBeneficiarios;
-//    private GerenciaDentistas gerenciaDentistas;
-//
-//    public GerenciaAtendimentos(GerenciaBeneficiarios gerenciaBeneficiarios, GerenciaDentistas gerenciaDentistas) {
-//        this.gerenciaBeneficiarios = gerenciaBeneficiarios;
-//        this.gerenciaDentistas = gerenciaDentistas;
-//    }
-//
-//    @Override
-//    public void adicionar(Atendimento atendimento) {
-//        atendimentos.add(atendimento);
-//        System.out.println("Novo atendimento adicionado.");
-//    }
+
 //
 //    @Override
 //    public List<Atendimento> listarTodos() {

@@ -4,6 +4,11 @@ package RaizDoBem.View;
 
 import java.util.Scanner;
 
+/**
+ * Classe do menu inicial do sistema que serve para direcionar o usuário para as diferentes funcionalidades, como gerenciamento de pedidos de ajuda, beneficiários, dentistas, atendimentos e endereços. O menu é exibido em um loop até que o usuário escolha encerrar o programa.
+ * @author Paulo
+ * @since 2025-09
+ */
 public class Menu {
     private int opcao;
     private String escolhido;
@@ -26,6 +31,16 @@ public class Menu {
         return sc;
     }
 
+    /**
+     * Exibe o menu inicial do sistema, permitindo ao usuário selecionar diferentes opções para gerenciar pedidos de ajuda, beneficiários, dentistas, atendimentos e endereços. O menu é exibido em um loop até que o usuário escolha encerrar o programa.
+     * O metodo utiliza a classe Scanner para ler a entrada do usuário e direciona para os menus correspondentes com base na opção selecionada.
+     *
+     * Exemplo de uso:
+     * - O usuário inicia o programa e é apresentado com o menu inicial.
+     * - O usuário seleciona uma opção (por exemplo, "2. Beneficiários") e o sistema direciona para o menu de beneficiários.
+     * - O usuário pode navegar entre os diferentes menus (pedidos de ajuda, dentistas, atendimentos, endereços) e realizar as operações correspondentes.
+     * - O usuário pode escolher encerrar o programa selecionando a opção "0. Encerrar programa".
+     */
     public void exibirMenuInicial(){
         sc = new Scanner(System.in);
         do{

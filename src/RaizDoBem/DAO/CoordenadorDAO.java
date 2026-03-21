@@ -6,6 +6,13 @@ import RaizDoBem.Model.Coordenador;
 import java.sql.*;
 import java.time.LocalDate;
 
+/**
+ * Classe de acesso a dados dos Coordenadores da ONG.
+ * Responsável por realizar operações de CRUD (Create, Read, Update, Delete) relacionadas aos coordenadores.
+ * @author Paulo
+ * @since 2026-03
+ *
+ */
 public class CoordenadorDAO {
     public void adicionar(Coordenador coord){
         String querySql = "INSERT INTO Coordenador (cpf, nome_completo, data_nascimento, email, id_endereco, data_contratacao, nivel_acesso, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

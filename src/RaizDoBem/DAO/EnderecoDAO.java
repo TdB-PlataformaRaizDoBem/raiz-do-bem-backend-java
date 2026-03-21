@@ -8,6 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Classe de acesso a dados para a entidade Endereço, que armazena informações das pessoas registradas no sistema da Turma do Bem.
+ * Responsável por realizar operações de CRUD (Create, Read, Update, Delete) relacionadas aos endereços das pessoas envolvidas na plataforma.
+ * @author Paulo
+ * @since 2026-03
+ *
+ */
 public class EnderecoDAO {
     private Endereco mapeamento(ResultSet response) throws SQLException {
         return new Endereco(

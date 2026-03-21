@@ -7,6 +7,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+/**
+ * Classe de acesso a dados para a entidade DentistaPrograma.
+ * Responsável por realizar operações de CRUD (Create, Read, Update, Delete) relacionadas à relação entre dentistas e público atendido por ele.
+ * @author Paulo
+ * @since 2026-03
+ *
+ */
 public class DentistaProgramaDAO {
     public void adicionar(DentistaPrograma dentistaPrograma){
         String querySql = "INSERT INTO dentista_programa VALUES (?, ?)";

@@ -2,6 +2,23 @@ package RaizDoBem.Model;
 
 import java.util.Scanner;
 
+/**
+ * Classe para armazenar endereços, e contém informações como logradouro, cep, número, bairro, cidade, estado e tipo de endereço. Esta classe é utilizada para modelar os endereços associados a colaboradores e beneficiários.
+ * @author Paulo
+ * @since 2025-09
+ * @param id Identificador único do endereço.
+ * @param logradouro Logradouro do endereço.
+ * @param cep CEP do endereço.
+ * @param numero Número do endereço.
+ * @param bairro Bairro do endereço.
+ * @param cidade Cidade do endereço.
+ * @param estado Estado do endereço.
+ * @param tipoEndereco Tipo de endereço, utilizando a classe TipoEndereco para representar se é residencial ou profissional.
+ *
+ *Exemplo de tipos de endereço:
+ *  - Residencial: Endereço onde o beneficiário reside.
+ *  - Profissional: Endereço onde o colaborador atua.
+ */
 public class Endereco {
     private int id;
     private String logradouro;

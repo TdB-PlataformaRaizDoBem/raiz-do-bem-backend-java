@@ -2,6 +2,24 @@ package RaizDoBem.Model;
 
 import java.time.LocalDate;
 
+/**
+ * Cada pessoa que passou pelo processo de solicitação de pedido de ajuda, e agora recebe atendimento da Turma do Bem. Contém informações pessoais, endereço, programa social associado, pedido de ajuda referência e coordenador responsável que o registrou.
+ * @author Paulo
+ * @since 2025-09
+ * @param id Identificador único do beneficiário.
+ * @param cpf CPF do beneficiário, utilizado para identificação.
+ * @param nomeCompleto Nome completo do beneficiário.
+ * @param dataNascimento Data de nascimento do beneficiário.
+ * @param telefone Número de telefone do beneficiário para contato.
+ * @param email Endereço de email do beneficiário para contato.
+ * @param sexo Referência ao sexo do beneficiário, utilizando a classe Sexo.
+ * @param programaSocial Referência ao programa social ao qual o beneficiário está associado, utilizando a classe ProgramaSocial.
+ * @param endereco Referência ao endereço do beneficiário, utilizando a classe Endereco.
+ * @param pedidoAjuda Referência ao pedido de ajuda do beneficiário, utilizando a classe PedidoAjuda.
+ * @param coordenador Referência ao coordenador responsável pelo beneficiário, utilizando a classe Coordenador.
+ *
+ *
+ */
 public class Beneficiario{
     private int id;
     private String cpf;
@@ -88,6 +106,10 @@ public class Beneficiario{
         return this;
     }
 
+    /**
+     * Construtor completo para poder listar um beneficiário com todas as informações necessárias, incluindo referências a outras entidades por meio de seus IDs.
+     *
+      */
     public Beneficiario(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String telefone, String email, int idSexo, int idPrograma, int idEndereco, int idPedido, int idColaborador) {
         this.id = id;
         this.cpf = cpf;
@@ -112,10 +134,18 @@ public class Beneficiario{
         this.coordenador.setId(idColaborador);
     }
 
+    /**
+     * Construtor para criar um novo beneficiário, onde o ID é gerado automaticamente pelo banco de dados. O coordenador pode fornecer as informações pessoais do beneficiário, bem como as referências aos IDs das entidades relacionadas (sexo, programa social, endereço, pedido de ajuda e coordenador).
+     *
+     */
     public Beneficiario(String cpf, String nomeCompleto, LocalDate dataNascimento, String telefone, String email, int idSexo, int idPrograma, int idEndereco, int idPedido, int idColaborador) {
         this(0, cpf, nomeCompleto, dataNascimento, telefone, email, idSexo, idPrograma, idEndereco, idPedido, idColaborador);
     }
 
-    public Beneficiario() {
+    /**
+    * Construtor vazio para criar um beneficiário sem fornecer informações iniciais. O coordenador pode usar os métodos setters para preencher as informações posteriormente.
+     *
+     */
+     public Beneficiario() {
     }
 }

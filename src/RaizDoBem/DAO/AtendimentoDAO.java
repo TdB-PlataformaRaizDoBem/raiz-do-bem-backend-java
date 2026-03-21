@@ -5,6 +5,13 @@ import RaizDoBem.Model.*;
 import java.sql.*;
 import java.time.LocalDate;
 
+/**
+ * Classe de acesso a dados para a entidade Atendimento.
+ * Responsável por realizar operações de CRUD (Create, Read, Update, Delete) relacionadas aos atendimentos.
+ * @author Paulo
+ * @since 2026-03
+ *
+ */
 public class AtendimentoDAO {
     public void adicionar(Atendimento atendimento){
         String querySql = "INSERT INTO Atendimento (descricao_atendimento, data, id_beneficiario, id_dentista) VALUES (?, ?, ?, ?)";

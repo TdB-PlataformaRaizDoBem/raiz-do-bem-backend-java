@@ -1,5 +1,17 @@
 package RaizDoBem.Model;
 
+/**
+ * Status de um pedido de ajuda, contendo informações como id e situação. Classe utilizada para modelar os diferentes status que um pedido pode ter, como "Pendente", "Aprovado", "Reprovado".
+ * @author Paulo
+ * @since 2025-09
+ * @param id Identificador único do status do pedido.
+ * @param situacao Descrição da situação do pedido, representada por uma string.
+ *
+ * Exemplo de status de pedido:
+ * - Em Andamento: O pedido está sendo processado ou em execução.
+ * - Aprovado: O pedido foi aprovado e está aguardando conclusão.
+ * - Recusado: O pedido foi recusado e não será processado.
+ */
 public class StatusPedido {
     private int id;
     private String situacao;

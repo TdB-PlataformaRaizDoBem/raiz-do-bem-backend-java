@@ -5,6 +5,11 @@ import RaizDoBem.Model.Atendimento;
 
 import java.util.Scanner;
 
+/**
+ * Interface para o menu de gerenciamento de atendimentos. Esta classe é responsável por exibir as opções relacionadas aos atendimentos e interagir com o usuário para realizar as operações correspondentes, como adicionar, listar, encontrar e excluir atendimentos.
+ * @author Paulo
+ * @since 2026-03
+ */
 public class MenuAtendimentos {
     public void menuAtendimentos(){
         Scanner sc = new Scanner(System.in);

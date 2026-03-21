@@ -1,6 +1,20 @@
 package RaizDoBem.Model;
-//Verificado Sp02
+
 import java.time.LocalDate;
+
+/**
+ * Requisito para poder criar um beneficiário. Contém informações sobre o problema descrito, dados de contato da pessoa alv, data do pedido e status do pedido.
+ * @author Paulo
+ * @since 2025-09
+ * @param id Identificador único do pedido de ajuda.
+ * @param cpf CPF do beneficiário que fez o pedido de ajuda, utilizado para identificação.
+ * @param descricaoProblema Descrição detalhada do problema ou necessidade relatada pelo beneficiário.
+ * @param nomeCompleto Nome completo do beneficiário que fez o pedido de ajuda.
+ * @param telefone Número de telefone do beneficiário para contato.
+ * @param email Endereço de email do beneficiário para contato.
+ * @param data Data em que o pedido de ajuda foi registrado.
+ * @param status Referência ao status atual do pedido de ajuda, utilizando a classe StatusPedido.
+ */
 
 public class PedidoAjuda {
     private int id;

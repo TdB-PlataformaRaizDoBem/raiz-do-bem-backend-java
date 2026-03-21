@@ -1,9 +1,4 @@
-//    @Override
-//    public void adicionar(Beneficiario beneficiario) {
-//        beneficiarios.add(beneficiario);
-//        System.out.println("Beneficiário criado.");
-//    }
-//
+
 //    @Override
 //    public List<Beneficiario> listarTodos() {
 //        System.out.println("----- Listando beneficiários: -----");
@@ -94,14 +89,4 @@
 //                enderecoBusca
 //        );
 //        beneficiarios.add(beneficiario);
-//    }
-//    public Beneficiario buscarPeloId(int idBeneficiario) {
-//        for (Beneficiario beneficiario : beneficiarios) {
-//            if (beneficiario.getIdBeneficiario() == idBeneficiario) {
-//                return beneficiario;
-//            }
-//        }
-//        System.out.println("Beneficiário não encontrado");
-//        return null;
-//    }
-//}
+

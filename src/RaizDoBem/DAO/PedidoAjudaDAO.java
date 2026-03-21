@@ -6,6 +6,13 @@ import RaizDoBem.Model.PedidoAjuda;
 import java.sql.*;
 import java.time.LocalDate;
 
+/**
+ * Classe de acesso a dados para a entidade PedidoAjuda, registro inicial que precede o registro de um beneficiário.
+ * Responsável por realizar operações de CRUD (Create, Read, Update, Delete) relacionadas aos pedidos de ajuda.
+ * @author Paulo
+ * @since 2026-03
+ *
+ */
 public class PedidoAjudaDAO {
     public void adicionar(PedidoAjuda pedido){
         String querySql = "INSERT INTO Pedido_Ajuda (cpf, descricao_problema, nome_completo, telefone, email, data, id_status_pedido) VALUES (?, ?, ?, ?, ?, ?, ?)";

@@ -6,6 +6,14 @@ import RaizDoBem.Model.Endereco;
 import java.sql.*;
 import java.util.Scanner;
 
+/**
+ * Classe responsável por exibir o menu de gerenciamento de endereços e interagir com o usuário para realizar as operações relacionadas aos endereços.
+ * @author Paulo
+ * @since 2026-03
+ *
+ *
+ *
+ */
 public class MenuEnderecos {
     public void menuEnderecos(){
         EnderecoDAO enderecoDAO = new EnderecoDAO();
