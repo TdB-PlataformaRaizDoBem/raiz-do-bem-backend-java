@@ -1,6 +1,7 @@
 package RaizDoBem;
 
 import RaizDoBem.model.vo.TipoEndereco;
+import com.google.gson.Gson;
 
 //import RaizDoBem.View.Menu;
 
@@ -55,8 +56,6 @@ public class Main {
 //        dentista.setCro("SP-123456");
 
 
-//        String endereco = gson.toJson(end1);
-//        System.out.println(endereco);
   //      enderecoDAO.adicionar(end1);
     }
 }

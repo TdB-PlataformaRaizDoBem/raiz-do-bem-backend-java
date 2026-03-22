@@ -100,10 +100,15 @@ public class PedidoAjuda {
 
     @Override
     public String toString() {
-        return "ID: " + id + ", CPF: " + cpf + "\nDescrição: " + descricaoProblema + "\nNomeCompleto" + nomeCompleto +
-                "\nTelefone:" + telefone +
-                ", Email" + email +
-                "\nData do pedido de ajuda: " + data +
-                ", status: " + status;
+        return "PedidoAjuda{" +
+                "id=" + id +
+                ", cpf='" + cpf + '\'' +
+                ", descricaoProblema='" + descricaoProblema + '\'' +
+                ", nomeCompleto='" + nomeCompleto + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
+                ", data=" + data.toString() +
+                ", status=" + status +
+                '}';
     }
 }

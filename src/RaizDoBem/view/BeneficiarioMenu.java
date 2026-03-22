@@ -16,7 +16,8 @@ public class BeneficiarioMenu {
         Scanner sc = new Scanner(System.in);
         Beneficiario beneficiario = new Beneficiario();
         BeneficiarioController controller = new BeneficiarioController();
-        String cpf = "";
+        BeneficiarioInput input = new BeneficiarioInput();
+        String cpf;
 
         System.out.println("\n      Gerenciar Beneficiários     ");
         System.out.println("        1.  Adicionar beneficiário");
@@ -41,6 +42,7 @@ public class BeneficiarioMenu {
                 controller.listarBeneficiarios();
                 break;
             case 3:
+                cpf = input.inputCpf();
                 beneficiario = controller.buscaPorCpf(cpf);
                 if(controller.buscaPorCpf(cpf) == null){
                     System.out.println("Beneficiário não encontrado!!!");
@@ -54,13 +56,18 @@ public class BeneficiarioMenu {
                 controller.listagemPorPrograma(id);
                 break;
             case 5:
-                String cidade = "";
+                EnderecoInput inputEndereco = new EnderecoInput();
+                String cidade = inputEndereco.inputCidade();
                 controller.listagemPorCidade(cidade);
                 break;
             case 6:
+                cpf = input.inputCpf();
+                //falta definir o beneficiario
+                beneficiario = controller.buscaPorCpf(cpf);
                 controller.atualizarBeneficiario(cpf, beneficiario);
                 break;
             case 7:
+                cpf = input.inputCpf();
                 controller.excluirBeneficiario(cpf);
                 break;
             case 8:

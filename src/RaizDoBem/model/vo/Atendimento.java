@@ -70,4 +70,18 @@ public class Atendimento {
         this.dentista = new Dentista();
         this.beneficiario.setId(idDentista);
     }
+
+    public Atendimento(String descricaoAtendimento, LocalDate data, int idBeneficiario, int idDentista) {
+        this.descricaoAtendimento = descricaoAtendimento;
+        this.data = data;
+
+        this.beneficiario = new Beneficiario();
+        this.beneficiario.setId(idBeneficiario);
+
+        this.dentista = new Dentista();
+        this.beneficiario.setId(idDentista);
+    }
+
+    public Atendimento() {
+    }
 }

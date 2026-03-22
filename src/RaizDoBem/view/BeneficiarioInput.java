@@ -6,15 +6,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
+import java.util.WeakHashMap;
 
 public class BeneficiarioInput {
     Scanner sc = new Scanner(System.in);
     public Beneficiario criar(){
-
         System.out.println("----- Criando novo beneficiário: -----");
 
-        System.out.println("CPF do beneficiário: ");
-        String cpf = sc.nextLine();
+        String cpf = inputCpf();
 
         System.out.println("Nome completo do beneficiário: ");
         String nomeCompleto = sc.nextLine();
@@ -117,5 +116,9 @@ public class BeneficiarioInput {
                 idPedido,
                 idCoordenador
         );
+    }
+    public String inputCpf(){
+        System.out.println("Digite o CPF do beneficiário: ");
+        return sc.nextLine();
     }
 }

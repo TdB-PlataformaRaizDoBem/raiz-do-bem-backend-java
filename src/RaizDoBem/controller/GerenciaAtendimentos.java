@@ -42,10 +42,7 @@
 //        System.out.println("Descrição do Atendimento: ");
 //        String descricao = sc.nextLine();
 //
-//        System.out.println("Data do atendimento: ");
-//        String dataDigitada = sc.nextLine();
-//        LocalDate dataAtendimento = LocalDate.parse(dataDigitada,formatacao);
-//
+
 //        System.out.println("Digite o ID do beneficiário envolvido no atendimento: ");
 //        int idBeneficiario = sc.nextInt();
 //        sc.nextLine();

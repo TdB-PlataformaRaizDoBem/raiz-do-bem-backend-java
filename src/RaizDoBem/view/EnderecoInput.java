@@ -17,7 +17,6 @@ public class EnderecoInput {
     EnderecoController controller = new EnderecoController();
     ViaCepController viaCepController = new ViaCepController();
 
-
     public Endereco criar(){
         System.out.println("----- Criando novo endereço: -----");
 

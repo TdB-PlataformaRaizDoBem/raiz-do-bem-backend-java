@@ -26,6 +26,24 @@ public class AtendimentoDAO {
     }
     /** O atendimento é o registro de um serviço prestado a um beneficiário, realizado por um dentista, numa data específica. O coordenador pode criar um atendimento para registrar um serviço prestado, listar os atendimentos realizados, e encontrar atendimentos relacionados a um beneficiário ou dentista específico.
      * */
+    public Atendimento buscarPorCpf(String cpf){
+        String querySql = "SELECT id, descricao_atendimento, data, id_beneficiario, id_dentista FROM Atendimento where cpf = ?";
+
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);
+        ){
+            ps.setString(1, cpf);
+
+            try(ResultSet response = ps.executeQuery();){
+                if(response.next())
+                    return mapeamento(response);
+            }
+        }
+        catch (SQLException exception){
+            throw new RuntimeException("Erro ao encontrar cpf: " + exception.getMessage());
+        }
+        return null;
+    }
     public void adicionar(Atendimento atendimento){
         String querySql = "INSERT INTO Atendimento (descricao_atendimento, data, id_beneficiario, id_dentista) VALUES (?, ?, ?, ?)";
 

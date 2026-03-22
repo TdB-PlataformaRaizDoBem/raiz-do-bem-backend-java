@@ -40,13 +40,13 @@ public class DentistaDAO {
                 croDentista,
                 disponibilidade);
     }
-    public Dentista buscarPorId(int id){
-        String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.id = ?";
+    public Dentista buscarPorCpf(String cpf){
+        String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento,c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero FROM Dentista d, Colaborador c, Sexo s, Endereco e WHERE cpf = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
-            ps.setInt(1, id);
+            ps.setString(1, cpf);
 
             try(ResultSet response = ps.executeQuery();){
                 if(response.next())
@@ -54,7 +54,7 @@ public class DentistaDAO {
             }
         }
         catch (SQLException exception){
-            throw new RuntimeException("Erro ao listar dentistas: " + exception.getMessage());
+            throw new RuntimeException("Erro ao buscar CPF: " + exception.getMessage());
         }
         return null;
     }

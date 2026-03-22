@@ -1,5 +1,6 @@
 package RaizDoBem.view;
 
+import RaizDoBem.controller.DentistaController;
 import RaizDoBem.model.dao.DentistaDAO;
 import RaizDoBem.model.vo.Dentista;
 
@@ -9,6 +10,7 @@ public class DentistaMenu {
     public void menu() {
         DentistaDAO dentistaDAO = new DentistaDAO();
         Dentista dentista = new Dentista();
+        DentistaController controller = new DentistaController();
         Scanner sc = new Scanner(System.in);
         int id = 0;
 
@@ -27,11 +29,11 @@ public class DentistaMenu {
 
         switch (opc){
             case 1:
-                dentistaDAO.adicionar(dentista);
+                controller.criarDentista(dentista);
                 break;
             case 2:
                 System.out.println("Listagem dos dentistas: ");
-                dentistaDAO.listarTodos();
+                controller.listarTodos();
                 break;
             case 3:
                 String cidade = "";

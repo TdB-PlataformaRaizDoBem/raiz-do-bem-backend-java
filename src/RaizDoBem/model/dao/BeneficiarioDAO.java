@@ -122,7 +122,7 @@ public class BeneficiarioDAO {
 
     /** O metodo listagemPorCidade() é responsável por recuperar e exibir os registros de beneficiários relacionados a uma cidade específica. Ele executa uma consulta SQL que seleciona os beneficiários onde o id_endereco corresponde ao id do endereço fornecido como parâmetro, e itera sobre os resultados para criar objetos Beneficiario e exibi-los. */
     public List<Beneficiario> listarPorCidade(String cidade){
-        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, telefone, email, id_sexo, id_programa, id_endereco, id_pedido_ajuda, id_coordenador FROM Beneficiario b, Endereco e WHERE e.cidade = ?";
+        String querySql = "SELECT b.id, b.cpf, b.nome_completo, b.data_nascimento, b.telefone, b.email, b.id_sexo, b.id_programa, b.id_endereco, b.id_pedido_ajuda, b.id_coordenador FROM Beneficiario b, Endereco e WHERE e.cidade = ?";
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
 

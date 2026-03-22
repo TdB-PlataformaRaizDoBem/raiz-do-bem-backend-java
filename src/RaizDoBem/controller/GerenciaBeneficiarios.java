@@ -31,14 +31,11 @@
 //    @Override
 //    public void receberSalvarDados() {
 
-//
 //        System.out.println("Digite o ID do endereço do Beneficiário.");
 //        int idEndereco = sc.nextInt();
 //        Endereco enderecoBusca = ge.buscarPeloId(idEndereco);
 //        if (enderecoBusca==null){
 //            System.out.println("Endereço não encontrado!!");
 //        }
-//
 
-//        beneficiarios.add(beneficiario);
 

@@ -4,6 +4,7 @@ import RaizDoBem.controller.EnderecoController;
 import RaizDoBem.model.dao.EnderecoDAO;
 import RaizDoBem.model.vo.Endereco;
 import RaizDoBem.view.EnderecoInput;
+import com.google.gson.Gson;
 
 public class TestMenuEndereco {
     public static void main(String[] args) {
@@ -16,5 +17,8 @@ public class TestMenuEndereco {
 
         String cep = "03978020";
         //System.out.println(controller.buscarInformacoesEndereco(cep));
+        Gson gson = new Gson();
+        String endereco = gson.toJson(end2);
+        System.out.println(endereco);
     }
 }
