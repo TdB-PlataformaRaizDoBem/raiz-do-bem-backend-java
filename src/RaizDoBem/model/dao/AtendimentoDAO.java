@@ -4,6 +4,8 @@ import RaizDoBem.model.vo.Atendimento;
 import RaizDoBem.model.vo.Conexao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe de acesso a dados para a entidade Atendimento.
@@ -43,21 +45,22 @@ public class AtendimentoDAO {
         }
     }
     /** O metodo listarTodos() é responsável por recuperar e exibir todos os registros de atendimentos presentes no banco de dados. Ele executa uma consulta SQL para selecionar todas as colunas da tabela Atendimento, e itera sobre os resultados para criar objetos Atendimento e exibi-los. */
-    public void listarTodos(){
+    public List<Atendimento> listarTodos(){
         String querySql = "SELECT id, descricao_atendimento, data, id_beneficiario, id_dentista FROM Atendimento";
-        try(Connection conexao = Conexao.conectarAoBanco();
-            PreparedStatement ps = conexao.prepareStatement(querySql);){
+        List<Atendimento> atendimentos = new ArrayList<>();
 
-            try(ResultSet response = ps.executeQuery();){
-                while(response.next()){
-                    Atendimento atendimento = mapeamento(response);
-                    System.out.println(atendimento);
-                }
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);
+            ResultSet response = ps.executeQuery();){
+
+            while(response.next()){
+                atendimentos.add(mapeamento(response));
             }
         }
         catch (SQLException exception){
             throw new RuntimeException("Erro ao listar atendimentos: " + exception.getMessage());
         }
+        return atendimentos;
     }
     /** O metodo encontrarAtendimentoBeneficiario() é responsável por recuperar e exibir os registros de atendimentos relacionados a um beneficiário específico. Ele executa uma consulta SQL que seleciona os atendimentos onde o id_beneficiario corresponde ao id do beneficiário fornecido como parâmetro, e itera sobre os resultados para criar objetos Atendimento e exibi-los. */
     public void encontrarAtendimentoBeneficiario(){}

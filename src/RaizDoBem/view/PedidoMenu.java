@@ -12,7 +12,7 @@ public class PedidoMenu {
         PedidoAjuda pedidoAjuda = new PedidoAjuda();
         Scanner sc = new Scanner(System.in);
         int id;
-
+        String cpf = "";
         System.out.println("\n      Gerenciar Pedidos de Ajuda     ");
         System.out.println("\n        1.  Adicionar pedido de ajuda");
         System.out.println("        2.  Listar todos os pedidos de ajuda");
@@ -35,7 +35,6 @@ public class PedidoMenu {
                 pedidoAjudaDAO.listarTodos();
                 break;
             case 3:
-                String cpf = "";
                 pedidoAjudaDAO.buscarPorCpf(cpf);
                 break;
             case 4:
@@ -43,9 +42,8 @@ public class PedidoMenu {
                 pedidoAjudaDAO.listarPedidosData(data);
                 break;
             case 5:
-                id = 0;
                 PedidoAjuda pedido = new PedidoAjuda();
-                pedidoAjudaDAO.atualizarPedido(id, pedido);
+                pedidoAjudaDAO.atualizarPedido(pedido, cpf);
                 break;
             case 6:
                 id = 0;

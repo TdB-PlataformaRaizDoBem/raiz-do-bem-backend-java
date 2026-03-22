@@ -2,10 +2,11 @@ package RaizDoBem.model.dao;
 
 import RaizDoBem.model.vo.Conexao;
 import RaizDoBem.model.vo.Dentista;
-import RaizDoBem.model.vo.Endereco;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe de acesso a dados para os dentistas que prestarão serviço a ONG.
@@ -80,59 +81,59 @@ public class DentistaDAO {
             System.out.println("Erro ao adicionar dentista: " + exception.getMessage());
         }
     }
-    public void listarTodos(){
+    public List<Dentista> listarTodos(){
         String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento,c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero FROM Dentista d, Colaborador c, Sexo s, Endereco e";
+        List<Dentista> dentistas = new ArrayList<>();
 
         try(Connection conexao = Conexao.conectarAoBanco();
-            PreparedStatement ps = conexao.prepareStatement(querySql);){
+            PreparedStatement ps = conexao.prepareStatement(querySql);
+            ResultSet response = ps.executeQuery();){
 
-            try(ResultSet response = ps.executeQuery();){
-                while(response.next()){
-                    Dentista dentista = mapeamento(response);
-                    System.out.println(dentista);
-                }
-            }
+            while(response.next())
+                dentistas.add(mapeamento(response));
         }
         catch (SQLException exception){
             throw new RuntimeException("Erro ao listar atendimentos: " + exception.getMessage());
         }
+        return dentistas;
     }
-    public void listarPorCidade(String cidadeEscolhida){
-        String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento, c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero FROM Dentista d, Colaborador c, Sexo s, Endereco e WHERE e.cidade  = '" + cidadeEscolhida + "'";
+    public List<Dentista> listarPorCidade(String cidade){
+        String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento, c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero FROM Dentista d, Colaborador c, Sexo s, Endereco e WHERE e.cidade  = ?";
+        List<Dentista> dentistas = new ArrayList<>();
 
         try(Connection conexao = Conexao.conectarAoBanco();
-            PreparedStatement ps = conexao.prepareStatement(querySql);
-        ){
+            PreparedStatement ps = conexao.prepareStatement(querySql);){
+
+            ps.setString(1, cidade);
 
             try(ResultSet response = ps.executeQuery();){
-                System.out.println("Listagem dos dentistas da cidade: (" + cidadeEscolhida + "): ");
                 while(response.next()){
-                    Dentista dentista = mapeamento(response);
-                    System.out.println(dentista);
+                    dentistas.add(mapeamento(response));
                 }
             }
         }
         catch (SQLException exception){
-            System.out.println("Erro ao listar dentistas da cidade (" + cidadeEscolhida +  "): " + exception.getMessage());
+            throw new RuntimeException("Erro ao listar dentistas da cidade (" + cidade +  "): " + exception.getMessage());
         }
+        return dentistas;
     }
-    public void listarDisponiveis(){
+    public List<Dentista> listarDisponiveis(){
         String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento, c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero, e.cidade FROM Dentista d, Coordenador c, Endereco e, Sexo s WHERE d.id_coordenador = c.id AND e.disponibilidade = 'Sim'";
+        List<Dentista> dentistas = new ArrayList<>();
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
 
             try(ResultSet response = ps.executeQuery();){
-                System.out.println("Listagem dos dentistas disponíveis: ");
                 while(response.next()){
-                    Dentista dentista = mapeamento(response);
-                    System.out.println(dentista);
+                    dentistas.add(mapeamento(response));
                 }
             }
         }
         catch (SQLException exception){
-            System.out.println("Erro ao listar atendimentos: " + exception.getMessage());
+            throw new RuntimeException("Erro ao listar dentistas disponíveis: " + exception.getMessage());
         }
+        return dentistas;
     }
     public void atualizarDentista(int id){
 

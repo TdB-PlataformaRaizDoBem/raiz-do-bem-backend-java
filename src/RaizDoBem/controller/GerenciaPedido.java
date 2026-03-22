@@ -24,7 +24,6 @@
 //        Scanner sc = new Scanner(System.in);
 //        System.out.println("----- Adicionar novo pedido de ajuda: -----");
 //
-//        int idPedido = (pedidos.size() + 1);
 //
 //        System.out.println("Descrição do pedido de ajuda: ");
 //        String descricao = sc.nextLine();

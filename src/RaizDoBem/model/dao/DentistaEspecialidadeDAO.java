@@ -3,11 +3,15 @@ package RaizDoBem.model.dao;
 import RaizDoBem.model.vo.Conexao;
 import RaizDoBem.model.vo.Dentista;
 import RaizDoBem.model.vo.DentistaEspecialidade;
+import RaizDoBem.model.vo.Especialidade;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Classe de acesso a dados para a entidade DentistaEspecialidade.
  * Responsável por realizar operações de CRUD (Create, Read, Update, Delete) relacionadas às especialidades dos dentistas.
@@ -26,14 +30,15 @@ public class DentistaEspecialidadeDAO {
             ps.setInt(2, dentistaEspecialidade.getEspecialidade().getId());
 
             ps.executeUpdate();
-            System.out.println("Adicionada nova relação Dentista - Especialidade !!");
+            //System.out.println("Adicionada nova relação Dentista - Especialidade !!");
         }
         catch (SQLException exception){
-            System.out.println("Erro ao adicionar relação: " + exception.getMessage());
+            throw new RuntimeException("Erro ao adicionar relação: " + exception.getMessage());
         }
     }
-    public void listarTodos(){
+    public List<DentistaEspecialidade> listarTodos(){
         String querySql = "SELECT de.id_dentista, d.nome_completo, de.id_especialidade, e.especialidade FROM Dentista_Especialidade de, Dentista d, Especialidade e WHERE de.id_dentista = d.id_dentista and de.id_especialidade = e.id_especialidade";
+        List<DentistaEspecialidade> lista = new ArrayList<>();
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
 
@@ -53,9 +58,16 @@ public class DentistaEspecialidadeDAO {
             }
         }
         catch (SQLException exception){
-            System.out.println("Erro ao listar os dentistas: " + exception.getMessage());
+            throw new RuntimeException("Erro ao listar os dentistas: " + exception.getMessage());
         }
+        return lista;
     }
-    public void listarEspecialidadesUnicoDentista(int idDentista){}
-    public void listarDentistasComEspecialidade(String especialidade){}
+    public List<Especialidade> listarEspecialidadesUnicoDentista(int idDentista){
+        List<Especialidade> especialidades = new ArrayList<>();
+        return especialidades;
+    }
+    public List<Dentista> listarDentistasComEspecialidade(String especialidade){
+        List<Dentista> dentistas = new ArrayList<>();
+        return dentistas;
+    }
 }

@@ -95,7 +95,7 @@ public class BeneficiarioDAO {
             }
         }
         catch (SQLException exception){
-            throw new RuntimeException("Erro ao listar atendimentos: " + exception.getMessage());
+            throw new RuntimeException("Erro ao encontrar cpf: " + exception.getMessage());
         }
         return null;
     }

@@ -76,17 +76,17 @@ public class EnderecoDAO {
         String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.id = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
-            PreparedStatement ps = conexao.prepareStatement(querySql);
-            ){
+            PreparedStatement ps = conexao.prepareStatement(querySql)) {
+
             ps.setInt(1, id);
 
-            try(ResultSet response = ps.executeQuery();){
+            try(ResultSet response = ps.executeQuery()) {
                 if(response.next())
                     return mapeamento(response);
             }
         }
         catch (SQLException exception){
-            throw new RuntimeException("Erro ao listar endereços: " + exception.getMessage());
+            throw new RuntimeException("Erro ao encontrar id: " + exception.getMessage());
         }
         return null;
     }
@@ -96,11 +96,11 @@ public class EnderecoDAO {
         List<Endereco> enderecos = new ArrayList<>();
 
         try(Connection conexao = Conexao.conectarAoBanco();
-            PreparedStatement ps = conexao.prepareStatement(querySql);) {
+            PreparedStatement ps = conexao.prepareStatement(querySql)) {
 
             ps.setString(1, cidade);
 
-            try(ResultSet response = ps.executeQuery();){
+            try(ResultSet response = ps.executeQuery()) {
                 while(response.next())
                     enderecos.add(mapeamento(response));
             }

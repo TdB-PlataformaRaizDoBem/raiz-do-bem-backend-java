@@ -1,10 +1,14 @@
 package RaizDoBem.model.dao;
 
 import RaizDoBem.model.vo.Conexao;
+import RaizDoBem.model.vo.Endereco;
 import RaizDoBem.model.vo.PedidoAjuda;
+import RaizDoBem.model.vo.StatusPedido;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe de acesso a dados para a entidade PedidoAjuda, registro inicial que precede o registro de um beneficiário.
@@ -14,6 +18,18 @@ import java.time.LocalDate;
  *
  */
 public class PedidoAjudaDAO {
+    public PedidoAjuda mapeamento(ResultSet response) throws SQLException{
+        return new PedidoAjuda(
+                response.getInt("id"),
+                response.getString("cpf"),
+                response.getString("descricao_problema"),
+                response.getString("nome_completo"),
+                response.getString("telefone"),
+                response.getString("email"),
+                response.getDate("data").toLocalDate(),
+                response.getInt("id_status")
+        );
+    }
     public void adicionar(PedidoAjuda pedido){
         String querySql = "INSERT INTO Pedido_Ajuda (cpf, descricao_problema, nome_completo, telefone, email, data, id_status_pedido) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -35,57 +51,73 @@ public class PedidoAjudaDAO {
             System.out.println("Erro ao criar novo pedido de ajuda: " + exception.getMessage());
         }
     }
-    public void listarTodos(){
+    public List<PedidoAjuda> listarTodos(){
         String querySql = "SELECT id, cpf, descricao_problema, nome_completo, telefone, email, data, id_status_pedido FROM Pedido_Ajuda";
-        try(Connection conexao = Conexao.conectarAoBanco();
-            PreparedStatement ps = conexao.prepareStatement(querySql);){
+        List<PedidoAjuda> pedidos = new ArrayList<>();
 
-            ResultSet response = ps.executeQuery();
-            while(response.next()){
-                int id = response.getInt("id");
-                String cpf = response.getString("cpf");
-                String descricaoProblema = response.getString("descricao_problema");
-                String nomeCompleto = response.getString("nome_completo");
-                String telefone = response.getString("telefone");
-                String email = response.getString("email");
-                LocalDate data = response.getDate("data").toLocalDate();
-                int idStatusPedido = response.getInt("id_status_pedido");
-
-                PedidoAjuda pedido = new PedidoAjuda(
-                        id,
-                        cpf,
-                        descricaoProblema,
-                        nomeCompleto,
-                        telefone,
-                        email,
-                        data,
-                        idStatusPedido
-                );
-
-              System.out.println(pedido);
-            }
-        }
-        catch (SQLException exception){
-            System.out.println("Erro ao listar pedidos de ajuda: " + exception.getMessage());
-        }
-    }
-    public void buscarPorCpf(String cpf){}
-    public void listarPedidosData(LocalDate data){}
-    public void atualizarPedido(int id, PedidoAjuda pedido){
-        String querySql = "UPDATE Pedido_Ajuda SET id_status_pedido = ? WHERE id = ?";
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
-            ResultSet response = ps.executeQuery();){
+            ResultSet response = ps.executeQuery()) {
 
-            ps.setInt(1, pedido.getStatus().getId());
-            ps.setInt(2, pedido.getId());
-
-            if(response.next()){
-                ps.executeUpdate();
+            while(response.next()){
+                pedidos.add(mapeamento(response));
             }
         }
         catch (SQLException exception){
             throw new RuntimeException("Erro ao listar pedidos de ajuda: " + exception.getMessage());
+        }
+        return pedidos;
+    }
+    public PedidoAjuda buscarPorCpf(String cpf){
+        String querySql = "SELECT id, cpf, descricao_problema, nome_completo, telefone, email, data, id_status_pedido FROM Pedido_Ajuda where cpf = ?";
+
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);
+        ){
+            ps.setString(1, cpf);
+
+            try(ResultSet response = ps.executeQuery();){
+                if(response.next())
+                    return mapeamento(response);
+            }
+        }
+        catch (SQLException exception){
+            throw new RuntimeException("Erro ao encontrar cpf: " + exception.getMessage());
+        }
+        return null;
+    }
+    public List<PedidoAjuda> listarPedidosData(LocalDate data){
+        String querySql = "SELECT id, cpf, descricao_problema, nome_completo, telefone, email, data, id_status_pedido FROM Pedido_Ajuda WHERE data = ?";
+        List<PedidoAjuda> pedidos = new ArrayList<>();
+
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql)) {
+
+            ps.setDate(1, Date.valueOf(data));
+
+            try(ResultSet response = ps.executeQuery()) {
+                while(response.next()){
+                    pedidos.add(mapeamento(response));
+                }
+            }
+        }
+        catch (SQLException exception){
+            throw new RuntimeException("Erro ao listar pedidos de ajuda da data específica: " + exception.getMessage());
+        }
+        return pedidos;
+    }
+    public void atualizarPedido(PedidoAjuda pedido, String cpf){
+        String querySql = "UPDATE Pedido_Ajuda SET id_status_pedido = ? WHERE cpf = ?";
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql)) {
+
+            ps.setInt(1, pedido.getStatus().getId());
+            ps.setString(2, cpf);
+
+            ps.executeUpdate();
+        }
+        catch (SQLException exception){
+            throw new RuntimeException("Erro ao atualizar pedido de ajuda: " + exception.getMessage());
         }
     }
     public void excluirPedido(int id){
