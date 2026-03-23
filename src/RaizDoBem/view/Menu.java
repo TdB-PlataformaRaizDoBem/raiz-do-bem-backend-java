@@ -1,7 +1,5 @@
 package RaizDoBem.view;
 
-//import RaizDoBem.Controller.*;
-
 import java.util.Scanner;
 
 /**
@@ -45,6 +43,7 @@ public class Menu {
             System.out.println("\n        1. Pedidos de ajuda");
             System.out.println("        2. Beneficiários");
             System.out.println("        3. Dentistas");
+            System.out.println("        4. Coordenadores");
             System.out.println("        4. Atendimentos");
             System.out.println("        5. Endereços");
             System.out.println("        0. Encerrar programa");
@@ -69,12 +68,16 @@ public class Menu {
                     dentistaMenu.menu();
                     break;
                 case 4:
-                    escolha = "4. Atendimentos";
+                    escolha = "4. Coordenadores";
                     System.out.println("Você selecionou: " + escolha);
-                    atendimentoMenu.menuAtendimentos();
+
                     break;
                 case 5:
-                    escolha = "5. Endereços";
+                    escolha = "5. Atendimentos";
+                    atendimentoMenu.menuAtendimentos();
+                    break;
+                case 6:
+                    escolha = "6. Endereços";
                     System.out.println("Você selecionou: " + escolha);
                     menuEndereco.menuEnderecos();
                     break;
@@ -87,8 +90,8 @@ public class Menu {
         } while(opcao!=0);
     }
 
-    public void pausa(){
-        System.out.println("Digite qualquer tecla...");
-        sc.nextLine();
-    }
+//    public void pausa(){
+//        System.out.println("Digite qualquer tecla...");
+//        sc.nextLine();
+//    }
 }

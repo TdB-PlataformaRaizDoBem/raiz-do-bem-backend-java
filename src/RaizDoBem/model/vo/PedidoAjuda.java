@@ -95,6 +95,17 @@ public class PedidoAjuda {
         this.status.setId(idStatusPedido);
     }
 
+    public PedidoAjuda(String cpf, String descricaoProblema, String nomeCompleto, String telefone, String email, LocalDate data, int idStatusPedido) {
+        this.cpf = cpf;
+        this.descricaoProblema = descricaoProblema;
+        this.nomeCompleto = nomeCompleto;
+        this.telefone = telefone;
+        this.email = email;
+        this.data = data;
+        this.status = new StatusPedido();
+        this.status.setId(idStatusPedido);
+    }
+
     public PedidoAjuda() {
     }
 
