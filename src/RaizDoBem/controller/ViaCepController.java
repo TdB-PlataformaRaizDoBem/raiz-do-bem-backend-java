@@ -8,6 +8,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/** * Classe de controle para a API ViaCep. Esta classe é responsável por gerenciar as operações relacionadas à consulta de informações de endereço com base no CEP (Código de Endereçamento Postal) utilizando a API ViaCep. Ela atua como uma camada intermediária entre a interface do usuário e a API, garantindo que as regras de negócio sejam aplicadas corretamente.
+ * @author Paulo
+ * @since 2025-10
+ */
 public class ViaCepController {
     ViaCep viaCep = new ViaCep();
     EnderecoController enderecoController = new EnderecoController();

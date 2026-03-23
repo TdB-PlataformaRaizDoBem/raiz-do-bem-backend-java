@@ -2,13 +2,7 @@ package RaizDoBem.controller;
 
 import RaizDoBem.model.dao.EnderecoDAO;
 import RaizDoBem.model.vo.Endereco;
-import RaizDoBem.model.vo.ViaCep;
-import com.google.gson.Gson;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
 
 /**

@@ -41,7 +41,7 @@ public class BeneficiarioDAO {
      * @param beneficiario Objeto do tipo Beneficiario contendo as informações do beneficiário a ser adicionado.
      * */
     public void adicionar(Beneficiario beneficiario){
-        String querySql = "INSERT INTO Beneficiario (cpf, nome_completo, data_nascimento, telefone, email, id_sexo, id_programa_social, id_endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Beneficiario (cpf, nome_completo, data_nascimento, telefone, email, id_sexo, id_programa, id_endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);

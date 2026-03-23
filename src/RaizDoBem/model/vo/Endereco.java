@@ -5,6 +5,15 @@ package RaizDoBem.model.vo;
  * bairro, cidade, estado e tipo de endereço. Esta classe é utilizada para modelar os
  * endereços associados a colaboradores e beneficiários.
  *
+ * @param id Identificador único do endereço.
+ * @param logradouro Nome da rua ou avenida do endereço.
+ * @param cep Código postal do endereço.
+ * @param numero Número do endereço.
+ * @param bairro Bairro onde o endereço está localizado.
+ * @param cidade Cidade onde o endereço está localizado.
+ * @param estado Estado onde o endereço está localizado.
+ * @param tipoEndereco Tipo do endereço, representado por um objeto da classe TipoEndereco.
+ *
  * Exemplo de tipos de endereço:
  * - Residencial: Endereço onde o beneficiário reside.
  * - Profissional: Endereço onde o colaborador atua.

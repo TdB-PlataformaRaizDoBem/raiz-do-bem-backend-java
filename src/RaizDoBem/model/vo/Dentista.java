@@ -18,7 +18,7 @@ import java.time.LocalDate;
  */
 public class Dentista extends Colaborador{
     private String croDentista;
-    private String disponibilidade;
+    private boolean disponibilidade;
 
     public String getCroDentista() {
         return croDentista;
@@ -28,19 +28,18 @@ public class Dentista extends Colaborador{
         this.croDentista = croDentista;
     }
 
-    public String getDisponibilidade() {
+    public boolean isDisponibilidade() {
         return disponibilidade;
     }
 
-    public Dentista setDisponibilidade(String disponibilidade) {
+    public void setDisponibilidade(boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
-        return this;
     }
 
     /**
         * Construtor completo para a classe Dentista, que herda de Colaborador. Este construtor é utilizado para criar um objeto Dentista com todas as suas propriedades, incluindo as herdadas de Colaborador e as específicas de Dentista.
      */
-    public Dentista(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, int idEndereco, int idSexo, String croDentista, String disponibilidade) {
+    public Dentista(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, int idEndereco, int idSexo, String croDentista, boolean disponibilidade) {
         super(id, cpf, nomeCompleto, dataNascimento, email, idEndereco, idSexo);
         this.croDentista = croDentista;
         this.disponibilidade = disponibilidade;
@@ -49,7 +48,7 @@ public class Dentista extends Colaborador{
     /**
      * Construtor para criar um dentista sem fornecer o ID, utilizado para inserção no banco de dados. Este construtor é utilizado quando o ID é gerado automaticamente pelo banco de dados, e o dentista pode fornecer as informações necessárias para criação do registro.
      */
-    public Dentista(String cpf, String nomeCompleto, LocalDate dataNascimento, String email, int idEndereco, int idSexo, String croDentista, String disponibilidade) {
+    public Dentista(String cpf, String nomeCompleto, LocalDate dataNascimento, String email, int idEndereco, int idSexo, String croDentista, boolean disponibilidade) {
         this(0, cpf, nomeCompleto, dataNascimento, email, idEndereco, idSexo, croDentista, disponibilidade);
     }
 

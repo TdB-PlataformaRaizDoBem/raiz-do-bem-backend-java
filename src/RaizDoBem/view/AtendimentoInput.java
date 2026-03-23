@@ -2,8 +2,15 @@ package RaizDoBem.view;
 
 import RaizDoBem.model.vo.Atendimento;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+/**
+ * Classe de entrada para criar um novo atendimento. Esta classe é responsável por coletar as informações necessárias para criar um atendimento, como descrição, data, ID do beneficiário e ID do dentista. Ela utiliza a classe Scanner para ler as entradas do usuário e formata a data utilizando DateTimeFormatter.
+ * @author Paulo
+ * @since 2026-03
+ */
 public class AtendimentoInput {
     Scanner sc = new Scanner(System.in);
     public Atendimento criar(){
@@ -12,11 +19,11 @@ public class AtendimentoInput {
         System.out.println("Descrição do Atendimento: ");
         String descricao = sc.nextLine();
 
-//        DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//        System.out.println("Data do atendimento: ");
-//        String dataDigitada = sc.nextLine();
-//        LocalDate dataAtendimento = LocalDate.parse(dataDigitada,formatacao);
-//
+        DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println("Data do atendimento: ");
+        String dataDigitada = sc.nextLine();
+        LocalDate data = LocalDate.parse(dataDigitada,formatacao);
+
 //        LocalDate dataHoje = LocalDate.now();
 //        LocalDate data = LocalDate.parse(dataHoje,formatacao);
 
@@ -43,6 +50,6 @@ public class AtendimentoInput {
                 data,
                 idBeneficiario,
                 idDentista
-        )
+        );
     }
 }

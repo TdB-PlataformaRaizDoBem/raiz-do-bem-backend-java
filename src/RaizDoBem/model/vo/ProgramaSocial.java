@@ -10,8 +10,6 @@ package RaizDoBem.model.vo;
  * Exemplos de programas sociais da ONG:
  * - Dentista do Bem: Programa que oferece atendimento odontológico para crianças em situação de vulnerabilidade social.
  * - Apolônias do Bem: Programa que auxilia mulheres que sofreram algum tipo de violência, em situação de vulnerabilidade social.
- *
- *
  */
 public class ProgramaSocial {
     private int id;

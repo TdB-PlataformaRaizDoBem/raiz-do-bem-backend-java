@@ -9,14 +9,13 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Classe responsável por exibir o menu de gerenciamento de endereços e interagir com o usuário para realizar as operações relacionadas aos endereços.
+ * Classe de menu para gerenciar os endereços relacionados à ONG. Esta classe é responsável por exibir as opções de gerenciamento de endereços, como criar, listar, atualizar e excluir endereços. Ela interage com o EnderecoController para realizar as operações necessárias e fornecer uma interface amigável para o usuário.
  * @author Paulo
  * @since 2026-03
  *
  * @see EnderecoController
  * @see EnderecoDAO
- * @see EnderecoInput
- *
+ * @see Endereco
  */
 public class EnderecoMenu {
     public void menuEnderecos(){
@@ -57,8 +56,8 @@ public class EnderecoMenu {
             case 2:
                 enderecos = controller.listarEnderecos();
                 System.out.println("Listagem dos endereços: ");
-                for (int i = 0; i < enderecos.size(); i++) {
-                    System.out.println(enderecos.get(i));
+                for (Endereco e : enderecos) {
+                    System.out.println(e);
                 }
                 break;
             case 3:

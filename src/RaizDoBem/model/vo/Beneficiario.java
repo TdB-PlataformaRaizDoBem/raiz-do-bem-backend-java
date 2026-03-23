@@ -13,7 +13,7 @@ import java.time.LocalDate;
  * @param telefone Número de telefone do beneficiário para contato.
  * @param email Endereço de email do beneficiário para contato.
  * @param sexo Referência ao sexo do beneficiário, utilizando a classe Sexo.
- * @param programaSocial Referência ao programa social ao qual o beneficiário está associado, utilizando a classe ProgramaSocial.
+ * @param programa Referência ao programa social ao qual o beneficiário está associado, utilizando a classe ProgramaSocial.
  * @param endereco Referência ao endereço do beneficiário, utilizando a classe Endereco.
  * @param pedidoAjuda Referência ao pedido de ajuda do beneficiário, utilizando a classe PedidoAjuda.
  * @param coordenador Referência ao coordenador responsável pelo beneficiário, utilizando a classe Coordenador.
@@ -27,7 +27,7 @@ public class  Beneficiario{
     private String telefone;
     private String email;
     private Sexo sexo;
-    private ProgramaSocial programaSocial;
+    private ProgramaSocial programa;
     private Endereco endereco;
     private PedidoAjuda pedidoAjuda;
     private Coordenador coordenador;
@@ -61,7 +61,7 @@ public class  Beneficiario{
     }
 
     public ProgramaSocial getProgramaSocial() {
-        return programaSocial;
+        return programa;
     }
 
     public Endereco getEndereco() {
@@ -87,8 +87,8 @@ public class  Beneficiario{
         return this;
     }
 
-    public void setProgramaSocial(ProgramaSocial programaSocial) {
-        this.programaSocial = programaSocial;
+    public void setProgramaSocial(ProgramaSocial programa) {
+        this.programa = programa;
     }
 
     public void setEndereco(Endereco endereco) {
@@ -120,8 +120,8 @@ public class  Beneficiario{
         this.sexo = new Sexo();
         this.sexo.setId(idSexo);
 
-        this.programaSocial = new ProgramaSocial();
-        this.programaSocial.setId(idPrograma);
+        this.programa = new ProgramaSocial();
+        this.programa.setId(idPrograma);
 
         this.endereco = new Endereco();
         this.endereco.setId(idEndereco);
@@ -156,7 +156,7 @@ public class  Beneficiario{
                 "\nTelefone: " + telefone + '\'' +
                 "Email: " + email + '\'' +
                 "Sexo: " + sexo +
-                "Programa: " + programaSocial +
+                "Programa: " + programa +
                 "Endereco" + endereco.getLogradouro() + " - " + endereco.getNumero();
     }
 }

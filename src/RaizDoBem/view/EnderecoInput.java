@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  * Classe de view para coletar entradas de Endereco via console.
- *
+ * Esta classe é responsável por interagir com o usuário para obter as informações necessárias para criar um novo endereço, como CEP, número da casa e tipo de endereço (residencial ou profissional). Ela utiliza a classe Scanner para ler as entradas do usuário e a classe ViaCepController para validar o CEP e obter informações adicionais sobre o endereço.
  */
 public class EnderecoInput {
     private int id;

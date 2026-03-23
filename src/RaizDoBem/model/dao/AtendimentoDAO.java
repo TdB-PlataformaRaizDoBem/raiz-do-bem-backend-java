@@ -50,7 +50,7 @@ public class AtendimentoDAO {
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
-            ps.setString(1, atendimento.getDescricaoAtendimento());
+            ps.setString(1, atendimento.getDescricao());
             ps.setDate(2, Date.valueOf(atendimento.getData()));
             ps.setInt(3, atendimento.getBeneficiario().getId());
             ps.setInt(4, atendimento.getDentista().getId());

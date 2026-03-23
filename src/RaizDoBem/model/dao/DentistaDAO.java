@@ -17,28 +17,19 @@ import java.util.List;
  */
 public class DentistaDAO {
     public Dentista mapeamento(ResultSet response) throws SQLException {
-        int id = response.getInt("id_colaborador");
-        String cpf = response.getString("cpf");
-        String nomeCompleto = response.getString("nome_completo");
-        LocalDate dataNascimento = response.getDate("data_nascimento").toLocalDate();
-        String email = response.getString("email");
-        int idEndereco = response.getInt("id_endereco");
         String logradouro = response.getString("logradouro");
-        int idSexo = response.getInt("id_sexo");
         String sexo = response.getString("tipo");
-        String croDentista = response.getString("cro");
-        String disponibilidade = response.getString("disponibilidade");
 
         return new Dentista(
-                id,
-                cpf,
-                nomeCompleto,
-                dataNascimento,
-                email,
-                idEndereco,
-                idSexo,
-                croDentista,
-                disponibilidade);
+                response.getInt("id_colaborador"),
+                response.getString("cpf"),
+                response.getString("nome_completo"),
+                response.getDate("data_nascimento").toLocalDate(),
+                response.getString("email"),
+                response.getInt("id_endereco"),
+                response.getInt("id_sexo"),
+                response.getString("cro"),
+                response.getString("disponibilidade").equals("Disponível"));
     }
     public Dentista buscarPorCpf(String cpf){
         String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento,c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero FROM Dentista d, Colaborador c, Sexo s, Endereco e WHERE cpf = ?";
@@ -72,13 +63,12 @@ public class DentistaDAO {
             ps.setInt(5, dentista.getEndereco().getId());
             ps.setInt(6, dentista.getSexo().getId());
             ps.setString(7, dentista.getCroDentista());
-            ps.setString(8, dentista.getDisponibilidade());
+            ps.setBoolean(8, dentista.isDisponibilidade());
 
             ps.executeUpdate();
-            System.out.println("Dentista criado e adicionado com sucesso!!");
         }
         catch (SQLException exception){
-            System.out.println("Erro ao adicionar dentista: " + exception.getMessage());
+            throw new RuntimeException("Erro ao adicionar dentista: " + exception.getMessage());
         }
     }
     public List<Dentista> listarTodos(){
@@ -93,7 +83,7 @@ public class DentistaDAO {
                 dentistas.add(mapeamento(response));
         }
         catch (SQLException exception){
-            throw new RuntimeException("Erro ao listar atendimentos: " + exception.getMessage());
+            throw new RuntimeException("Erro ao listar dentistas: " + exception.getMessage());
         }
         return dentistas;
     }
@@ -118,7 +108,7 @@ public class DentistaDAO {
         return dentistas;
     }
     public List<Dentista> listarDisponiveis(){
-        String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento, c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero, e.cidade FROM Dentista d, Coordenador c, Endereco e, Sexo s WHERE d.id_coordenador = c.id AND e.disponibilidade = 'Sim'";
+        String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento, c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero, e.cidade FROM Dentista d, Coordenador c, Endereco e, Sexo s WHERE d.id_coordenador = c.id AND e.disponibilidade = 'Disponível'";
         List<Dentista> dentistas = new ArrayList<>();
 
         try(Connection conexao = Conexao.conectarAoBanco();
@@ -135,16 +125,30 @@ public class DentistaDAO {
         }
         return dentistas;
     }
-    public void atualizarDentista(int id){
+    public void atualizar(String cpf, Dentista dentista){
+        String querySql = "UPDATE Dentista SET id_tipo_endereco = ?, disponibilidade = ? WHERE cpf = ?";
 
+        try(Connection conexao = Conexao.conectarAoBanco();
+            PreparedStatement ps = conexao.prepareStatement(querySql);
+        ){
+
+            ps.setInt(1, dentista.getEndereco().getId());
+            ps.setBoolean(2, dentista.isDisponibilidade());
+            ps.setString(3, dentista.getCpf());
+
+            ps.executeUpdate();
+        }
+        catch (SQLException exception){
+            throw new RuntimeException("Erro ao atualizar dentista: " + exception.getMessage());
+        }
     }
-    public void excluirDentista(int id){
-        String querySql = "DELETE FROM dentista WHERE id = ?";
+    public void excluir(String cpf){
+        String querySql = "DELETE FROM dentista WHERE cpf = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
 
-            ps.setInt(1, id);
+            ps.setString(1, cpf);
             ps.executeUpdate();
             }
         catch (SQLException exception){

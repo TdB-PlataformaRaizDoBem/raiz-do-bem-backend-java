@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Representa um atendimento odontológico realizado por um dentista a um beneficiário. Cada atendimento possui uma descrição detalhada, data de realização, e referências ao beneficiário e dentista envolvidos. Essa classe é fundamental para registrar e acompanhar os atendimentos realizados, permitindo que o coordenador tenha acesso a informações relevantes para a gestão dos serviços odontológicos oferecidos.
  * @author Paulo
  * @param id Identificador único do atendimento realizado.
- * @param descricaoAtendimento Descrição detalhada do atendimento, para auxiliar o trabalho do coordenador.
+ * @param descricao Descrição detalhada do atendimento, para auxiliar o trabalho do coordenador.
  * @param data Data em que o atendimento foi realizado.
  * @param beneficiario Referência ao beneficiário que recebeu o atendimento.
  * @param dentista Referência ao dentista que realizou o atendimento.
@@ -14,7 +14,7 @@ import java.time.LocalDate;
  */
 public class Atendimento {
     private int id;
-    private String descricaoAtendimento;
+    private String descricao;
     private LocalDate data;
     private Beneficiario beneficiario;
     private Dentista dentista;
@@ -23,12 +23,12 @@ public class Atendimento {
         return id;
     }
 
-    public String getDescricaoAtendimento() {
-        return descricaoAtendimento;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescricaoAtendimento(String descricaoAtendimento) {
-        this.descricaoAtendimento = descricaoAtendimento;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public LocalDate getData() {
@@ -59,9 +59,9 @@ public class Atendimento {
      * Construtor para listar atendimentos, retornados do banco de dados. O coordenador pode fornecer a descrição do atendimento, a data, e as referências ao beneficiário e dentista envolvidos.
      *
      */
-    public Atendimento(int id, String descricaoAtendimento, LocalDate data, int idBeneficiario, int idDentista) {
+    public Atendimento(int id, String descricao, LocalDate data, int idBeneficiario, int idDentista) {
         this.id = id;
-        this.descricaoAtendimento = descricaoAtendimento;
+        this.descricao = descricao;
         this.data = data;
 
         this.beneficiario = new Beneficiario();
@@ -71,8 +71,8 @@ public class Atendimento {
         this.beneficiario.setId(idDentista);
     }
 
-    public Atendimento(String descricaoAtendimento, LocalDate data, int idBeneficiario, int idDentista) {
-        this.descricaoAtendimento = descricaoAtendimento;
+    public Atendimento(String descricao, LocalDate data, int idBeneficiario, int idDentista) {
+        this.descricao = descricao;
         this.data = data;
 
         this.beneficiario = new Beneficiario();
