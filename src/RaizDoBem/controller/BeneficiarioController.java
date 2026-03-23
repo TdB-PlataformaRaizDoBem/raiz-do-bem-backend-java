@@ -55,4 +55,11 @@ public class BeneficiarioController {
         }
         beneficiarioDAO.excluir(cpf);
     }
+
+    public Boolean validarCpf(String cpf){
+        return(cpf != null && cpf.length() == 11);
+    }
+    public Boolean validarSexo(int idSexo){
+        return(idSexo >0 && idSexo<4);
+    }
 }

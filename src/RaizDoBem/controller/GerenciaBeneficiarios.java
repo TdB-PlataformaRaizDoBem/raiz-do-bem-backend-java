@@ -23,10 +23,7 @@
 //                System.out.println("CEP: " + endereco.getCep());
 //                System.out.println(endereco.getCidade() + " - " + endereco.getEstado());
 //            }
-//
-//        }
-//        return beneficiarios;
-//    }
+
 //
 //    @Override
 //    public void receberSalvarDados() {

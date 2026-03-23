@@ -1,19 +1,26 @@
 package RaizDoBem.view;
 
+import RaizDoBem.controller.BeneficiarioController;
 import RaizDoBem.model.vo.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Scanner;
-import java.util.WeakHashMap;
 
 public class BeneficiarioInput {
     Scanner sc = new Scanner(System.in);
+    BeneficiarioController controller = new BeneficiarioController();
+    int idSexo;
     public Beneficiario criar(){
         System.out.println("----- Criando novo beneficiário: -----");
 
-        String cpf = inputCpf();
+        String cpf;
+        do{
+            cpf = inputCpf();
+            if(!controller.validarCpf(cpf)){
+                System.out.println("CPF inválido, digite exatamente 11 dígitos!!!");
+            }
+        }while(!controller.validarCpf(cpf));
 
         System.out.println("Nome completo do beneficiário: ");
         String nomeCompleto = sc.nextLine();
@@ -29,28 +36,24 @@ public class BeneficiarioInput {
         System.out.println("Email do beneficiário: ");
         String email = sc.nextLine();
 
-        int idSexo = 0;
-        int primeiraOpc;
+        int opcSexo;
         do{
-            System.out.println("Selecione o sexo do beneficiário: ");
-            System.out.println("1. Masculino");
-            System.out.println("2. Feminino");
-            System.out.println("3. Outros");
-            primeiraOpc = sc.nextInt();
-            sc.nextLine();
-
-            if (primeiraOpc==1)
-                idSexo = 1;
-
-            else if (primeiraOpc==2)
-                idSexo = 2;
-
-            else if (primeiraOpc==3)
-                idSexo = 3;
-
-            else System.out.println("Opção Inválida!!!");
-
-        } while(primeiraOpc<1 || primeiraOpc>3);
+            opcSexo = inputSexoBeneficiario();
+            switch(opcSexo){
+                case 1:
+                    idSexo = 1;
+                    break;
+                case 2:
+                    idSexo = 2;
+                    break;
+                case 3:
+                    idSexo = 3;
+                    break;
+                default:
+                    idSexo = 0;
+                    System.out.println("Opção Inválida!!!");
+            }
+        } while(!controller.validarSexo(idSexo));
 
         int idPrograma = 0;
         int segundaOpc;
@@ -120,5 +123,15 @@ public class BeneficiarioInput {
     public String inputCpf(){
         System.out.println("Digite o CPF do beneficiário: ");
         return sc.nextLine();
+    }
+    public int inputSexoBeneficiario(){
+        System.out.println("Selecione o sexo do beneficiário: ");
+        System.out.println("1. Masculino");
+        System.out.println("2. Feminino");
+        System.out.println("3. Outros");
+        idSexo = sc.nextInt();
+        sc.nextLine();
+
+        return idSexo;
     }
 }

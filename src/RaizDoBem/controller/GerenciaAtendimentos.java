@@ -32,42 +32,16 @@
 //
 //    @Override
 //    public void receberSalvarDados() {
-//        Scanner sc = new Scanner(System.in);
-//        DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//
-//        System.out.println("--- Adicionar novo atendimento: ---");
-//
-//        int idAtendimento = (atendimentos.size() + 1);
-//
-//        System.out.println("Descrição do Atendimento: ");
-//        String descricao = sc.nextLine();
-//
 
-//        System.out.println("Digite o ID do beneficiário envolvido no atendimento: ");
-//        int idBeneficiario = sc.nextInt();
-//        sc.nextLine();
-//        Beneficiario beneficiario = gerenciaBeneficiarios.buscarPeloId(idBeneficiario);
-//
+//        DateTimeFormatter formatacao = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 //        if (idBeneficiario==0){
 //            System.out.println("Beneficiário não encontrado!!");
 //        }
-//        System.out.println("Digite o ID do dentista envolvido no atendimento: ");
-//        int idDentista = sc.nextInt();
-//        sc.nextLine();
-//        Dentista dentista = gerenciaDentistas.buscarPeloId(idDentista);
-//
+
 //        if (idDentista==0){
 //            System.out.println("Dentista não encontrado!!");
 //        }
 //
-//        Atendimento novoAtendimento = new Atendimento(
-//                idAtendimento,
-//                descricao,
-//                dataAtendimento,
-//                beneficiario,
-//                dentista
-//        );
-//
-//        this.adicionar(novoAtendimento);
 //    }
 //}

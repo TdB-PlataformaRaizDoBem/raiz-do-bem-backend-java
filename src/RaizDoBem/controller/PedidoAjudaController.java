@@ -5,7 +5,7 @@ import RaizDoBem.model.dao.PedidoAjudaDAO;
 public class PedidoAjudaController {
     private final PedidoAjudaDAO pedidoAjudaDAO;
 
-    public PedidoAjudaController(PedidoAjudaDAO pedidoAjudaDAO) {
-        this.pedidoAjudaDAO = pedidoAjudaDAO;
+    public PedidoAjudaController() {
+        this.pedidoAjudaDAO = new PedidoAjudaDAO();
     }
 }
