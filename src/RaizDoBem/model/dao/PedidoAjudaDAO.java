@@ -1,9 +1,7 @@
 package RaizDoBem.model.dao;
 
 import RaizDoBem.model.vo.Conexao;
-import RaizDoBem.model.vo.Endereco;
 import RaizDoBem.model.vo.PedidoAjuda;
-import RaizDoBem.model.vo.StatusPedido;
 
 import java.sql.*;
 import java.time.LocalDate;
