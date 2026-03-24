@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 public class Main {
     public static void main(String[] args) {
         //Criação de coordenador e login demonstrativo apenas:
-//        Coordenador c1 = new Coordenador(1,"123.374", "643.934", "Hugo Costa", LocalDate.of(1994,9, 18), "hugo@email.com", "****",
+//        Colaborador c1 = new Colaborador(1,"123.374", "643.934", "Hugo Costa", LocalDate.of(1994,9, 18), "hugo@email.com", "****",
 //                1, LocalDate.of(2020, 9, 12), "Administrador");
 //        c1.login();
 //
@@ -39,7 +39,7 @@ public class Main {
 //
 //        //Criando dentistas
 //        Dentista d1 = new Dentista(2, "123.321", "Claudionor Costa",
-//                LocalDate.of(2000, 7,22),"Claudionor@email.com", "****", 1, "48385-34", "Ortodontia", true, "Coordenador", e3, e2);
+//                LocalDate.of(2000, 7,22),"Claudionor@email.com", "****", 1, "48385-34", "Ortodontia", true, "Colaborador", e3, e2);
 //        Dentista d2 = new Dentista(3, "344.787", "Juliana Sousa",
 //                LocalDate.of(2000, 7,22),"juliana@email.com", "****", 2, "48385-34", "Implante", true, "Dentista Simples",e1, e2);
 //
@@ -48,8 +48,8 @@ public class Main {
 //        gerenciarAtendimentos.adicionar(a1);
 //
 
-        TipoEndereco tipoEndereco1 = new TipoEndereco(1, "Residencial");
-        TipoEndereco tipoEndereco2 = new TipoEndereco(2, "Profissional");
+//        TipoEndereco tipoEndereco1 = new TipoEndereco(1, "Residencial");
+//        TipoEndereco tipoEndereco2 = new TipoEndereco(2, "Profissional");
 
 //        dentista.setId(10L);
 //        dentista.setNomeCompleto("Paulo Cavalcante");

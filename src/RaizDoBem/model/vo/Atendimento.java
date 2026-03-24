@@ -15,9 +15,10 @@ import java.time.LocalDate;
 public class Atendimento {
     private int id;
     private String descricao;
-    private LocalDate data;
-    private Beneficiario beneficiario;
-    private Dentista dentista;
+    private LocalDate dataInicial;
+    private LocalDate dataFinal;
+    private int idBeneficiario;
+    private int dentista;
 
     public int getId() {
         return id;
@@ -31,55 +32,57 @@ public class Atendimento {
         this.descricao = descricao;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDataInicial() {
+        return dataInicial;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public Atendimento setDataInicial(LocalDate dataInicial) {
+        this.dataInicial = dataInicial;
+        return this;
     }
 
-    public Beneficiario getBeneficiario() {
-        return beneficiario;
+    public LocalDate getDataFinal() {
+        return dataFinal;
     }
 
-    public void setBeneficiario(Beneficiario beneficiario) {
-        this.beneficiario = beneficiario;
+    public Atendimento setDataFinal(LocalDate dataFinal) {
+        this.dataFinal = dataFinal;
+        return this;
     }
 
-    public Dentista getDentista() {
+    public int getIdBeneficiario() {
+        return idBeneficiario;
+    }
+
+    public Atendimento setIdBeneficiario(int idBeneficiario) {
+        this.idBeneficiario = idBeneficiario;
+        return this;
+    }
+
+    public int getDentista() {
         return dentista;
     }
 
-    public void setDentista(Dentista dentista) {
+    public Atendimento setDentista(int dentista) {
+        this.dentista = dentista;
+        return this;
+    }
+
+    public Atendimento(int id, String descricao, LocalDate dataInicial, LocalDate dataFinal, int idBeneficiario, int dentista) {
+        this.id = id;
+        this.descricao = descricao;
+        this.dataInicial = dataInicial;
+        this.dataFinal = dataFinal;
+        this.idBeneficiario = idBeneficiario;
         this.dentista = dentista;
     }
 
-    /**
-     * Construtor para listar atendimentos, retornados do banco de dados. O coordenador pode fornecer a descrição do atendimento, a data, e as referências ao beneficiário e dentista envolvidos.
-     *
-     */
-    public Atendimento(int id, String descricao, LocalDate data, int idBeneficiario, int idDentista) {
-        this.id = id;
+    public Atendimento(String descricao, LocalDate dataInicial, LocalDate dataFinal, int idBeneficiario, int dentista) {
         this.descricao = descricao;
-        this.data = data;
-
-        this.beneficiario = new Beneficiario();
-        this.beneficiario.setId(idBeneficiario);
-
-        this.dentista = new Dentista();
-        this.beneficiario.setId(idDentista);
-    }
-
-    public Atendimento(String descricao, LocalDate data, int idBeneficiario, int idDentista) {
-        this.descricao = descricao;
-        this.data = data;
-
-        this.beneficiario = new Beneficiario();
-        this.beneficiario.setId(idBeneficiario);
-
-        this.dentista = new Dentista();
-        this.beneficiario.setId(idDentista);
+        this.dataInicial = dataInicial;
+        this.dataFinal = dataFinal;
+        this.idBeneficiario = idBeneficiario;
+        this.dentista = dentista;
     }
 
     public Atendimento() {

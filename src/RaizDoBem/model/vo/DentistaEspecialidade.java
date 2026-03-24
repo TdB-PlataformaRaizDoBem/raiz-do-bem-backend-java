@@ -12,29 +12,29 @@ package RaizDoBem.model.vo;
  * - A especialidade de Ortodontia pode ser associada a vários dentistas,
  */
 public class DentistaEspecialidade {
-    private Dentista dentista;
-    private Especialidade especialidade;
+    private int idDentista;
+    private int idEspecialidade;
 
-    public Dentista getDentista() {
-        return dentista;
+    public int getIdDentista() {
+        return idDentista;
     }
 
-    public DentistaEspecialidade setDentista(Dentista dentista) {
-        this.dentista = dentista;
+    public DentistaEspecialidade setIdDentista(int idDentista) {
+        this.idDentista = idDentista;
         return this;
     }
 
-    public Especialidade getEspecialidade() {
-        return especialidade;
+    public int getIdEspecialidade() {
+        return idEspecialidade;
     }
 
-    public DentistaEspecialidade setEspecialidade(Especialidade especialidade) {
-        this.especialidade = especialidade;
+    public DentistaEspecialidade setIdEspecialidade(int idEspecialidade) {
+        this.idEspecialidade = idEspecialidade;
         return this;
     }
 
-    public DentistaEspecialidade(Dentista dentista, Especialidade especialidade) {
-        this.dentista = dentista;
-        this.especialidade = especialidade;
+    public DentistaEspecialidade(int idDentista, int idEspecialidade) {
+        this.idDentista = idDentista;
+        this.idEspecialidade = idEspecialidade;
     }
 }

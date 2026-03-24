@@ -66,7 +66,7 @@ src/RaizDoBem/
 ## Módulos e Andamento
 - Endereço: concluído com CRUD e integração Oracle
 - Beneficiário: em construção da controller e validações para testes de banco
-- Demais módulos (pedido, atendimento, dentista, coordenador): em evolução
+- Demais módulos (pedido, atendimento, dentista, colaborador): em evolução
 
 ## Boas Práticas Adotadas
 - DAO com PreparedStatement e parâmetros seguros.

@@ -104,20 +104,13 @@ public class BeneficiarioInput {
 //            sc.nextLine();
 //
 //            //buscarId -> se encontrar salvar. senao, id invalido e repete
-//              gerar um validar Id Coordenador
+//              gerar um validar Id Colaborador
 //        } while();
 
         return new Beneficiario(
                 cpf,
                 nomeCompleto,
-                dataNascimento,
-                telefone,
-                email,
-                idSexo,
-                idPrograma,
-                idEndereco,
-                idPedido,
-                idCoordenador
+                idPedido
         );
     }
     public String inputCpf(){

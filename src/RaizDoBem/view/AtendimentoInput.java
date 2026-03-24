@@ -47,7 +47,8 @@ public class AtendimentoInput {
 
         return new Atendimento(
                 descricao,
-                data,
+                dataInicial,
+                dataFinal,
                 idBeneficiario,
                 idDentista
         );

@@ -17,11 +17,8 @@ import java.util.List;
  */
 public class DentistaDAO {
     public Dentista mapeamento(ResultSet response) throws SQLException {
-        String logradouro = response.getString("logradouro");
-        String sexo = response.getString("tipo");
-
         return new Dentista(
-                response.getInt("id_colaborador"),
+                response.getInt("id"),
                 response.getString("cpf"),
                 response.getString("nome_completo"),
                 response.getDate("data_nascimento").toLocalDate(),

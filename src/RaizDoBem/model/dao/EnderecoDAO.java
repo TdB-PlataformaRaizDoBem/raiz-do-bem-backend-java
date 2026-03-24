@@ -31,8 +31,7 @@ public class EnderecoDAO {
                 response.getString("bairro"),
                 response.getString("cidade"),
                 response.getString("estado"),
-                response.getInt("id_tipo_endereco"),
-                response.getString("localizacao")
+                response.getString("tipo_endereco")
         );
     }
     public void adicionar(Endereco endereco){
@@ -48,7 +47,7 @@ public class EnderecoDAO {
             ps.setString(4, endereco.getBairro());
             ps.setString(5, endereco.getCidade());
             ps.setString(6, endereco.getEstado());
-            ps.setInt(7, endereco.getTipoEndereco().getId());
+            ps.setInt(7, endereco.getTipoEndereco());
 
             ps.executeUpdate();
         }
@@ -123,7 +122,7 @@ public class EnderecoDAO {
             ps.setString(4, endereco.getBairro());
             ps.setString(5, endereco.getCidade());
             ps.setString(6, endereco.getEstado());
-            ps.setInt(7, endereco.getTipoEndereco().getId());
+            ps.setInt(7, endereco.getTipoEndereco());
             ps.setInt(8, id);
 
             ps.executeUpdate();

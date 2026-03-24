@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @since 2025-09
  *
  */
-public class Menu {
+public class MenuInicial {
     private int opcao;
     private Scanner sc;
     AtendimentoMenu atendimentoMenu = new AtendimentoMenu();

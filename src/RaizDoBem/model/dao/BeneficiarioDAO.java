@@ -3,7 +3,6 @@ package RaizDoBem.model.dao;
 import RaizDoBem.model.vo.*;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,18 +21,10 @@ public class BeneficiarioDAO {
      * */
     private Beneficiario mapeamento(ResultSet response) throws SQLException {
         return new Beneficiario(
-            response.getInt("id"),
-            response.getString("cpf"),
-            response.getString("nome_completo"),
-            response.getDate("data_nascimento").toLocalDate(),
-            response.getString("telefone"),
-            response.getString("email"),
-            response.getInt("id_sexo"),
-            response.getInt("id_programa"),
-            response.getInt("id_endereco"),
-            response.getInt("id_pedido_ajuda"),
-            response.getInt("id_coordenador")
-        );
+                response.getInt("id"),
+                response.getString("cpf"),
+                response.getString("nome_completo"),
+                response.getInt("id_pedido_ajuda"));
     }
 
     /** O metodo adicionar() é responsável por inserir um novo beneficiário no banco de dados. Ele recebe um objeto Beneficiario como parâmetro, prepara uma consulta SQL de inserção e executa a operação para adicionar o beneficiário ao sistema.
@@ -41,7 +32,7 @@ public class BeneficiarioDAO {
      * @param beneficiario Objeto do tipo Beneficiario contendo as informações do beneficiário a ser adicionado.
      * */
     public void adicionar(Beneficiario beneficiario){
-        String querySql = "INSERT INTO Beneficiario (cpf, nome_completo, data_nascimento, telefone, email, id_sexo, id_programa, id_endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Beneficiario (cpf, nome_completo, id_pedido_ajuda) VALUES (?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -49,12 +40,7 @@ public class BeneficiarioDAO {
 
             ps.setString(1, beneficiario.getCpf());
             ps.setString(2, beneficiario.getNomeCompleto());
-            ps.setDate(3, Date.valueOf(beneficiario.getDataNascimento()));
-            ps.setString(4, beneficiario.getTelefone());
-            ps.setString(5, beneficiario.getEmail());
-            ps.setInt(6, beneficiario.getSexo().getId());
-            ps.setInt(7, beneficiario.getProgramaSocial().getId());
-            ps.setInt(8, beneficiario.getEndereco().getId());
+            ps.setInt(3, beneficiario.getIdPedidoAjuda());
 
             ps.executeUpdate();
         }
@@ -75,7 +61,7 @@ public class BeneficiarioDAO {
             }
         }
         catch (SQLException exception){
-            throw new RuntimeException("Erro ao listar atendimentos: " + exception.getMessage());
+            throw new RuntimeException("Erro ao listar beneficiários: " + exception.getMessage());
         }
         return beneficiarios;
     }
@@ -115,7 +101,7 @@ public class BeneficiarioDAO {
             }
         }
         catch (SQLException exception){
-            throw new RuntimeException("Erro ao listar atendimentos: " + exception.getMessage());
+            throw new RuntimeException("Erro ao listar beneficiários: " + exception.getMessage());
         }
         return beneficiarios;
     }
@@ -135,7 +121,7 @@ public class BeneficiarioDAO {
             }
         }
         catch (SQLException exception){
-            throw new RuntimeException("Erro ao listar atendimentos: " + exception.getMessage());
+            throw new RuntimeException("Erro ao listar beneficiários por cidade: " + exception.getMessage());
         }
         return beneficiarios;
     }
@@ -148,7 +134,6 @@ public class BeneficiarioDAO {
     public void atualizar(String cpf, Beneficiario beneficiario){
         String querySql = "UPDATE Beneficiario SET telefone = ?, email = ?, id_endereco = ? WHERE cpf = ?";
 
-
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
@@ -160,7 +145,7 @@ public class BeneficiarioDAO {
             ps.executeUpdate();
         }
         catch (SQLException exception){
-            throw new RuntimeException("Erro ao atualizar Beneficiário: " + exception.getMessage());
+            throw new RuntimeException("Erro ao atualizar beneficiário: " + exception.getMessage());
         }
     }
 

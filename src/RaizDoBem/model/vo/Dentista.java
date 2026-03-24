@@ -16,43 +16,88 @@ import java.time.LocalDate;
  * @param croDentista Número do CRO (Conselho Regional de Odontologia) do dentista, utilizado para identificação profissional.
  * @param disponibilidade Disponibilidade do dentista para atendimento, que pode ser utilizada para agendamento de atendimentos odontológicos.
  */
-public class Dentista extends Colaborador{
+public class Dentista{
+    private int id;
+    private String cpf;
     private String croDentista;
+    private String nomeCompleto;
     private boolean disponibilidade;
+    private boolean isCoordenador;
+
+    public int getId() {
+        return id;
+    }
+
+    public Dentista setId(int id) {
+        this.id = id;
+        return this;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public Dentista setCpf(String cpf) {
+        this.cpf = cpf;
+        return this;
+    }
 
     public String getCroDentista() {
         return croDentista;
     }
 
-    public void setCroDentista(String croDentista) {
+    public Dentista setCroDentista(String croDentista) {
         this.croDentista = croDentista;
+        return this;
+    }
+
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public Dentista setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+        return this;
     }
 
     public boolean isDisponibilidade() {
         return disponibilidade;
     }
 
-    public void setDisponibilidade(boolean disponibilidade) {
+    public Dentista setDisponibilidade(boolean disponibilidade) {
         this.disponibilidade = disponibilidade;
+        return this;
     }
 
-    /**
-        * Construtor completo para a classe Dentista, que herda de Colaborador. Este construtor é utilizado para criar um objeto Dentista com todas as suas propriedades, incluindo as herdadas de Colaborador e as específicas de Dentista.
-     */
-    public Dentista(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String email, int idEndereco, int idSexo, String croDentista, boolean disponibilidade) {
-        super(id, cpf, nomeCompleto, dataNascimento, email, idEndereco, idSexo);
+    public boolean isCoordenador() {
+        return isCoordenador;
+    }
+
+    public Dentista setCoordenador(boolean coordenador) {
+        isCoordenador = coordenador;
+        return this;
+    }
+
+    public Dentista(int id, String cpf, String croDentista, String nomeCompleto, boolean disponibilidade, boolean isCoordenador) {
+        this.id = id;
+        this.cpf = cpf;
         this.croDentista = croDentista;
+        this.nomeCompleto = nomeCompleto;
         this.disponibilidade = disponibilidade;
+        this.isCoordenador = isCoordenador;
     }
 
-    /**
-     * Construtor para criar um dentista sem fornecer o ID, utilizado para inserção no banco de dados. Este construtor é utilizado quando o ID é gerado automaticamente pelo banco de dados, e o dentista pode fornecer as informações necessárias para criação do registro.
-     */
-    public Dentista(String cpf, String nomeCompleto, LocalDate dataNascimento, String email, int idEndereco, int idSexo, String croDentista, boolean disponibilidade) {
-        this(0, cpf, nomeCompleto, dataNascimento, email, idEndereco, idSexo, croDentista, disponibilidade);
+    public Dentista(String cpf, String croDentista, String nomeCompleto, boolean disponibilidade, boolean isCoordenador) {
+        this.cpf = cpf;
+        this.croDentista = croDentista;
+        this.nomeCompleto = nomeCompleto;
+        this.disponibilidade = disponibilidade;
+        this.isCoordenador = isCoordenador;
     }
 
     public Dentista() {
         super();
     }
+
+
 }
