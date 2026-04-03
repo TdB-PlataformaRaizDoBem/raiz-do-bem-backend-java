@@ -1,8 +1,10 @@
 package RaizDoBem.controller;
 
+import RaizDoBem.model.bo.AtendimentoBO;
 import RaizDoBem.model.dao.AtendimentoDAO;
 import RaizDoBem.model.vo.Atendimento;
 import RaizDoBem.model.vo.Endereco;
+import RaizDoBem.view.AtendimentoView;
 
 import java.util.List;
 
@@ -15,22 +17,22 @@ public class AtendimentoController {
     private AtendimentoView view;
     private AtendimentoBO bo;
 
-    public AtendimentoController() {
-        this.atendimentoDAO = new AtendimentoDAO();
+    public AtendimentoController(AtendimentoView view) {
+        this.view = view;
+        this.bo = new AtendimentoBO();
     }
-    public void criarAtendimento(Atendimento atendimento){
-        if(atendimento != null){
-            atendimentoDAO.adicionar(atendimento);
-            System.out.println("Atendimento criado e adicionado!");
+
+    public void adicionar(){
+        try {
+            //String cep = view.entradaCep();
+
+            Atendimento atendimento = new Atendimento();
+            bo.criar(atendimento);
+
+            view.exibirMensagem("Endereço criado com sucesso!!!");
+            view.exibirAtendimento(atendimento);
+        } catch (Exception e) {
+            view.exibirMensagem(e.getMessage());
         }
-        else{
-            System.out.println("Atendimento inválido!!!");
-        }
-    }
-    public Atendimento buscaPorCpf(String cpf){
-        return atendimentoDAO.buscarPorCpf(cpf);
-    }
-    public List<Atendimento> listarTodosAtendimentos(){
-        return atendimentoDAO.listarTodos();
     }
  }

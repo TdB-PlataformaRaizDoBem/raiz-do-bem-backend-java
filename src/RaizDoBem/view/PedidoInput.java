@@ -2,6 +2,8 @@ package RaizDoBem.view;
 
 import RaizDoBem.controller.PedidoAjudaController;
 import RaizDoBem.model.vo.PedidoAjuda;
+import RaizDoBem.model.vo.Sexo;
+import RaizDoBem.model.vo.StatusPedido;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -39,13 +41,17 @@ public class PedidoInput {
         int idStatus = 1; //status inicial do pedido de ajuda
 
         return new PedidoAjuda(
-                cpf,
-                descricaoProblema,
-                nomeCompleto,
-                telefone,
-                email,
-                data,
-                idStatus
+//                cpf,
+//                nomeCompleto,
+//                dataNascimtento,
+//                sexo,
+//                telefone,
+//                email,
+//                descricaoProblema,
+//                data,
+//                status,
+//                idEndereco,
+//                idDentista
         );
     }
 }

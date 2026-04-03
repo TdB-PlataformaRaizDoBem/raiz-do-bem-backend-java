@@ -4,6 +4,7 @@ import RaizDoBem.model.vo.Colaborador;
 import RaizDoBem.model.vo.Conexao;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,16 +22,13 @@ public class ColaboradorDAO {
                 response.getString("cpf"),
                 response.getString("nome_completo"),
                 response.getDate("data_nascimento").toLocalDate(),
-                response.getString("email"),
-                response.getInt("id_endereco"),
-                response.getInt("id_sexo"),
                 response.getDate("data_contratacao").toLocalDate(),
-                response.getString("nivel_acesso")
+                response.getString("email")
         );
     }
 
     public void adicionar(Colaborador colaborador){
-        String querySql = "INSERT INTO colaborador cpf, nome_completo, data_nascimento, email, id_endereco, data_contratacao, nivel_acesso, senha VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO colaborador VALUES cpf, nome_completo, data_nascimento,data_contratacao, email VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -38,12 +36,9 @@ public class ColaboradorDAO {
             //verificar como consertar idColaborador e idCoordenador
             ps.setString(1, colaborador.getCpf());
             ps.setString(2, colaborador.getNomeCompleto());
-            //ps.setDate(3, Date.valueOf(colaborador.get()));
-            ps.setString(4, colaborador.getEmail());
-            ps.setInt(5, colaborador.getEndereco().getId());
-            ps.setDate(6, Date.valueOf(colaborador.getDataContratacao()));
-            ps.setString(7, colaborador.getNivelAcesso());
-            ps.setString(8, colaborador.getSenha());
+            ps.setDate(3, Date.valueOf(colaborador.getDataNascimento()));
+            ps.setDate(4, Date.valueOf(colaborador.getDataContratacao()));
+            ps.setString(5, colaborador.getEmail());
 
             ps.executeUpdate();
         }
@@ -54,7 +49,7 @@ public class ColaboradorDAO {
     /** O metodo listarTodos() é responsável por recuperar e exibir todos os registros de coordenadores presentes no banco de dados. Ele executa uma consulta SQL para selecionar as colunas relevantes da tabela Colaborador, e itera sobre os resultados para criar objetos Colaborador e exibi-los.
      * */
     public List<Colaborador> listarTodos(){
-        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, email, id_endereco, id_sexo, data_contratacao, nivel_acesso, senha FROM Coordenador";
+        String querySql = "SELECT cpf, nome_completo, data_nascimento,data_contratacao, email FROM Colaborador";
         List<Colaborador> colaboradores = new ArrayList<>();
 
         try(Connection conexao = Conexao.conectarAoBanco();
@@ -71,17 +66,15 @@ public class ColaboradorDAO {
         return colaboradores;
     }
 
-
     public void atualizar(Colaborador colaborador, String cpf){
-        String querySql = "UPDATE colaborador SET id_endereco = ?, nivel_acesso = ? WHERE cpf = ?";
+        String querySql = "UPDATE colaborador SET email = ? WHERE cpf = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
 
-//            ps.setInt(1, colaborador.getEndereco().getId());
-//            ps.setString(2, colaborador.getNivelAcesso());
-//            ps.setString(3, cpf);
+           ps.setString(1, colaborador.getEmail());
+           ps.setString(2, cpf);
 
             ps.executeUpdate();
         }

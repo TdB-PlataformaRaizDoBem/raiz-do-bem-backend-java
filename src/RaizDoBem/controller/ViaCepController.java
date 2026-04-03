@@ -14,11 +14,9 @@ import java.net.http.HttpResponse;
  * @since 2025-10
  */
 public class ViaCepController {
-    EnderecoBO bo = new EnderecoBO();
     public ViaCep buscarInformacoesEndereco(String cep) {
         String urlApi = "https://viacep.com.br/ws/" + cep + "/json/";
 
-        if (bo.validarCep(cep)) {
             try (HttpClient cliente = HttpClient.newHttpClient();) {
 
                 HttpRequest request = HttpRequest.newBuilder()
@@ -35,6 +33,4 @@ public class ViaCepController {
                 throw new RuntimeException("Erro ao consultar Api: " + e.getMessage());
             }
         }
-        return null;
-    }
 }

@@ -41,14 +41,14 @@ public class DentistaInput {
         } while(primeiraOpc<1 || primeiraOpc>3);
 
         return new Dentista(
-                cpf,
-                nomeCompleto,
-                dataNascimento,
-                email,
-                idEndereco,
-                idSexo,
-                cro,
-                disponibilidade
+//                cpf,
+//                nomeCompleto,
+//                dataNascimento,
+//                email,
+//                idEndereco,
+//                idSexo,
+//                cro,
+//                disponibilidade
         );
     }
 

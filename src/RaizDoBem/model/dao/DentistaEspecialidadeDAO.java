@@ -26,8 +26,8 @@ public class DentistaEspecialidadeDAO {
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
-            ps.setInt(1, dentistaEspecialidade.getDentista().getId());
-            ps.setInt(2, dentistaEspecialidade.getEspecialidade().getId());
+            ps.setInt(1, dentistaEspecialidade.getIdDentista());
+            ps.setInt(2, dentistaEspecialidade.getIdEspecialidade());
 
             ps.executeUpdate();
             //System.out.println("Adicionada nova relação Dentista - Especialidade !!");

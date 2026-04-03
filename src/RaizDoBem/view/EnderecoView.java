@@ -17,6 +17,14 @@ import java.util.Scanner;
 public class EnderecoView {
     Scanner sc = new Scanner(System.in);
 
+    public String entradaCep() {
+        System.out.println("Digite o cep (8 dígitos): ");
+        return sc.nextLine();
+    }
+    public String entradaNumero(){
+        System.out.println("Digite a numeração do endereço: ");
+        return sc.nextLine();
+    }
     public String entradaCidade() {
         System.out.println("Digite a cidade: ");
         return sc.nextLine();
@@ -30,15 +38,6 @@ public class EnderecoView {
         return id;
     }
 
-    public String entradaCep() {
-        System.out.println("Digite o cep (8 dígitos): ");
-        return sc.nextLine();
-    }
-
-    public String entradaNumero(){
-        System.out.println("Digite a numeração do endereço: ");
-        return sc.nextLine();
-    }
     public int entradaTipoEndereco(){
         int opc;
         int idTipo = 0;
@@ -58,10 +57,9 @@ public class EnderecoView {
             }
         } while (opc < 1 || opc > 2);
 
-        return idTipo;
+        return opc;
     }
 
-//    public int exibirMenu() {
 //        System.out.println("\n      Gerenciar Endereços     ");
 //        System.out.println("        1.  Adicionar endereço");
 //        System.out.println("        2.  Listar todos os endereços");
@@ -69,19 +67,9 @@ public class EnderecoView {
 //        System.out.println("        4.  Listar endereço por cidade");
 //        System.out.println("        5.  Atualizar endereço");
 //        System.out.println("        6.  Excluir endereço");
-//        System.out.println("        7.  Voltar ao menu principal");
-//        System.out.println("        0.  Encerrar programa");
-//        System.out.println("\nSelecione uma opção: ");
-//        int opc = sc.nextInt();
-//        sc.nextLine();
-//
-//        if (opc >= 0) {
-//            return opc;
-//        }
-//        return -1;
-//    }
 
-    public void mostrarResumo(Endereco endereco){
+
+    public void exibirEndereco(Endereco endereco){
         System.out.println(endereco);
     }
     public void exibirMensagem(String msg){
@@ -90,7 +78,7 @@ public class EnderecoView {
 
     public void exibirLista(List<Endereco> lista){
         for (Endereco elemento : lista){
-            mostrarResumo(elemento);
+            exibirEndereco(elemento);
         }
     }
 }

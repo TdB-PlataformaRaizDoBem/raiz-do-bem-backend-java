@@ -107,6 +107,15 @@ public class Dentista{
         return this;
     }
 
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public Dentista setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+        return this;
+    }
+
     public Dentista(int id, String croDentista, String cpf, String nomeCompleto, Sexo sexo, String email, String telefone, String categoria, boolean disponivel, int idEndereco) {
         this.id = id;
         this.croDentista = croDentista;

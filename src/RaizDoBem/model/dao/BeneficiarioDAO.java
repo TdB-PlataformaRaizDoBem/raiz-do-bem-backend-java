@@ -24,7 +24,13 @@ public class BeneficiarioDAO {
                 response.getInt("id"),
                 response.getString("cpf"),
                 response.getString("nome_completo"),
-                response.getInt("id_pedido_ajuda"));
+                response.getDate("data_nascimento").toLocalDate(),
+                response.getString("telefone"),
+                response.getString("email"),
+                response.getInt("id_pedido_ajuda"),
+                response.getInt("id_programa_social"),
+                response.getInt("id_endereco")
+        );
     }
 
     /** O metodo adicionar() é responsável por inserir um novo beneficiário no banco de dados. Ele recebe um objeto Beneficiario como parâmetro, prepara uma consulta SQL de inserção e executa a operação para adicionar o beneficiário ao sistema.
@@ -40,7 +46,11 @@ public class BeneficiarioDAO {
 
             ps.setString(1, beneficiario.getCpf());
             ps.setString(2, beneficiario.getNomeCompleto());
-            ps.setInt(3, beneficiario.getIdPedidoAjuda());
+            ps.setDate(3, Date.valueOf(beneficiario.getDataNascimento()));
+            ps.setString(4, beneficiario.getTelefone());
+            ps.setString(5, beneficiario.getEmail());
+            ps.setInt(6, beneficiario.getIdPedidoAjuda());
+            ps.setInt(7, beneficiario.getIdProgramaSocial());
 
             ps.executeUpdate();
         }
@@ -51,7 +61,7 @@ public class BeneficiarioDAO {
 
     /** O metodo listarTodos() é responsável por recuperar e exibir todos os registros de beneficiários presentes no banco de dados. Ele executa uma consulta SQL para selecionar as colunas relevantes da tabela Beneficiario, e itera sobre os resultados para criar objetos Beneficiario e exibi-los. */
     public List<Beneficiario> listarTodos(){
-        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, telefone, email, id_sexo, id_programa, id_endereco, id_pedido_ajuda, id_coordenador FROM Beneficiario";
+        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, telefone, email, id_programa_social, id_pedido_ajuda, id_endereco FROM Beneficiario";
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
             ResultSet response = ps.executeQuery();){
@@ -68,7 +78,7 @@ public class BeneficiarioDAO {
 
     /** O metodo buscarPorCpf() é responsável por recuperar e exibir os registros de um beneficiário específico. Ele executa uma consulta SQL que seleciona o beneficiário onde o id corresponde ao id do beneficiário fornecido como parâmetro, e itera sobre os resultados para criar um objeto Beneficiario e exibi-lo. */
     public Beneficiario buscarPorCpf(String cpf){
-        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, telefone, email, id_sexo, id_programa, id_endereco, id_pedido_ajuda, id_coordenador FROM Beneficiario WHERE cpf = ?";
+        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, telefone, email, id_programa_social, id_pedido_ajuda, id_endereco FROM Beneficiario WHERE cpf = ?";
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
 
@@ -88,7 +98,7 @@ public class BeneficiarioDAO {
 
     /** O metodo listarPorPrograma() é responsável por recuperar e exibir os registros de beneficiários relacionados a um programa social específico. Ele executa uma consulta SQL que seleciona os beneficiários onde o id_programa corresponde ao id do programa fornecido como parâmetro, e itera sobre os resultados para criar objetos Beneficiario e exibi-los. */
     public List<Beneficiario> buscarPorPrograma(int idPrograma){
-        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, telefone, email, id_sexo, id_programa, id_endereco, id_pedido_ajuda, id_coordenador FROM Beneficiario WHERE id_programa = ?";
+        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, telefone, email, id_programa_social, id_pedido_ajuda, id_endereco FROM Beneficiario WHERE id_programa_social = ?";
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);){
 
@@ -140,7 +150,8 @@ public class BeneficiarioDAO {
 
             ps.setString(1, beneficiario.getTelefone());
             ps.setString(2, beneficiario.getEmail());
-            ps.setInt(3);
+            ps.setInt(3, beneficiario.getIdEndereco());
+
             ps.setString(4, beneficiario.getCpf());
             ps.executeUpdate();
         }

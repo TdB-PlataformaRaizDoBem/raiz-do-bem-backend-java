@@ -2,6 +2,7 @@ package RaizDoBem.model.dao;
 
 import RaizDoBem.model.vo.Conexao;
 import RaizDoBem.model.vo.Endereco;
+import RaizDoBem.model.vo.TipoEndereco;
 
 import java.io.InputStream;
 import java.io.Reader;
@@ -23,6 +24,9 @@ import java.util.Map;
  */
 public class EnderecoDAO {
     public Endereco mapeamento(ResultSet response) throws SQLException {
+        String tipoEndereco = response.getString("tipo_endereco");
+        TipoEndereco tipo = TipoEndereco.valueOf(tipoEndereco.toUpperCase());
+
         return new Endereco(
                 response.getInt("id"),
                 response.getString("logradouro"),
@@ -31,11 +35,11 @@ public class EnderecoDAO {
                 response.getString("bairro"),
                 response.getString("cidade"),
                 response.getString("estado"),
-                response.getInt("tipo_endereco")
+                tipo
         );
     }
     public void adicionar(Endereco endereco){
-        String querySql = "INSERT INTO Endereco (logradouro, cep, numero, bairro, cidade, estado, id_tipo_endereco) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Endereco (logradouro, cep, numero, bairro, cidade, estado, tipo_endereco) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -47,7 +51,7 @@ public class EnderecoDAO {
             ps.setString(4, endereco.getBairro());
             ps.setString(5, endereco.getCidade());
             ps.setString(6, endereco.getEstado());
-            ps.setInt(7, endereco.getIdTipoEndereco());
+            ps.setString(7, endereco.getTipo().name());
 
             ps.executeUpdate();
         }
@@ -56,7 +60,7 @@ public class EnderecoDAO {
         }
     }
     public List<Endereco> listarTodos(){
-        String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco";
+        String querySql = "SELECT id, logradouro, cep, numero, bairro, cidade, estado, tipo_endereco FROM Endereco";
         List<Endereco> enderecos = new ArrayList<>();
 
         try(Connection conexao = Conexao.conectarAoBanco();
@@ -72,7 +76,7 @@ public class EnderecoDAO {
         return enderecos;
     }
     public Endereco buscarPorId(int id){
-        String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.id = ?";
+        String querySql = "SELECT id, logradouro, cep, numero, bairro, cidade, estado, tipo_endereco FROM Endereco WHERE id = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql)) {
@@ -90,7 +94,7 @@ public class EnderecoDAO {
         return null;
     }
     public List<Endereco> listarPorCidade(String cidade){
-        String querySql = "SELECT e.id, e.logradouro, e.cep, e.numero, e.bairro, e.cidade, e.estado, e.id_tipo_endereco, tipo.localizacao FROM Endereco e, Tipo_Endereco tipo WHERE tipo.id = e.id_tipo_endereco AND e.cidade = ?";
+        String querySql = "SELECT id, logradouro, cep, numero, bairro, cidade, estado, tipo_endereco FROM Endereco WHERE cidade = ?";
 
         List<Endereco> enderecos = new ArrayList<>();
 
@@ -110,7 +114,7 @@ public class EnderecoDAO {
         return enderecos;
     }
     public void atualizar(int id, Endereco endereco){
-        String querySql = "UPDATE Endereco SET logradouro = ?, cep = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, id_tipo_endereco = ? WHERE id = ?";
+        String querySql = "UPDATE Endereco SET logradouro = ?, cep = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, tipo_endereco = ? WHERE id = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -122,7 +126,7 @@ public class EnderecoDAO {
             ps.setString(4, endereco.getBairro());
             ps.setString(5, endereco.getCidade());
             ps.setString(6, endereco.getEstado());
-            ps.setInt(7, endereco.getIdTipoEndereco());
+            ps.setString(7, endereco.getTipo().name());
             ps.setInt(8, id);
 
             ps.executeUpdate();

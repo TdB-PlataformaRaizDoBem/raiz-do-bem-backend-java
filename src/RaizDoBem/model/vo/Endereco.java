@@ -29,7 +29,7 @@ public class Endereco {
     private String bairro;
     private String cidade;
     private String estado;
-    private int idTipoEndereco;
+    private TipoEndereco tipo;
 
     public int getId() {
         return id;
@@ -94,16 +94,16 @@ public class Endereco {
         return this;
     }
 
-    public int getIdTipoEndereco() {
-        return idTipoEndereco;
+    public TipoEndereco getTipo() {
+        return tipo;
     }
 
-    public Endereco setIdTipoEndereco(int idTipoEndereco) {
-        this.idTipoEndereco = idTipoEndereco;
+    public Endereco setTipo(TipoEndereco tipo) {
+        this.tipo = tipo;
         return this;
     }
 
-    public Endereco(int id, String logradouro, String cep, String numero, String bairro, String cidade, String estado, int idTipoEndereco) {
+    public Endereco(int id, String logradouro, String cep, String numero, String bairro, String cidade, String estado, TipoEndereco tipo) {
         this.id = id;
         this.logradouro = logradouro;
         this.cep = cep;
@@ -111,17 +111,17 @@ public class Endereco {
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
-        this.idTipoEndereco = idTipoEndereco;
+        this.tipo = tipo;
     }
 
-    public Endereco(String logradouro, String cep, String numero, String bairro, String cidade, String estado, int idTipoEndereco) {
+    public Endereco(String logradouro, String cep, String numero, String bairro, String cidade, String estado, TipoEndereco tipo) {
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
-        this.idTipoEndereco = idTipoEndereco;
+        this.tipo = tipo;
     }
 
     public Endereco() {
@@ -130,7 +130,7 @@ public class Endereco {
     @Override
     public String toString() {
         return "\n" + id + " - " + logradouro + ", " + numero + " - Cep: " + cep +
-                "\n    " + cidade + " - " + estado + "\n    Endereço: " + idTipoEndereco;
+                "\n    " + cidade + " - " + estado;
 
     }
 }

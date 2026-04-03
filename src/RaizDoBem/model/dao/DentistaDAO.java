@@ -2,6 +2,8 @@ package RaizDoBem.model.dao;
 
 import RaizDoBem.model.vo.Conexao;
 import RaizDoBem.model.vo.Dentista;
+import RaizDoBem.model.vo.Sexo;
+import RaizDoBem.model.vo.TipoEndereco;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,16 +18,20 @@ import java.util.List;
  */
 public class DentistaDAO {
     public Dentista mapeamento(ResultSet response) throws SQLException {
+        String sexoDentista = response.getString("sexo");
+        Sexo sexo = Sexo.valueOf(sexoDentista.toUpperCase());
         return new Dentista(
                 response.getInt("id"),
+                response.getString("cro"),
                 response.getString("cpf"),
                 response.getString("nome_completo"),
-                response.getDate("data_nascimento").toLocalDate(),
+                sexo,
                 response.getString("email"),
-                response.getInt("id_endereco"),
-                response.getInt("id_sexo"),
-                response.getString("cro"),
-                response.getString("disponivel").equals("Disponível"));
+                response.getString("telefone"),
+                response.getString("categoria"),
+                response.getBoolean("disponivel"),
+                response.getInt("id_endereco")
+        );
     }
     public Dentista buscarPorCpf(String cpf){
         String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento,c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero FROM Dentista d, Colaborador c, Sexo s, Endereco e WHERE cpf = ?";
@@ -51,15 +57,15 @@ public class DentistaDAO {
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
-            //verificar como consertar idColaborador e idCoordenador
-            ps.setString(1, dentista.getCpf());
-            ps.setString(2, dentista.getNomeCompleto());
-            ps.setDate(3, Date.valueOf(dentista.getDataNascimento()));
-            ps.setString(4, dentista.getEmail());
-            ps.setInt(5, dentista.getEndereco().getId());
-            ps.setInt(6, dentista.getSexo().getId());
-            ps.setString(7, dentista.getCroDentista());
+            ps.setString(1, dentista.getCroDentista());
+            ps.setString(2, dentista.getCpf());
+            ps.setString(3, dentista.getNomeCompleto());
+            ps.setString(4, dentista.getSexo().name());
+            ps.setString(5, dentista.getEmail());
+            ps.setString(6, dentista.getTelefone());
+            ps.setString(7, dentista.getCategoria());
             ps.setBoolean(8, dentista.isDisponivel());
+            ps.setInt(9, dentista.getIdEndereco());
 
             ps.executeUpdate();
         }
@@ -128,9 +134,12 @@ public class DentistaDAO {
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
 
-            ps.setInt(1, dentista.getEndereco().getId());
-            ps.setBoolean(2, dentista.isDisponivel());
-            ps.setString(3, dentista.getCpf());
+            ps.setString(1, dentista.getEmail());
+            ps.setString(2, dentista.getTelefone());
+            ps.setString(3, dentista.getCategoria());
+            ps.setBoolean(4, dentista.isDisponivel());
+            ps.setString(5, dentista.getEmail());
+            ps.setInt(6, dentista.getIdEndereco());
 
             ps.executeUpdate();
         }

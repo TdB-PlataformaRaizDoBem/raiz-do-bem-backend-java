@@ -53,7 +53,7 @@ public class EnderecoBO {
         return ((cep!=null) && (cep.length()==8));
     }
 
-    public Endereco validarEndereco(String cep, String numero, int idTipoEndereco){
+    public Endereco validarEndereco(String cep, String numero, TipoEndereco tipoEndereco){
 
         ViaCep enderecoBuscado = viaCepController.buscarInformacoesEndereco(cep);
 
@@ -61,17 +61,21 @@ public class EnderecoBO {
             throw new RuntimeException("Endereço não encontrado!!!");
         }
 
-
-        return new Endereco(
-                enderecoBuscado.getLogradouro(),
-                cep,
-                numero,
-                enderecoBuscado.getBairro(),
-                enderecoBuscado.getLocalidade(),
-                enderecoBuscado.getUf(),
-                idTipoEndereco
-        );
+//        return new Endereco(
+//                enderecoBuscado.getLogradouro(),
+//                cep,
+//                numero,
+//                enderecoBuscado.getBairro(),
+//                enderecoBuscado.getLocalidade(),
+//                enderecoBuscado.getUf(),
+//                tipoEndereco.toString()
+//        );
+        return null;
     }
-
+    public void validarTipoEndereco(int opc){
+        if (opc != 1 && opc != 2) {
+            throw new RuntimeException("Tipo de endereço inválido! Escolha 1 para Residencial ou 2 para Profissional.");
+        }
+    }
 
 }

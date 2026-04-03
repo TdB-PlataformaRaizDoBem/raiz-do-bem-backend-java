@@ -89,6 +89,17 @@ public class Atendimento {
         return this;
     }
 
+    public Atendimento(int id, String descricaoInicial, LocalDate dataInicial, LocalDate dataFinal, String solucaoProblema, int idBeneficiario, int idDentista, int idColaborador) {
+        this.id = id;
+        this.descricaoInicial = descricaoInicial;
+        this.dataInicial = dataInicial;
+        this.dataFinal = dataFinal;
+        this.solucaoProblema = solucaoProblema;
+        this.idBeneficiario = idBeneficiario;
+        this.idDentista = idDentista;
+        this.idColaborador = idColaborador;
+    }
+
     public Atendimento(int id, String descricaoInicial, LocalDate dataInicial, LocalDate dataFinal, String solucaoProblema, int idBeneficiario, int idDentista) {
         this.id = id;
         this.descricaoInicial = descricaoInicial;

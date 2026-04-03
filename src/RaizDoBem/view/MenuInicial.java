@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class MenuInicial {
     private int opcao;
     private Scanner sc;
-    AtendimentoMenu atendimentoMenu = new AtendimentoMenu();
-    BeneficiarioMenu beneficiarioMenu = new BeneficiarioMenu();
+    AtendimentoView atendimentoView = new AtendimentoView();
+    BeneficiarioView beneficiarioView = new BeneficiarioView();
     EnderecoView menuEndereco = new EnderecoView();
     DentistaMenu dentistaMenu = new DentistaMenu();
     PedidoAjudaView pedidoAjudaView = new PedidoAjudaView();
@@ -60,7 +60,7 @@ public class MenuInicial {
                 case 2:
                     escolha = "2. Beneficiários";
                     System.out.println("Você selecionou: " + escolha);
-                    beneficiarioMenu.menu();
+                    beneficiarioView.menu();
                     break;
                 case 3:
                     escolha = "3. Dentistas";
@@ -74,7 +74,7 @@ public class MenuInicial {
                     break;
                 case 5:
                     escolha = "5. Atendimentos";
-                    atendimentoMenu.menuAtendimentos();
+                    atendimentoView.menuAtendimentos();
                     break;
                 case 6:
                     escolha = "6. Endereços";

@@ -2,6 +2,8 @@ package RaizDoBem.model.dao;
 
 import RaizDoBem.model.vo.Conexao;
 import RaizDoBem.model.vo.PedidoAjuda;
+import RaizDoBem.model.vo.Sexo;
+import RaizDoBem.model.vo.StatusPedido;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -17,19 +19,29 @@ import java.util.List;
  */
 public class PedidoAjudaDAO {
     public PedidoAjuda mapeamento(ResultSet response) throws SQLException{
+        String sexoSolicitante = response.getString("sexo");
+        Sexo sexo = Sexo.valueOf(sexoSolicitante.toUpperCase());
+
+        String statusPedido = response.getString("status_pedido");
+        StatusPedido status = StatusPedido.valueOf(statusPedido);
         return new PedidoAjuda(
                 response.getInt("id"),
                 response.getString("cpf"),
-                response.getString("descricao_problema"),
                 response.getString("nome_completo"),
+                response.getDate("data_nascimento").toLocalDate(),
+                sexo,
                 response.getString("telefone"),
                 response.getString("email"),
-                response.getDate("data").toLocalDate(),
-                response.getInt("id_status")
+                response.getString("descricao_problema"),
+                response.getDate("data_pedido").toLocalDate(),
+                status,
+                response.getInt("id_dentista"),
+                response.getInt("id_endereco")
+
         );
     }
     public void adicionar(PedidoAjuda pedido){
-        String querySql = "INSERT INTO Pedido_Ajuda (cpf, descricao_problema, nome_completo, telefone, email, data, id_status_pedido) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Pedido_Ajuda (id, cpf, nome_completo, data_nascimento, sexo, telefone, email,descricao_problema, data_pedido, status_pedido) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -40,7 +52,7 @@ public class PedidoAjudaDAO {
             ps.setString(4, pedido.getTelefone());
             ps.setString(5, pedido.getEmail());
             ps.setDate(6, Date.valueOf(pedido.getData()));
-            ps.setInt(7, pedido.getStatus().getId());
+            ps.setString(7, pedido.getStatus().name());
 
             ps.executeUpdate();
             System.out.println("Pedido de ajuda criado e adicionado com sucesso!!");
@@ -50,7 +62,7 @@ public class PedidoAjudaDAO {
         }
     }
     public List<PedidoAjuda> listarTodos(){
-        String querySql = "SELECT id, cpf, descricao_problema, nome_completo, telefone, email, data, id_status_pedido FROM Pedido_Ajuda";
+        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, sexo, telefone, email,descricao_problema, data_pedido, status_pedido FROM Pedido_Ajuda";
         List<PedidoAjuda> pedidos = new ArrayList<>();
 
         try(Connection conexao = Conexao.conectarAoBanco();
@@ -67,7 +79,7 @@ public class PedidoAjudaDAO {
         return pedidos;
     }
     public PedidoAjuda buscarPorCpf(String cpf){
-        String querySql = "SELECT id, cpf, descricao_problema, nome_completo, telefone, email, data, id_status_pedido FROM Pedido_Ajuda where cpf = ?";
+        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, sexo, telefone, email,descricao_problema, data_pedido, status_pedido FROM Pedido_Ajuda where cpf = ?";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -85,7 +97,7 @@ public class PedidoAjudaDAO {
         return null;
     }
     public List<PedidoAjuda> listarPedidosData(LocalDate data){
-        String querySql = "SELECT id, cpf, descricao_problema, nome_completo, telefone, email, data, id_status_pedido FROM Pedido_Ajuda WHERE data = ?";
+        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, sexo, telefone, email,descricao_problema, data_pedido, status_pedido FROM Pedido_Ajuda WHERE data = ?";
         List<PedidoAjuda> pedidos = new ArrayList<>();
 
         try(Connection conexao = Conexao.conectarAoBanco();
@@ -105,11 +117,11 @@ public class PedidoAjudaDAO {
         return pedidos;
     }
     public void atualizarPedido(PedidoAjuda pedido, String cpf){
-        String querySql = "UPDATE Pedido_Ajuda SET id_status_pedido = ? WHERE cpf = ?";
+        String querySql = "UPDATE Pedido_Ajuda SET status_pedido = ? WHERE cpf = ?";
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql)) {
 
-            ps.setInt(1, pedido.getStatus().getId());
+            ps.setString(1, pedido.getStatus().name());
             ps.setString(2, cpf);
 
             ps.executeUpdate();

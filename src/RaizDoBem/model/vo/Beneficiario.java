@@ -28,6 +28,7 @@ public class Beneficiario{
     private String email;
     private int idPedidoAjuda;
     private int idProgramaSocial;
+    private int idEndereco;
 
     public int getId() {
         return id;
@@ -101,7 +102,16 @@ public class Beneficiario{
         return this;
     }
 
-    public Beneficiario(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String telefone, String email, int idPedidoAjuda, int idProgramaSocial) {
+    public int getIdEndereco() {
+        return idEndereco;
+    }
+
+    public Beneficiario setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
+        return this;
+    }
+
+    public Beneficiario(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String telefone, String email, int idPedidoAjuda, int idProgramaSocial, int idEndereco) {
         this.id = id;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
@@ -110,9 +120,10 @@ public class Beneficiario{
         this.email = email;
         this.idPedidoAjuda = idPedidoAjuda;
         this.idProgramaSocial = idProgramaSocial;
+        this.idEndereco = idEndereco;
     }
 
-    public Beneficiario(String cpf, String nomeCompleto, LocalDate dataNascimento, String telefone, String email, int idPedidoAjuda, int idProgramaSocial) {
+    public Beneficiario(String cpf, String nomeCompleto, LocalDate dataNascimento, String telefone, String email, int idPedidoAjuda, int idProgramaSocial, int idEndereco) {
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
@@ -120,6 +131,7 @@ public class Beneficiario{
         this.email = email;
         this.idPedidoAjuda = idPedidoAjuda;
         this.idProgramaSocial = idProgramaSocial;
+        this.idEndereco = idEndereco;
     }
 
     public Beneficiario() {

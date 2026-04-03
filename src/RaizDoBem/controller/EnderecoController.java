@@ -2,6 +2,7 @@
 
     import RaizDoBem.model.bo.EnderecoBO;
     import RaizDoBem.model.vo.Endereco;
+    import RaizDoBem.model.vo.TipoEndereco;
     import RaizDoBem.view.EnderecoView;
 
     import java.util.ArrayList;
@@ -35,12 +36,20 @@
             try {
                 String cep = view.entradaCep();
                 String numero = view.entradaNumero();
-                int tipoEndereco = view.entradaTipoEndereco();
+                TipoEndereco tipoEndereco;
+                int tipo = view.entradaTipoEndereco();
+
+                if(tipo == 1){
+                    tipoEndereco = TipoEndereco.RESIDENCIAL;
+                }
+                else{
+                    tipoEndereco = TipoEndereco.PROFISSIONAL;
+                }
 
                 endereco = bo.validarEndereco(cep, numero, tipoEndereco);
                 bo.criar(endereco);
                 view.exibirMensagem("Endereço criado com sucesso!!!");
-                view.mostrarResumo(endereco);
+                view.exibirEndereco(endereco);
             } catch (Exception e) {
                 view.exibirMensagem(e.getMessage());
             }
@@ -55,7 +64,7 @@
             if(id >= 0){
                 endereco = bo.buscaPorId(id);
                 if(endereco != null){
-                    view.mostrarResumo(endereco);
+                    view.exibirEndereco(endereco);
                 }
             }
         }
