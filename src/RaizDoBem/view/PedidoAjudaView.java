@@ -6,7 +6,7 @@ import RaizDoBem.model.vo.PedidoAjuda;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class PedidoMenu {
+public class PedidoAjudaView {
     public void menu() {
         PedidoAjudaDAO pedidoAjudaDAO = new PedidoAjudaDAO();
         PedidoAjuda pedidoAjuda = new PedidoAjuda();

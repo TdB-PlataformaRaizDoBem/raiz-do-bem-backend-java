@@ -1,0 +1,77 @@
+package RaizDoBem.model.bo;
+
+import RaizDoBem.controller.ViaCepController;
+import RaizDoBem.model.dao.EnderecoDAO;
+import RaizDoBem.model.vo.Endereco;
+import RaizDoBem.model.vo.TipoEndereco;
+import RaizDoBem.model.vo.ViaCep;
+
+import java.util.List;
+
+public class EnderecoBO {
+    EnderecoDAO dao = new EnderecoDAO();
+    Endereco enderecoMapeado = new Endereco();
+    ViaCepController viaCepController = new ViaCepController();
+
+    public void criar(Endereco endereco){
+        if(endereco != null){
+            dao.adicionar(endereco);
+        }
+        else{
+            throw new RuntimeException("Endereço Inválido");
+        }
+    }
+
+    public Endereco buscaPorId(int id){
+        return dao.buscarPorId(id);
+    }
+    public List<Endereco> listarTodos(){
+        return dao.listarTodos();
+    }
+    public List<Endereco> listarPorCidade(String cidade){
+        return dao.listarPorCidade(cidade);
+    }
+
+    public void atualizar(int id, Endereco enderecoAtualizado) {
+        enderecoMapeado = dao.buscarPorId(id);
+
+        if(enderecoMapeado == null){
+            throw new RuntimeException("Endereço não encontrado!!!");
+        }
+        dao.atualizar(id, enderecoAtualizado);
+    }
+    public void excluir(int id) {
+        enderecoMapeado = dao.buscarPorId(id);
+
+        if(enderecoMapeado == null){
+            return;
+        }
+        dao.excluir(id);
+    }
+
+    public boolean validarCep(String cep){
+        return ((cep!=null) && (cep.length()==8));
+    }
+
+    public Endereco validarEndereco(String cep, String numero, int idTipoEndereco){
+
+        ViaCep enderecoBuscado = viaCepController.buscarInformacoesEndereco(cep);
+
+        if(enderecoBuscado == null || enderecoBuscado.isErro()){
+            throw new RuntimeException("Endereço não encontrado!!!");
+        }
+
+
+        return new Endereco(
+                enderecoBuscado.getLogradouro(),
+                cep,
+                numero,
+                enderecoBuscado.getBairro(),
+                enderecoBuscado.getLocalidade(),
+                enderecoBuscado.getUf(),
+                idTipoEndereco
+        );
+    }
+
+
+}

@@ -4,7 +4,6 @@ import RaizDoBem.model.vo.Conexao;
 import RaizDoBem.model.vo.Dentista;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class DentistaDAO {
                 response.getInt("id_endereco"),
                 response.getInt("id_sexo"),
                 response.getString("cro"),
-                response.getString("disponibilidade").equals("Disponível"));
+                response.getString("disponivel").equals("Disponível"));
     }
     public Dentista buscarPorCpf(String cpf){
         String querySql = "SELECT d.id_colaborador, c.cpf, c.nome_completo, c.data_nascimento,c.email, s.tipo, d.cro, d.disponibilidade, e.logradouro, e.numero FROM Dentista d, Colaborador c, Sexo s, Endereco e WHERE cpf = ?";
@@ -60,7 +59,7 @@ public class DentistaDAO {
             ps.setInt(5, dentista.getEndereco().getId());
             ps.setInt(6, dentista.getSexo().getId());
             ps.setString(7, dentista.getCroDentista());
-            ps.setBoolean(8, dentista.isDisponibilidade());
+            ps.setBoolean(8, dentista.isDisponivel());
 
             ps.executeUpdate();
         }
@@ -130,7 +129,7 @@ public class DentistaDAO {
         ){
 
             ps.setInt(1, dentista.getEndereco().getId());
-            ps.setBoolean(2, dentista.isDisponibilidade());
+            ps.setBoolean(2, dentista.isDisponivel());
             ps.setString(3, dentista.getCpf());
 
             ps.executeUpdate();

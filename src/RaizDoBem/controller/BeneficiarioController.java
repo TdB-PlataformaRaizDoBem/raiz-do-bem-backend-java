@@ -10,8 +10,10 @@ import java.util.List;
  * @since 2026-03
  */
 public class BeneficiarioController {
-    private final BeneficiarioDAO beneficiarioDAO;
+    private BeneficiarioView view;
+    private BeneficiarioBO bo;
     Beneficiario beneficiarioEncontrado = new Beneficiario();
+
     public BeneficiarioController() {
         this.beneficiarioDAO = new BeneficiarioDAO();
     }

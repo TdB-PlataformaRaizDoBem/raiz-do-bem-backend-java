@@ -26,6 +26,24 @@ public class ViaCep {
         public String getBairro() { return bairro; }
         public String getLocalidade() { return localidade; }
         public String getUf() { return uf; }
-        public String getEstado() { return estado; }
         public boolean isErro() { return erro; }
+
+        public ViaCep(String cep, String logradouro, String bairro, String localidade, String uf, String estado, boolean erro) {
+                this.cep = cep;
+                this.logradouro = logradouro;
+                this.bairro = bairro;
+                this.localidade = localidade;
+                this.uf = uf;
+                this.erro = erro;
+        }
+
+        public ViaCep(String logradouro, String bairro, String localidade, String uf, String estado) {
+                this.logradouro = logradouro;
+                this.bairro = bairro;
+                this.localidade = localidade;
+                this.uf = uf;
+        }
+
+        public ViaCep() {
+        }
 }

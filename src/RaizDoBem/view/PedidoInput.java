@@ -38,7 +38,6 @@ public class PedidoInput {
 
         int idStatus = 1; //status inicial do pedido de ajuda
 
-
         return new PedidoAjuda(
                 cpf,
                 descricaoProblema,

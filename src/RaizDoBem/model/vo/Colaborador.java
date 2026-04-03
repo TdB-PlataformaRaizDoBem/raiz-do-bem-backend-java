@@ -16,9 +16,9 @@ public class Colaborador {
     private int id;
     private String cpf;
     private String nomeCompleto;
+    private LocalDate dataNascimento;
     private LocalDate dataContratacao;
     private String email;
-    private String senha;
 
     public int getId() {
         return id;
@@ -47,6 +47,15 @@ public class Colaborador {
         return this;
     }
 
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public Colaborador setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+        return this;
+    }
+
     public LocalDate getDataContratacao() {
         return dataContratacao;
     }
@@ -65,33 +74,23 @@ public class Colaborador {
         return this;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public Colaborador setSenha(String senha) {
-        this.senha = senha;
-        return this;
-    }
-
-    public Colaborador(int id, String cpf, String nomeCompleto, LocalDate dataContratacao, String email, String senha) {
+    public Colaborador(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, LocalDate dataContratacao, String email) {
         this.id = id;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
+        this.dataNascimento = dataNascimento;
         this.dataContratacao = dataContratacao;
         this.email = email;
-        this.senha = senha;
     }
 
-    public Colaborador(String cpf, String nomeCompleto, LocalDate dataContratacao, String email, String senha) {
+    public Colaborador(String cpf, String nomeCompleto, LocalDate dataNascimento, LocalDate dataContratacao, String email) {
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
+        this.dataNascimento = dataNascimento;
         this.dataContratacao = dataContratacao;
         this.email = email;
-        this.senha = senha;
     }
 
     public Colaborador() {
-        super();
     }
 }

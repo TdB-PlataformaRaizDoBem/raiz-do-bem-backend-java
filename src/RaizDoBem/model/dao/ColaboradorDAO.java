@@ -25,8 +25,7 @@ public class ColaboradorDAO {
                 response.getInt("id_endereco"),
                 response.getInt("id_sexo"),
                 response.getDate("data_contratacao").toLocalDate(),
-                response.getString("nivel_acesso"),
-                response.getString("senha")
+                response.getString("nivel_acesso")
         );
     }
 

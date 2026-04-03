@@ -140,7 +140,7 @@ public class BeneficiarioDAO {
 
             ps.setString(1, beneficiario.getTelefone());
             ps.setString(2, beneficiario.getEmail());
-            ps.setInt(3, beneficiario.getEndereco().getId());
+            ps.setInt(3);
             ps.setString(4, beneficiario.getCpf());
             ps.executeUpdate();
         }

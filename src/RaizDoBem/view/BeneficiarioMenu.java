@@ -56,9 +56,9 @@ public class BeneficiarioMenu {
                 controller.listagemPorPrograma(id);
                 break;
             case 5:
-                EnderecoInput inputEndereco = new EnderecoInput();
-                String cidade = inputEndereco.inputCidade();
-                controller.listagemPorCidade(cidade);
+                BeneficiarioInput beneficiarioInput = new BeneficiarioInput();
+//                String cidade = beneficiarioInput();
+//                controller.listagemPorCidade(cidade);
                 break;
             case 6:
                 cpf = input.inputCpf();

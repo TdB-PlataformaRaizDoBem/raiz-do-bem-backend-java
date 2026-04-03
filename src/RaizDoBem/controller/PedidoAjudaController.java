@@ -1,11 +1,17 @@
 package RaizDoBem.controller;
 
-import RaizDoBem.model.dao.PedidoAjudaDAO;
+import RaizDoBem.model.bo.PedidoAjudaBO;
+import RaizDoBem.view.PedidoAjudaView;
 
 public class PedidoAjudaController {
-    private final PedidoAjudaDAO pedidoAjudaDAO;
+    private PedidoAjudaView view;
+    private PedidoAjudaBO bo;
+
+    public PedidoAjudaController(PedidoAjudaView view) {
+        this.view = view;
+        this.bo = bo;
+    }
 
     public PedidoAjudaController() {
-        this.pedidoAjudaDAO = new PedidoAjudaDAO();
     }
 }

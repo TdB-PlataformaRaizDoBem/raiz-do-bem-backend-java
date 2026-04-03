@@ -7,12 +7,12 @@ package RaizDoBem.model.vo;
  *
  * @param id Identificador único do endereço.
  * @param logradouro Nome da rua ou avenida do endereço.
- * @param cep Código postal do endereço.
- * @param numero Número do endereço.
+ * @param cep Código postal do endereço, composto por 8 dígitos.
+ * @param numero Número do endereço, que pode incluir letras e caracteres especiais.
  * @param bairro Bairro onde o endereço está localizado.
  * @param cidade Cidade onde o endereço está localizado.
  * @param estado Estado onde o endereço está localizado.
- * @param tipoEndereco Tipo do endereço, representado por um objeto da classe TipoEndereco.
+ * @param idTipoEndereco Identificador do tipo de endereço, onde 1 representa residencial e 2 representa profissional.
  *
  * Exemplo de tipos de endereço:
  * - Residencial: Endereço onde o beneficiário reside.
@@ -29,7 +29,7 @@ public class Endereco {
     private String bairro;
     private String cidade;
     private String estado;
-    private TipoEndereco tipoEndereco;
+    private int idTipoEndereco;
 
     public int getId() {
         return id;
@@ -94,16 +94,16 @@ public class Endereco {
         return this;
     }
 
-    public TipoEndereco getTipoEndereco() {
-        return tipoEndereco;
+    public int getIdTipoEndereco() {
+        return idTipoEndereco;
     }
 
-    public Endereco setTipoEndereco(TipoEndereco tipoEndereco) {
-        this.tipoEndereco = tipoEndereco;
+    public Endereco setIdTipoEndereco(int idTipoEndereco) {
+        this.idTipoEndereco = idTipoEndereco;
         return this;
     }
 
-    public Endereco(int id, String logradouro, String cep, String numero, String bairro, String cidade, String estado, TipoEndereco tipoEndereco) {
+    public Endereco(int id, String logradouro, String cep, String numero, String bairro, String cidade, String estado, int idTipoEndereco) {
         this.id = id;
         this.logradouro = logradouro;
         this.cep = cep;
@@ -111,17 +111,17 @@ public class Endereco {
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
-        this.tipoEndereco = tipoEndereco;
+        this.idTipoEndereco = idTipoEndereco;
     }
 
-    public Endereco(String logradouro, String cep, String numero, String bairro, String cidade, String estado, TipoEndereco tipoEndereco) {
+    public Endereco(String logradouro, String cep, String numero, String bairro, String cidade, String estado, int idTipoEndereco) {
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
-        this.tipoEndereco = tipoEndereco;
+        this.idTipoEndereco = idTipoEndereco;
     }
 
     public Endereco() {
@@ -130,7 +130,7 @@ public class Endereco {
     @Override
     public String toString() {
         return "\n" + id + " - " + logradouro + ", " + numero + " - Cep: " + cep +
-                "\n    " + cidade + " - " + estado + "\n    Endereço: " + tipoEndereco;
+                "\n    " + cidade + " - " + estado + "\n    Endereço: " + idTipoEndereco;
 
     }
 }

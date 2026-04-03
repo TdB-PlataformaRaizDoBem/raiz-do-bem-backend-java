@@ -13,9 +13,9 @@ public class MenuInicial {
     private Scanner sc;
     AtendimentoMenu atendimentoMenu = new AtendimentoMenu();
     BeneficiarioMenu beneficiarioMenu = new BeneficiarioMenu();
-    EnderecoMenu menuEndereco = new EnderecoMenu();
+    EnderecoView menuEndereco = new EnderecoView();
     DentistaMenu dentistaMenu = new DentistaMenu();
-    PedidoMenu pedidoMenu = new PedidoMenu();
+    PedidoAjudaView pedidoAjudaView = new PedidoAjudaView();
 
     public int getOpcao() {
         return opcao;
@@ -55,7 +55,7 @@ public class MenuInicial {
                 case 1:
                     escolha = "1. Pedidos de ajuda";
                     System.out.println("Você selecionou: " + escolha);
-                    pedidoMenu.menu();
+                    pedidoAjudaView.menu();
                     break;
                 case 2:
                     escolha = "2. Beneficiários";
@@ -79,7 +79,6 @@ public class MenuInicial {
                 case 6:
                     escolha = "6. Endereços";
                     System.out.println("Você selecionou: " + escolha);
-                    menuEndereco.menuEnderecos();
                     break;
                 case 0:
                     System.out.println("Encerrando programa...");
@@ -90,8 +89,5 @@ public class MenuInicial {
         } while(opcao!=0);
     }
 
-//    public void pausa(){
-//        System.out.println("Digite qualquer tecla...");
-//        sc.nextLine();
-//    }
+   
 }

@@ -51,11 +51,11 @@ public class AtendimentoDAO {
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
-            ps.setString(1, atendimento.getDescricao());
+            ps.setString(1, atendimento.getDescricaoInicial());
             ps.setDate(2, Date.valueOf(atendimento.getDataInicial()));
             ps.setDate(3, Date.valueOf(atendimento.getDataFinal()));
             ps.setInt(4, atendimento.getBeneficiario().getId());
-            ps.setInt(5, atendimento.getDentista().getId());
+            ps.setInt(5, atendimento.getIdDentista().getId());
 
             ps.executeUpdate();
             //System.out.println("Atendimento criado e adicionado com sucesso!!");

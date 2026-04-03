@@ -12,7 +12,8 @@ import java.util.List;
  * @since 2026-03
  */
 public class AtendimentoController {
-    private final AtendimentoDAO atendimentoDAO;
+    private AtendimentoView view;
+    private AtendimentoBO bo;
 
     public AtendimentoController() {
         this.atendimentoDAO = new AtendimentoDAO();

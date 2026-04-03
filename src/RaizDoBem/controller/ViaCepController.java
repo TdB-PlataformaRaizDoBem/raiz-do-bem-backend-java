@@ -1,5 +1,6 @@
 package RaizDoBem.controller;
 
+import RaizDoBem.model.bo.EnderecoBO;
 import RaizDoBem.model.vo.ViaCep;
 import com.google.gson.Gson;
 
@@ -13,12 +14,11 @@ import java.net.http.HttpResponse;
  * @since 2025-10
  */
 public class ViaCepController {
-    ViaCep viaCep = new ViaCep();
-    EnderecoController enderecoController = new EnderecoController();
+    EnderecoBO bo = new EnderecoBO();
     public ViaCep buscarInformacoesEndereco(String cep) {
         String urlApi = "https://viacep.com.br/ws/" + cep + "/json/";
 
-        if (enderecoController.validarCep(cep)) {
+        if (bo.validarCep(cep)) {
             try (HttpClient cliente = HttpClient.newHttpClient();) {
 
                 HttpRequest request = HttpRequest.newBuilder()

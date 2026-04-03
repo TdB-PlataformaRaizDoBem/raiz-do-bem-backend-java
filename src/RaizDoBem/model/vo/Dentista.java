@@ -1,9 +1,7 @@
 package RaizDoBem.model.vo;
 
-import java.time.LocalDate;
-
 /**
- * Representa um dentista do projeto Raiz do Bem. Esta classe herda de Colaborador, pois um dentista é um tipo específico de colaborador. Contém informações específicas do dentista, como o número do CRO e a disponibilidade para atendimento.
+ * Representa um dentista do projeto Raiz do Bem. Esta classe herda de Colaborador, pois um dentista é um tipo específico de colaborador. Contém informações específicas do dentista, como o número do CRO e a disponivel para atendimento.
  * @author Paulo
  * @since 2025-09
  * @param id Identificador único do dentista, herdado de Colaborador.
@@ -18,11 +16,15 @@ import java.time.LocalDate;
  */
 public class Dentista{
     private int id;
-    private String cpf;
     private String croDentista;
+    private String cpf;
     private String nomeCompleto;
-    private boolean disponibilidade;
-    private boolean isCoordenador;
+    private Sexo sexo;
+    private String email;
+    private String telefone;
+    private String categoria;
+    private boolean disponivel;
+    private int idEndereco;
 
     public int getId() {
         return id;
@@ -30,15 +32,6 @@ public class Dentista{
 
     public Dentista setId(int id) {
         this.id = id;
-        return this;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public Dentista setCpf(String cpf) {
-        this.cpf = cpf;
         return this;
     }
 
@@ -51,6 +44,15 @@ public class Dentista{
         return this;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public Dentista setCpf(String cpf) {
+        this.cpf = cpf;
+        return this;
+    }
+
     public String getNomeCompleto() {
         return nomeCompleto;
     }
@@ -60,44 +62,76 @@ public class Dentista{
         return this;
     }
 
-    public boolean isDisponibilidade() {
-        return disponibilidade;
+    public Sexo getSexo() {
+        return sexo;
     }
 
-    public Dentista setDisponibilidade(boolean disponibilidade) {
-        this.disponibilidade = disponibilidade;
+    public Dentista setSexo(Sexo sexo) {
+        this.sexo = sexo;
         return this;
     }
 
-    public boolean isCoordenador() {
-        return isCoordenador;
+    public String getEmail() {
+        return email;
     }
 
-    public Dentista setCoordenador(boolean coordenador) {
-        isCoordenador = coordenador;
+    public Dentista setEmail(String email) {
+        this.email = email;
         return this;
     }
 
-    public Dentista(int id, String cpf, String croDentista, String nomeCompleto, boolean disponibilidade, boolean isCoordenador) {
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public Dentista setTelefone(String telefone) {
+        this.telefone = telefone;
+        return this;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public Dentista setCategoria(String categoria) {
+        this.categoria = categoria;
+        return this;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public Dentista setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+        return this;
+    }
+
+    public Dentista(int id, String croDentista, String cpf, String nomeCompleto, Sexo sexo, String email, String telefone, String categoria, boolean disponivel, int idEndereco) {
         this.id = id;
-        this.cpf = cpf;
         this.croDentista = croDentista;
+        this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
-        this.disponibilidade = disponibilidade;
-        this.isCoordenador = isCoordenador;
+        this.sexo = sexo;
+        this.email = email;
+        this.telefone = telefone;
+        this.categoria = categoria;
+        this.disponivel = disponivel;
+        this.idEndereco = idEndereco;
     }
 
-    public Dentista(String cpf, String croDentista, String nomeCompleto, boolean disponibilidade, boolean isCoordenador) {
-        this.cpf = cpf;
+    public Dentista(String croDentista, String cpf, String nomeCompleto, Sexo sexo, String email, String telefone, String categoria, boolean disponivel, int idEndereco) {
         this.croDentista = croDentista;
+        this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
-        this.disponibilidade = disponibilidade;
-        this.isCoordenador = isCoordenador;
+        this.sexo = sexo;
+        this.email = email;
+        this.telefone = telefone;
+        this.categoria = categoria;
+        this.disponivel = disponivel;
+        this.idEndereco = idEndereco;
     }
 
     public Dentista() {
-        super();
     }
-
-
 }

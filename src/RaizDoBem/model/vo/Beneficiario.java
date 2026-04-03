@@ -1,5 +1,7 @@
 package RaizDoBem.model.vo;
 
+import java.time.LocalDate;
+
 /**
  * Cada pessoa que passou pelo processo de solicitação de pedido de ajuda, e agora recebe atendimento da Turma do Bem. Contém informações pessoais, endereço, programa social associado, pedido de ajuda referência e colaborador responsável que o registrou.
  * @author Paulo
@@ -21,7 +23,11 @@ public class Beneficiario{
     private int id;
     private String cpf;
     private String nomeCompleto;
+    private LocalDate dataNascimento;
+    private String telefone;
+    private String email;
     private int idPedidoAjuda;
+    private int idProgramaSocial;
 
     public int getId() {
         return id;
@@ -50,6 +56,33 @@ public class Beneficiario{
         return this;
     }
 
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public Beneficiario setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+        return this;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public Beneficiario setTelefone(String telefone) {
+        this.telefone = telefone;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Beneficiario setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
     public int getIdPedidoAjuda() {
         return idPedidoAjuda;
     }
@@ -59,18 +92,37 @@ public class Beneficiario{
         return this;
     }
 
-    public Beneficiario(int id, String cpf, String nomeCompleto, int idPedidoAjuda) {
+    public int getIdProgramaSocial() {
+        return idProgramaSocial;
+    }
+
+    public Beneficiario setIdProgramaSocial(int idProgramaSocial) {
+        this.idProgramaSocial = idProgramaSocial;
+        return this;
+    }
+
+    public Beneficiario(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String telefone, String email, int idPedidoAjuda, int idProgramaSocial) {
         this.id = id;
+        this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.email = email;
         this.idPedidoAjuda = idPedidoAjuda;
+        this.idProgramaSocial = idProgramaSocial;
     }
 
-    public Beneficiario(String cpf, String nomeCompleto, int idPedidoAjuda) {
+    public Beneficiario(String cpf, String nomeCompleto, LocalDate dataNascimento, String telefone, String email, int idPedidoAjuda, int idProgramaSocial) {
+        this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.email = email;
         this.idPedidoAjuda = idPedidoAjuda;
+        this.idProgramaSocial = idProgramaSocial;
     }
 
-     public Beneficiario() {
+    public Beneficiario() {
     }
 
 }
