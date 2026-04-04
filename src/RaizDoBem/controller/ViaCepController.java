@@ -1,6 +1,5 @@
 package RaizDoBem.controller;
 
-import RaizDoBem.model.bo.EnderecoBO;
 import RaizDoBem.model.vo.ViaCep;
 import com.google.gson.Gson;
 

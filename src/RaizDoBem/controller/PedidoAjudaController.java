@@ -22,7 +22,7 @@ public class PedidoAjudaController {
     public void adicionar() {
         String cpf = view.inputCpf();
         String nome = view.inputNome();
-//        LocalDate dataNascimento = view.inputDataNasc();
+        LocalDate dataNascimento = view.inputDataNasc();
         Sexo sexoSolicitante;
         int sexo = view.inputSexo();
         if (sexo == 1) {
@@ -38,7 +38,7 @@ public class PedidoAjudaController {
         String descricao = view.inputDescricao();
         int idEndereco = view.inputEndereco();
 
-        PedidoAjuda pedido = bo.validarPedido(cpf, nome, dataNascimento, sexoSolicitante, telefone, email, descricao, idEndereco );
+        PedidoAjuda pedido = bo.validarPedido(cpf, nome, dataNascimento, sexoSolicitante, telefone, email, descricao, idEndereco);
 
         bo.criar(pedido);
     }
@@ -62,6 +62,17 @@ public class PedidoAjudaController {
             view.exibirMensagem("Nenhum pedido encontrado!!!");
         }
     }
+
+    public void listarPelaData(LocalDate data) {
+        List<PedidoAjuda> pedidos = bo.listarPorData(data);
+        if (pedidos.isEmpty()) {
+            view.exibirMensagem("Nenhum pedido encontrado!!!");
+        } else {
+            view.exibirMensagem("Exibindo todos os pedidos de ajuda encontrados na data inserida: ");
+            view.exibirLista(pedidos);
+        }
+    }
+
 
     public void atualizar(String cpf) {
         bo.atualizar(cpf, null);

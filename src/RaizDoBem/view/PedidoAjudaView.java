@@ -3,6 +3,7 @@ package RaizDoBem.view;
 import RaizDoBem.model.vo.PedidoAjuda;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,10 +20,13 @@ public class PedidoAjudaView {
         return sc.nextLine();
     }
 
-    // public LocalDate inputDataNasc(){
-    // System.out.println("Data de nascimento do solicitante: ");
-    // return ;
-    // }
+     public LocalDate inputDataNasc(){
+         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+         System.out.println("Data de nascimento do solicitante (dd/MM/yyyy): ");
+         String data = sc.nextLine();
+
+        return LocalDate.parse(data, formato);
+     }
 
     public int inputSexo() {
         System.out.println("Selecione o sexo do solicitante: ");
@@ -41,7 +45,7 @@ public class PedidoAjudaView {
     }
 
     public String inputEmail() {
-        System.out.println("Telefone do solicitante: ");
+        System.out.println("Email do solicitante: ");
         return sc.nextLine();
     }
 
@@ -51,7 +55,11 @@ public class PedidoAjudaView {
     }
 
     public int inputEndereco() {
-        return 0;
+        System.out.println("Insira o ID do endereço: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        return id;
     }
 
     public void exibirPedido(PedidoAjuda pedido) {

@@ -1,7 +1,7 @@
 package RaizDoBem.model.vo;
 
 public enum StatusPedido {
-    AGUARDANDO,
+    PENDENTE,
     APROVADO,
-    REPROVADO
+    REJEITADO
 }

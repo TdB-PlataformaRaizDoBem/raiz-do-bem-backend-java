@@ -32,4 +32,16 @@ public class AtendimentoController {
             view.exibirMensagem(e.getMessage());
         }
     }
+
+    public void listarPorCpf(String cpf) {
+        Atendimento atendimento = bo.buscaPorCpf(cpf);
+        if (atendimento != null) {
+            view.exibirMensagem("Atendimento encontrado: ");
+            view.exibirAtendimento(atendimento);
+        }
+        else{
+            view.exibirMensagem("Nenhum atendimento encontrado!!!");
+            }
+    }
+
  }

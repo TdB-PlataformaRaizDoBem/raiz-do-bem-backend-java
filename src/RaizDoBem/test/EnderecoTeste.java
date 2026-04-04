@@ -14,7 +14,6 @@ public class EnderecoTeste {
         EnderecoView view = new EnderecoView();
         EnderecoController controller = new EnderecoController(view);
 
-
 //      //1º Metodo - Criação
 //      controller.adicionar();
 //
@@ -23,20 +22,20 @@ public class EnderecoTeste {
 //
 //      //3º Metodo - Listando apenas pelo Id
 //      int id = view.entradaId();
-//      controller.listarPorId(id);
+//      controller.listarPorCpf(id);
 //
 //      //4º Metodo - Listando por cidade
 //      String cidade = view.entradaCidade();
 //      controller.listandoPorCidade(cidade);
 //
 //      //5º Metodo - Atualizando
-        int id = view.entradaId();
-        controller.atualizar(id);
+//        int id = view.entradaId();
+//        controller.atualizar(id);
 //
 //      //6º Metodo - Excluindo
 //      int id = view.entradaId();
 //      controller.deletar(id);
 
-        controller.listandoTodos();
+//        controller.listandoTodos();
     }
 }

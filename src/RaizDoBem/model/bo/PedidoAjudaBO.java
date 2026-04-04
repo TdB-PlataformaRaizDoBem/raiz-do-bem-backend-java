@@ -16,10 +16,9 @@ public class PedidoAjudaBO {
     public void criar(PedidoAjuda pedido){
         if(pedido != null){
             dao.adicionar(pedido);
-            System.out.println("Pedido criado e adicionado!");
         }
         else{
-            System.out.println("Pedido inválido!!!");
+            throw new RuntimeException("Pedido inválido!!!");
         }
     }
     public List<PedidoAjuda> listarTodos(){
@@ -33,8 +32,7 @@ public class PedidoAjudaBO {
         PedidoAjuda pedidoAjuda = dao.buscarPorCpf(cpf);
 
         if(pedidoAjuda == null){
-            System.out.println("Pedido não encontrado!!!");
-            return;
+            throw new RuntimeException("Pedido não encontrado!!!");
         }
         dao.atualizarPedido(cpf, novoPedido);
     }
@@ -43,8 +41,7 @@ public class PedidoAjudaBO {
         PedidoAjuda pedidoAjuda = dao.buscarPorCpf(cpf);
 
         if(pedidoAjuda == null){
-            System.out.println("Pedido não encontrado!!!");
-            return;
+           throw new RuntimeException("Pedido não encontrado!!!");
         }
         dao.excluirPedido(cpf);
     }

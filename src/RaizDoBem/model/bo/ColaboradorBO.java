@@ -1,10 +1,24 @@
 package RaizDoBem.model.bo;
 
-import RaizDoBem.controller.ViaCepController;
 import RaizDoBem.model.dao.ColaboradorDAO;
 import RaizDoBem.model.vo.Colaborador;
 
+
+import java.util.List;
+
 public class ColaboradorBO {
     ColaboradorDAO dao = new ColaboradorDAO();
-    Colaborador colaborador = new Colaborador();
+
+    public void criar(Colaborador colaborador){
+        if(colaborador != null){
+            dao.adicionar(colaborador);
+        }
+        else{
+            throw new RuntimeException("Colaborador Inválido");
+        }
+    }
+
+    public List<Colaborador> listarTodos(){
+        return dao.listarTodos();
+    }
 }

@@ -29,7 +29,7 @@ public class AtendimentoDAO {
                 response.getInt("id_colaborador"));
     }
 
-    public Atendimento buscarPorId(String cpf) {
+    public Atendimento buscarPorCpf(String cpf) {
         String querySql = "SELECT id, descricao_inicial, data_inicial, data_final, solucao_problema,id_beneficiario, id_dentista, id_colaborador FROM Atendimento where id = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();

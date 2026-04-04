@@ -1,6 +1,7 @@
 package RaizDoBem.model.vo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Requisito para poder criar um beneficiário. Contém informações sobre o problema descrito, dados de contato da pessoa alv, data do pedido e status do pedido.
@@ -150,6 +151,7 @@ public class PedidoAjuda {
         this.dataPedido = dataPedido;
         this.status = status;
         this.idEndereco = idEndereco;
+        this.idDentista = idDentista;
     }
 
     public PedidoAjuda(String cpf, String nomeCompleto, LocalDate dataNascimento, Sexo sexo, String telefone, String email, String descricaoProblema, int idEndereco) {
@@ -161,7 +163,7 @@ public class PedidoAjuda {
         this.email = email;
         this.descricaoProblema = descricaoProblema;
         this.dataPedido = LocalDate.now();
-        this.status = StatusPedido.AGUARDANDO;
+        this.status = StatusPedido.PENDENTE;
         this.idEndereco = idEndereco;
     }
 
@@ -170,15 +172,15 @@ public class PedidoAjuda {
 
     @Override
     public String toString() {
-        return "PedidoAjuda{" +
-                "id=" + id +
-                ", cpf='" + cpf + '\'' +
-                ", descricaoProblema='" + descricaoProblema + '\'' +
-                ", nomeCompleto='" + nomeCompleto + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", email='" + email + '\'' +
-                ", data=" + dataPedido.toString() +
-                ", status=" + status +
-                '}';
+        return "\n" + id +
+                " - Solicitante: " + nomeCompleto +
+                " - Cpf: " + cpf +
+                "\n    Descrição: " + descricaoProblema +
+                "\n    Data de Nascimento: " + dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                " - Sexo: " + sexo +
+                "\n    Telefone: " + telefone +
+                " - email: " + email +
+                "\n    Data do Pedido: " + dataPedido.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                " - status: " + status;
     }
 }

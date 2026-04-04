@@ -17,8 +17,8 @@ public class AtendimentoBO {
         }
     }
 
-    public Atendimento buscaPorId(String cpf) {
-        return dao.buscarPorId(cpf);
+    public Atendimento buscaPorCpf(String cpf) {
+        return dao.buscarPorCpf(cpf);
     }
 
     public List<Atendimento> listarTodos() {

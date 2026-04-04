@@ -1,12 +1,8 @@
 package RaizDoBem.controller;
 
 import RaizDoBem.model.bo.BeneficiarioBO;
-import RaizDoBem.model.bo.EnderecoBO;
-import RaizDoBem.model.dao.BeneficiarioDAO;
 import RaizDoBem.model.vo.Beneficiario;
-import RaizDoBem.model.vo.Endereco;
 import RaizDoBem.view.BeneficiarioView;
-import RaizDoBem.view.EnderecoView;
 
 import java.util.List;
 
