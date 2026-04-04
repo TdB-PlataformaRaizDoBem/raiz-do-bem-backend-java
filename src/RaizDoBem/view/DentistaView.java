@@ -20,34 +20,32 @@ import java.util.Scanner;
  */
 public class DentistaView {
     Scanner sc = new Scanner(System.in);
-    public void menu() {
-        Dentista dentista = new Dentista();
+
 
         String cpf = "";
 
-
 //            case 1:
 //                controller.criarDentista(dentista);
-//                break;
+//
 //            case 2:
 //                dentistas = controller.listarTodos();
 //                System.out.println("Listagem dos dentistas: ");
 //                for (Dentista d : dentistas) {
 //                    System.out.println(d);
 //                }
-//                break;
+//
 //            case 3:
 //                String cidade = ""; //falta input cidade
 //                controller.listagemPorCidade(cidade);
-//                break;
+//                b
 //            case 4:
 //                controller.listarDisponiveis();
-//                break;
+//
 //            case 5:
 //                cpf = ""; //falta input cpf
 //                dentista = controller.buscaPorCpf(cpf);
 //                controller.atualizarDentista(cpf, dentista);
-//                break;
+//
 //            case 6:
 //                cpf = ""; //falta input cpf
 //                dentista = controller.buscaPorCpf(cpf);
@@ -63,7 +61,6 @@ public class DentistaView {
 //            default:
 //                System.out.println("Opção Inválida");
 //
-    }
     public String inputCpf(){
         System.out.println("Digite o CPF do dentista: ");
         return sc.nextLine();

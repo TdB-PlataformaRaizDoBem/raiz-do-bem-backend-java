@@ -1,62 +1,70 @@
 package RaizDoBem.view;
 
-import RaizDoBem.model.dao.PedidoAjudaDAO;
 import RaizDoBem.model.vo.PedidoAjuda;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class PedidoAjudaView {
-    public void menu() {
-        PedidoAjudaDAO pedidoAjudaDAO = new PedidoAjudaDAO();
-        PedidoAjuda pedidoAjuda = new PedidoAjuda();
-        Scanner sc = new Scanner(System.in);
-        int id;
-        String cpf = "";
-        System.out.println("\n      Gerenciar Pedidos de Ajuda     ");
-        System.out.println("\n        1.  Adicionar pedido de ajuda");
-        System.out.println("        2.  Listar todos os pedidos de ajuda");
-        System.out.println("        3.  Buscar pedido de ajuda por CPF");
-        System.out.println("        4.  Buscar pedidos por data");
-        System.out.println("        5.  Atualizar pedido de ajuda");
-        System.out.println("        6.  Excluir pedido de ajuda");
-        System.out.println("        7.  Voltar ao menu principal");
-        System.out.println("        0.  Encerrar programa");
-        System.out.println("\nSelecione uma opção: ");
-        int opc = sc.nextInt();
-        sc.nextLine();
+    Scanner sc = new Scanner(System.in);
 
-        switch (opc){
-            case 1:
-                pedidoAjudaDAO.adicionar(pedidoAjuda);
-                break;
-            case 2:
-                System.out.println("Listagem dos pedidos de ajuda: ");
-                pedidoAjudaDAO.listarTodos();
-                break;
-            case 3:
-                pedidoAjudaDAO.buscarPorCpf(cpf);
-                break;
-            case 4:
-                LocalDate data = LocalDate.now();
-                pedidoAjudaDAO.listarPedidosData(data);
-                break;
-            case 5:
-                PedidoAjuda pedido = new PedidoAjuda();
-                pedidoAjudaDAO.atualizarPedido(pedido, cpf);
-                break;
-            case 6:
-                id = 0;
-                pedidoAjudaDAO.excluirPedido(id);
-                break;
-            case 7:
-                System.out.println("Voltando ao menu principal...");
-                break;
-            case 0:
-                System.out.println("Encerrando programa...");
-                System.exit(0);
-            default:
-                System.out.println("Opção Inválida!");
+        public String inputCpf(){
+            System.out.println("Digite o CPF do beneficiário: ");
+            return sc.nextLine();
+        }
+        public String inputNome(){
+            System.out.println("Nome completo do solicitante: ");
+            return sc.nextLine();
+        }
+
+//        public LocalDate inputDataNasc(){
+//            System.out.println("Data de nascimento do solicitante: ");
+//            return ;
+//        }
+
+        public int inputSexo(){
+            System.out.println("Selecione o sexo do solicitante: ");
+            System.out.println("1. Masculino");
+            System.out.println("2. Feminino");
+            System.out.println("3. Outros");
+            int opc = sc.nextInt();
+            sc.nextLine();
+
+            return opc;
+        }
+
+        public String inputTelefone(){
+            System.out.println("Telefone do solicitante: ");
+            return sc.nextLine();
+        }
+
+    public String inputEmail(){
+        System.out.println("Telefone do solicitante: ");
+        return sc.nextLine();
+    }
+
+    public String inputDescricao(){
+        System.out.println("Descrição completa do pedido de ajuda: ");
+        return sc.nextLine();
+    }
+
+    public int inputEndereco(){
+        return 0;
+    }
+
+    public void exibirPedido(PedidoAjuda pedido){
+        System.out.println(pedido);
+    }
+    public void exibirMensagem(String msg){
+        System.out.println(msg);
+    }
+
+    public void exibirLista(List<PedidoAjuda> lista){
+        for (PedidoAjuda elemento : lista){
+            exibirPedido(elemento);
         }
     }
+
+
 }

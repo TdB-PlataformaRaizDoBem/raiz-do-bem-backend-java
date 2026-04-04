@@ -69,8 +69,8 @@ public class EnderecoBO {
                 enderecoBuscado.getUf(),
                 tipoEndereco
         );
-
     }
+
     public boolean validarTipoEndereco(int opc){
         if (opc != 1 && opc != 2) {
             throw new RuntimeException("Tipo de endereço inválido! Escolha 1 para Residencial ou 2 para Profissional.");

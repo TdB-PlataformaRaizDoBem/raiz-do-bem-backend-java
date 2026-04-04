@@ -1,9 +1,64 @@
 package RaizDoBem.model.bo;
 
 import RaizDoBem.model.dao.PedidoAjudaDAO;
-import RaizDoBem.model.vo.PedidoAjuda;
+import RaizDoBem.model.vo.*;
+
+import java.time.LocalDate;
+import java.util.List;
 
 public class PedidoAjudaBO {
     PedidoAjudaDAO dao = new PedidoAjudaDAO();
-    PedidoAjuda pedidoAjuda = new PedidoAjuda();
+
+    public PedidoAjuda buscaCpf(String cpf){
+        return dao.buscarPorCpf(cpf);
+    }
+
+    public void criar(PedidoAjuda pedido){
+        if(pedido != null){
+            dao.adicionar(pedido);
+            System.out.println("Pedido criado e adicionado!");
+        }
+        else{
+            System.out.println("Pedido inválido!!!");
+        }
+    }
+    public List<PedidoAjuda> listarTodos(){
+        return dao.listarTodos();
+    }
+    public List<PedidoAjuda> listarPorData(LocalDate data){
+        return dao.listarPedidosData(data);
+    }
+
+    public void atualizar(String cpf, PedidoAjuda novoPedido){
+        PedidoAjuda pedidoAjuda = dao.buscarPorCpf(cpf);
+
+        if(pedidoAjuda == null){
+            System.out.println("Pedido não encontrado!!!");
+            return;
+        }
+        dao.atualizarPedido(cpf, novoPedido);
+    }
+
+    public void excluir(String cpf){
+        PedidoAjuda pedidoAjuda = dao.buscarPorCpf(cpf);
+
+        if(pedidoAjuda == null){
+            System.out.println("Pedido não encontrado!!!");
+            return;
+        }
+        dao.excluirPedido(cpf);
+    }
+
+    public PedidoAjuda validarPedido(String cpf, String nome, LocalDate dataNascimento, Sexo sexo, String telefone, String email, String descricao, int idEndereco){
+        return new PedidoAjuda(
+                cpf,
+                nome,
+                dataNascimento,
+                sexo,
+                telefone,
+                email,
+                descricao,
+                idEndereco
+        );
+    }
 }

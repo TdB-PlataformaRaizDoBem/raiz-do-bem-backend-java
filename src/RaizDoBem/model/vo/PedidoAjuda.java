@@ -25,7 +25,7 @@ public class PedidoAjuda {
     private String telefone;
     private String email;
     private String descricaoProblema;
-    private LocalDate data;
+    private LocalDate dataPedido;
     private StatusPedido status;
     private int idEndereco;
     private int idDentista;
@@ -102,12 +102,12 @@ public class PedidoAjuda {
         return this;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDataPedido() {
+        return dataPedido;
     }
 
-    public PedidoAjuda setData(LocalDate data) {
-        this.data = data;
+    public PedidoAjuda setDataPedido(LocalDate dataPedido) {
+        this.dataPedido = dataPedido;
         return this;
     }
 
@@ -138,7 +138,7 @@ public class PedidoAjuda {
         return this;
     }
 
-    public PedidoAjuda(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, Sexo sexo, String telefone, String email, String descricaoProblema, LocalDate data, StatusPedido status, int idEndereco, int idDentista) {
+    public PedidoAjuda(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, Sexo sexo, String telefone, String email, String descricaoProblema, LocalDate dataPedido, StatusPedido status, int idEndereco, int idDentista) {
         this.id = id;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
@@ -147,12 +147,12 @@ public class PedidoAjuda {
         this.telefone = telefone;
         this.email = email;
         this.descricaoProblema = descricaoProblema;
-        this.data = data;
+        this.dataPedido = dataPedido;
         this.status = status;
         this.idEndereco = idEndereco;
     }
 
-    public PedidoAjuda(String cpf, String nomeCompleto, LocalDate dataNascimento, Sexo sexo, String telefone, String email, String descricaoProblema, LocalDate data, StatusPedido status, int idEndereco, int idDentista) {
+    public PedidoAjuda(String cpf, String nomeCompleto, LocalDate dataNascimento, Sexo sexo, String telefone, String email, String descricaoProblema, int idEndereco) {
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
@@ -160,8 +160,8 @@ public class PedidoAjuda {
         this.telefone = telefone;
         this.email = email;
         this.descricaoProblema = descricaoProblema;
-        this.data = data;
-        this.status = status;
+        this.dataPedido = LocalDate.now();
+        this.status = StatusPedido.AGUARDANDO;
         this.idEndereco = idEndereco;
     }
 
@@ -177,7 +177,7 @@ public class PedidoAjuda {
                 ", nomeCompleto='" + nomeCompleto + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", email='" + email + '\'' +
-                ", data=" + data.toString() +
+                ", data=" + dataPedido.toString() +
                 ", status=" + status +
                 '}';
     }

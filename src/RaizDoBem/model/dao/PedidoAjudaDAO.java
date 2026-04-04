@@ -51,7 +51,7 @@ public class PedidoAjudaDAO {
             ps.setString(3, pedido.getNomeCompleto());
             ps.setString(4, pedido.getTelefone());
             ps.setString(5, pedido.getEmail());
-            ps.setDate(6, Date.valueOf(pedido.getData()));
+            ps.setDate(6, Date.valueOf(pedido.getDataPedido()));
             ps.setString(7, pedido.getStatus().name());
 
             ps.executeUpdate();
@@ -116,13 +116,13 @@ public class PedidoAjudaDAO {
         }
         return pedidos;
     }
-    public void atualizarPedido(PedidoAjuda pedido, String cpf){
+    public void atualizarPedido(String cpf, PedidoAjuda pedido){
         String querySql = "UPDATE Pedido_Ajuda SET status_pedido = ? WHERE cpf = ?";
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql)) {
 
-            ps.setString(1, pedido.getStatus().name());
-            ps.setString(2, cpf);
+            ps.setString(1, cpf);
+            ps.setString(2, pedido.getStatus().name());
 
             ps.executeUpdate();
         }
@@ -130,13 +130,13 @@ public class PedidoAjudaDAO {
             throw new RuntimeException("Erro ao atualizar pedido de ajuda: " + exception.getMessage());
         }
     }
-    public void excluirPedido(int id){
-        String querySql = "DELETE FROM pedido_ajuda WHERE id = ? ";
+    public void excluirPedido(String cpf){
+        String querySql = "DELETE FROM pedido_ajuda WHERE cpf = ? ";
 
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
         ){
-            ps.setInt(1, id);
+            ps.setString(1, cpf);
             ps.executeUpdate();
         }
         catch (SQLException exception){

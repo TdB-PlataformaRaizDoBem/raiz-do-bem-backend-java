@@ -1,11 +1,17 @@
 package RaizDoBem.controller;
 
-import RaizDoBem.model.dao.ColaboradorDAO;
+import RaizDoBem.model.bo.ColaboradorBO;
+import RaizDoBem.view.ColaboradorView;
 
 public class ColaboradorController {
-    private final ColaboradorDAO colaboradorDAO;
+    private ColaboradorView view;
+    private ColaboradorBO bo;
 
-    public ColaboradorController(ColaboradorDAO colaboradorDAO) {
-        this.colaboradorDAO = colaboradorDAO;
+    public ColaboradorController(ColaboradorView view) {
+        this.view = view;
+        this.bo = new ColaboradorBO();
+    }
+
+    public ColaboradorController() {
     }
 }

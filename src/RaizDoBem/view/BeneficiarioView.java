@@ -3,6 +3,7 @@ package RaizDoBem.view;
 import RaizDoBem.controller.BeneficiarioController;
 import RaizDoBem.model.vo.Beneficiario;
 
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -13,9 +14,6 @@ import java.util.Scanner;
 public class BeneficiarioView {
     Scanner sc = new Scanner(System.in);
     public void menu(){
-        Beneficiario beneficiario = new Beneficiario();
-        BeneficiarioController controller = new BeneficiarioController();
-        String cpf;
 
         System.out.println("\n      Gerenciar Beneficiários     ");
         System.out.println("        1.  Adicionar beneficiário");
@@ -25,16 +23,7 @@ public class BeneficiarioView {
         System.out.println("        5.  Listar beneficiários por cidade");
         System.out.println("        6.  Atualizar beneficiário");
         System.out.println("        7.  Excluir beneficiário");
-        System.out.println("        8.  Voltar ao menu principal");
-        System.out.println("        0.  Encerrar programa");
-        System.out.print("\nSelecione uma opção: ");
-        int opc = sc.nextInt();
-        sc.nextLine();
 
-//        switch (opc){
-//            case 1:
-//                controller.adicionar(beneficiario);
-//                break;
 //            case 2:
 //                System.out.println("Listagem dos beneficiários: ");
 //                controller.listarBeneficiarios();
@@ -87,9 +76,22 @@ public class BeneficiarioView {
         System.out.println("1. Masculino");
         System.out.println("2. Feminino");
         System.out.println("3. Outros");
-        int idSexo = sc.nextInt();
+        int opc = sc.nextInt();
         sc.nextLine();
 
-        return idSexo;
+        return opc;
+    }
+
+    public void exibirPedido(Beneficiario beneficiario){
+        System.out.println(beneficiario);
+    }
+    public void exibirMensagem(String msg){
+        System.out.println(msg);
+    }
+
+    public void exibirLista(List<Beneficiario> lista){
+        for (Beneficiario elemento : lista){
+            exibirPedido(elemento);
+        }
     }
 }

@@ -28,9 +28,8 @@ public class BeneficiarioController {
     public BeneficiarioController() {
     }
 
-
     public void listandoTodos(){
-        List<Beneficiario> enderecos = bo.listarBeneficiarios();
-//        view.exibirLista(enderecos);
+        List<Beneficiario> beneficiarios = bo.listarBeneficiarios();
+        view.exibirLista(beneficiarios);
     }
 }
