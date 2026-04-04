@@ -22,7 +22,7 @@ public class EnderecoView {
         return sc.nextLine();
     }
     public String entradaNumero(){
-        System.out.println("Digite a numeração do endereço: ");
+        System.out.println("Digite a número do endereço: ");
         return sc.nextLine();
     }
     public String entradaCidade() {
@@ -59,15 +59,6 @@ public class EnderecoView {
 
         return opc;
     }
-
-//        System.out.println("\n      Gerenciar Endereços     ");
-//        System.out.println("        1.  Adicionar endereço");
-//        System.out.println("        2.  Listar todos os endereços");
-//        System.out.println("        3.  Listar endereço pelo ID");
-//        System.out.println("        4.  Listar endereço por cidade");
-//        System.out.println("        5.  Atualizar endereço");
-//        System.out.println("        6.  Excluir endereço");
-
 
     public void exibirEndereco(Endereco endereco){
         System.out.println(endereco);

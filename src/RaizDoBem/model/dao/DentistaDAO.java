@@ -3,7 +3,6 @@ package RaizDoBem.model.dao;
 import RaizDoBem.model.vo.Conexao;
 import RaizDoBem.model.vo.Dentista;
 import RaizDoBem.model.vo.Sexo;
-import RaizDoBem.model.vo.TipoEndereco;
 
 import java.sql.*;
 import java.util.ArrayList;

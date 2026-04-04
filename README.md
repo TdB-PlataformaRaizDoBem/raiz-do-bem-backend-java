@@ -1,219 +1,132 @@
-# Raiz do Bem - Challenge FIAP 2025-2026 (1o ano ADS)
+# Raiz do Bem - Challenge FIAP 2025-2026
 
-Projeto Java desenvolvido em colaboração com a ONG Turma do Bem para o Challenge FIAP 2025-2026.
+Projeto Java (MVC puro, sem framework) desenvolvido para o Challenge FIAP em parceria com a Turma do Bem.
 
-## 📌 Status Atual do Projeto
+## Status do Projeto
 
-**Versão:** `v1.2.0`  
-**Data última atualização:** Abril 2026  
-**Banco de Dados:** ✅ Finalizado  
-**Prazo para finalizar back-end:** Próxima sexta (7 dias)
+- Atualizado em: 04/04/2026
+- Banco de dados: Oracle via JDBC
+- Módulo de endereço: implementado em fluxo MVC completo (View -> Controller -> BO -> DAO)
+- Demais módulos: em diferentes estágios de implementação
 
-## ✅ O que já está funcionando
+## Arquitetura
 
-### Módulo Endereço (COMPLETO E TESTADO)
-- ✅ CRUD completo integrado ao Oracle
-- ✅ Validação via ViaCepController (integração com API externa)
-- ✅ Fluxo correto View → Controller → BO → DAO
-- ✅ Testes manuais via MenuInicial (opção 6)
-- ✅ Estrutura pronta para ser replicada em outros módulos
+Estrutura em camadas:
 
-### Infraestrutura Geral
-- Estrutura em 3 camadas com separação de responsabilidades:
-  - `view/` (menus e entrada de dados)
-  - `controller/` (integração entre view e regras de negócio)
-  - `model/bo/` (Business Objects - validações e regras)
-  - `model/dao/` (persistência em banco de dados)
-  - `model/vo/` (entidades/objetos de domínio)
-- Conexão com banco Oracle via JDBC (`ojdbc11`)
-- MenuInicial.java centraliza toda navegação
-- config.properties para configuração de conexão
+- `view/`: entrada e saída no console
+- `controller/`: orquestra fluxo da tela e chama regras de negócio
+- `model/bo/`: validações e regras de negócio
+- `model/dao/`: acesso a dados no Oracle
+- `model/vo/`: entidades e enums
 
-## 🔄 Padrão de Desenvolvimento (IMPORTANTE!)
+## Fluxo do Módulo Endereço
 
-### Estrutura que DEVE ser replicada em todos os módulos:
+### 1) Entrada de dados (View)
 
-```java
-// Pattern estabelecido no módulo Endereço:
+`EnderecoView` coleta:
 
-// 1. VIEW (classe com menu() e métodos de entrada)
-public class MinhaView {
-    private Scanner sc = new Scanner(System.in);
-    
-    // Métodos de captura de entrada
-    public String entradaCep() { ... }
-    public int entradaId() { ... }
-    
-    // Menu interativo
-    public int exibirMenu() { ... }
-    
-    // IMPORTANTE: Método menu() que faz o loop
-    public void menu() {
-        MinhaController controller = new MinhaController(this);
-        int opcao;
-        do {
-            opcao = exibirMenu();
-            if(opcao != 7 && opcao != 0) {
-                controller.executar();
-            }
-        } while(opcao != 7 && opcao != 0);
-    }
-}
+- CEP (8 dígitos)
+- Número do endereço
+- Tipo do endereço (1 = residencial, 2 = profissional)
+- Cidade e ID para operações de consulta/edição/exclusão
 
-// 2. CONTROLLER (integra view e BO)
-public class MinhaController {
-    private MinhaView view;
-    private MinhaBO bo;
-    
-    public void executar() {
-        int retornoMenu = view.exibirMenu();
-        // Switch com cases para cada opção
-        // SEMPRE usar BO para lógica de negócio
-    }
-}
+### 2) Orquestração (Controller)
 
-// 3. BO (Business Objects - validações)
-public class MinhaBO {
-    private MinhaDAO dao = new MinhaDAO();
-    
-    public void criar(Entidade obj) {
-        if(validar(obj)) {
-            dao.adicionar(obj);
-        }
-    }
-}
+`EnderecoController` executa o fluxo:
 
-// 4. DAO (persistência - CRUD)
-public class MinhaDAO {
-    public void adicionar(Entidade obj) { ... }
-    public Entidade buscarPorId(int id) { ... }
-    public List<Entidade> listarTodos() { ... }
-    public void atualizar(int id, Entidade obj) { ... }
-    public void excluir(int id) { ... }
-}
+- `adicionar()`: recebe entradas da view, valida CEP e tipo, monta entidade e persiste
+- `listandoTodos()`: lista todos os endereços
+- `listarPorId(id)`: busca por ID
+- `listandoPorCidade(cidade)`: filtra por cidade
+- `atualizar(id)`: refaz validações e atualiza registro
+- `deletar(id)`: remove por ID
+
+### 3) Regras de negócio (BO)
+
+`EnderecoBO` aplica validações e integração externa:
+
+- `validarCep(cep)`: valida apenas tamanho (8)
+- `validarTipoEndereco(opc)`: aceita apenas 1 ou 2
+- `validarEndereco(cep, numero, tipo)`: consulta ViaCEP e monta o objeto `Endereco`
+- `criar`, `atualizar`, `excluir`, `listar`: encaminham para DAO após validações
+
+### 4) Persistência (DAO)
+
+`EnderecoDAO` executa CRUD no Oracle com `PreparedStatement`:
+
+- `adicionar`
+- `listarTodos`
+- `buscarPorId`
+- `listarPorCidade`
+- `atualizar`
+- `excluir`
+
+### 5) Integração ViaCEP
+
+`ViaCepController` consulta:
+
+- URL: `https://viacep.com.br/ws/{cep}/json/`
+- Parse JSON com Gson para `ViaCep`
+- Se a API retornar erro, o BO lança exceção de endereço não encontrado
+
+## Cenário Atual do Fluxo de Endereço
+
+O fluxo MVC do módulo está implementado e funcional por chamada direta do controller em teste manual.
+
+Observações importantes do estado atual:
+
+- `EnderecoTeste` está preparado para validar o CRUD manualmente
+- `MenuInicial` ainda não encaminha efetivamente para o menu de endereços
+- `EnderecoView` contém entradas e exibição, mas não possui um `menu()` próprio
+
+## Como Executar
+
+### 1) Configuração de banco
+
+1. Copie `config.properties.example` para `config.properties`
+2. Preencha:
+
+```properties
+db.driver=oracle.jdbc.OracleDriver
+db.url=jdbc:oracle:thin:@SEU_IP:1521:XE
+db.user=usuario
+db.password=senha
 ```
 
-## 📋 Checklist de Tarefas (Próxima Sexta)
+### 2) Executar teste do módulo Endereço
 
-### Fase 1: Validar Módulo Endereço
-- [ ] Testar criação de endereço via MenuInicial → opção 6
-- [ ] Testar listagem de todos
-- [ ] Testar busca por ID
-- [ ] Testar busca por cidade
-- [ ] Testar atualização
-- [ ] Testar exclusão
-- [ ] Validar integração com ViaCep
+Classe principal recomendada no estado atual:
 
-### Fase 2: Replicar em Outros Módulos
-Padrão: **View → Controller → BO → DAO**
+- `RaizDoBem.test.EnderecoTeste`
 
-Módulos pendentes (aplicar o padrão de Endereço):
-- [ ] **BeneficiarioController** 
-  - Método `menu()` em BeneficiarioView
-  - Usar BO para validações
-  - Refatorar controller para não chamar método inexistente
-  
-- [ ] **DentistaController**
-  - Mesmo padrão de Beneficiário
-  - Validações específicas
-  
-- [ ] **AtendimentoController**
-  - Mesmo padrão
-  - Integração com Beneficiário e Dentista
-  
-- [ ] **PedidoAjudaController**
-  - Mesmo padrão
-  - Integração com Beneficiário
+No arquivo de teste, descomente os blocos dos métodos que deseja validar (criar, listar, buscar, atualizar, excluir).
 
-- [ ] **ColaboradorController** (se aplicável)
+## Estrutura Relevante do Endereço
 
-### Fase 3: Testes de Integração
-- [ ] Testar MenuInicial com todos os módulos
-- [ ] Validar fluxo completo de cada módulo
-- [ ] Testar casos de erro (CEP inválido, ID não existe, etc)
-
-## 🛠️ Como Executar
-
-### 1. Configuração Inicial
-```bash
-# Copiar arquivo de configuração
-cp config.properties.example config.properties
-
-# Editar config.properties com suas credenciais Oracle
-# db.user=seu_usuario
-# db.password=sua_senha
-# db.url=sua_url_banco
-```
-
-### 2. Executar Projeto
-```
-RaizDoBem.test.TestMenuInicial
-```
-
-### 3. Navegar no Menu
-```
-Menu Inicial → Opção 6 (Endereços) → Testar CRUD
-```
-
-## 🏗️ Estrutura do Projeto
-
-```
+```text
 src/RaizDoBem/
-├── controller/          (lógica de aplicação)
-│   ├── EnderecoController.java        ✅ Pronto (use como referência)
-│   ├── BeneficiarioController.java    ⚠️  Pendente refatoração
-│   ├── DentistaController.java        ⚠️  Pendente refatoração
-│   ├── AtendimentoController.java     ⚠️  Pendente refatoração
-│   └── ...
-├── model/
-│   ├── bo/              (business objects)
-│   │   └── EnderecoBO.java            ✅ Pronto
-│   ├── dao/             (data access objects)
-│   │   └── EnderecoDAO.java           ✅ Pronto
-│   └── vo/              (value objects - entidades)
-│       ├── Endereco.java              ✅ Pronto
-│       └── ...
-├── view/                (interface com usuário)
-│   ├── EnderecoView.java              ✅ Pronto (use como referência)
-│   ├── MenuInicial.java               ✅ Pronto
-│   └── ...
-└── test/
-    ├── TestMenuInicial.java           (entrada principal)
-    └── TestMenuEndereco.java          ✅ Testes de endereço
+  controller/
+    EnderecoController.java
+    ViaCepController.java
+  model/
+    bo/
+      EnderecoBO.java
+    dao/
+      EnderecoDAO.java
+    vo/
+      Endereco.java
+      TipoEndereco.java
+      ViaCep.java
+  view/
+    EnderecoView.java
+  test/
+    EnderecoTeste.java
 ```
 
-## 🔐 Boas Práticas Implementadas
+## Boas Práticas já Aplicadas
 
-- ✅ DAO com PreparedStatement e parâmetros seguros (previne SQL injection)
-- ✅ Try-with-resources para fechamento automático de recursos
-- ✅ Separação em camadas (View/Controller/BO/DAO)
-- ✅ Tratamento de exceções com mensagens de erro úteis
-- ✅ Padrão builder em Value Objects (setters em cadeia)
-- ✅ Mapeamento de ResultSet centralizado em método `mapeamento()`
-
-## 📚 Tecnologias
-
-| Tecnologia | Versão |
-|-----------|--------|
-| Java | JDK 24 |
-| Oracle Database | Enterprise Edition |
-| JDBC | ojdbc11.jar |
-| IDE | IntelliJ IDEA |
-
-## 📞 Integração com Serviços Externos
-
-- **ViaCepController**: Integração com API ViaCep para validação e busca de endereços por CEP
-  - URL: https://viacep.com.br/ws/{CEP}/json/
-  - Retorna: Logradouro, Bairro, Localidade, UF
-
-## 🎯 Próximas Ações (Ordem de Prioridade)
-
-1. **HOJE**: Validar módulo Endereço funcionando 100%
-2. **DIAS 2-3**: Refatorar BeneficiarioController seguindo padrão
-3. **DIAS 4-5**: Refatorar DentistaController e AtendimentoController
-4. **DIAS 6-7**: Testes finais e ajustes
-
-## 📝 Versões
-
-- **v1.1.0** - CRUD de Endereço integrado ao Oracle
-- **v1.2.0** - Endereço finalizado + padrão documentado para replicação
+- Separação por camadas MVC + BO/DAO
+- DAO com `PreparedStatement`
+- `try-with-resources` para conexões e statements
+- Mapeamento de `ResultSet` em método específico (`mapeamento`)
+- Tratamento de exceções com mensagem de domínio

@@ -1,7 +1,6 @@
 package RaizDoBem.view;
 
 import RaizDoBem.model.vo.Dentista;
-import RaizDoBem.model.vo.Endereco;
 
 import java.util.Scanner;
 
@@ -15,7 +14,7 @@ public class DentistaInput {
     public Dentista criar(){
         System.out.println("----- Criando novo dentista: -----");
 
-        String cpf = inputCpf();
+        String cpf;
 
         int idSexo = 0;
         int primeiraOpc;
@@ -52,8 +51,5 @@ public class DentistaInput {
         );
     }
 
-    public String inputCpf(){
-        System.out.println("Digite o CPF do dentista: ");
-        return sc.nextLine();
-    }
+
 }

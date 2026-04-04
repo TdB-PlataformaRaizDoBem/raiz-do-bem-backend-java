@@ -14,7 +14,7 @@ public class MenuInicial {
     AtendimentoView atendimentoView = new AtendimentoView();
     BeneficiarioView beneficiarioView = new BeneficiarioView();
     EnderecoView menuEndereco = new EnderecoView();
-    DentistaMenu dentistaMenu = new DentistaMenu();
+    DentistaView dentistaView = new DentistaView();
     PedidoAjudaView pedidoAjudaView = new PedidoAjudaView();
 
     public int getOpcao() {
@@ -65,7 +65,7 @@ public class MenuInicial {
                 case 3:
                     escolha = "3. Dentistas";
                     System.out.println("Você selecionou: " + escolha);
-                    dentistaMenu.menu();
+                    dentistaView.menu();
                     break;
                 case 4:
                     escolha = "4. Coordenadores";

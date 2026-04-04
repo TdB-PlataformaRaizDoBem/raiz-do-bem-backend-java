@@ -1,7 +1,12 @@
 package RaizDoBem.controller;
 
+import RaizDoBem.model.bo.DentistaBO;
+import RaizDoBem.model.bo.EnderecoBO;
 import RaizDoBem.model.dao.DentistaDAO;
 import RaizDoBem.model.vo.Dentista;
+import RaizDoBem.model.vo.Endereco;
+import RaizDoBem.view.DentistaView;
+import RaizDoBem.view.EnderecoView;
 
 import java.util.List;
 
@@ -11,55 +16,23 @@ import java.util.List;
  * @since 2026-03
  */
 public class DentistaController {
-    private final DentistaDAO dentistaDAO;
-    Dentista dentistaEncontrado = new Dentista();
+    private DentistaView view;
+    private DentistaBO bo;
 
-    public DentistaController() {
-        this.dentistaDAO = new DentistaDAO();
+   public DentistaController(DentistaView view) {
+        this.view = view;
+        this.bo = new DentistaBO();
     }
 
-    public Dentista buscaPorCpf(String cpf){
-        return dentistaDAO.buscarPorCpf(cpf);
-    }
-    public void criarDentista(Dentista dentista){
-        if(dentista != null){
-            dentistaDAO.adicionar(dentista);
-            System.out.println("Endereço criado e adicionado!");
-        }
-        else{
-            System.out.println("Endereço inválido!!!");
+    public void listandoTodos() {
+        List<Dentista> dentistas = bo.listarTodos();
+        if (dentistas.isEmpty())
+            view.exibirMensagem("Nenhum dentista encontrado!!!");
+        else {
+            view.exibirMensagem("Exibindo todos os dentistas: ");
+            view.exibirLista(dentistas);
         }
     }
 
-    public List<Dentista> listarTodos(){
-        return dentistaDAO.listarTodos();
-    }
 
-    public List<Dentista> listarDisponiveis(){
-        return dentistaDAO.listarDisponiveis();
-    }
-
-    public List<Dentista> listagemPorCidade(String cidade){
-        return dentistaDAO.listarPorCidade(cidade);
-    }
-
-    public void atualizarDentista(String cpf, Dentista dentistaAtualizado){
-        dentistaEncontrado = dentistaDAO.buscarPorCpf(cpf);
-
-        if(dentistaEncontrado == null){
-            System.out.println("Dentista não encontrado!!!");
-            return;
-        }
-        dentistaDAO.atualizar(cpf, dentistaAtualizado);
-    }
-
-    public void excluirDentista(String cpf){
-        dentistaEncontrado = dentistaDAO.buscarPorCpf(cpf);
-
-        if(dentistaEncontrado == null){
-            System.out.println("Dentista não encontrado!!!");
-            return;
-        }
-        dentistaDAO.excluir(cpf);
-    }
 }

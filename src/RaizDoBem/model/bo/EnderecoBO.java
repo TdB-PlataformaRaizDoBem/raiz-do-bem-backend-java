@@ -10,7 +10,6 @@ import java.util.List;
 
 public class EnderecoBO {
     EnderecoDAO dao = new EnderecoDAO();
-    Endereco enderecoMapeado = new Endereco();
     ViaCepController viaCepController = new ViaCepController();
 
     public void criar(Endereco endereco){
@@ -33,17 +32,17 @@ public class EnderecoBO {
     }
 
     public void atualizar(int id, Endereco enderecoAtualizado) {
-        enderecoMapeado = dao.buscarPorId(id);
+        Endereco endereco = dao.buscarPorId(id);
 
-        if(enderecoMapeado == null){
+        if(endereco == null){
             throw new RuntimeException("Endereço não encontrado!!!");
         }
         dao.atualizar(id, enderecoAtualizado);
     }
     public void excluir(int id) {
-        enderecoMapeado = dao.buscarPorId(id);
+        Endereco endereco = dao.buscarPorId(id);
 
-        if(enderecoMapeado == null){
+        if(endereco == null){
             return;
         }
         dao.excluir(id);
@@ -61,21 +60,22 @@ public class EnderecoBO {
             throw new RuntimeException("Endereço não encontrado!!!");
         }
 
-//        return new Endereco(
-//                enderecoBuscado.getLogradouro(),
-//                cep,
-//                numero,
-//                enderecoBuscado.getBairro(),
-//                enderecoBuscado.getLocalidade(),
-//                enderecoBuscado.getUf(),
-//                tipoEndereco.toString()
-//        );
-        return null;
+        return new Endereco(
+                enderecoBuscado.getLogradouro(),
+                cep,
+                numero,
+                enderecoBuscado.getBairro(),
+                enderecoBuscado.getLocalidade(),
+                enderecoBuscado.getUf(),
+                tipoEndereco
+        );
+
     }
-    public void validarTipoEndereco(int opc){
+    public boolean validarTipoEndereco(int opc){
         if (opc != 1 && opc != 2) {
             throw new RuntimeException("Tipo de endereço inválido! Escolha 1 para Residencial ou 2 para Profissional.");
         }
+        return true;
     }
 
 }

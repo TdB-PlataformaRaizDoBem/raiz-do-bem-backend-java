@@ -130,7 +130,7 @@ public class Endereco {
     @Override
     public String toString() {
         return "\n" + id + " - " + logradouro + ", " + numero + " - Cep: " + cep +
-                "\n    " + cidade + " - " + estado;
+                "\n    " + cidade + " - " + estado + "\n    Tipo de endereço: " + tipo;
 
     }
 }

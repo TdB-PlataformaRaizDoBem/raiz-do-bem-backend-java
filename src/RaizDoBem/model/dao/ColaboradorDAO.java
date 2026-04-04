@@ -4,7 +4,6 @@ import RaizDoBem.model.vo.Colaborador;
 import RaizDoBem.model.vo.Conexao;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
