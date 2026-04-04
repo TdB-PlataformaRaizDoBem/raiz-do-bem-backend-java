@@ -110,9 +110,9 @@ public class Atendimento {
         this.idDentista = idDentista;
     }
 
-    public Atendimento(String descricaoInicial, LocalDate dataInicial, LocalDate dataFinal, String solucaoProblema, int idBeneficiario, int idDentista) {
+    public Atendimento(String descricaoInicial, LocalDate dataFinal, String solucaoProblema, int idBeneficiario, int idDentista) {
         this.descricaoInicial = descricaoInicial;
-        this.dataInicial = dataInicial;
+        this.dataInicial = LocalDate.now();
         this.dataFinal = dataFinal;
         this.solucaoProblema = solucaoProblema;
         this.idBeneficiario = idBeneficiario;

@@ -7,7 +7,12 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Classe de menu para gerenciar os endereços relacionados à ONG. Esta classe é responsável por exibir as opções de gerenciamento de endereços, como criar, listar, atualizar e excluir endereços. Ela interage com o EnderecoController para realizar as operações necessárias e fornecer uma interface amigável para o usuário.
+ * Classe de menu para gerenciar os endereços relacionados à ONG. Esta classe é
+ * responsável por exibir as opções de gerenciamento de endereços, como criar,
+ * listar, atualizar e excluir endereços. Ela interage com o EnderecoController
+ * para realizar as operações necessárias e fornecer uma interface amigável para
+ * o usuário.
+ * 
  * @author Paulo
  * @since 2026-03
  *
@@ -21,10 +26,12 @@ public class EnderecoView {
         System.out.println("Digite o cep (8 dígitos): ");
         return sc.nextLine();
     }
-    public String entradaNumero(){
+
+    public String entradaNumero() {
         System.out.println("Digite a número do endereço: ");
         return sc.nextLine();
     }
+
     public String entradaCidade() {
         System.out.println("Digite a cidade: ");
         return sc.nextLine();
@@ -38,7 +45,7 @@ public class EnderecoView {
         return id;
     }
 
-    public int entradaTipoEndereco(){
+    public int entradaTipoEndereco() {
         int opc;
         int idTipo = 0;
         do {
@@ -60,17 +67,17 @@ public class EnderecoView {
         return opc;
     }
 
-    public void exibirEndereco(Endereco endereco){
+    public void exibirEndereco(Endereco endereco) {
         System.out.println(endereco);
     }
-    public void exibirMensagem(String msg){
+
+    public void exibirMensagem(String msg) {
         System.out.println(msg);
     }
 
-    public void exibirLista(List<Endereco> lista){
-        for (Endereco elemento : lista){
+    public void exibirLista(List<Endereco> lista) {
+        for (Endereco elemento : lista) {
             exibirEndereco(elemento);
         }
     }
 }
-

@@ -9,62 +9,63 @@ import java.util.Scanner;
 public class PedidoAjudaView {
     Scanner sc = new Scanner(System.in);
 
-        public String inputCpf(){
-            System.out.println("Digite o CPF do beneficiário: ");
-            return sc.nextLine();
-        }
-        public String inputNome(){
-            System.out.println("Nome completo do solicitante: ");
-            return sc.nextLine();
-        }
+    public String inputCpf() {
+        System.out.println("Digite o CPF do beneficiário: ");
+        return sc.nextLine();
+    }
 
-//        public LocalDate inputDataNasc(){
-//            System.out.println("Data de nascimento do solicitante: ");
-//            return ;
-//        }
+    public String inputNome() {
+        System.out.println("Nome completo do solicitante: ");
+        return sc.nextLine();
+    }
 
-        public int inputSexo(){
-            System.out.println("Selecione o sexo do solicitante: ");
-            System.out.println("1. Masculino");
-            System.out.println("2. Feminino");
-            System.out.println("3. Outros");
-            int opc = sc.nextInt();
-            sc.nextLine();
+    // public LocalDate inputDataNasc(){
+    // System.out.println("Data de nascimento do solicitante: ");
+    // return ;
+    // }
 
-            return opc;
-        }
+    public int inputSexo() {
+        System.out.println("Selecione o sexo do solicitante: ");
+        System.out.println("1. Masculino");
+        System.out.println("2. Feminino");
+        System.out.println("3. Outros");
+        int opc = sc.nextInt();
+        sc.nextLine();
 
-        public String inputTelefone(){
-            System.out.println("Telefone do solicitante: ");
-            return sc.nextLine();
-        }
+        return opc;
+    }
 
-    public String inputEmail(){
+    public String inputTelefone() {
         System.out.println("Telefone do solicitante: ");
         return sc.nextLine();
     }
 
-    public String inputDescricao(){
+    public String inputEmail() {
+        System.out.println("Telefone do solicitante: ");
+        return sc.nextLine();
+    }
+
+    public String inputDescricao() {
         System.out.println("Descrição completa do pedido de ajuda: ");
         return sc.nextLine();
     }
 
-    public int inputEndereco(){
+    public int inputEndereco() {
         return 0;
     }
 
-    public void exibirPedido(PedidoAjuda pedido){
+    public void exibirPedido(PedidoAjuda pedido) {
         System.out.println(pedido);
     }
-    public void exibirMensagem(String msg){
+
+    public void exibirMensagem(String msg) {
         System.out.println(msg);
     }
 
-    public void exibirLista(List<PedidoAjuda> lista){
-        for (PedidoAjuda elemento : lista){
+    public void exibirLista(List<PedidoAjuda> lista) {
+        for (PedidoAjuda elemento : lista) {
             exibirPedido(elemento);
         }
     }
-
 
 }

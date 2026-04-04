@@ -1,23 +1,16 @@
 package RaizDoBem.view;
 
-import RaizDoBem.controller.AtendimentoController;
-import RaizDoBem.model.dao.AtendimentoDAO;
 import RaizDoBem.model.vo.Atendimento;
-import RaizDoBem.model.vo.Endereco;
 
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Interface para o menu de gerenciamento de atendimentos. Esta classe é responsável por exibir as opções relacionadas aos atendimentos e interagir com o usuário para realizar as operações correspondentes, como adicionar, listar, encontrar e excluir atendimentos.
- * @author Paulo
- * @since 2026-03
- */
+
 public class AtendimentoView {
-    public void menuAtendimentos(){
-        Scanner sc = new Scanner(System.in);
-        AtendimentoDAO atendimentoDAO = new AtendimentoDAO();
-        Atendimento atendimento;
+    Scanner sc = new Scanner(System.in);
+
+    public void menuAtendimentos() {
+
 
         System.out.println("\n      Gerenciar Atendimentos     ");
         System.out.println("        1. Adicionar atendimento");
@@ -28,47 +21,56 @@ public class AtendimentoView {
         System.out.println("        6. Voltar ao menu principal");
         System.out.println("        0. Encerrar programa");
         System.out.print("\nSelecione uma opção: ");
-        int opc = sc.nextInt();
-        sc.nextLine();
+        
 
-//        switch (opc){
-//            case 1:
-//                atendimento = input.criar();
-//                controller.criarAtendimento(atendimento);
-//                break;
-//            case 2:
-//                System.out.println("Listagem dos atendimentos: ");
-//                controller.listarTodosAtendimentos();
-//                break;
-//            case 3:
-////                controller.
-//                break;
-//            case 4:
-//                atendimentoDAO.encontrarAtendimentoBeneficiario();
-//                break;
-//            case 5:
-//                atendimentoDAO.encontrarAtendimentosDentista();
-//                break;
-//            case 6:
-//                System.out.println("Voltando ao menu principal...");
-//                break;
-//            case 0:
-//                System.out.println("Encerrando programa...");
-//                System.exit(0);
-//            default:
-//                System.out.println("Opção Inválida");
-//        }
+  
+        // atendimento = input.criar();
+        // controller.criarAtendimento(atendimento);
+
+        // case 2:
+        // System.out.println("Listagem dos atendimentos: ");
+        // controller.listarTodosAtendimentos();
+        // break;
+        // case 3:
+        ////                controller.
+        // break;
+        // case 4:
+        // atendimentoDAO.encontrarAtendimentoBeneficiario();
+        // break;
+        // case 5:
+        // atendimentoDAO.encontrarAtendimentosDentista();
+        // break;
     }
 
-    public void exibirAtendimento(Atendimento atendimento){
+    public int inputBeneficiario() {
+        System.out.println("Digite o ID do beneficiário que irá receber o atendimento: ");
+        int idBeneficiario = sc.nextInt();
+        sc.nextLine();
+        return idBeneficiario;
+    }
+
+    public int inputDentista() {
+        System.out.println("Digite o ID do dentista que irá fornecer o atendimento: ");
+        int idDentista = sc.nextInt();
+        sc.nextLine();
+        return idDentista;
+    }
+
+    public String inputDescricaoInicial() {
+        System.out.println("Insira a descrição inicial do atendimento: ");
+        return sc.nextLine();
+    }
+
+    public void exibirAtendimento(Atendimento atendimento) {
         System.out.println(atendimento);
     }
-    public void exibirMensagem(String msg){
+
+    public void exibirMensagem(String msg) {
         System.out.println(msg);
     }
 
-    public void exibirLista(List<Atendimento> lista){
-        for (Atendimento elemento : lista){
+    public void exibirLista(List<Atendimento> lista) {
+        for (Atendimento elemento : lista) {
             exibirAtendimento(elemento);
         }
     }

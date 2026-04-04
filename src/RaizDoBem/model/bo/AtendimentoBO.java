@@ -9,18 +9,19 @@ public class AtendimentoBO {
     AtendimentoDAO dao = new AtendimentoDAO();
     Atendimento atendimento = new Atendimento();
 
-    public void criar(Atendimento atendimento){
-        if(atendimento != null){
+    public void criar(Atendimento atendimento) {
+        if (atendimento != null) {
             dao.adicionar(atendimento);
-        }
-        else{
+        } else {
             throw new RuntimeException("Atendimento inválido!!!");
         }
     }
-    public Atendimento buscaPorId(String cpf){
+
+    public Atendimento buscaPorId(String cpf) {
         return dao.buscarPorId(cpf);
     }
-    public List<Atendimento> listarTodos(){
+
+    public List<Atendimento> listarTodos() {
         return dao.listarTodos();
     }
 }

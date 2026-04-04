@@ -1,17 +1,18 @@
 package RaizDoBem.controller;
 
 import RaizDoBem.model.bo.DentistaBO;
-import RaizDoBem.model.bo.EnderecoBO;
-import RaizDoBem.model.dao.DentistaDAO;
 import RaizDoBem.model.vo.Dentista;
-import RaizDoBem.model.vo.Endereco;
 import RaizDoBem.view.DentistaView;
-import RaizDoBem.view.EnderecoView;
 
 import java.util.List;
 
 /**
- * Classe de controle para os dentistas que prestarão serviço a ONG. Esta classe é responsável por gerenciar as operações relacionadas aos dentistas, como criar, buscar e listar dentistas. Ela atua como uma camada intermediária entre a interface do usuário e a camada de acesso a dados (DAO), garantindo que as regras de negócio sejam aplicadas corretamente.
+ * Classe de controle para os dentistas que prestarão serviço a ONG. Esta classe
+ * é responsável por gerenciar as operações relacionadas aos dentistas, como
+ * criar, buscar e listar dentistas. Ela atua como uma camada intermediária
+ * entre a interface do usuário e a camada de acesso a dados (DAO), garantindo
+ * que as regras de negócio sejam aplicadas corretamente.
+ * 
  * @author Paulo
  * @since 2026-03
  */
@@ -19,7 +20,7 @@ public class DentistaController {
     private DentistaView view;
     private DentistaBO bo;
 
-   public DentistaController(DentistaView view) {
+    public DentistaController(DentistaView view) {
         this.view = view;
         this.bo = new DentistaBO();
     }
@@ -33,6 +34,5 @@ public class DentistaController {
             view.exibirLista(dentistas);
         }
     }
-
 
 }
