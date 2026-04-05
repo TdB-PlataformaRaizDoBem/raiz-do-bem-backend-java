@@ -8,13 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe de acesso a dados dos Coordenadores da ONG.
- * Responsável por realizar operações de CRUD (Create, Read, Update, Delete)
- * relacionadas aos coordenadores.
- * 
- * @author Paulo
- * @since 2026-03
- *
+    * Classe de acesso a dados para a entidade Colaborador. Esta classe é responsável por realizar operações de banco de dados relacionadas aos colaboradores, como adicionar um novo colaborador, listar todos os colaboradores, buscar um colaborador por CPF, atualizar as informações de um colaborador e excluir um colaborador do sistema. Ela utiliza a classe Conexao para estabelecer a conexão com o banco de dados e executa as consultas SQL necessárias para manipular os dados dos colaboradores.
+    * @author Paulo
+    * @since 2026-03
+    * adicionar: Este método recebe um objeto Colaborador como parâmetro e adiciona um novo colaborador ao banco de dados. Ele executa uma consulta SQL de inserção para adicionar os dados do colaborador fornecido ao banco de dados.
+    * listarTodos: Este método retorna uma lista de todos os colaboradores cadastrados no banco de dados. Ele executa uma consulta SQL para recuperar todos os colaboradores e utiliza o método mapeamento para converter cada resultado da consulta em um objeto Colaborador, que é adicionado a uma lista de colaboradores.
+    * buscarPorCpf: Este método recebe um CPF como parâmetro e retorna um objeto Colaborador correspondente ao CPF fornecido. Ele executa uma consulta SQL para buscar o colaborador com o CPF especificado e utiliza o método mapeamento para converter o resultado da consulta em um objeto Colaborador.
+    * atualizar: Este método recebe um objeto Colaborador e um CPF como parâmetros e atualiza as informações de um colaborador existente no banco de dados com base no CPF fornecido. Ele executa uma consulta SQL de atualização para modificar os dados do colaborador correspondente ao CPF especificado.
+    * excluir: Este método recebe um CPF como parâmetro e remove o colaborador correspondente a esse CPF do banco de dados. Ele executa uma consulta SQL de exclusão para remover o colaborador com o CPF especificado do banco de dados.
+    * Esses métodos permitem que o sistema manipule os dados dos colaboradores de forma eficiente, realizando operações de criação, leitura, atualização e exclusão conforme necessário, e garantindo a integridade dos dados no banco de dados.
  */
 public class ColaboradorDAO {
     public Colaborador mapeamento(ResultSet response) throws SQLException {

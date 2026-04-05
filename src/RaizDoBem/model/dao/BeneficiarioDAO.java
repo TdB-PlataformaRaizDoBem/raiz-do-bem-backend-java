@@ -6,13 +6,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Classe responsável por realizar operações de acesso a dados relacionadas aos
- * beneficiários da ONG. Contém métodos para adicionar, listar, atualizar e
- * excluir beneficiários no banco de dados.
- * 
- * @author Paulo
- * @since 2026-03
+/*
+    * Classe de acesso a dados para a entidade Beneficiario. Esta classe é responsável por realizar operações de banco de dados relacionadas aos beneficiários, como adicionar, listar, buscar por CPF, listar por programa social, listar por cidade, atualizar e excluir beneficiários. Ela utiliza a classe Conexao para estabelecer a conexão com o banco de dados e executa consultas SQL para manipular os dados dos beneficiários.
+    * @author Paulo
+    * @since 2026-03
+    * adicionar: Este método recebe um objeto Beneficiario como parâmetro e adiciona um novo beneficiário ao banco de dados. Ele executa uma consulta SQL de inserção para adicionar os dados do beneficiário fornecido ao banco de dados.
+    * listarTodos: Este método retorna uma lista de todos os beneficiários cadastrados no banco de dados. Ele executa uma consulta SQL para recuperar todos os beneficiários e utiliza o método mapeamento para converter cada resultado da consulta em um objeto Beneficiario, que é adicionado a uma lista de beneficiários.
+    * buscarPorCpf: Este método recebe um CPF como parâmetro e retorna um objeto Beneficiario correspondente ao CPF fornecido. Ele executa uma consulta SQL para buscar o beneficiário com o CPF especificado e utiliza o método mapeamento para converter o resultado da consulta em um objeto Beneficiario.
+    * buscarPorPrograma: Este método recebe um ID de programa social como parâmetro e retorna uma lista de beneficiários que fazem parte desse programa. Ele executa uma consulta SQL para buscar os beneficiários associados ao programa social especificado e utiliza o método mapeamento para converter cada resultado da consulta em um objeto Beneficiario, que é adicionado a uma lista de beneficiários.
+    * listarPorCidade: Este método recebe uma cidade como parâmetro e retorna uma lista de beneficiários que residem nessa cidade. Ele executa uma consulta SQL para buscar os beneficiários associados à cidade especificada e utiliza o método mapeamento para converter cada resultado da consulta em um objeto Beneficiario, que é adicionado a uma lista de beneficiários.
+    * atualizar: Este método recebe um CPF e um objeto Beneficiario como parâmetros e atualiza os dados de um beneficiário existente no banco de dados com base no CPF fornecido. Ele executa uma consulta SQL de atualização para modificar os dados do beneficiário correspondente ao CPF especificado.
+    * excluir: Este método recebe um CPF como parâmetro e remove o beneficiário correspondente a esse CPF do banco de dados. Ele executa uma consulta SQL de exclusão para remover o beneficiário com o CPF especificado do banco de dados.
+    * Esses métodos permitem que o sistema manipule os dados dos beneficiários de forma eficiente, realizando operações de criação, leitura, atualização e exclusão conforme necessário, e garantindo a integridade dos dados no banco de dados.
  */
 public class BeneficiarioDAO {
     private Beneficiario mapeamento(ResultSet response) throws SQLException {

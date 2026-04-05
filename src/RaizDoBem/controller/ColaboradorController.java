@@ -2,7 +2,6 @@ package RaizDoBem.controller;
 
 import RaizDoBem.model.bo.ColaboradorBO;
 import RaizDoBem.model.vo.Colaborador;
-import RaizDoBem.model.vo.PedidoAjuda;
 import RaizDoBem.view.ColaboradorView;
 
 import java.time.LocalDate;

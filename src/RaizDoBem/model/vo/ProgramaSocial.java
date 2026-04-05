@@ -1,15 +1,11 @@
 package RaizDoBem.model.vo;
 
 /**
- * Representa um programa social do projeto Raiz do Bem, contendo informações como id e nome do programa. Esta classe é utilizada para modelar os programas sociais associados aos colaboradores e dentistas.
+ * Representa um programa social oferecido pela ONG. Cada programa social tem um identificador único e um nome que descreve o programa. Esta classe é utilizada para armazenar e manipular informações sobre os programas sociais disponíveis para os beneficiários da ONG.
  * @author Paulo
- * @since 2025-09
+ * @since 2026-03
  * @param id Identificador único do programa social.
- * @param programa Nome do programa social.
- *
- * Exemplos de programas sociais da ONG:
- * - Dentista do Bem: Programa que oferece atendimento odontológico para crianças em situação de vulnerabilidade social.
- * - Apolônias do Bem: Programa que auxilia mulheres que sofreram algum tipo de violência, em situação de vulnerabilidade social.
+ * @param programa Nome do programa social, utilizado para descrever o tipo de assistência ou serviço oferecido aos beneficiários.
  */
 public class ProgramaSocial {
     private int id;

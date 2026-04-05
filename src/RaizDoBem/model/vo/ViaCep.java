@@ -18,7 +18,6 @@ public class ViaCep {
         private String bairro;
         private String localidade; // cidade
         private String uf;
-        private String estado;
         private boolean erro;
 
         public String getCep() { return cep; }
@@ -28,7 +27,7 @@ public class ViaCep {
         public String getUf() { return uf; }
         public boolean isErro() { return erro; }
 
-        public ViaCep(String cep, String logradouro, String bairro, String localidade, String uf, String estado, boolean erro) {
+        public ViaCep(String cep, String logradouro, String bairro, String localidade, String uf, boolean erro) {
                 this.cep = cep;
                 this.logradouro = logradouro;
                 this.bairro = bairro;
@@ -37,7 +36,7 @@ public class ViaCep {
                 this.erro = erro;
         }
 
-        public ViaCep(String logradouro, String bairro, String localidade, String uf, String estado) {
+        public ViaCep(String logradouro, String bairro, String localidade, String uf) {
                 this.logradouro = logradouro;
                 this.bairro = bairro;
                 this.localidade = localidade;

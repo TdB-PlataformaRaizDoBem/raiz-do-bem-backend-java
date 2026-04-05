@@ -4,7 +4,6 @@ import RaizDoBem.model.bo.DentistaBO;
 import RaizDoBem.model.vo.*;
 import RaizDoBem.view.DentistaView;
 
-import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -31,8 +30,8 @@ public class DentistaController {
 
     public void criar() {
         Sexo sexo;
-        String categoriaDentista;
-        boolean disponibilidade;
+        String categoriaDentista = "";
+        boolean disponibilidade = false;
 
         String cro = view.inputCro();
         String cpf = view.inputCpf();
@@ -51,8 +50,10 @@ public class DentistaController {
         int categ = view.inputCategoria();
         if(categ == 1 )
             categoriaDentista = "COORDENADOR";
-        else if(categ ==2 )
+        else if(categ == 2 )
             categoriaDentista = "CLINICO";
+
+        int idEndereco = view.inputIdEndereco();
 
         int disponivel = view.inputDisponibilidade();
         if(disponivel == 1 )
@@ -60,7 +61,8 @@ public class DentistaController {
         else if(disponivel == 2 )
             disponibilidade = false;
 
-//        bo.criarDentista(dentista);
+        Dentista dentista = bo.validarDentista(cro, cpf, nome, sexo, telefone, email, categoriaDentista, idEndereco, disponibilidade);
+        bo.criarDentista(dentista);
         view.exibirMensagem("Dentista criado com sucesso!!!");
     }
 
@@ -95,22 +97,40 @@ public class DentistaController {
         }
     }
 
-    public void listarDisponiveis(boolean disponivel) {
-        List<Dentista> dentista = bo.listarDisponiveis(disponivel);
+    public void listarDisponiveis() {
+        List<Dentista> dentista = bo.listarDisponiveis();
         if (dentista.isEmpty()) {
             view.exibirMensagem("Nenhum dentista disponível encontrado!!!");
         } else {
-            view.exibirMensagem("Exibindo todos os dentistas dispníveis: ");
+            view.exibirMensagem("Exibindo todos os dentistas disponíveis: ");
             view.exibirLista(dentista);
         }
     }
 
     public void atualizar(String cpf){
+        String categoriaDentista = "";
+        boolean disponibilidade = false;
         try{
+            String telefone  = view.inputTelefone();
+            String email = view.inputEmail();
 
+            int categ = view.inputCategoria();
+            if(categ == 1 )
+                categoriaDentista = "COORDENADOR";
+            else if(categ == 2 )
+                categoriaDentista = "CLINICO";
 
+            int idEndereco = view.inputIdEndereco();
 
-//            bo.atualizarDentista(cpf, );
+            int disponivel = view.inputDisponibilidade();
+            if(disponivel == 1 )
+                disponibilidade = true;
+            else if(disponivel == 2 )
+                disponibilidade = false;
+
+            Dentista dentista = bo.validaAtualizaDentista(email, telefone, categoriaDentista, idEndereco, disponibilidade);
+
+            bo.atualizarDentista(cpf, dentista);
             view.exibirMensagem("Dentista atualizado com sucesso!!!");
         } catch (RuntimeException e) {
             view.exibirMensagem(e.getMessage());

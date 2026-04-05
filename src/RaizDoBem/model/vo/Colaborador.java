@@ -3,7 +3,16 @@ package RaizDoBem.model.vo;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-
+/** * Cada pessoa que trabalha na Turma do Bem, seja como voluntário ou funcionário, e é responsável por registrar os beneficiários, acompanhar os atendimentos e contribuir para a missão da ONG. Contém informações pessoais, data de contratação e email para contato.
+ * @author Paulo
+ * @since 2026-03
+ * @param id Identificador único do colaborador.
+ * @param cpf CPF do colaborador, utilizado para identificação.
+ * @param nomeCompleto Nome completo do colaborador.
+ * @param dataNascimento Data de nascimento do colaborador, utilizada para calcular a idade e verificar elegibilidade para determinadas funções ou programas dentro da ONG.
+ * @param dataContratacao Data de contratação do colaborador, utilizada para registrar o início do vínculo com a ONG e calcular o tempo de serviço.
+ * @param email Endereço de e-mail do colaborador, utilizado para comunicação e envio de informações relevantes relacionadas às atividades da ONG.
+ */
 public class Colaborador {
     private int id;
     private String cpf;

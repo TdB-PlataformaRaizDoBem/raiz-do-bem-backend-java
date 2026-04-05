@@ -2,8 +2,11 @@ package RaizDoBem.model.bo;
 
 import RaizDoBem.model.dao.DentistaDAO;
 import RaizDoBem.model.vo.Beneficiario;
+import RaizDoBem.model.vo.Colaborador;
 import RaizDoBem.model.vo.Dentista;
+import RaizDoBem.model.vo.Sexo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class DentistaBO {
@@ -27,7 +30,7 @@ public class DentistaBO {
     public List<Dentista> listarTodos(){
         return dao.listarTodos();
     }
-    public List<Dentista> listarDisponiveis(boolean disponivel){
+    public List<Dentista> listarDisponiveis(){
         return dao.listarDisponiveis();
     }
 
@@ -53,5 +56,27 @@ public class DentistaBO {
             return;
         }
         dao.excluir(cpf);
+    }
+
+    public Dentista validarDentista(String cro, String cpf, String nome, Sexo sexo, String email, String telefone, String categoria, int idEndereco, boolean disponivel) {
+        return new Dentista(
+                cro,
+                cpf,
+                nome,
+                sexo,
+                email,
+                telefone,
+                categoria,
+                idEndereco,
+                disponivel
+        );
+    }
+
+    public Dentista validaAtualizaDentista(String email, String telefone, String categoria, int idEndereco, boolean disponivel) {
+        return new Dentista()
+                .setEmail(email)
+                .setTelefone(telefone)
+                .setCategoria(categoria)
+                .setIdEndereco(idEndereco);
     }
 }

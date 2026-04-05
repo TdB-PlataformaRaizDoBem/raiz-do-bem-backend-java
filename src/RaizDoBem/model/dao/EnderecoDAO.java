@@ -9,15 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe de acesso a dados para a entidade Endereço, que armazena informações
- * das pessoas registradas no sistema da Turma do Bem.
- * Responsável por realizar operações de CRUD (Create, Read, Update, Delete)
- * relacionadas aos endereços das pessoas envolvidas na plataforma.
- * 
+ * Classe de acesso a dados para a entidade Endereço. Esta classe é responsável por realizar as operações de banco de dados relacionadas aos endereços, como criação, leitura, atualização e exclusão. Ela utiliza a classe Conexao para estabelecer a conexão com o banco de dados e executa as consultas SQL necessárias para manipular os dados dos endereços.
  * @author Paulo
  * @since 2026-03
- *
- *
+ * 1º Metodo - mapeamento: Recebe um objeto ResultSet contendo os dados de um endereço e realiza o mapeamento desses dados para criar e retornar um objeto Endereco correspondente.
+ * 2º Metodo - adicionar: Recebe um objeto Endereco e insere seus dados no banco de dados, utilizando uma consulta SQL INSERT.
+ * 3º Metodo - listarTodos: Recupera todos os endereços cadastrados no banco de dados, utilizando uma consulta SQL SELECT, e retorna uma lista de objetos Endereco correspondentes.
+ * 4º Metodo - buscarPorId: Recebe um ID de endereço e busca no banco de dados o endereço correspondente, utilizando uma consulta SQL SELECT com cláusula WHERE, e retorna um objeto Endereco com os dados encontrados.
+ * 5º Metodo - listarPorCidade: Recebe o nome de uma cidade e busca no banco de dados os endereços localizados nessa cidade, utilizando uma consulta SQL SELECT com cláusula WHERE, e retorna uma lista de objetos Endereco correspondentes.
+ * 6º Metodo - atualizar: Recebe um ID de endereço e um objeto Endereco com as novas informações, e atualiza os dados do endereço correspondente no banco de dados, utilizando uma consulta SQL UPDATE.
+ * 7º Metodo - excluir: Recebe um ID de endereço e remove o endereço correspondente do banco de dados, utilizando uma consulta SQL DELETE.
+ * Esses métodos permitem que a aplicação realize as operações necessárias para gerenciar os endereços, garantindo a persistência dos dados e a integridade das informações relacionadas aos endereços cadastrados no sistema.
  */
 public class EnderecoDAO {
     public Endereco mapeamento(ResultSet response) throws SQLException {

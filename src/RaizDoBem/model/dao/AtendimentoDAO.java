@@ -8,13 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe de acesso a dados para a entidade Atendimento.
- * Responsável por realizar operações de Criação, Leitura, e atualização
- * relacionadas aos atendimentos aos beneficiários.
- * 
+ * Classe de acesso a dados para a entidade Atendimento. Esta classe é responsável por realizar operações de banco de dados relacionadas aos atendimentos, como buscar por CPF, adicionar um novo atendimento, listar todos os atendimentos, atualizar um atendimento existente e encontrar atendimentos relacionados a beneficiários e dentistas. Ela utiliza a classe Conexao para estabelecer a conexão com o banco de dados e executa as consultas SQL necessárias para manipular os dados dos atendimentos.
  * @author Paulo
- * @since 2026-03
- *
+* @since 2026-03
+* buscarPorCpf: Este método recebe um CPF como parâmetro e retorna um objeto Atendimento correspondente ao CPF fornecido. Ele executa uma consulta SQL para buscar o atendimento com o CPF especificado e utiliza o método mapeamento para converter o resultado da consulta em um objeto Atendimento.
+* adicionar: Este método recebe um objeto Atendimento como parâmetro e adiciona um novo atendimento ao banco de dados. Ele executa uma consulta SQL de inserção para adicionar os dados do atendimento fornecido ao banco de dados.
+* listarTodos: Este método retorna uma lista de todos os atendimentos cadastrados no banco de dados. Ele executa uma consulta SQL para recuperar todos os atendimentos e utiliza o método mapeamento para converter cada resultado da consulta em um objeto Atendimento, que é adicionado a uma lista de atendimentos.
+* atualizar: Este método recebe um CPF e um objeto Atendimento como parâmetros e atualiza os dados de um atendimento existente no banco de dados com base no CPF fornecido. Ele executa uma consulta SQL de atualização para modificar os dados do atendimento correspondente ao CPF especificado.
+* encontrarAtendimentoBeneficiario: Este método é responsável por encontrar os atendimentos relacionados a um beneficiário específico. Ele pode receber um identificador do beneficiário como parâmetro e executar uma consulta SQL para recuperar os atendimentos associados a esse beneficiário.
+* encontrarAtendimentosDentista: Este método é responsável por encontrar os atendimentos relacionados a um dentista específico. Ele pode receber um identificador do dentista como parâmetro e executar uma consulta SQL para recuperar os atendimentos associados a esse dentista.
  */
 public class AtendimentoDAO {
     private Atendimento mapeamento(ResultSet response) throws SQLException {

@@ -1,6 +1,19 @@
 package RaizDoBem.model.vo;
 
-
+/* Classe que representa um dentista na ONG. Esta classe contém informações sobre o dentista, como seu CRO (Conselho Regional de Odontologia), CPF, nome completo, sexo, email, telefone, categoria de atendimento, disponibilidade e o ID do endereço associado. Ela é utilizada para armazenar e manipular os dados dos dentistas que prestam atendimento aos beneficiários da ONG.
+ * @author Paulo
+ * @since 2026-03
+ * @param id Identificador único do dentista.
+ * @param croDentista CRO do dentista, utilizado para identificação profissional.
+ * @param cpf CPF do dentista, utilizado para identificação pessoal.
+ * @param nomeCompleto Nome completo do dentista.
+ * @param sexo Sexo do dentista, utilizado para registro e comunicação adequada.
+ * @param email Endereço de e-mail do dentista, utilizado para comunicação e envio de informações relevantes.
+ * @param telefone Número de telefone do dentista, utilizado para contato e comunicação.
+ * @param categoria Categoria de atendimento do dentista, indicando sua função de Coordenador ou Clínico.
+ * @param disponivel Indica se o dentista está disponível para realizar atendimentos, permitindo a gestão eficiente dos recursos humanos da ONG.
+ * @param idEndereco Identificador do endereço do dentista, referenciando a localização onde o dentista reside ou onde os atendimentos são realizados, facilitando a organização e logística dos atendimentos odontológicos.
+ */
 public class Dentista{
     private int id;
     private String croDentista;
@@ -85,10 +98,13 @@ public class Dentista{
         return this;
     }
 
-    public boolean isDisponivel() {
+    public boolean getDisponivel() {
         return disponivel;
     }
 
+    public String isDisponivel() {
+        return disponivel ? "S" : "N";
+    }
     public Dentista setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
         return this;
@@ -133,16 +149,15 @@ public class Dentista{
 
     @Override
     public String toString() {
-        return id +
-                "  - CRO:" + croDentista +
-                " - Cpf:" + cpf +
-                "\nNomeCompleto" + nomeCompleto  +
-                ", sexo=" + sexo +
-                ", email='" + email + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", disponivel=" + disponivel +
-                ", idEndereco=" + idEndereco +
-                '}';
+        return "\n" + id +
+                "  - CRO: " + croDentista +
+                " - Cpf: " + cpf +
+                "\n     Nome Completo: " + nomeCompleto  +
+                " -  sexo: " + sexo +
+                "\n     Email: " + email +
+                " - telefone: " + telefone +
+                "\n     Categoria: " + categoria +
+                " - disponível: " + disponivel +
+                "\n     idEndereco: " + idEndereco;
     }
 }

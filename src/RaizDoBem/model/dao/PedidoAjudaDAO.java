@@ -11,14 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe de acesso a dados para a entidade PedidoAjuda, registro inicial que
- * precede o registro de um beneficiário.
- * Responsável por realizar operações de CRUD (Create, Read, Update, Delete)
- * relacionadas aos pedidos de ajuda.
- * 
+ * Classe de acesso a dados para a entidade PedidoAjuda. Esta classe é responsável por realizar as operações de banco de dados relacionadas aos pedidos de ajuda, como criação, listagem, busca por CPF, busca por ID, listagem por data, atualização e exclusão. Ela utiliza a classe Conexao para estabelecer a conexão com o banco de dados e executa as consultas SQL necessárias para manipular os dados dos pedidos de ajuda.
  * @author Paulo
  * @since 2026-03
- *
+ * 1º Metodo - mapeamento: Recebe um objeto ResultSet contendo os dados de um pedido de ajuda e realiza o mapeamento desses dados para criar e retornar um objeto PedidoAjuda correspondente.
+ * 2º Metodo - adicionar: Recebe um objeto PedidoAjuda e insere seus dados no banco de dados, utilizando uma consulta SQL INSERT.
+ * 3º Metodo - listarTodos: Recupera todos os pedidos de ajuda cadastrados no banco de dados, utilizando uma consulta SQL SELECT, e retorna uma lista de objetos PedidoAjuda correspondentes.
+ * 4º Metodo - buscarPorCpf: Recebe um CPF e busca no banco de dados o pedido de ajuda correspondente, utilizando uma consulta SQL SELECT com cláusula WHERE, e retorna um objeto PedidoAjuda com os dados encontrados.
+ * 5º Metodo - buscarPorId: Recebe um ID de pedido de ajuda e busca no banco de dados o pedido correspondente, utilizando uma consulta SQL SELECT com cláusula WHERE, e retorna um objeto PedidoAjuda com os dados encontrados.
+ * 6º Metodo - listarPedidosData: Recebe uma data e busca no banco de dados os pedidos de ajuda criados nessa data, utilizando uma consulta SQL SELECT com cláusula WHERE, e retorna uma lista de objetos PedidoAjuda correspondentes.
+ * 7º Metodo - atualizarPedido: Recebe um CPF e um objeto PedidoAjuda com as novas informações, e atualiza os dados do pedido de ajuda correspondente no banco de dados, utilizando uma consulta SQL UPDATE.
+ * 8º Metodo - excluirPedido: Recebe um CPF e remove o pedido de ajuda correspondente do banco de dados, utilizando uma consulta SQL DELETE.
+ * esses métodos permitem que a aplicação realize as operações necessárias para gerenciar os pedidos de ajuda, garantindo a persistência dos dados e a integridade das informações relacionadas aos pedidos de ajuda cadastrados no sistema.
  */
 public class PedidoAjudaDAO {
     public PedidoAjuda mapeamento(ResultSet response) throws SQLException {

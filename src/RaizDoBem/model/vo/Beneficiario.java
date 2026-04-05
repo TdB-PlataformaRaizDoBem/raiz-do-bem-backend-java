@@ -6,18 +6,16 @@ import java.time.format.DateTimeFormatter;
 /**
  * Cada pessoa que passou pelo processo de solicitação de pedido de ajuda, e agora recebe atendimento da Turma do Bem. Contém informações pessoais, endereço, programa social associado, pedido de ajuda referência e colaborador responsável que o registrou.
  * @author Paulo
- * @since 2025-09
- * @param int Identificador único do beneficiário.
+ * @since 2026-03
+ * @param id Identificador único do beneficiário.
  * @param cpf CPF do beneficiário, utilizado para identificação.
  * @param nomeCompleto Nome completo do beneficiário.
- * @param dataNascimento Data de nascimento do beneficiário.
- * @param telefone Número de telefone do beneficiário para contato.
- * @param email Endereço de email do beneficiário para contato.
- * @param sexo Referência ao sexo do beneficiário, utilizando a classe Sexo.
- * @param programa Referência ao programa social ao qual o beneficiário está associado, utilizando a classe ProgramaSocial.
- * @param endereco Referência ao endereço do beneficiário, utilizando a classe Endereco.
- * @param pedidoAjuda Referência ao pedido de ajuda do beneficiário, utilizando a classe PedidoAjuda.
- * @param coordenador Referência ao colaborador responsável pelo beneficiário, utilizando a classe Colaborador.
+ * @param dataNascimento Data de nascimento do beneficiário, utilizada para calcular a idade e verificar elegibilidade para programas sociais.
+ * @param telefone Número de telefone do beneficiário, utilizado para contato e comunicação.
+ * @param email Endereço de e-mail do beneficiário, utilizado para comunicação e envio de informações relevantes.
+ * @param idPedidoAjuda Identificador do pedido de ajuda associado ao beneficiário, referenciando a solicitação de assistência feita pelo beneficiário.
+ * @param idProgramaSocial Identificador do programa social ao qual o beneficiário está associado, indicando o programa específico que oferece assistência ao beneficiário.
+ * @param idEndereco Identificador do endereço do beneficiário, referenciando a localização onde o beneficiário reside ou onde os atendimentos são realizados.
  *
  */
 public class Beneficiario{

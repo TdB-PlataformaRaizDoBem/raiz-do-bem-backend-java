@@ -3,10 +3,17 @@ package RaizDoBem.model.vo;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Representa um atendimento odontológico realizado por um dentista a um beneficiário. Cada atendimento possui uma descrição detalhada, data de realização, e referências ao beneficiário e dentista envolvidos. Essa classe é fundamental para registrar e acompanhar os atendimentos realizados, permitindo que o coordenador tenha acesso a informações relevantes para a gestão dos serviços odontológicos oferecidos.
+/** * Classe de valor para os atendimentos realizados pela ONG. Esta classe representa um atendimento específico, contendo informações como descrição inicial, data de início, data de término, solução do problema, e os IDs do beneficiário, dentista e colaborador envolvidos no atendimento. Ela é utilizada para transferir dados entre as camadas da aplicação, facilitando a manipulação e exibição das informações relacionadas aos atendimentos.
  * @author Paulo
- * @since 2025-09
+ * @since 2026-03
+ * @param id Identificador único do atendimento.
+ * @param descricaoInicial Descrição detalhada do atendimento, incluindo informações sobre o problema odontológico enfrentado pelo beneficiário e as ações realizadas pelo dentista durante o atendimento.
+ * @param dataInicial Data em que o atendimento foi realizado, permitindo o registro cronológico dos atendimentos e facilitando a análise de histórico de atendimentos para cada beneficiário.
+ * @param dataFinal Data em que o atendimento foi concluído, indicando o término do processo de atendimento e permitindo a avaliação do tempo gasto para resolver o problema odontológico do beneficiário.
+ * @param solucaoProblema Descrição da solução adotada para resolver o problema odontológico do beneficiário, incluindo detalhes sobre os procedimentos realizados, medicamentos prescritos, e orientações fornecidas ao beneficiário para cuidados posteriores.
+ * @param idBeneficiario Identificador do beneficiário que recebe o atendimento, referenciando a pessoa que está sendo assistida pela ONG.
+ * @param idDentista Identificador do dentista que realiza o atendimento, referenciando o profissional responsável por fornecer os cuidados odontológicos ao beneficiário durante o atendimento.
+ * @param idColaborador Identificador do colaborador responsável por registrar o atendimento, referenciando a pessoa que documenta as informações do atendimento e garante que os dados sejam corretamente armazenados para futuras consultas e análises.
  */
 public class Atendimento {
     private int id;

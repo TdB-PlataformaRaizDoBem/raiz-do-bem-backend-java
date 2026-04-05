@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe de acesso a dados para os dentistas que prestarão serviço a ONG.
- * Responsável por realizar operações de CRUD (Create, Read, Update, Delete)
- * relacionadas aos dentistas.
- * 
+ * Classe de acesso a dados para a entidade Dentista. Esta classe é responsável por realizar operações de banco de dados relacionadas aos dentistas, como adicionar um novo dentista, listar todos os dentistas, buscar um dentista por CPF, atualizar as informações de um dentista e excluir um dentista do sistema. Ela utiliza a classe Conexao para estabelecer a conexão com o banco de dados e executa as consultas SQL necessárias para manipular os dados dos dentistas.
  * @author Paulo
  * @since 2026-03
- *
+ * adicionar: Este método recebe um objeto Dentista como parâmetro e adiciona um novo dentista ao banco de dados. Ele executa uma consulta SQL de inserção para adicionar os dados do dentista fornecido ao banco de dados.
+ * listarTodos: Este método retorna uma lista de todos os dentistas cadastrados no banco de dados. Ele executa uma consulta SQL para recuperar todos os dentistas e utiliza o método mapeamento para converter cada resultado da consulta em um objeto Dentista, que é adicionado a uma lista de dentistas.
+ * buscarPorCpf: Este método recebe um CPF como parâmetro e retorna um objeto DentistaDAO correspondente ao CPF fornecido. Ele executa uma consulta SQL para buscar o dentista com o CPF especificado e utiliza o método mapeamento para converter o resultado da consulta em um objeto Dentista.
+ * atualizar: Este método recebe um CPF e um objeto Dentista como parâmetros e atualiza os dados de um dentista existente no banco de dados com base no CPF fornecido. Ele executa uma consulta SQL de atualização para modificar os dados do dentista correspondente ao CPF especificado.
+ * excluir: Este método recebe um CPF como parâmetro e remove o dentista correspondente a esse CPF do banco de dados. Ele executa uma consulta SQL de exclusão para remover o dentista com o CPF especificado do banco de dados.
+ * Esses métodos permitem que o sistema manipule os dados dos dentistas de forma eficiente, realizando operações de criação, leitura, atualização e exclusão conforme necessário, e garantindo a integridade dos dados no banco de dados.
  */
 public class DentistaDAO {
     public Dentista mapeamento(ResultSet response) throws SQLException {
@@ -23,7 +25,7 @@ public class DentistaDAO {
         Sexo sexo = Sexo.valueOf(sexoDentista.toUpperCase());
 
         String statusDentista = response.getString("disponivel");
-        boolean disponivel = statusDentista.contains("S");
+        boolean disponivel = statusDentista.equals("S");
 
         return new Dentista(
                 response.getInt("id_dentista"),
@@ -40,7 +42,7 @@ public class DentistaDAO {
     }
 
     public Dentista buscarPorCpf(String cpf) {
-        String querySql = "SELECT id_dentista, cpf, nome_completo, data_nascimento,email, cro, disponivel FROM Dentista WHERE cpf = ?";
+        String querySql = "SELECT id_dentista, cro, cpf, nome_completo, sexo, email, telefone, categoria, id_endereco, disponivel FROM Dentista WHERE cpf = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -57,7 +59,7 @@ public class DentistaDAO {
     }
 
     public void adicionar(Dentista dentista) {
-        String querySql = "INSERT INTO Dentista (cpf, nome_completo, data_nascimento, email, id_endereco, id_sexo, cro, disponivel) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO Dentista (cro, cpf, nome_completo, sexo, email, telefone, categoria, id_endereco, disponivel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -68,8 +70,9 @@ public class DentistaDAO {
             ps.setString(5, dentista.getEmail());
             ps.setString(6, dentista.getTelefone());
             ps.setString(7, dentista.getCategoria());
-            ps.setBoolean(8, dentista.isDisponivel());
-            ps.setInt(9, dentista.getIdEndereco());
+            ps.setInt(8, dentista.getIdEndereco());
+            ps.setString(9, dentista.isDisponivel());
+
 
             ps.executeUpdate();
         } catch (SQLException exception) {
@@ -94,7 +97,7 @@ public class DentistaDAO {
     }
 
     public List<Dentista> listarPorCidade(String cidade) {
-        String querySql = "SELECT id_dentista, cro, cpf, nome_completo, sexo, email, telefone, categoria, disponivel, id_endereco FROM Dentista WHERE cidade  = ?";
+        String querySql = "SELECT d.id_dentista, d.cro, d.cpf, d.nome_completo, d.sexo, d.email, d.telefone, d.categoria, d.disponivel, d.id_endereco FROM Dentista d, endereco e WHERE e.cidade = ? AND d.id_endereco = e.id_endereco";
         List<Dentista> dentistas = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -115,7 +118,7 @@ public class DentistaDAO {
     }
 
     public List<Dentista> listarDisponiveis() {
-        String querySql = "SELECT id_dentista, cro, cpf, nome_completo, sexo, email, telefone, categoria, disponivel, id_endereco  FROM Dentista WHERE disponivel = 'S'";
+        String querySql = "SELECT id_dentista, cro, cpf, nome_completo, sexo, email, telefone, categoria, disponivel, id_endereco FROM Dentista WHERE disponivel = 'S'";
         List<Dentista> dentistas = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -133,7 +136,7 @@ public class DentistaDAO {
     }
 
     public void atualizar(String cpf, Dentista dentista) {
-        String querySql = "UPDATE Dentista SET id_tipo_endereco = ?, disponibilidade = ? WHERE cpf = ?";
+        String querySql = "UPDATE Dentista SET email = ?, telefone = ?, categoria = ?, disponivel = ?,  id_endereco = ? WHERE cpf = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -141,9 +144,9 @@ public class DentistaDAO {
             ps.setString(1, dentista.getEmail());
             ps.setString(2, dentista.getTelefone());
             ps.setString(3, dentista.getCategoria());
-            ps.setBoolean(4, dentista.isDisponivel());
-            ps.setString(5, dentista.getEmail());
-            ps.setInt(6, dentista.getIdEndereco());
+            ps.setString(4, dentista.isDisponivel());
+            ps.setInt(5, dentista.getIdEndereco());
+            ps.setString(6, cpf);
 
             ps.executeUpdate();
         } catch (SQLException exception) {

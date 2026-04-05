@@ -5,16 +5,22 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Requisito para poder criar um beneficiário. Contém informações sobre o problema descrito, dados de contato da pessoa alv, data do pedido e status do pedido.
- * @author Paulo
- * @since 2025-09
- * @param id Identificador único do pedido de ajuda.
- * @param cpf CPF do beneficiário que fez o pedido de ajuda, utilizado para identificação.
- * @param descricaoProblema Descrição detalhada do problema ou necessidade relatada pelo beneficiário.
- * @param nomeCompleto Nome completo do beneficiário que fez o pedido de ajuda.
- * @param telefone Número de telefone do beneficiário para contato.
- * @param email Endereço de email do beneficiário para contato.
- * @param data Data em que o pedido de ajuda foi registrado.
- * @param status Referência ao status atual do pedido de ajuda, utilizando a classe StatusPedido.
+    * @author Paulo
+    * @since 2026-03
+    * @param id Identificador único do pedido de ajuda.
+    * @param cpf CPF do solicitante, utilizado para identificação.
+    * @param nomeCompleto Nome completo do solicitante.
+    * @param dataNascimento Data de nascimento do solicitante, utilizada para calcular a idade e
+    * verificar elegibilidade para determinados programas sociais ou atendimentos.
+    * @param sexo Sexo do solicitante, utilizado para registro e comunicação adequada.
+    * @param telefone Número de telefone do solicitante, utilizado para contato e comunicação.
+    * @param email Endereço de e-mail do solicitante, utilizado para comunicação e envio de informações relevantes relacionadas ao pedido de ajuda.
+    * @param descricaoProblema Descrição detalhada do problema enfrentado pelo solicitante, incluindo informações sobre a situação odontológica, dificuldades financeiras ou outras necessidades que motivaram a solicitação de ajuda.
+    * @param dataPedido Data em que o pedido de ajuda foi realizado, permitindo o registro cronológico dos pedidos e facilitando a análise de histórico de pedidos para cada solicitante.
+    * @param status Status atual do pedido de ajuda, indicando se o pedido está pendente, em andamento ou concluído, permitindo a gestão eficiente dos pedidos e a priorização de atendimentos.
+    * @param idEndereco Identificador do endereço associado ao pedido de ajuda, referenciando a localização onde o solicitante reside ou onde os atendimentos são realizados, facilitando a organização e logística dos atendimentos odontológicos.
+    * @param idDentista Identificador do dentista associado ao pedido de ajuda, referenciando o profissional responsável por fornecer os cuidados odontológicos ao solicitante durante o processo de atendimento, permitindo a gestão eficiente dos recursos humanos da ONG e a atribuição adequada dos atendimentos.
+    * 
  */
 public class PedidoAjuda {
     private int id;
