@@ -9,7 +9,7 @@ public class AtendimentoTeste {
         AtendimentoView view = new AtendimentoView();
         AtendimentoController controller = new AtendimentoController(view);
 
-        controller.adicionar();
+//        controller.adicionar();
 
         controller.listandoTodos();
 

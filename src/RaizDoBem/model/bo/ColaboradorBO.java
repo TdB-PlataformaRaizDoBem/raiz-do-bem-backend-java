@@ -4,6 +4,7 @@ import RaizDoBem.model.dao.ColaboradorDAO;
 import RaizDoBem.model.vo.Colaborador;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class ColaboradorBO {
@@ -43,7 +44,18 @@ public class ColaboradorBO {
         dao.excluir(cpf);
     }
 
-    public Colaborador validarColaborador(String email) {
+    public Colaborador validarColaborador(String cpf, String nome, LocalDate dataNascimento, LocalDate dataContratacao, String email) {
+
+        return new Colaborador(
+                cpf,
+                nome,
+                dataNascimento,
+                dataContratacao,
+                email
+        );
+    }
+
+    public Colaborador validarNovoColaborador(String email){
         if (email.isEmpty()) {
             throw new RuntimeException("Email inválido!!!");
         }

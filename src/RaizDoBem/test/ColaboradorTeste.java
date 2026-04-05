@@ -20,7 +20,8 @@ public class ColaboradorTeste {
 //        controller.buscarPorCpf(cpf);
 
         //4º metodo - atualizando
-//        controller.atualizar();
+//        String cpf = view.inputCpf();
+//        controller.atualizar(cpf);
 
         //5º metodo - excluindo
 //        String cpf = view.inputCpf();

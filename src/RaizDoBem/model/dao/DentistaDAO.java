@@ -73,7 +73,7 @@ public class DentistaDAO {
     }
 
     public List<Dentista> listarTodos() {
-        String querySql = "SELECT id_dentista, cpf, nome_completo, data_nascimento, email, cro, disponivel, FROM Dentista";
+        String querySql = "SELECT id_dentista, cpf, nome_completo, data_nascimento, email, cro, disponivel FROM Dentista";
         List<Dentista> dentistas = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -89,7 +89,7 @@ public class DentistaDAO {
     }
 
     public List<Dentista> listarPorCidade(String cidade) {
-        String querySql = "SELECT id_dentista, cpf, nome_completo, data_nascimento, email, tipo, cro, disponivel, FROM Dentista WHERE cidade  = ?";
+        String querySql = "SELECT id_dentista, cpf, nome_completo, data_nascimento, email, tipo, cro, disponivel FROM Dentista WHERE cidade  = ?";
         List<Dentista> dentistas = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -110,7 +110,7 @@ public class DentistaDAO {
     }
 
     public List<Dentista> listarDisponiveis() {
-        String querySql = "SELECT id_dentista, cpf, nome_completo, data_nascimento, email, tipo, cro, d.disponivel, FROM Dentista WHERE disponivel = 'S'";
+        String querySql = "SELECT id_dentista, cpf, nome_completo, data_nascimento, email, tipo, cro, disponivel FROM Dentista WHERE disponivel = 'S'";
         List<Dentista> dentistas = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();

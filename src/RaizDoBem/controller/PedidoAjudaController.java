@@ -93,7 +93,6 @@ public class PedidoAjudaController {
             StatusPedido status = bo.validarStatus(idStatus);
             int idDentista = view.inputIdDentista();
 
-
             PedidoAjuda pedido = bo.validarNovoPedido(status, idDentista);
             bo.atualizar(cpf, pedido);
             view.exibirMensagem("Pedido atualizado com sucesso!!!");
@@ -103,7 +102,7 @@ public class PedidoAjudaController {
     }
 
     public void deletar(String cpf) {
-        if (cpf == null) {
+        if (cpf == null || cpf.isEmpty()) {
             view.exibirMensagem("Cpf inválido!!!");
         } else {
             bo.excluir(cpf);

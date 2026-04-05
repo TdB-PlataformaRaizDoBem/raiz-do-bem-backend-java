@@ -15,8 +15,6 @@ import java.util.List;
  * @since 2026-03
  */
 public class BeneficiarioDAO {
-    List<Beneficiario> beneficiarios = new ArrayList<>();
-
     private Beneficiario mapeamento(ResultSet response) throws SQLException {
         return new Beneficiario(
                 response.getInt("id_beneficiario"),
@@ -58,6 +56,7 @@ public class BeneficiarioDAO {
      * itera sobre os resultados para criar objetos Beneficiario e exibi-los.
      */
     public List<Beneficiario> listarTodos() {
+        List<Beneficiario> beneficiarios = new ArrayList<>();
         String querySql = "SELECT id_beneficiario, cpf, nome_completo, data_nascimento, telefone, email, id_programa_social, id_pedido_ajuda, id_endereco FROM Beneficiario";
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);
@@ -91,6 +90,7 @@ public class BeneficiarioDAO {
     }
 
     public List<Beneficiario> buscarPorPrograma(int idPrograma) {
+        List<Beneficiario> beneficiarios = new ArrayList<>();
         String querySql = "SELECT id_beneficiario, cpf, nome_completo, data_nascimento, telefone, email, id_programa_social, id_pedido_ajuda, id_endereco FROM Beneficiario WHERE id_programa_social = ?";
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -108,14 +108,8 @@ public class BeneficiarioDAO {
         return beneficiarios;
     }
 
-    /**
-     * O metodo listagemPorCidade() é responsável por recuperar e exibir os
-     * registros de beneficiários relacionados a uma cidade específica. Ele executa
-     * uma consulta SQL que seleciona os beneficiários onde o id_endereco
-     * corresponde ao id do endereço fornecido como parâmetro, e itera sobre os
-     * resultados para criar objetos Beneficiario e exibi-los.
-     */
     public List<Beneficiario> listarPorCidade(String cidade) {
+        List<Beneficiario> beneficiarios = new ArrayList<>();
         String querySql = "SELECT b.id_beneficiario, b.cpf, b.nome_completo, b.data_nascimento, b.telefone, b.email, b.id_programa_social, b.id_pedido_ajuda, b.id_endereco, e.cidade FROM Beneficiario b, Endereco e WHERE e.cidade = ? AND b.id_endereco = e.id_endereco";
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -150,14 +144,6 @@ public class BeneficiarioDAO {
         }
     }
 
-    /**
-     * O metodo excluirBeneficiario() é responsável por excluir um beneficiário
-     * específico do banco de dados. Ele recebe o id do beneficiário a ser excluído
-     * como parâmetro, prepara uma consulta SQL de exclusão e executa a operação
-     * para remover o beneficiário do sistema.
-     * 
-     * @param cpf
-     */
     public void excluir(String cpf) {
         String querySql = "DELETE FROM beneficiario WHERE cpf = ?";
 

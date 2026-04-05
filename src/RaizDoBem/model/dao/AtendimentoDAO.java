@@ -66,7 +66,7 @@ public class AtendimentoDAO {
     }
 
     public List<Atendimento> listarTodos() {
-        String querySql = "SELECT id_atendimento, descricao_atendimento, data_inicial, data_final, id_beneficiario, id_dentista FROM Atendimento";
+        String querySql = "SELECT id_atendimento, descricao_inicial, data_inicial, data_final, solucao_problema, id_beneficiario, id_dentista, id_colaborador FROM Atendimento";
         List<Atendimento> atendimentos = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -97,8 +97,8 @@ public class AtendimentoDAO {
             throw new RuntimeException("Erro ao atualizar atendimento: " + exception.getMessage());
         }
     }
-    public void encontrarAtendimentoBeneficiario() {
-    }
+//    public void encontrarAtendimentoBeneficiario() {
+//    }
 
     public void encontrarAtendimentosDentista() {
     }

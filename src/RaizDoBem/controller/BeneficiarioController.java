@@ -90,7 +90,7 @@ public class BeneficiarioController {
     }
 
     public void excluir(String cpf) {
-        if (cpf == null) {
+        if (cpf == null || cpf.isEmpty()) {
             view.exibirMensagem("Cpf inválido!!!");
         } else {
             bo.excluirBeneficiario(cpf);

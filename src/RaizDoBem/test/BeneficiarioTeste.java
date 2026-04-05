@@ -11,7 +11,7 @@ public class BeneficiarioTeste {
 
   //      controller.criar();
 
-//        controller.listandoTodos();
+        controller.listandoTodos();
 
 //        String cpf = view.inputCpf();
 //        controller.buscarPorCpf(cpf);

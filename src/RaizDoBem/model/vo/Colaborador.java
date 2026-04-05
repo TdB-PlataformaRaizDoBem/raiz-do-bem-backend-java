@@ -3,16 +3,7 @@ package RaizDoBem.model.vo;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Representa um coordenador do projeto Raiz do Bem. O coordenador é um tipo específico de colaborador, com responsabilidades adicionais relacionadas à coordenação das atividades do projeto. Contém informações sobre a data de contratação, nível de acesso e senha para acesso ao sistema.
- * @author Paulo
- * @since 2025-09
- * @param dataContratacao Data em que o coordenador foi contratado para o projeto.
- * @param nivelAcesso Nível de acesso do coordenador no sistema, determinando as suas permissões.
- * @param senha Senha utilizada pelo coordenador para acessar o sistema.
- *
- *
- */
+
 public class Colaborador {
     private int id;
     private String cpf;

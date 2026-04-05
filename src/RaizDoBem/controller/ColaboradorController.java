@@ -28,7 +28,7 @@ public class ColaboradorController {
             LocalDate dataContratacao = view.inputDataContratacao();
             String email = view.inputEmail();
 
-            Colaborador colaborador = new Colaborador(cpf, nome, dataNascimento, dataContratacao, email);
+            Colaborador colaborador = bo.validarColaborador(cpf, nome, dataNascimento, dataContratacao, email);
 
             bo.criar(colaborador);
             view.exibirMensagem("Colaborador criado com sucesso!!!");
@@ -64,7 +64,7 @@ public class ColaboradorController {
 
             String email = view.inputEmail();
 
-            novoColaborador = bo.validarColaborador(email);
+            novoColaborador = bo.validarNovoColaborador(email);
 
             bo.atualizar(cpf, novoColaborador);
             view.exibirMensagem("Colaborador foi atualizado com sucesso!");
@@ -75,7 +75,7 @@ public class ColaboradorController {
     }
 
     public void excluir(String cpf) {
-        if (cpf == null) {
+        if (cpf == null || cpf.isEmpty()) {
             view.exibirMensagem("Cpf inválido!!!");
         } else {
             bo.excluir(cpf);
