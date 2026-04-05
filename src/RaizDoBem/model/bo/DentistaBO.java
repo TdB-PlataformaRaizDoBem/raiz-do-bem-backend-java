@@ -12,6 +12,7 @@ public class DentistaBO {
     public Dentista buscaPorCpf(String cpf){
         return dao.buscarPorCpf(cpf);
     }
+
     public void criarDentista(Dentista dentista){
         if(dentista != null){
             dao.adicionar(dentista);

@@ -1,9 +1,11 @@
 package RaizDoBem.controller;
 
 import RaizDoBem.model.bo.DentistaBO;
+import RaizDoBem.model.vo.Colaborador;
 import RaizDoBem.model.vo.Dentista;
 import RaizDoBem.view.DentistaView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -24,6 +26,19 @@ public class DentistaController {
         this.view = view;
         this.bo = new DentistaBO();
     }
+
+    public void criar() {
+//        String cpf = view.inputCpf();
+//        String nome = view.inputNome();
+//        LocalDate dataNascimento = view.inputDataNasc();
+//        LocalDate dataContratacao = view.inputDataContratacao();
+//        String email = view.inputEmail();
+//
+//
+//        bo.criarDentista(dentista);
+        view.exibirMensagem("Dentista criado com sucesso!!!");
+    }
+
 
     public void listandoTodos() {
         List<Dentista> dentistas = bo.listarTodos();

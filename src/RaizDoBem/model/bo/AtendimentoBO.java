@@ -7,7 +7,6 @@ import java.util.List;
 
 public class AtendimentoBO {
     AtendimentoDAO dao = new AtendimentoDAO();
-    Atendimento atendimento = new Atendimento();
 
     public void criar(Atendimento atendimento) {
         if (atendimento != null) {
@@ -23,5 +22,14 @@ public class AtendimentoBO {
 
     public List<Atendimento> listarTodos() {
         return dao.listarTodos();
+    }
+
+    public void atualizar(String cpf, Atendimento novoAtendimento) {
+        Atendimento atendimento = dao.buscarPorCpf(cpf);
+
+        if(atendimento == null){
+            throw new RuntimeException("Atendimento não encontrado!!!");
+        }
+        dao.atualizar(cpf, novoAtendimento);
     }
 }

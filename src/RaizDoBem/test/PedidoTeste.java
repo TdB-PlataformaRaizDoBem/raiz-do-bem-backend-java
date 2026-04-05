@@ -14,7 +14,7 @@ public class PedidoTeste {
 //        controller.adicionar();
 
 //      2º Metodo - Listando todos
-//        controller.listandoTodos();
+        controller.listandoTodos();
 
 //      3º Metodo - Listar por Cpf
 //        String cpf = view.inputCpf();
@@ -30,9 +30,9 @@ public class PedidoTeste {
 
 //      6º Metodo - Excluindo
 //        String cpf = view.inputCpf();
-//        controller.deletar(cpf);
+//       controller.deletar(cpf);
 
-
+//        controller.listandoTodos();
 
     }
 }

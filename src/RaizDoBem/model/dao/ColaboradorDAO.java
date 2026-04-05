@@ -28,7 +28,7 @@ public class ColaboradorDAO {
     }
 
     public void adicionar(Colaborador colaborador) {
-        String querySql = "INSERT INTO colaborador VALUES cpf, nome_completo, data_nascimento,data_contratacao, email VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String querySql = "INSERT INTO colaborador (cpf, nome_completo, data_nascimento,data_contratacao, email) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -41,7 +41,7 @@ public class ColaboradorDAO {
 
             ps.executeUpdate();
         } catch (SQLException exception) {
-            throw new RuntimeException("Erro ao adicionar coordenador: " + exception.getMessage());
+            throw new RuntimeException("Erro ao adicionar colaborador: " + exception.getMessage());
         }
     }
 

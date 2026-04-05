@@ -2,7 +2,6 @@ package RaizDoBem.model.bo;
 
 import RaizDoBem.model.dao.ColaboradorDAO;
 import RaizDoBem.model.vo.Colaborador;
-import RaizDoBem.model.vo.Endereco;
 
 
 import java.util.List;
@@ -23,15 +22,15 @@ public class ColaboradorBO {
         return dao.listarTodos();
     }
 
-    public Colaborador BuscarPeloCpf(String cpf){
+    public Colaborador buscarPeloCpf(String cpf){
         return dao.buscarPorCpf(cpf);
     }
 
-    public void atualizar(Colaborador novoColaborador, String cpf) {
+    public void atualizar(String cpf, Colaborador novoColaborador) {
         Colaborador colaborador = dao.buscarPorCpf(cpf);
 
         if(colaborador == null){
-            throw new RuntimeException("Colaorador não encontrado!!!");
+            throw new RuntimeException("Colaborador não encontrado!!!");
         }
         dao.atualizar(novoColaborador, cpf);
     }
@@ -42,5 +41,12 @@ public class ColaboradorBO {
             return;
         }
         dao.excluir(cpf);
+    }
+
+    public Colaborador validarColaborador(String email) {
+
+        return new Colaborador(
+
+        );
     }
 }

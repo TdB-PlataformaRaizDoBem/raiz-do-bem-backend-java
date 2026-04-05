@@ -23,22 +23,22 @@ public class EnderecoView {
     Scanner sc = new Scanner(System.in);
 
     public String entradaCep() {
-        System.out.println("Digite o cep (8 dígitos): ");
+        System.out.println("\nDigite o cep (8 dígitos): ");
         return sc.nextLine();
     }
 
     public String entradaNumero() {
-        System.out.println("Digite a número do endereço: ");
+        System.out.println("\nDigite a número do endereço: ");
         return sc.nextLine();
     }
 
     public String entradaCidade() {
-        System.out.println("Digite a cidade: ");
+        System.out.println("vDigite a cidade: ");
         return sc.nextLine();
     }
 
     public int entradaId() {
-        System.out.println("Digite o ID: ");
+        System.out.println("\nDigite o ID: ");
         int id = sc.nextInt();
         sc.nextLine();
 
@@ -47,7 +47,6 @@ public class EnderecoView {
 
     public int entradaTipoEndereco() {
         int opc;
-        int idTipo = 0;
         do {
             System.out.println("Endereço residencial ou Profissional?");
             System.out.println("1. Residencial");
@@ -55,11 +54,7 @@ public class EnderecoView {
 
             opc = sc.nextInt();
             sc.nextLine();
-            if (opc == 1) {
-                idTipo = 1;
-            } else if (opc == 2) {
-                idTipo = 2;
-            } else {
+            if (opc!= 1 && opc!=2) {
                 System.out.println("Opção Inválida!!!");
             }
         } while (opc < 1 || opc > 2);

@@ -5,11 +5,9 @@ import RaizDoBem.model.vo.Beneficiario;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class BeneficiarioView {
     Scanner sc = new Scanner(System.in);
 
-//        System.out.println("\n      Gerenciar Beneficiários     ");
 //        System.out.println("        1.  Adicionar beneficiário");
 //        System.out.println("        2.  Listar todos os beneficiários");
 //        System.out.println("        3.  Listar beneficiário único");
@@ -53,12 +51,12 @@ public class BeneficiarioView {
 //                controller.excluirBeneficiario(cpf);
 //                break;
     public String inputCpf() {
-        System.out.println("Digite o CPF do beneficiário: ");
+        System.out.println("\nDigite o CPF do beneficiário: ");
         return sc.nextLine();
     }
 
     public int inputSexoBeneficiario() {
-        System.out.println("Selecione o sexo do beneficiário: ");
+        System.out.println("\nSelecione o sexo do beneficiário: ");
         System.out.println("1. Masculino");
         System.out.println("2. Feminino");
         System.out.println("3. Outros");
@@ -69,7 +67,7 @@ public class BeneficiarioView {
     }
 
     public int inputPrograma() {
-        System.out.println("Esse beneficiário(a) fará parte de qual programa da ONG?");
+        System.out.println("\nEsse beneficiário(a) fará parte de qual programa da ONG?");
         System.out.println("1. Dentista do Bem");
         System.out.println("2. Apolônias do Bem");
         int opc = sc.nextInt();
@@ -78,7 +76,7 @@ public class BeneficiarioView {
         return opc;
     }
 
-    public void exibirPedido(Beneficiario beneficiario) {
+    public void exibirBeneficiario(Beneficiario beneficiario) {
         System.out.println(beneficiario);
     }
 
@@ -88,7 +86,7 @@ public class BeneficiarioView {
 
     public void exibirLista(List<Beneficiario> lista) {
         for (Beneficiario elemento : lista) {
-            exibirPedido(elemento);
+            exibirBeneficiario(elemento);
         }
     }
 }

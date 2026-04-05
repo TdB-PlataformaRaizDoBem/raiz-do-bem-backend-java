@@ -9,7 +9,6 @@ import java.util.Scanner;
 public class DentistaView {
     Scanner sc = new Scanner(System.in);
 
-
     // case 2:
     // dentistas = controller.listarTodos();
     // System.out.println("Listagem dos dentistas: ");
@@ -37,12 +36,12 @@ public class DentistaView {
     // break;
 
     public String inputCpf() {
-        System.out.println("Digite o CPF do dentista: ");
+        System.out.println("\nDigite o CPF do dentista: ");
         return sc.nextLine();
     }
 
     public int inputSexo() {
-        System.out.println("Selecione o sexo do dentista: ");
+        System.out.println("\nSelecione o sexo do dentista: ");
         System.out.println("1. Masculino");
         System.out.println("2. Feminino");
         System.out.println("3. Outros");

@@ -10,5 +10,8 @@ public class AtendimentoTeste {
         AtendimentoController controller = new AtendimentoController(view);
 
         controller.adicionar();
+
+//        String cpf = view.inputCpf();
+//        controller.listarPorCpf(cpf);
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Classe de acesso a dados para a entidade Atendimento.
  * Responsável por realizar operações de Criação, Leitura, e atualização
- * relacionadas aos atendimentos aos benefciários.
+ * relacionadas aos atendimentos aos beneficiários.
  * 
  * @author Paulo
  * @since 2026-03
@@ -81,7 +81,22 @@ public class AtendimentoDAO {
         }
         return atendimentos;
     }
+    public void atualizar(String cpf, Atendimento atendimento) {
+        String querySql = "UPDATE atendimento SET data_final = ?, solucao_problema = ?,id_colaborador = ? WHERE cpf = ?";
 
+        try (Connection conexao = Conexao.conectarAoBanco();
+             PreparedStatement ps = conexao.prepareStatement(querySql);) {
+
+            ps.setDate(1, Date.valueOf(atendimento.getDataFinal()));
+            ps.setString(2, atendimento.getSolucaoProblema());
+            ps.setInt(3, atendimento.getIdColaborador());
+            ps.setString(4, cpf);
+
+            ps.executeUpdate();
+        } catch (SQLException exception) {
+            throw new RuntimeException("Erro ao atualizar atendimento: " + exception.getMessage());
+        }
+    }
     public void encontrarAtendimentoBeneficiario() {
     }
 

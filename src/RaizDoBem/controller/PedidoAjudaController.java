@@ -73,7 +73,6 @@ public class PedidoAjudaController {
         }
     }
 
-
     public void atualizar(String cpf) {
         bo.atualizar(cpf, null);
     }

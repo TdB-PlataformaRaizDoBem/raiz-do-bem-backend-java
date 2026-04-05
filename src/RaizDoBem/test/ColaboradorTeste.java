@@ -9,14 +9,21 @@ public class ColaboradorTeste {
         ColaboradorView view = new ColaboradorView();
         ColaboradorController controller = new ColaboradorController(view);
 
-        controller.criar();
+        //1º Metodo - Criação
+//        controller.criar();
 
+        //2º Metodo - Listando todos
         controller.listandoTodos();
 
-        controller.buscarPorCpf();
+        //3º metodo - buscando pelo cpf
+//        String cpf = view.inputCpf();
+//        controller.buscarPorCpf(cpf);
 
-        controller.atualizar();
+        //4º metodo - atualizando
+//        controller.atualizar();
 
-        controller.excluir();
+        //5º metodo - excluindo
+//        String cpf = view.inputCpf();
+//        controller.excluir(cpf);
     }
 }
