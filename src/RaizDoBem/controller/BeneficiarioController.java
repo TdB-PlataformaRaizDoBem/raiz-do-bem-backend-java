@@ -25,10 +25,15 @@ public class BeneficiarioController {
     }
 
     public void criar() {
+        try{
+            int idPedido = view.inputId();
+            int idProgramaSocial = view.inputPrograma();
 
-//        bo.adicionar(beneficiario);
-        view.exibirMensagem("Beneficiário criado com sucesso!!!");
-
+            bo.adicionar(idPedido, idProgramaSocial);
+            view.exibirMensagem("Beneficiário criado com sucesso!!!");
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public void listandoTodos(){

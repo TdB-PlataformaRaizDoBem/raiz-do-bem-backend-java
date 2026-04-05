@@ -20,7 +20,12 @@ public class PedidoAjudaController {
     }
 
     public void adicionar() {
-        String cpf = view.inputCpf();
+        String cpf;
+        do{
+            cpf = view.inputCpf();
+            boolean validaCpf = bo.validarCpf(cpf);
+        } while(!bo.validarCpf(cpf));
+
         String nome = view.inputNome();
         LocalDate dataNascimento = view.inputDataNasc();
         Sexo sexoSolicitante;
@@ -63,6 +68,16 @@ public class PedidoAjudaController {
         }
     }
 
+    public void buscarPeloId(int id) {
+        PedidoAjuda pedido = bo.buscaId(id);
+        if (pedido != null) {
+            view.exibirMensagem("Pedido encontrado: ");
+            view.exibirPedido(pedido);
+        } else {
+            view.exibirMensagem("Nenhum pedido encontrado!!!");
+        }
+    }
+
     public void listarPelaData(LocalDate data) {
         List<PedidoAjuda> pedidos = bo.listarPorData(data);
         if (pedidos.isEmpty()) {
@@ -74,7 +89,13 @@ public class PedidoAjudaController {
     }
 
     public void atualizar(String cpf) {
-        bo.atualizar(cpf, null);
+        StatusPedido status;
+        int idDentista = view.inputId();
+
+        PedidoAjuda pedido = bo.validarPedido();
+
+
+        bo.atualizar(cpf, pedido);
     }
 
     public void deletar(String cpf) {

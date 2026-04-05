@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class EspecialidadeDAO {
     public List<Especialidade> listarTodos() {
-        String querySql = "SELECT id, descricao FROM especialidade";
+        String querySql = "SELECT id_especialidade, descricao FROM especialidade";
         List<Especialidade> especialidades = new ArrayList<Especialidade>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -30,7 +30,7 @@ public class EspecialidadeDAO {
                 ResultSet response = ps.executeQuery();) {
 
             while (response.next()) {
-                int id = response.getInt("id");
+                int id = response.getInt("id_especialidade");
                 String descricao = response.getString("descricao");
 
                 especialidades.add(new Especialidade(id, descricao));

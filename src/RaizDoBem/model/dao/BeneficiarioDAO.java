@@ -17,26 +17,9 @@ import java.util.List;
 public class BeneficiarioDAO {
     List<Beneficiario> beneficiarios = new ArrayList<>();
 
-    /**
-     * O beneficiário é a pessoa que recebe os serviços odontológicos prestados pela
-     * ONG. Ele possui informações pessoais, como CPF, nome completo, data de
-     * nascimento, telefone, email, sexo, programa social ao qual pertence,
-     * endereço, pedido de ajuda e coordenador responsável. O coordenador pode criar
-     * um beneficiário para registrar uma pessoa que receberá os serviços, listar os
-     * beneficiários cadastrados, atualizar as informações de um beneficiário
-     * específico e excluir um beneficiário do sistema.
-     * Este metodo é responsável por mapear os dados retornados do banco de dados
-     * para criar um objeto Beneficiario, facilitando a manipulação dos dados no
-     * sistema.
-     * 
-     * @param response ResultSet contendo os dados do beneficiário retornados do
-     *                 banco de dados.
-     *
-     * @return Objeto Beneficiario criado a partir dos dados do ResultSet.
-     */
     private Beneficiario mapeamento(ResultSet response) throws SQLException {
         return new Beneficiario(
-                response.getInt("id"),
+                response.getInt("id_beneficiario"),
                 response.getString("cpf"),
                 response.getString("nome_completo"),
                 response.getDate("data_nascimento").toLocalDate(),
@@ -47,17 +30,8 @@ public class BeneficiarioDAO {
                 response.getInt("id_endereco"));
     }
 
-    /**
-     * O metodo adicionar() é responsável por inserir um novo beneficiário no banco
-     * de dados. Ele recebe um objeto Beneficiario como parâmetro, prepara uma
-     * consulta SQL de inserção e executa a operação para adicionar o beneficiário
-     * ao sistema.
-     *
-     * @param beneficiario Objeto do tipo Beneficiario contendo as informações do
-     *                     beneficiário a ser adicionado.
-     */
     public void adicionar(Beneficiario beneficiario) {
-        String querySql = "INSERT INTO Beneficiario (cpf, nome_completo, id_pedido_ajuda) VALUES (?, ?)";
+        String querySql = "INSERT INTO Beneficiario (cpf, nome_completo, data_nascimento, telefone, email, id_programa_social, id_pedido_ajuda, id_endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -67,8 +41,9 @@ public class BeneficiarioDAO {
             ps.setDate(3, Date.valueOf(beneficiario.getDataNascimento()));
             ps.setString(4, beneficiario.getTelefone());
             ps.setString(5, beneficiario.getEmail());
-            ps.setInt(6, beneficiario.getIdPedidoAjuda());
-            ps.setInt(7, beneficiario.getIdProgramaSocial());
+            ps.setInt(6, beneficiario.getIdProgramaSocial());
+            ps.setInt(7, beneficiario.getIdPedidoAjuda());
+            ps.setInt(8, beneficiario.getIdEndereco());
 
             ps.executeUpdate();
         } catch (SQLException exception) {
@@ -83,7 +58,7 @@ public class BeneficiarioDAO {
      * itera sobre os resultados para criar objetos Beneficiario e exibi-los.
      */
     public List<Beneficiario> listarTodos() {
-        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, telefone, email, id_programa_social, id_pedido_ajuda, id_endereco FROM Beneficiario";
+        String querySql = "SELECT id_beneficiario, cpf, nome_completo, data_nascimento, telefone, email, id_programa_social, id_pedido_ajuda, id_endereco FROM Beneficiario";
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);
                 ResultSet response = ps.executeQuery();) {
@@ -97,15 +72,8 @@ public class BeneficiarioDAO {
         return beneficiarios;
     }
 
-    /**
-     * O metodo buscarPorCpf() é responsável por recuperar e exibir os registros de
-     * um beneficiário específico. Ele executa uma consulta SQL que seleciona o
-     * beneficiário onde o id corresponde ao id do beneficiário fornecido como
-     * parâmetro, e itera sobre os resultados para criar um objeto Beneficiario e
-     * exibi-lo.
-     */
     public Beneficiario buscarPorCpf(String cpf) {
-        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, telefone, email, id_programa_social, id_pedido_ajuda, id_endereco FROM Beneficiario WHERE cpf = ?";
+        String querySql = "SELECT id_beneficiario, cpf, nome_completo, data_nascimento, telefone, email, id_programa_social, id_pedido_ajuda, id_endereco FROM Beneficiario WHERE cpf = ?";
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
 
@@ -122,15 +90,8 @@ public class BeneficiarioDAO {
         return null;
     }
 
-    /**
-     * O metodo listarPorPrograma() é responsável por recuperar e exibir os
-     * registros de beneficiários relacionados a um programa social específico. Ele
-     * executa uma consulta SQL que seleciona os beneficiários onde o id_programa
-     * corresponde ao id do programa fornecido como parâmetro, e itera sobre os
-     * resultados para criar objetos Beneficiario e exibi-los.
-     */
     public List<Beneficiario> buscarPorPrograma(int idPrograma) {
-        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, telefone, email, id_programa_social, id_pedido_ajuda, id_endereco FROM Beneficiario WHERE id_programa_social = ?";
+        String querySql = "SELECT id_beneficiario, cpf, nome_completo, data_nascimento, telefone, email, id_programa_social, id_pedido_ajuda, id_endereco FROM Beneficiario WHERE id_programa_social = ?";
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
 
@@ -155,7 +116,7 @@ public class BeneficiarioDAO {
      * resultados para criar objetos Beneficiario e exibi-los.
      */
     public List<Beneficiario> listarPorCidade(String cidade) {
-        String querySql = "SELECT b.id, b.cpf, b.nome_completo, b.data_nascimento, b.telefone, b.email, b.id_sexo, b.id_programa, b.id_endereco, b.id_pedido_ajuda, b.id_coordenador FROM Beneficiario b, Endereco e WHERE e.cidade = ?";
+        String querySql = "SELECT b.id_beneficiario, b.cpf, b.nome_completo, b.data_nascimento, b.telefone, b.email, b.id_programa_social, b.id_pedido_ajuda, b.id_endereco, e.cidade FROM Beneficiario b, Endereco e WHERE e.cidade = ? AND b.id_endereco = e.id_endereco";
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
 
@@ -172,16 +133,6 @@ public class BeneficiarioDAO {
         return beneficiarios;
     }
 
-    /**
-     * O metodo atualizarBeneficiario() é responsável por atualizar as informações
-     * de um beneficiário específico no banco de dados. Ele recebe o id do
-     * beneficiário a ser atualizado como parâmetro, prepara uma consulta SQL de
-     * atualização e executa a operação para modificar os dados do beneficiário no
-     * sistema. *
-     *
-     * @param cpf
-     * @param beneficiario
-     */
     public void atualizar(String cpf, Beneficiario beneficiario) {
         String querySql = "UPDATE Beneficiario SET telefone = ?, email = ?, id_endereco = ? WHERE cpf = ?";
 
@@ -191,8 +142,8 @@ public class BeneficiarioDAO {
             ps.setString(1, beneficiario.getTelefone());
             ps.setString(2, beneficiario.getEmail());
             ps.setInt(3, beneficiario.getIdEndereco());
-
             ps.setString(4, beneficiario.getCpf());
+
             ps.executeUpdate();
         } catch (SQLException exception) {
             throw new RuntimeException("Erro ao atualizar beneficiário: " + exception.getMessage());

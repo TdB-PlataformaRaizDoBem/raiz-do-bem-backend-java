@@ -9,19 +9,18 @@ public class BeneficiarioTeste {
         BeneficiarioView view = new BeneficiarioView();
         BeneficiarioController controller = new BeneficiarioController(view);
 
-//        controller.criar();
+  //      controller.criar();
 
-        controller.listandoTodos();
+//        controller.listandoTodos();
 
 //        String cpf = view.inputCpf();
 //        controller.buscarPorCpf(cpf);
 
 //        int programaSocial = view.inputPrograma();
-//        controller.listarPorPrograma(programaSocial);
+//       controller.listarPorPrograma(programaSocial);
 
-//        String cidade = view.inputCpf();
+//        String cidade = view.inputCidade();
 //        controller.listarPorCidade(cidade);
-
 
 //        String cpf = view.inputCpf();
 //        controller.excluir(cpf);

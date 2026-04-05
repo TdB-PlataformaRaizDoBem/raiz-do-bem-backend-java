@@ -15,15 +15,6 @@ public class AtendimentoView {
 //        System.out.println("        4. Encontrar atendimento ao beneficiário");
 //        System.out.println("        5. Encontrar atendimentos de um dentista");
 
-
-        // atendimento = input.criar();
-        // controller.criarAtendimento(atendimento);
-
-        // case 2:
-        // System.out.println("Listagem dos atendimentos: ");
-        // controller.listarTodosAtendimentos();
-        // break;
-
     public String inputCpf() {
         System.out.println("\nDigite o cpf do colaborador(11 dígitos): ");
         return sc.nextLine();

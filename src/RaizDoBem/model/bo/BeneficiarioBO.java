@@ -1,20 +1,36 @@
 package RaizDoBem.model.bo;
 
 import RaizDoBem.model.dao.BeneficiarioDAO;
+import RaizDoBem.model.dao.PedidoAjudaDAO;
 import RaizDoBem.model.vo.Beneficiario;
+import RaizDoBem.model.vo.PedidoAjuda;
 
 import java.util.List;
 
 public class BeneficiarioBO {
     BeneficiarioDAO dao = new BeneficiarioDAO();
-    Beneficiario beneficiario = new Beneficiario();
 
-    public void adicionar(Beneficiario beneficiario) {
-        if (beneficiario != null) {
-            dao.adicionar(beneficiario);
-        } else {
-            throw new RuntimeException("Endereço inválido!!!");
+    public void adicionar(int idPedido, int idProgramaSocial) {
+        PedidoAjudaDAO pedidoDAO = new PedidoAjudaDAO();
+
+        PedidoAjuda pedido = pedidoDAO.buscarPorId(idPedido);
+
+        if(pedido == null){
+            throw new RuntimeException("Pedido de ajuda inválido!!!");
         }
+
+        Beneficiario beneficiario = new Beneficiario();
+
+        beneficiario.setCpf(pedido.getCpf());
+        beneficiario.setNomeCompleto(pedido.getNomeCompleto());
+        beneficiario.setDataNascimento(pedido.getDataNascimento());
+        beneficiario.setTelefone(pedido.getTelefone());
+        beneficiario.setEmail(pedido.getEmail());
+        beneficiario.setIdPedidoAjuda(idPedido);
+        beneficiario.setIdEndereco(pedido.getIdEndereco());
+        beneficiario.setIdProgramaSocial(idProgramaSocial);
+
+        dao.adicionar(beneficiario);
     }
 
     public Beneficiario buscaPorCpf(String cpf) {
@@ -34,7 +50,7 @@ public class BeneficiarioBO {
     }
 
     public void atualizarBeneficiario(String cpf, Beneficiario beneficiarioAtualizado) {
-        beneficiario = dao.buscarPorCpf(cpf);
+        Beneficiario beneficiario = dao.buscarPorCpf(cpf);
 
         if (beneficiario != null) {
             dao.atualizar(cpf, beneficiarioAtualizado);
@@ -43,7 +59,7 @@ public class BeneficiarioBO {
     }
 
     public void excluirBeneficiario(String cpf) {
-        beneficiario = dao.buscarPorCpf(cpf);
+        Beneficiario beneficiario = dao.buscarPorCpf(cpf);
         if (beneficiario != null) {
             dao.excluir(cpf);
         } else {

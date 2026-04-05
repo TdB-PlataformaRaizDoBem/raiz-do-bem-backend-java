@@ -12,6 +12,9 @@ public class PedidoAjudaBO {
     public PedidoAjuda buscaCpf(String cpf){
         return dao.buscarPorCpf(cpf);
     }
+    public PedidoAjuda buscaId(int id){
+        return dao.buscarPorId(id);
+    }
 
     public void criar(PedidoAjuda pedido){
         if(pedido != null){
@@ -57,5 +60,9 @@ public class PedidoAjudaBO {
                 descricao,
                 idEndereco
         );
+    }
+
+    public Boolean validarCpf(String cpf) {
+        return (cpf != null && cpf.length() == 11);
     }
 }

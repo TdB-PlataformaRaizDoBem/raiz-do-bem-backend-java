@@ -25,7 +25,7 @@ public class EnderecoDAO {
         TipoEndereco tipo = TipoEndereco.valueOf(tipoEndereco.toUpperCase());
 
         return new Endereco(
-                response.getInt("id"),
+                response.getInt("id_endereco"),
                 response.getString("logradouro"),
                 response.getString("cep"),
                 response.getString("numero"),
@@ -56,7 +56,7 @@ public class EnderecoDAO {
     }
 
     public List<Endereco> listarTodos() {
-        String querySql = "SELECT id, logradouro, cep, numero, bairro, cidade, estado, tipo_endereco FROM Endereco";
+        String querySql = "SELECT id_endereco, logradouro, cep, numero, bairro, cidade, estado, tipo_endereco FROM Endereco";
         List<Endereco> enderecos = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -72,7 +72,7 @@ public class EnderecoDAO {
     }
 
     public Endereco buscarPorId(int id) {
-        String querySql = "SELECT id, logradouro, cep, numero, bairro, cidade, estado, tipo_endereco FROM Endereco WHERE id = ?";
+        String querySql = "SELECT id_endereco, logradouro, cep, numero, bairro, cidade, estado, tipo_endereco FROM Endereco WHERE id_endereco = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql)) {
@@ -90,7 +90,7 @@ public class EnderecoDAO {
     }
 
     public List<Endereco> listarPorCidade(String cidade) {
-        String querySql = "SELECT id, logradouro, cep, numero, bairro, cidade, estado, tipo_endereco FROM Endereco WHERE cidade = ?";
+        String querySql = "SELECT id_endereco, logradouro, cep, numero, bairro, cidade, estado, tipo_endereco FROM Endereco WHERE cidade = ?";
 
         List<Endereco> enderecos = new ArrayList<>();
 
@@ -110,7 +110,7 @@ public class EnderecoDAO {
     }
 
     public void atualizar(int id, Endereco endereco) {
-        String querySql = "UPDATE Endereco SET logradouro = ?, cep = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, tipo_endereco = ? WHERE id = ?";
+        String querySql = "UPDATE Endereco SET logradouro = ?, cep = ?, numero = ?, bairro = ?, cidade = ?, estado = ?, tipo_endereco = ? WHERE id_endereco = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -131,7 +131,7 @@ public class EnderecoDAO {
     }
 
     public void excluir(int id) {
-        String querySql = "DELETE FROM Endereco WHERE id = ?";
+        String querySql = "DELETE FROM Endereco WHERE id_endereco = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {

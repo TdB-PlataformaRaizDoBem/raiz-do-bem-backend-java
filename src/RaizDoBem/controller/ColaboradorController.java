@@ -21,16 +21,20 @@ public class ColaboradorController {
     }
 
     public void criar() {
-        String cpf = view.inputCpf();
-        String nome = view.inputNome();
-        LocalDate dataNascimento = view.inputDataNasc();
-        LocalDate dataContratacao = view.inputDataContratacao();
-        String email = view.inputEmail();
+        try{
+            String cpf = view.inputCpf();
+            String nome = view.inputNome();
+            LocalDate dataNascimento = view.inputDataNasc();
+            LocalDate dataContratacao = view.inputDataContratacao();
+            String email = view.inputEmail();
 
-        Colaborador colaborador = new Colaborador(cpf, nome, dataNascimento, dataContratacao, email);
+            Colaborador colaborador = new Colaborador(cpf, nome, dataNascimento, dataContratacao, email);
 
-        bo.criar(colaborador);
-        view.exibirMensagem("Colaborador criado com sucesso!!!");
+            bo.criar(colaborador);
+            view.exibirMensagem("Colaborador criado com sucesso!!!");
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public void listandoTodos() {

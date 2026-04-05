@@ -16,7 +16,6 @@ import java.time.format.DateTimeFormatter;
  * @param data Data em que o pedido de ajuda foi registrado.
  * @param status Referência ao status atual do pedido de ajuda, utilizando a classe StatusPedido.
  */
-
 public class PedidoAjuda {
     private int id;
     private String cpf;
@@ -165,6 +164,7 @@ public class PedidoAjuda {
         this.dataPedido = LocalDate.now();
         this.status = StatusPedido.PENDENTE;
         this.idEndereco = idEndereco;
+        this.idDentista = getIdDentista();
     }
 
     public PedidoAjuda() {

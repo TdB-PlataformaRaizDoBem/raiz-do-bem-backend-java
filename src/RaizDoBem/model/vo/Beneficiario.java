@@ -1,6 +1,7 @@
 package RaizDoBem.model.vo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Cada pessoa que passou pelo processo de solicitação de pedido de ajuda, e agora recebe atendimento da Turma do Bem. Contém informações pessoais, endereço, programa social associado, pedido de ajuda referência e colaborador responsável que o registrou.
@@ -137,4 +138,16 @@ public class Beneficiario{
     public Beneficiario() {
     }
 
+
+    @Override
+    public String toString() {
+        return " " + id +
+                " - " + nomeCompleto +
+                " - Cpf: " + cpf +
+                "\n     Data de nascimento: " + dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                " - Telefone: " + telefone +
+                " - email: " + email +
+                "\n     Pedido de ajuda: " + idPedidoAjuda +
+                ", Programa Social: " + idProgramaSocial;
+    }
 }

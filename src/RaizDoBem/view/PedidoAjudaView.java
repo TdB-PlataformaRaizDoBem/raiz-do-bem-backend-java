@@ -10,6 +10,13 @@ import java.util.Scanner;
 public class PedidoAjudaView {
     Scanner sc = new Scanner(System.in);
 
+    public int inputId() {
+        System.out.println("Insira o ID: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        return id;
+    }
     public String inputCpf() {
         System.out.println("Digite o CPF do beneficiário: ");
         return sc.nextLine();

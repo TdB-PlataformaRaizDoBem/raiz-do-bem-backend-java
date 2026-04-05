@@ -28,7 +28,7 @@ public class PedidoAjudaDAO {
         String statusPedido = response.getString("status_pedido");
         StatusPedido status = StatusPedido.valueOf(statusPedido);
         return new PedidoAjuda(
-                response.getInt("id"),
+                response.getInt("id_pedido"),
                 response.getString("cpf"),
                 response.getString("nome_completo"),
                 response.getDate("data_nascimento").toLocalDate(),
@@ -38,8 +38,8 @@ public class PedidoAjudaDAO {
                 response.getString("descricao_problema"),
                 response.getDate("data_pedido").toLocalDate(),
                 status,
-                response.getInt("id_dentista"),
-                response.getInt("id_endereco")
+                response.getInt("id_endereco"),
+                response.getInt("id_dentista")
         );
     }
 
@@ -67,7 +67,7 @@ public class PedidoAjudaDAO {
     }
 
     public List<PedidoAjuda> listarTodos() {
-        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, sexo, telefone, email, descricao_problema, data_pedido, status_pedido, id_dentista, id_endereco FROM Pedido_Ajuda";
+        String querySql = "SELECT id_pedido, cpf, nome_completo, data_nascimento, sexo, telefone, email, descricao_problema, data_pedido, status_pedido, id_endereco, id_dentista FROM Pedido_Ajuda";
         List<PedidoAjuda> pedidos = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -84,7 +84,7 @@ public class PedidoAjudaDAO {
     }
 
     public PedidoAjuda buscarPorCpf(String cpf) {
-        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, sexo, telefone, email, descricao_problema, data_pedido, status_pedido, id_dentista, id_endereco FROM Pedido_Ajuda where cpf = ?";
+        String querySql = "SELECT id_pedido, cpf, nome_completo, data_nascimento, sexo, telefone, email, descricao_problema, data_pedido, status_pedido, id_endereco,id_dentista FROM Pedido_Ajuda where cpf = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -100,8 +100,26 @@ public class PedidoAjudaDAO {
         return null;
     }
 
+    public PedidoAjuda buscarPorId(int id) {
+        String querySql = "SELECT id_pedido, cpf, nome_completo, data_nascimento, sexo, telefone, email, descricao_problema, data_pedido, status_pedido,id_endereco, id_dentista FROM Pedido_Ajuda where id_pedido = ?";
+
+        try (Connection conexao = Conexao.conectarAoBanco();
+             PreparedStatement ps = conexao.prepareStatement(querySql);) {
+            ps.setInt(1, id);
+
+            try (ResultSet response = ps.executeQuery();) {
+                if (response.next())
+                    return mapeamento(response);
+            }
+        } catch (SQLException exception) {
+            throw new RuntimeException("Erro ao encontrar id: " + exception.getMessage());
+        }
+        return null;
+    }
+
+
     public List<PedidoAjuda> listarPedidosData(LocalDate data) {
-        String querySql = "SELECT id, cpf, nome_completo, data_nascimento, sexo, telefone, email, descricao_problema, data_pedido, status_pedido, id_dentista, id_endereco FROM Pedido_Ajuda WHERE data_pedido = ?";
+        String querySql = "SELECT id_pedido, cpf, nome_completo, data_nascimento, sexo, telefone, email, descricao_problema, data_pedido, status_pedido, id_endereco ,id_dentista FROM Pedido_Ajuda WHERE data_pedido = ?";
         List<PedidoAjuda> pedidos = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();

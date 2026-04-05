@@ -19,7 +19,7 @@ import java.util.List;
 public class AtendimentoDAO {
     private Atendimento mapeamento(ResultSet response) throws SQLException {
         return new Atendimento(
-                response.getInt("id"),
+                response.getInt("id_atendimento"),
                 response.getString("descricao_inicial"),
                 response.getDate("data_inicial").toLocalDate(),
                 response.getDate("data_final").toLocalDate(),
@@ -30,7 +30,7 @@ public class AtendimentoDAO {
     }
 
     public Atendimento buscarPorCpf(String cpf) {
-        String querySql = "SELECT id, descricao_inicial, data_inicial, data_final, solucao_problema,id_beneficiario, id_dentista, id_colaborador FROM Atendimento where id = ?";
+        String querySql = "SELECT id_atendimento, descricao_inicial, data_inicial, data_final, solucao_problema,id_beneficiario, id_dentista, id_colaborador FROM Atendimento where id = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -66,7 +66,7 @@ public class AtendimentoDAO {
     }
 
     public List<Atendimento> listarTodos() {
-        String querySql = "SELECT id, descricao_atendimento, data_inicial, data_final, id_beneficiario, id_dentista FROM Atendimento";
+        String querySql = "SELECT id_atendimento, descricao_atendimento, data_inicial, data_final, id_beneficiario, id_dentista FROM Atendimento";
         List<Atendimento> atendimentos = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
