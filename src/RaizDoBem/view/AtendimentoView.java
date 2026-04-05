@@ -11,9 +11,7 @@ import java.util.Scanner;
 public class AtendimentoView {
     Scanner sc = new Scanner(System.in);
 
-
 //        System.out.println("        3. Listar atendimentos por data");
-//        System.out.println("        4. Encontrar atendimento ao beneficiário");
 //        System.out.println("        5. Encontrar atendimentos de um dentista");
 
     public String inputCpf() {

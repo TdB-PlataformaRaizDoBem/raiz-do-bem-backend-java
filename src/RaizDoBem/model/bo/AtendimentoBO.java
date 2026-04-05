@@ -2,7 +2,10 @@ package RaizDoBem.model.bo;
 
 import RaizDoBem.model.dao.AtendimentoDAO;
 import RaizDoBem.model.vo.Atendimento;
+import RaizDoBem.model.vo.PedidoAjuda;
+import RaizDoBem.model.vo.Sexo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class AtendimentoBO {
@@ -31,5 +34,14 @@ public class AtendimentoBO {
             throw new RuntimeException("Atendimento não encontrado!!!");
         }
         dao.atualizar(cpf, novoAtendimento);
+    }
+
+    public Atendimento validarAtendimento(String descricao, int idBeneficiario, int idDentista){
+
+        return new Atendimento(
+                descricao,
+                idBeneficiario,
+                idDentista
+        );
     }
 }

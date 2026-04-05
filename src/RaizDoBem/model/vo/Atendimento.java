@@ -1,6 +1,7 @@
 package RaizDoBem.model.vo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Representa um atendimento odontológico realizado por um dentista a um beneficiário. Cada atendimento possui uma descrição detalhada, data de realização, e referências ao beneficiário e dentista envolvidos. Essa classe é fundamental para registrar e acompanhar os atendimentos realizados, permitindo que o coordenador tenha acesso a informações relevantes para a gestão dos serviços odontológicos oferecidos.
@@ -100,25 +101,25 @@ public class Atendimento {
         this.idColaborador = idColaborador;
     }
 
-    public Atendimento(int id, String descricaoInicial, LocalDate dataInicial, LocalDate dataFinal, String solucaoProblema, int idBeneficiario, int idDentista) {
-        this.id = id;
-        this.descricaoInicial = descricaoInicial;
-        this.dataInicial = dataInicial;
-        this.dataFinal = dataFinal;
-        this.solucaoProblema = solucaoProblema;
-        this.idBeneficiario = idBeneficiario;
-        this.idDentista = idDentista;
-    }
-
-    public Atendimento(String descricaoInicial, LocalDate dataFinal, String solucaoProblema, int idBeneficiario, int idDentista) {
+    public Atendimento(String descricaoInicial, int idBeneficiario, int idDentista) {
         this.descricaoInicial = descricaoInicial;
         this.dataInicial = LocalDate.now();
-        this.dataFinal = dataFinal;
-        this.solucaoProblema = solucaoProblema;
         this.idBeneficiario = idBeneficiario;
         this.idDentista = idDentista;
     }
 
     public Atendimento() {
+    }
+
+    @Override
+    public String toString() {
+        return id +
+                " - Descrição Inicial: " + descricaoInicial +
+                " - Data inicial de atendimento: " + dataInicial.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                "\n Data Final: " + dataFinal +
+                " - Solução do problema: " + solucaoProblema +
+                "\n Id do beneficiário que recebe atendimento: " + idBeneficiario +
+                "\n Id do dentista que atende: " + idDentista +
+                "\n Id colaborador responsável: " + idColaborador;
     }
 }

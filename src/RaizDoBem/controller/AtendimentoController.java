@@ -4,6 +4,7 @@ import RaizDoBem.model.bo.AtendimentoBO;
 import RaizDoBem.model.vo.Atendimento;
 import RaizDoBem.view.AtendimentoView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -23,9 +24,12 @@ public class AtendimentoController {
 
     public void adicionar(){
         try {
-            //String cep = view.entradaCep();
+            String descricao = view.inputDescricaoInicial();
 
-            Atendimento atendimento = new Atendimento();
+            int idBeneficiario = view.inputBeneficiario();
+            int idDentista = view.inputDentista();
+
+            Atendimento atendimento = bo.validarAtendimento(descricao, idBeneficiario, idDentista);
             bo.criar(atendimento);
 
             view.exibirMensagem("Atendimento criado com sucesso!!!");

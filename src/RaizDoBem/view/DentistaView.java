@@ -9,12 +9,6 @@ import java.util.Scanner;
 public class DentistaView {
     Scanner sc = new Scanner(System.in);
 
-    // case 2:
-    // dentistas = controller.listarTodos();
-    // System.out.println("Listagem dos dentistas: ");
-    // for (Dentista d : dentistas) {
-    // System.out.println(d);
-    // }
     //
     // case 3:
     // String cidade = ""; //falta input cidade

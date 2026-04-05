@@ -21,6 +21,10 @@ public class DentistaDAO {
     public Dentista mapeamento(ResultSet response) throws SQLException {
         String sexoDentista = response.getString("sexo");
         Sexo sexo = Sexo.valueOf(sexoDentista.toUpperCase());
+
+        String statusDentista = response.getString("disponivel");
+        boolean disponivel = statusDentista.contains("S");
+
         return new Dentista(
                 response.getInt("id_dentista"),
                 response.getString("cro"),
@@ -30,12 +34,13 @@ public class DentistaDAO {
                 response.getString("email"),
                 response.getString("telefone"),
                 response.getString("categoria"),
-                response.getBoolean("disponivel"),
-                response.getInt("id_endereco"));
+                response.getInt("id_endereco"),
+                disponivel
+        );
     }
 
     public Dentista buscarPorCpf(String cpf) {
-        String querySql = "SELECT id_dentista, cpf, nome_completo, data_nascimento,email, cro, disponivel, FROM Dentista WHERE cpf = ?";
+        String querySql = "SELECT id_dentista, cpf, nome_completo, data_nascimento,email, cro, disponivel FROM Dentista WHERE cpf = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -73,7 +78,7 @@ public class DentistaDAO {
     }
 
     public List<Dentista> listarTodos() {
-        String querySql = "SELECT id_dentista, cpf, nome_completo, data_nascimento, email, cro, disponivel FROM Dentista";
+        String querySql = "SELECT id_dentista, cro, cpf, nome_completo, sexo, email, telefone, categoria, id_endereco, disponivel FROM Dentista";
         List<Dentista> dentistas = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -89,7 +94,7 @@ public class DentistaDAO {
     }
 
     public List<Dentista> listarPorCidade(String cidade) {
-        String querySql = "SELECT id_dentista, cpf, nome_completo, data_nascimento, email, tipo, cro, disponivel FROM Dentista WHERE cidade  = ?";
+        String querySql = "SELECT id_dentista, cro, cpf, nome_completo, sexo, email, telefone, categoria, disponivel, id_endereco FROM Dentista WHERE cidade  = ?";
         List<Dentista> dentistas = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -110,7 +115,7 @@ public class DentistaDAO {
     }
 
     public List<Dentista> listarDisponiveis() {
-        String querySql = "SELECT id_dentista, cpf, nome_completo, data_nascimento, email, tipo, cro, disponivel FROM Dentista WHERE disponivel = 'S'";
+        String querySql = "SELECT id_dentista, cro, cpf, nome_completo, sexo, email, telefone, categoria, disponivel, id_endereco  FROM Dentista WHERE disponivel = 'S'";
         List<Dentista> dentistas = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();

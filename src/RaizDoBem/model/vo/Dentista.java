@@ -103,7 +103,7 @@ public class Dentista{
         return this;
     }
 
-    public Dentista(int id, String croDentista, String cpf, String nomeCompleto, Sexo sexo, String email, String telefone, String categoria, boolean disponivel, int idEndereco) {
+    public Dentista(int id, String croDentista, String cpf, String nomeCompleto, Sexo sexo, String email, String telefone, String categoria, int idEndereco, boolean disponivel) {
         this.id = id;
         this.croDentista = croDentista;
         this.cpf = cpf;
@@ -112,11 +112,11 @@ public class Dentista{
         this.email = email;
         this.telefone = telefone;
         this.categoria = categoria;
-        this.disponivel = disponivel;
         this.idEndereco = idEndereco;
+        this.disponivel = disponivel;
     }
 
-    public Dentista(String croDentista, String cpf, String nomeCompleto, Sexo sexo, String email, String telefone, String categoria, boolean disponivel, int idEndereco) {
+    public Dentista(String croDentista, String cpf, String nomeCompleto, Sexo sexo, String email, String telefone, String categoria, int idEndereco, boolean disponivel) {
         this.croDentista = croDentista;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
@@ -124,10 +124,25 @@ public class Dentista{
         this.email = email;
         this.telefone = telefone;
         this.categoria = categoria;
-        this.disponivel = disponivel;
         this.idEndereco = idEndereco;
+        this.disponivel = disponivel;
     }
 
     public Dentista() {
+    }
+
+    @Override
+    public String toString() {
+        return id +
+                "  - CRO:" + croDentista +
+                " - Cpf:" + cpf +
+                "\nNomeCompleto" + nomeCompleto  +
+                ", sexo=" + sexo +
+                ", email='" + email + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", categoria='" + categoria + '\'' +
+                ", disponivel=" + disponivel +
+                ", idEndereco=" + idEndereco +
+                '}';
     }
 }

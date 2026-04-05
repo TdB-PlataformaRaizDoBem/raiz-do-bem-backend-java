@@ -8,7 +8,7 @@ public class DentistaTeste {
         DentistaView view = new DentistaView();
         DentistaController controller = new DentistaController(view);
 
-        controller.criar();
+//        controller.criar();
 
         controller.listandoTodos();
 

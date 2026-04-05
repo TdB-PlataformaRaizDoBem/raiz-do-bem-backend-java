@@ -15,7 +15,7 @@ public class BeneficiarioBO {
 
         PedidoAjuda pedido = pedidoDAO.buscarPorId(idPedido);
 
-        if(pedido == null){
+        if (pedido == null) {
             throw new RuntimeException("Pedido de ajuda inválido!!!");
         }
 
@@ -82,9 +82,5 @@ public class BeneficiarioBO {
         } else {
             throw new RuntimeException("Beneficiário não encontrado!!!");
         }
-    }
-
-    public Boolean validarCpf(String cpf) {
-        return (cpf != null && cpf.length() == 11);
     }
 }

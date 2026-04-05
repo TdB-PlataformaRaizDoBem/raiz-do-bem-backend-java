@@ -1,24 +1,11 @@
 package RaizDoBem.view;
 
-import RaizDoBem.model.dao.EnderecoDAO;
 import RaizDoBem.model.vo.Endereco;
 
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Classe de menu para gerenciar os endereços relacionados à ONG. Esta classe é
- * responsável por exibir as opções de gerenciamento de endereços, como criar,
- * listar, atualizar e excluir endereços. Ela interage com o EnderecoController
- * para realizar as operações necessárias e fornecer uma interface amigável para
- * o usuário.
- * 
- * @author Paulo
- * @since 2026-03
- *
- * @see EnderecoDAO
- * @see Endereco
- */
+
 public class EnderecoView {
     Scanner sc = new Scanner(System.in);
 
