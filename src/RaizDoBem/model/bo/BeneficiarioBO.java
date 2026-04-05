@@ -52,10 +52,27 @@ public class BeneficiarioBO {
     public void atualizarBeneficiario(String cpf, Beneficiario beneficiarioAtualizado) {
         Beneficiario beneficiario = dao.buscarPorCpf(cpf);
 
-        if (beneficiario != null) {
-            dao.atualizar(cpf, beneficiarioAtualizado);
+        if (beneficiario == null) {
+            throw new RuntimeException("Beneficiário não encontrado!!!");
         }
-        throw new RuntimeException("Beneficiário não encontrado!!!");
+        dao.atualizar(cpf, beneficiarioAtualizado);
+    }
+
+    public Beneficiario validarNovoBeneficiario(String telefone, String email, int idEndereco) {
+        if (telefone.isEmpty()) {
+            throw new RuntimeException("Telefone inválido!!!");
+        }
+        if (email.isEmpty()) {
+            throw new RuntimeException("Email inválido!!!");
+        }
+        if (idEndereco <= 0) {
+            throw new RuntimeException("ID de endereço inválido!!!");
+        }
+
+        return new Beneficiario()
+                .setTelefone(telefone)
+                .setEmail(email)
+                .setIdEndereco(idEndereco);
     }
 
     public void excluirBeneficiario(String cpf) {

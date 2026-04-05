@@ -20,16 +20,16 @@ public class PedidoTeste {
 //        String cpf = view.inputCpf();
 //        controller.listarPorCpf(cpf);
 
-        int id = view.inputId();
-        controller.buscarPeloId(id);
+//        int id = view.inputId();
+//        controller.buscarPeloId(id);
 
 //      4º Metodo - Listar por Data
 //        LocalDate data = view.inputDataNasc();
 //        controller.listarPelaData(data);
 
 //      5º Metodo - Alterando
-//        String cpf = view.inputCpf();
-//        controller.atualizar(cpf);
+        String cpf = view.inputCpf();
+        controller.atualizar(cpf);
 
 //      6º Metodo - Excluindo
 //        String cpf = view.inputCpf();

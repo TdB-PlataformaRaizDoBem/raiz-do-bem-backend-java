@@ -41,7 +41,6 @@ public class ColaboradorView {
         return sc.nextLine();
     }
 
-
     public void exibir(Colaborador colaborador){
         System.out.println(colaborador);
     }

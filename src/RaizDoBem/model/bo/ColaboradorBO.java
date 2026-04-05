@@ -44,9 +44,10 @@ public class ColaboradorBO {
     }
 
     public Colaborador validarColaborador(String email) {
+        if (email.isEmpty()) {
+            throw new RuntimeException("Email inválido!!!");
+        }
 
-        return new Colaborador(
-
-        );
+        return new Colaborador().setEmail(email);
     }
 }

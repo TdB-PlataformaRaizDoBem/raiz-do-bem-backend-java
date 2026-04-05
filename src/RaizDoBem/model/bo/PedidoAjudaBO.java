@@ -6,6 +6,8 @@ import RaizDoBem.model.vo.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import static RaizDoBem.model.vo.StatusPedido.APROVADO;
+
 public class PedidoAjudaBO {
     PedidoAjudaDAO dao = new PedidoAjudaDAO();
 
@@ -60,6 +62,28 @@ public class PedidoAjudaBO {
                 descricao,
                 idEndereco
         );
+    }
+
+    public StatusPedido validarStatus(int status) {
+        return switch (status) {
+            case 1 -> StatusPedido.APROVADO;
+            case 2 -> StatusPedido.REJEITADO;
+            default -> throw new RuntimeException("Status inválido!!!");
+        };
+    }
+
+    public PedidoAjuda validarNovoPedido(StatusPedido status, int idDentista) {
+        if (status == null) {
+            throw new RuntimeException("Status inválido!!!");
+        }
+
+        if (idDentista <= 0) {
+            throw new RuntimeException("ID do dentista obrigatório para atualização do pedido!!!");
+        }
+
+        return new PedidoAjuda()
+                .setStatus(status)
+                .setIdDentista(idDentista);
     }
 
     public Boolean validarCpf(String cpf) {

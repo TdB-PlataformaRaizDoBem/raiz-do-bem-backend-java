@@ -35,6 +35,23 @@ public class BeneficiarioView {
         return sc.nextLine();
     }
 
+    public String inputTelefone() {
+        System.out.println("\nDigite o novo telefone do beneficiário: ");
+        return sc.nextLine();
+    }
+
+    public String inputEmail() {
+        System.out.println("\nDigite o novo email do beneficiário: ");
+        return sc.nextLine();
+    }
+
+    public int inputIdEndereco() {
+        System.out.println("\nDigite o novo ID de endereço do beneficiário: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+        return id;
+    }
+
     public void exibirBeneficiario(Beneficiario beneficiario) {
         System.out.println(beneficiario);
     }

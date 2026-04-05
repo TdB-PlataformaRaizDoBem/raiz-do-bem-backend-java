@@ -1,6 +1,7 @@
 package RaizDoBem.model.bo;
 
 import RaizDoBem.model.dao.DentistaDAO;
+import RaizDoBem.model.vo.Beneficiario;
 import RaizDoBem.model.vo.Dentista;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class DentistaBO {
     public List<Dentista> listarTodos(){
         return dao.listarTodos();
     }
-    public List<Dentista> listarDisponiveis(){
+    public List<Dentista> listarDisponiveis(boolean disponivel){
         return dao.listarDisponiveis();
     }
 
@@ -35,7 +36,7 @@ public class DentistaBO {
     }
 
     public void atualizarDentista(String cpf, Dentista dentistaAtualizado){
-        dentista = dao.buscarPorCpf(cpf);
+        Dentista dentista = dao.buscarPorCpf(cpf);
 
         if(dentista == null){
             System.out.println("Dentista não encontrado!!!");
@@ -45,7 +46,7 @@ public class DentistaBO {
     }
 
     public void excluirDentista(String cpf){
-        dentista = dao.buscarPorCpf(cpf);
+        Dentista dentista = dao.buscarPorCpf(cpf);
 
         if(dentista == null){
             System.out.println("Dentista não encontrado!!!");

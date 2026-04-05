@@ -11,19 +11,19 @@ public class PedidoAjudaView {
     Scanner sc = new Scanner(System.in);
 
     public int inputId() {
-        System.out.println("Insira o ID: ");
+        System.out.println("\nInsira o ID: ");
         int id = sc.nextInt();
         sc.nextLine();
 
         return id;
     }
     public String inputCpf() {
-        System.out.println("Digite o CPF do beneficiário: ");
+        System.out.println("\nDigite o CPF do solicitante: ");
         return sc.nextLine();
     }
 
     public String inputNome() {
-        System.out.println("Nome completo do solicitante: ");
+        System.out.println("\nNome completo do solicitante: ");
         return sc.nextLine();
     }
 
@@ -36,7 +36,7 @@ public class PedidoAjudaView {
      }
 
     public int inputSexo() {
-        System.out.println("Selecione o sexo do solicitante: ");
+        System.out.println("\nSelecione o sexo do solicitante: ");
         System.out.println("1. Masculino");
         System.out.println("2. Feminino");
         System.out.println("3. Outros");
@@ -52,20 +52,37 @@ public class PedidoAjudaView {
     }
 
     public String inputEmail() {
-        System.out.println("Email do solicitante: ");
+        System.out.println("\nEmail do solicitante: ");
         return sc.nextLine();
     }
 
     public String inputDescricao() {
-        System.out.println("Descrição completa do pedido de ajuda: ");
+        System.out.println("\nDescrição completa do pedido de ajuda: ");
         return sc.nextLine();
     }
 
     public int inputEndereco() {
-        System.out.println("Insira o ID do endereço: ");
+        System.out.println("\nInsira o ID do endereço do pedido: ");
         int id = sc.nextInt();
         sc.nextLine();
 
+        return id;
+    }
+
+    public int inputStatus() {
+        System.out.println("\nSelecione o novo status do pedido: ");
+        System.out.println("1. APROVADO");
+        System.out.println("2. REJEITADO");
+        int status = sc.nextInt();
+        sc.nextLine();
+
+        return status;
+    }
+
+    public int inputIdDentista() {
+        System.out.println("\nInsira o ID do dentista responsável: ");
+        int id = sc.nextInt();
+        sc.nextLine();
         return id;
     }
 

@@ -11,7 +11,11 @@ public class AtendimentoTeste {
 
         controller.adicionar();
 
+        controller.listandoTodos();
+
 //        String cpf = view.inputCpf();
 //        controller.listarPorCpf(cpf);
+
+
     }
 }

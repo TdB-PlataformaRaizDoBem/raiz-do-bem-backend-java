@@ -21,25 +21,21 @@ public class DentistaView {
     // controller.listagemPorCidade(cidade);
     // b
     // case 4:
-    // controller.listarDisponiveis();
-    //
-    // case 5:
-    // cpf = ""; //falta input cpf
-    // dentista = controller.buscaPorCpf(cpf);
-    // controller.atualizarDentista(cpf, dentista);
-    //
-    // case 6:
-    // cpf = ""; //falta input cpf
-    // dentista = controller.buscaPorCpf(cpf);
-    // controller.excluirDentista(cpf);
-    // //System.out.println("Dentista foi excluído com sucesso!!!");
-    // break;
 
     public String inputCpf() {
         System.out.println("\nDigite o CPF do dentista: ");
         return sc.nextLine();
     }
 
+    public String inputCro() {
+        System.out.println("\nDigite o CRO do dentista: ");
+        return sc.nextLine();
+    }
+
+    public String inputNome() {
+        System.out.println("Nome completo do dentista: ");
+        return sc.nextLine();
+    }
     public int inputSexo() {
         System.out.println("\nSelecione o sexo do dentista: ");
         System.out.println("1. Masculino");
@@ -51,7 +47,37 @@ public class DentistaView {
         return opc;
     }
 
-    public void exibirEndereco(Dentista dentista) {
+    public String inputTelefone() {
+        System.out.println("Telefone do solicitante: ");
+        return sc.nextLine();
+    }
+
+    public String inputEmail() {
+        System.out.println("Email do solicitante: ");
+        return sc.nextLine();
+    }
+
+    public int inputCategoria() {
+        System.out.println("\nSelecione a categoria do dentista: ");
+        System.out.println("1. Coordenador");
+        System.out.println("2. Clínico");
+        int opc = sc.nextInt();
+        sc.nextLine();
+
+        return opc;
+    }
+
+    public int inputDisponibilidade() {
+        System.out.println("\nDentista disponível para atendimentos: ");
+        System.out.println("1. Sim");
+        System.out.println("2. Não");
+        int opc = sc.nextInt();
+        sc.nextLine();
+
+        return opc;
+    }
+
+    public void exibirDentista(Dentista dentista) {
         System.out.println(dentista);
     }
 
@@ -61,7 +87,7 @@ public class DentistaView {
 
     public void exibirLista(List<Dentista> lista) {
         for (Dentista elemento : lista) {
-            exibirEndereco(elemento);
+            exibirDentista(elemento);
         }
     }
 }

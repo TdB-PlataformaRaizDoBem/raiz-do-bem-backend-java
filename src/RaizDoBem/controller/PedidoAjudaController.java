@@ -23,7 +23,6 @@ public class PedidoAjudaController {
         String cpf;
         do{
             cpf = view.inputCpf();
-            boolean validaCpf = bo.validarCpf(cpf);
         } while(!bo.validarCpf(cpf));
 
         String nome = view.inputNome();
@@ -89,13 +88,18 @@ public class PedidoAjudaController {
     }
 
     public void atualizar(String cpf) {
-        StatusPedido status;
-        int idDentista = view.inputId();
+        try {
+            int idStatus = view.inputStatus();
+            StatusPedido status = bo.validarStatus(idStatus);
+            int idDentista = view.inputIdDentista();
 
-        PedidoAjuda pedido = bo.validarPedido();
 
-
-        bo.atualizar(cpf, pedido);
+            PedidoAjuda pedido = bo.validarNovoPedido(status, idDentista);
+            bo.atualizar(cpf, pedido);
+            view.exibirMensagem("Pedido atualizado com sucesso!!!");
+        } catch (RuntimeException e) {
+            view.exibirMensagem(e.getMessage());
+        }
     }
 
     public void deletar(String cpf) {

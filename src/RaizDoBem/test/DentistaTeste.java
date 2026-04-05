@@ -12,5 +12,6 @@ public class DentistaTeste {
 
         controller.listandoTodos();
 
+
     }
 }

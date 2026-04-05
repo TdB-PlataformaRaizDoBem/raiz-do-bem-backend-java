@@ -23,6 +23,9 @@ public class BeneficiarioTeste {
 //        controller.listarPorCidade(cidade);
 
 //        String cpf = view.inputCpf();
+//        controller.atualizar(cpf);
+
+//        String cpf = view.inputCpf();
 //        controller.excluir(cpf);
     }
 }
