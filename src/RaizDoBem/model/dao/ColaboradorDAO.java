@@ -19,7 +19,7 @@ import java.util.List;
 public class ColaboradorDAO {
     public Colaborador mapeamento(ResultSet response) throws SQLException {
         return new Colaborador(
-                response.getInt("id"),
+                response.getInt("id_colaborador"),
                 response.getString("cpf"),
                 response.getString("nome_completo"),
                 response.getDate("data_nascimento").toLocalDate(),
@@ -32,7 +32,7 @@ public class ColaboradorDAO {
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
-            // verificar como consertar idColaborador e idCoordenador
+
             ps.setString(1, colaborador.getCpf());
             ps.setString(2, colaborador.getNomeCompleto());
             ps.setDate(3, Date.valueOf(colaborador.getDataNascimento()));
@@ -45,14 +45,8 @@ public class ColaboradorDAO {
         }
     }
 
-    /**
-     * O metodo listarTodos() é responsável por recuperar e exibir todos os
-     * registros de coordenadores presentes no banco de dados. Ele executa uma
-     * consulta SQL para selecionar as colunas relevantes da tabela Colaborador, e
-     * itera sobre os resultados para criar objetos Colaborador e exibi-los.
-     */
     public List<Colaborador> listarTodos() {
-        String querySql = "SELECT cpf, nome_completo, data_nascimento,data_contratacao, email FROM Colaborador";
+        String querySql = "SELECT id_colaborador, cpf, nome_completo, data_nascimento,data_contratacao, email FROM Colaborador";
         List<Colaborador> colaboradores = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -66,6 +60,24 @@ public class ColaboradorDAO {
             throw new RuntimeException("Erro ao listar colaboradores: " + exception.getMessage());
         }
         return colaboradores;
+    }
+
+    public Colaborador buscarPorCpf(String cpf) {
+        String querySql = "SELECT id_colaborador,  cpf, nome_completo, data_nascimento,data_contratacao, email FROM Colaborador WHERE cpf = ?";
+        try (Connection conexao = Conexao.conectarAoBanco();
+             PreparedStatement ps = conexao.prepareStatement(querySql);) {
+
+            ps.setString(1, cpf);
+
+            try (ResultSet response = ps.executeQuery();) {
+                if (response.next()) {
+                    return mapeamento(response);
+                }
+            }
+        } catch (SQLException exception) {
+            throw new RuntimeException("Erro ao encontrar cpf: " + exception.getMessage());
+        }
+        return null;
     }
 
     public void atualizar(Colaborador colaborador, String cpf) {
@@ -83,13 +95,13 @@ public class ColaboradorDAO {
         }
     }
 
-    public void excluir(int id) {
-        String querySql = "DELETE FROM colaborador WHERE id = ?";
+    public void excluir(String cpf) {
+        String querySql = "DELETE FROM colaborador WHERE cpf = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
 
-            ps.setInt(1, id);
+            ps.setString(1, cpf);
             ps.executeUpdate();
         } catch (SQLException exception) {
             throw new RuntimeException("Erro ao excluir colaborador: " + exception.getMessage());

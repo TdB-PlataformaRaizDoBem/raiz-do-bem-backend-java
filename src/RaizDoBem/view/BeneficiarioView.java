@@ -1,6 +1,5 @@
 package RaizDoBem.view;
 
-import RaizDoBem.controller.BeneficiarioController;
 import RaizDoBem.model.vo.Beneficiario;
 
 import java.util.List;
@@ -9,16 +8,15 @@ import java.util.Scanner;
 
 public class BeneficiarioView {
     Scanner sc = new Scanner(System.in);
-    public void menu(){
 
-        System.out.println("\n      Gerenciar Beneficiários     ");
-        System.out.println("        1.  Adicionar beneficiário");
-        System.out.println("        2.  Listar todos os beneficiários");
-        System.out.println("        3.  Listar beneficiário único");
-        System.out.println("        4.  Listar beneficiários por programa");
-        System.out.println("        5.  Listar beneficiários por cidade");
-        System.out.println("        6.  Atualizar beneficiário");
-        System.out.println("        7.  Excluir beneficiário");
+//        System.out.println("\n      Gerenciar Beneficiários     ");
+//        System.out.println("        1.  Adicionar beneficiário");
+//        System.out.println("        2.  Listar todos os beneficiários");
+//        System.out.println("        3.  Listar beneficiário único");
+//        System.out.println("        4.  Listar beneficiários por programa");
+//        System.out.println("        5.  Listar beneficiários por cidade");
+//        System.out.println("        6.  Atualizar beneficiário");
+//        System.out.println("        7.  Excluir beneficiário");
 
 //            case 2:
 //                System.out.println("Listagem dos beneficiários: ");
@@ -40,8 +38,9 @@ public class BeneficiarioView {
 //                break;
 //            case 5:
 //                BeneficiarioInput beneficiarioInput = new BeneficiarioInput();
-////                String cidade = beneficiarioInput();
-////                controller.listagemPorCidade(cidade);
+
+    /// /                String cidade = beneficiarioInput();
+    /// /                controller.listagemPorCidade(cidade);
 //                break;
 //            case 6:
 //                cpf = input.inputCpf();
@@ -53,21 +52,12 @@ public class BeneficiarioView {
 //                cpf = input.inputCpf();
 //                controller.excluirBeneficiario(cpf);
 //                break;
-//            case 8:
-//                System.out.println("Voltando ao menu principal...");
-//                break;
-//            case 0:
-//                System.out.println("Encerrando programa...");
-//                System.exit(0);
-//            default:
-//                System.out.println("Opção Inválida!");
-//        }
-    }
-    public String inputCpf(){
+    public String inputCpf() {
         System.out.println("Digite o CPF do beneficiário: ");
         return sc.nextLine();
     }
-    public int inputSexoBeneficiario(){
+
+    public int inputSexoBeneficiario() {
         System.out.println("Selecione o sexo do beneficiário: ");
         System.out.println("1. Masculino");
         System.out.println("2. Feminino");
@@ -78,7 +68,7 @@ public class BeneficiarioView {
         return opc;
     }
 
-    public int inputPrograma(){
+    public int inputPrograma() {
         System.out.println("Esse beneficiário(a) fará parte de qual programa da ONG?");
         System.out.println("1. Dentista do Bem");
         System.out.println("2. Apolônias do Bem");
@@ -87,16 +77,19 @@ public class BeneficiarioView {
 
         return opc;
     }
-    public void exibirPedido(Beneficiario beneficiario){
+
+    public void exibirPedido(Beneficiario beneficiario) {
         System.out.println(beneficiario);
     }
-    public void exibirMensagem(String msg){
+
+    public void exibirMensagem(String msg) {
         System.out.println(msg);
     }
 
-    public void exibirLista(List<Beneficiario> lista){
-        for (Beneficiario elemento : lista){
+    public void exibirLista(List<Beneficiario> lista) {
+        for (Beneficiario elemento : lista) {
             exibirPedido(elemento);
         }
     }
 }
+

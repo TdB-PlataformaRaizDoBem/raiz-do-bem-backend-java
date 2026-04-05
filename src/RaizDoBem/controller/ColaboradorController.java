@@ -18,7 +18,8 @@ public class ColaboradorController {
     public ColaboradorController() {
     }
 
-
+    public void criar() {
+    }
 
     public void listandoTodos() {
         List<Colaborador> colaboradores = bo.listarTodos();
@@ -29,4 +30,20 @@ public class ColaboradorController {
             view.exibirLista(colaboradores);
         }
     }
+
+
+    public void buscarPorCpf() {
+    }
+
+    public void atualizar() {
+    }
+
+
+    public void excluir() {
+    }
+
+
+
+
+
 }

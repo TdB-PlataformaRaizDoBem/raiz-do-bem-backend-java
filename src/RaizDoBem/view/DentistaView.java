@@ -1,9 +1,7 @@
 package RaizDoBem.view;
 
-import RaizDoBem.controller.DentistaController;
 import RaizDoBem.model.vo.Dentista;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,7 +9,6 @@ import java.util.Scanner;
 public class DentistaView {
     Scanner sc = new Scanner(System.in);
 
-    String cpf = "";
 
     // case 2:
     // dentistas = controller.listarTodos();
@@ -38,15 +35,7 @@ public class DentistaView {
     // controller.excluirDentista(cpf);
     // //System.out.println("Dentista foi excluído com sucesso!!!");
     // break;
-    // case 7:
-    // System.out.println("Voltando ao menu principal...");
-    // break;
-    // case 0:
-    // System.out.println("Encerrando programa...");
-    // System.exit(0);
-    // default:
-    // System.out.println("Opção Inválida");
-    //
+
     public String inputCpf() {
         System.out.println("Digite o CPF do dentista: ");
         return sc.nextLine();
