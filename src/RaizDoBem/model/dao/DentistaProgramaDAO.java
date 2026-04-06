@@ -26,18 +26,13 @@ public class DentistaProgramaDAO {
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
-            ps.setInt(1, dentistaPrograma.getDentista().getId());
-            ps.setInt(2, dentistaPrograma.getPrograma().getId());
+            ps.setInt(1, dentistaPrograma.getIdDentista());
+            ps.setInt(2, dentistaPrograma.getIdPrograma());
 
             ps.executeUpdate();
-            // System.out.println("Adicionada nova relação Dentista - Programa Social!!");
         } catch (SQLException exception) {
             throw new RuntimeException("Erro ao adicionar relação: " + exception.getMessage());
         }
-    }
-
-    public void listarPublicoDentista(int idDentista) {
-
     }
 
     public List<Dentista> listarDentistasPrograma(String programa) {

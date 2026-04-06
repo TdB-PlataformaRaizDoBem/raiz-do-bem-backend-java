@@ -23,7 +23,7 @@ import java.util.List;
 public class EspecialidadeDAO {
     public List<Especialidade> listarTodos() {
         String querySql = "SELECT id_especialidade, descricao FROM especialidade";
-        List<Especialidade> especialidades = new ArrayList<Especialidade>();
+        List<Especialidade> especialidades = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);

@@ -1,9 +1,6 @@
 package RaizDoBem.model.dao;
 
-import RaizDoBem.model.vo.Conexao;
-import RaizDoBem.model.vo.Dentista;
-import RaizDoBem.model.vo.DentistaEspecialidade;
-import RaizDoBem.model.vo.Especialidade;
+import RaizDoBem.model.vo.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +17,12 @@ import java.util.List;
  *
  */
 public class DentistaEspecialidadeDAO {
+    public DentistaEspecialidade mapeamento(ResultSet response) throws SQLException {
+        return new DentistaEspecialidade(
+                response.getInt("id_dentista"),
+                response.getInt("id_especialidade")
+        );
+    }
     public void adicionar(DentistaEspecialidade dentistaEspecialidade){
         String querySql = "INSERT INTO dentista_especialidade VALUES (?, ?)";
 
@@ -30,44 +33,36 @@ public class DentistaEspecialidadeDAO {
             ps.setInt(2, dentistaEspecialidade.getIdEspecialidade());
 
             ps.executeUpdate();
-            //System.out.println("Adicionada nova relação Dentista - Especialidade !!");
         }
         catch (SQLException exception){
             throw new RuntimeException("Erro ao adicionar relação: " + exception.getMessage());
         }
     }
     public List<DentistaEspecialidade> listarTodos(){
-        String querySql = "SELECT de.id_dentista, d.nome_completo, de.id_especialidade, e.especialidade FROM Dentista_Especialidade de, Dentista d, Especialidade e WHERE de.id_dentista = d.id_dentista and de.id_especialidade = e.id_especialidade";
-        List<DentistaEspecialidade> lista = new ArrayList<>();
+        String querySql = "SELECT de.id_dentista, d.nome_completo, de.id_especialidade, e.descricao FROM Dentista_Especialidade de, Dentista d, Especialidade e WHERE de.id_dentista = d.id_dentista and de.id_especialidade = e.id_especialidade";
+        List<DentistaEspecialidade> dentistaEspecialidades = new ArrayList<>();
+
         try(Connection conexao = Conexao.conectarAoBanco();
-            PreparedStatement ps = conexao.prepareStatement(querySql);){
+            PreparedStatement ps = conexao.prepareStatement(querySql);
+            ResultSet response = ps.executeQuery();){
 
-            ResultSet response;
-            Dentista dentistaEspecialidade;
 
-            response = ps.executeQuery();
-            System.out.println("Listagem dos dentistas: ");
+            System.out.println("Listagem dos dentistas e suas especialidades: ");
             while(response.next()){
-                int idDentista = response.getInt("id_dentista");
-                String nomeDentista = response.getString("nome_completo");
-                int idEspecialidade = response.getInt("id_especialidade");
-                String nomeEspecialidade = response.getString("especialidade");
-
-//              dentistaEspecialidade = new DentistaEspecialidade(idDentista, idEspecialidade);
-//              System.out.println(dentistaEspecialidade);
+                dentistaEspecialidades.add(mapeamento(response));
             }
         }
         catch (SQLException exception){
-            throw new RuntimeException("Erro ao listar os dentistas: " + exception.getMessage());
+            throw new RuntimeException("Erro ao listar os dentistas e suas especialidades: " + exception.getMessage());
         }
-        return lista;
+        return dentistaEspecialidades;
     }
-    public List<Especialidade> listarEspecialidadesUnicoDentista(int idDentista){
-        List<Especialidade> especialidades = new ArrayList<>();
-        return especialidades;
-    }
-    public List<Dentista> listarDentistasComEspecialidade(String especialidade){
-        List<Dentista> dentistas = new ArrayList<>();
-        return dentistas;
-    }
+//    public List<Especialidade> listarEspecialidadesUnicoDentista(int idDentista){
+//        List<Especialidade> especialidades = new ArrayList<>();
+//        return especialidades;
+//    }
+//    public List<Dentista> listarDentistasComEspecialidade(String especialidade){
+//        List<Dentista> dentistas = new ArrayList<>();
+//        return dentistas;
+//    }
 }

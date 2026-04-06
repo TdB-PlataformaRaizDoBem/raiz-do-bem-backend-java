@@ -37,4 +37,10 @@ public class DentistaEspecialidade {
         this.idDentista = idDentista;
         this.idEspecialidade = idEspecialidade;
     }
+
+    @Override
+    public String toString() {
+        return "Dentista ID:" + idDentista +
+                " - Especialidade ID: " + idEspecialidade;
+    }
 }

@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter;
  *
  */
 public class Beneficiario{
-    private int id;
+    private int idBeneficiario;
     private String cpf;
     private String nomeCompleto;
     private LocalDate dataNascimento;
@@ -29,12 +29,12 @@ public class Beneficiario{
     private int idProgramaSocial;
     private int idEndereco;
 
-    public int getId() {
-        return id;
+    public int getIdBeneficiario() {
+        return idBeneficiario;
     }
 
-    public Beneficiario setId(int id) {
-        this.id = id;
+    public Beneficiario setIdBeneficiario(int idBeneficiario) {
+        this.idBeneficiario = idBeneficiario;
         return this;
     }
 
@@ -110,8 +110,8 @@ public class Beneficiario{
         return this;
     }
 
-    public Beneficiario(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, String telefone, String email, int idPedidoAjuda, int idProgramaSocial, int idEndereco) {
-        this.id = id;
+    public Beneficiario(int idBeneficiario, String cpf, String nomeCompleto, LocalDate dataNascimento, String telefone, String email, int idPedidoAjuda, int idProgramaSocial, int idEndereco) {
+        this.idBeneficiario = idBeneficiario;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
@@ -139,7 +139,7 @@ public class Beneficiario{
 
     @Override
     public String toString() {
-        return " " + id +
+        return " " + idBeneficiario +
                 " - " + nomeCompleto +
                 " - Cpf: " + cpf +
                 "\n     Data de nascimento: " + dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +

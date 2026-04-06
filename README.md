@@ -221,7 +221,7 @@ src/RaizDoBem/
 ## Próximos Passos para Documentação
 
 1. **Diagrama de Classes**: Atualizar com 6 classes e relacionamentos
-2. **MER**: Atualizar com tabelas de atendimento, dentista, beneficiário
+2. **MER**: Atualizar com tabelas de atendimento, idDentista, beneficiário
 3. **Protótipos**: Telas para cada CRUD
 4. **Scripts SQL**: DDL e DML para todas as tabelas
 

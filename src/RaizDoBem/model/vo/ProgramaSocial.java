@@ -8,19 +8,19 @@ package RaizDoBem.model.vo;
  * @param programa Nome do programa social, utilizado para descrever o tipo de assistência ou serviço oferecido aos beneficiários.
  */
 public class ProgramaSocial {
-    private int id;
+    private int idPrograma;
     private String programa;
 
-    public int getId() {
-        return id;
+    public int getIdPrograma() {
+        return idPrograma;
     }
 
     public String getPrograma() {
         return programa;
     }
 
-    public ProgramaSocial setId(int id) {
-        this.id = id;
+    public ProgramaSocial setIdPrograma(int idPrograma) {
+        this.idPrograma = idPrograma;
         return this;
     }
 
@@ -29,8 +29,8 @@ public class ProgramaSocial {
         return this;
     }
 
-    public ProgramaSocial(int id, String programa) {
-        this.id = id;
+    public ProgramaSocial(int idPrograma, String programa) {
+        this.idPrograma = idPrograma;
         this.programa = programa;
     }
 
@@ -39,6 +39,7 @@ public class ProgramaSocial {
 
     @Override
     public String toString() {
-        return programa;
+        return idPrograma +
+                " - " + programa;
     }
 }

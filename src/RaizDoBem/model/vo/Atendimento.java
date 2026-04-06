@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
  * @param idColaborador Identificador do colaborador responsável por registrar o atendimento, referenciando a pessoa que documenta as informações do atendimento e garante que os dados sejam corretamente armazenados para futuras consultas e análises.
  */
 public class Atendimento {
-    private int id;
+    private int idAtendimento;
     private String descricaoInicial;
     private LocalDate dataInicial;
     private LocalDate dataFinal;
@@ -25,12 +25,12 @@ public class Atendimento {
     private int idDentista;
     private int idColaborador;
 
-    public int getId() {
-        return id;
+    public int getIdAtendimento() {
+        return idAtendimento;
     }
 
-    public Atendimento setId(int id) {
-        this.id = id;
+    public Atendimento setIdAtendimento(int idAtendimento) {
+        this.idAtendimento = idAtendimento;
         return this;
     }
 
@@ -97,8 +97,8 @@ public class Atendimento {
         return this;
     }
 
-    public Atendimento(int id, String descricaoInicial, LocalDate dataInicial, LocalDate dataFinal, String solucaoProblema, int idBeneficiario, int idDentista, int idColaborador) {
-        this.id = id;
+    public Atendimento(int idAtendimento, String descricaoInicial, LocalDate dataInicial, LocalDate dataFinal, String solucaoProblema, int idBeneficiario, int idDentista, int idColaborador) {
+        this.idAtendimento = idAtendimento;
         this.descricaoInicial = descricaoInicial;
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
@@ -120,10 +120,10 @@ public class Atendimento {
 
     @Override
     public String toString() {
-        return id +
+        return idAtendimento +
                 " - Descrição: " + descricaoInicial +
                 "\n     Data inicial: " + dataInicial.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
-                " - Data Final: " + dataFinal +
+                " - Data Final: " + dataFinal.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
                 "\n     Solução do problema: " + solucaoProblema +
                 "\n\n     Id do beneficiário que atendido: " + idBeneficiario +
                 "\n     Id do dentista que atende: " + idDentista +

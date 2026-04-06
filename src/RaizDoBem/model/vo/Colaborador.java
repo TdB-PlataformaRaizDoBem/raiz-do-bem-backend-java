@@ -14,19 +14,19 @@ import java.time.format.DateTimeFormatter;
  * @param email Endereço de e-mail do colaborador, utilizado para comunicação e envio de informações relevantes relacionadas às atividades da ONG.
  */
 public class Colaborador {
-    private int id;
+    private int idColaborador;
     private String cpf;
     private String nomeCompleto;
     private LocalDate dataNascimento;
     private LocalDate dataContratacao;
     private String email;
 
-    public int getId() {
-        return id;
+    public int getIdColaborador() {
+        return idColaborador;
     }
 
-    public Colaborador setId(int id) {
-        this.id = id;
+    public Colaborador setIdColaborador(int idColaborador) {
+        this.idColaborador = idColaborador;
         return this;
     }
 
@@ -75,8 +75,8 @@ public class Colaborador {
         return this;
     }
 
-    public Colaborador(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, LocalDate dataContratacao, String email) {
-        this.id = id;
+    public Colaborador(int idColaborador, String cpf, String nomeCompleto, LocalDate dataNascimento, LocalDate dataContratacao, String email) {
+        this.idColaborador = idColaborador;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
@@ -97,7 +97,7 @@ public class Colaborador {
 
     @Override
     public String toString() {
-        return "\n" + id +
+        return "\n" + idColaborador +
                 " - " + nomeCompleto + " - Cpf: " +  cpf +
                 "\n     Data de nascimento: " + dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
                 "\n     Data de contratação: " + dataContratacao.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " - email: " + email;

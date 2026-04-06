@@ -3,7 +3,7 @@ package RaizDoBem.model.vo;
 /* Classe que representa um dentista na ONG. Esta classe contém informações sobre o dentista, como seu CRO (Conselho Regional de Odontologia), CPF, nome completo, sexo, email, telefone, categoria de atendimento, disponibilidade e o ID do endereço associado. Ela é utilizada para armazenar e manipular os dados dos dentistas que prestam atendimento aos beneficiários da ONG.
  * @author Paulo
  * @since 2026-03
- * @param id Identificador único do dentista.
+ * @param idDentista Identificador único do dentista.
  * @param croDentista CRO do dentista, utilizado para identificação profissional.
  * @param cpf CPF do dentista, utilizado para identificação pessoal.
  * @param nomeCompleto Nome completo do dentista.
@@ -15,7 +15,7 @@ package RaizDoBem.model.vo;
  * @param idEndereco Identificador do endereço do dentista, referenciando a localização onde o dentista reside ou onde os atendimentos são realizados, facilitando a organização e logística dos atendimentos odontológicos.
  */
 public class Dentista{
-    private int id;
+    private int idDentista;
     private String croDentista;
     private String cpf;
     private String nomeCompleto;
@@ -26,12 +26,12 @@ public class Dentista{
     private boolean disponivel;
     private int idEndereco;
 
-    public int getId() {
-        return id;
+    public int getIdDentista() {
+        return idDentista;
     }
 
-    public Dentista setId(int id) {
-        this.id = id;
+    public Dentista setIdDentista(int idDentista) {
+        this.idDentista = idDentista;
         return this;
     }
 
@@ -119,8 +119,8 @@ public class Dentista{
         return this;
     }
 
-    public Dentista(int id, String croDentista, String cpf, String nomeCompleto, Sexo sexo, String email, String telefone, String categoria, int idEndereco, boolean disponivel) {
-        this.id = id;
+    public Dentista(int idDentista, String croDentista, String cpf, String nomeCompleto, Sexo sexo, String email, String telefone, String categoria, int idEndereco, boolean disponivel) {
+        this.idDentista = idDentista;
         this.croDentista = croDentista;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
@@ -149,7 +149,7 @@ public class Dentista{
 
     @Override
     public String toString() {
-        return "\n" + id +
+        return "\n" + idDentista +
                 "  - CRO: " + croDentista +
                 " - Cpf: " + cpf +
                 "\n     Nome Completo: " + nomeCompleto  +

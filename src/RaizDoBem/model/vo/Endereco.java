@@ -22,7 +22,7 @@ package RaizDoBem.model.vo;
  * @since 2025-09
  */
 public class Endereco {
-    private int id;
+    private int idEndereco;
     private String logradouro;
     private String cep;
     private String numero;
@@ -31,12 +31,12 @@ public class Endereco {
     private String estado;
     private TipoEndereco tipo;
 
-    public int getId() {
-        return id;
+    public int getIdEndereco() {
+        return idEndereco;
     }
 
-    public Endereco setId(int id) {
-        this.id = id;
+    public Endereco setIdEndereco(int idEndereco) {
+        this.idEndereco = idEndereco;
         return this;
     }
 
@@ -103,8 +103,8 @@ public class Endereco {
         return this;
     }
 
-    public Endereco(int id, String logradouro, String cep, String numero, String bairro, String cidade, String estado, TipoEndereco tipo) {
-        this.id = id;
+    public Endereco(int idEndereco, String logradouro, String cep, String numero, String bairro, String cidade, String estado, TipoEndereco tipo) {
+        this.idEndereco = idEndereco;
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
@@ -129,7 +129,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "\n" + id + " - " + logradouro + ", " + numero + " - Cep: " + cep +
+        return "\n" + idEndereco + " - " + logradouro + ", " + numero + " - Cep: " + cep +
                 "\n    " + cidade + " - " + estado + "\n    Tipo de endereço: " + tipo;
 
     }

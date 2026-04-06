@@ -9,14 +9,13 @@ package RaizDoBem.model.vo;
  * @param bairro O nome do bairro do endereço.
  * @param localidade A cidade associada ao endereço.
  * @param uf A sigla do estado (UF) associada ao endereço.
- * @param estado O nome completo do estado associado ao endereço.
  * @param erro Indica se houve um erro na consulta do CEP (true se houve erro, false caso contrário).
  */
 public class ViaCep {
         private String cep;
         private String logradouro;
         private String bairro;
-        private String localidade; // cidade
+        private String localidade;
         private String uf;
         private boolean erro;
 

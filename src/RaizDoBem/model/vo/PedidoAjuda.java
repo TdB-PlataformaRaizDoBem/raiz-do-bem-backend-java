@@ -23,7 +23,7 @@ import java.time.format.DateTimeFormatter;
     * 
  */
 public class PedidoAjuda {
-    private int id;
+    private int idPedido;
     private String cpf;
     private String nomeCompleto;
     private LocalDate dataNascimento;
@@ -36,12 +36,12 @@ public class PedidoAjuda {
     private int idEndereco;
     private int idDentista;
 
-    public int getId() {
-        return id;
+    public int getIdPedido() {
+        return idPedido;
     }
 
-    public PedidoAjuda setId(int id) {
-        this.id = id;
+    public PedidoAjuda setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
         return this;
     }
 
@@ -144,8 +144,8 @@ public class PedidoAjuda {
         return this;
     }
 
-    public PedidoAjuda(int id, String cpf, String nomeCompleto, LocalDate dataNascimento, Sexo sexo, String telefone, String email, String descricaoProblema, LocalDate dataPedido, StatusPedido status, int idEndereco, int idDentista) {
-        this.id = id;
+    public PedidoAjuda(int idPedido, String cpf, String nomeCompleto, LocalDate dataNascimento, Sexo sexo, String telefone, String email, String descricaoProblema, LocalDate dataPedido, StatusPedido status, int idEndereco, int idDentista) {
+        this.idPedido = idPedido;
         this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
@@ -178,7 +178,7 @@ public class PedidoAjuda {
 
     @Override
     public String toString() {
-        return "\n" + id +
+        return "\n" + idPedido +
                 " - Solicitante: " + nomeCompleto +
                 " - Cpf: " + cpf +
                 "\n    Descrição: " + descricaoProblema +
