@@ -121,12 +121,12 @@ public class Atendimento {
     @Override
     public String toString() {
         return id +
-                " - Descrição Inicial: " + descricaoInicial +
-                " - Data inicial de atendimento: " + dataInicial.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
-                "\n Data Final: " + dataFinal +
-                " - Solução do problema: " + solucaoProblema +
-                "\n Id do beneficiário que recebe atendimento: " + idBeneficiario +
-                "\n Id do dentista que atende: " + idDentista +
-                "\n Id colaborador responsável: " + idColaborador;
+                " - Descrição: " + descricaoInicial +
+                "\n     Data inicial: " + dataInicial.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                " - Data Final: " + dataFinal +
+                "\n     Solução do problema: " + solucaoProblema +
+                "\n\n     Id do beneficiário que atendido: " + idBeneficiario +
+                "\n     Id do dentista que atende: " + idDentista +
+                "\n     Id colaborador responsável: " + idColaborador;
     }
 }

@@ -2,6 +2,7 @@ package RaizDoBem.controller;
 
 import RaizDoBem.model.bo.AtendimentoBO;
 import RaizDoBem.model.vo.Atendimento;
+import RaizDoBem.model.vo.Dentista;
 import RaizDoBem.view.AtendimentoView;
 
 import java.time.LocalDate;
@@ -33,7 +34,6 @@ public class AtendimentoController {
             bo.criar(atendimento);
 
             view.exibirMensagem("Atendimento criado com sucesso!!!");
-            view.exibirAtendimento(atendimento);
         } catch (Exception e) {
             view.exibirMensagem(e.getMessage());
         }
@@ -59,5 +59,18 @@ public class AtendimentoController {
             view.exibirMensagem("Nenhum atendimento encontrado!!!");
             }
     }
+    public void atualizar(int idAtendimento){
+        try{
+            String solucao = view.inputSolucao();
+            int idColaborador = view.inputColaborador();
 
+            Atendimento atendimento = bo.validarAtualizacao(solucao, idColaborador);
+            atendimento.setDataFinal(LocalDate.now());
+
+            bo.atualizar(idAtendimento, atendimento);
+            view.exibirMensagem("Atendimento atualizado com sucesso!!!");
+        } catch (RuntimeException e) {
+            view.exibirMensagem(e.getMessage());
+        }
+    }
 }

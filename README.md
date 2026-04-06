@@ -1,91 +1,131 @@
-# Raiz do Bem - Challenge FIAP 2025-2026
+# Raiz do Bem - Challenge FIAP Spring 3
 
 Projeto Java (MVC puro, sem framework) desenvolvido para o Challenge FIAP em parceria com a Turma do Bem.
 
 ## Status do Projeto
 
-- Atualizado em: 04/04/2026
-- Banco de dados: Oracle via JDBC
-- Módulo de endereço: implementado em fluxo MVC completo (View -> Controller -> BO -> DAO)
-- Demais módulos: em diferentes estágios de implementação
+- **Atualizado em**: 05/04/2026
+- **Sprint**: 3 (COMPLETA)
+- **Banco de dados**: Oracle via JDBC
+- **Status**: ✅ Todos os 6 CRUDs implementados e validados
 
 ## Arquitetura
 
-Estrutura em camadas:
+Estrutura em camadas Domain Driven Design:
 
-- `view/`: entrada e saída no console
-- `controller/`: orquestra fluxo da tela e chama regras de negócio
-- `model/bo/`: validações e regras de negócio
-- `model/dao/`: acesso a dados no Oracle
-- `model/vo/`: entidades e enums
+```
+src/RaizDoBem/
+├── view/              (Entrada/saída console)
+├── controller/        (Orquestração de fluxos)
+├── model/
+│   ├── bo/           (Regras de negócio e validações)
+│   ├── dao/          (Acesso a dados Oracle)
+│   └── vo/           (Entidades e enums)
+└── test/             (Classes de teste com main)
+```
 
-## Fluxo do Módulo Endereço
+## Módulos Implementados Sprint 3
 
-### 1) Entrada de dados (View)
+### 1) Endereço
+**Status**: ✅ CRUD Completo (C-R-U-D)
 
-`EnderecoView` coleta:
+- **DAO**: CRUD completo + `listarPorCidade()`
+- **BO**: Validações + Integração ViaCep API
+- **Controller/View**: Fluxo MVC completo
+- **Métodos de Negócio**:
+  - `validarCep()` - Valida tamanho (8 dígitos)
+  - `validarEndereco()` - Consulta ViaCep e monta entidade
 
-- CEP (8 dígitos)
-- Número do endereço
-- Tipo do endereço (1 = residencial, 2 = profissional)
-- Cidade e ID para operações de consulta/edição/exclusão
+### 2) Dentista
+**Status**: ✅ CRUD Completo (C-R-U-D)
+
+- **DAO**: CRUD completo + `listarPorCidade()` + `listarDisponiveis()`
+- **BO**: Validações de sexo, categoria, disponibilidade
+- **Controller/View**: Fluxo MVC completo
+- **Métodos de Negócio**:
+  - `validarDentista()` - Validação completa com enum Sexo
+  - `validaAtualizaDentista()` - Validação para atualização
+
+### 3) Colaborador
+**Status**: ✅ CRUD Completo (C-R-U-D)
+
+- **DAO**: CRUD completo
+- **BO**: Validações de email
+- **Controller/View**: Fluxo MVC completo
+- **Métodos de Negócio**:
+  - `validarColaborador()` - Validação de dados iniciais
+  - `validarNovoColaborador()` - Validação para atualização
+
+### 4) Pedido de Ajuda
+**Status**: ✅ CRUD Completo (C-R-U-D)
+
+- **DAO**: CRUD completo + `listarPedidosData()`
+- **BO**: Validações de CPF, status, integração com Beneficiário
+- **Controller/View**: Fluxo MVC completo
+- **Métodos de Negócio**:
+  - `validarPedido()` - Validação com enum Sexo e StatusPedido
+  - `validarStatus()` - Conversão int → enum
+  - `validarCpf()` - Validação de CPF (11 dígitos)
+
+### 5) Beneficiário
+**Status**: ✅ CRUD Completo (C-R-U-D)
+
+- **DAO**: CRUD completo + `buscarPorPrograma()` + `listarPorCidade()`
+- **BO**: Validações + Integração com PedidoAjuda
+- **Controller/View**: Fluxo MVC completo
+- **Métodos de Negócio**:
+  - `adicionar()` - **Lógica Crítica**: Cria Beneficiário a partir de PedidoAjuda aprovado
+  - `validarNovoBeneficiario()` - Validação de campos
+
+### 6) Atendimento
+**Status**: ✅ CRUD Completo (C-R-U) - **SEM DELETE (por opção)**
+
+- **DAO**: Create, Read (CPF, ID, listarTodos), Update
+- **BO**: Validações de atendimento
+- **Controller/View**: Fluxo MVC completo
+- **Métodos de Negócio**:
+  - `validarAtendimento()` - Validação de dados iniciais
+  - `validarAtualizacao()` - Validação para finalização
+
+## Fluxo MVC de Exemplo: Endereço
+
+### 1) Entrada (View)
+- **Classe**: `EnderecoView`
+- **Coleta**: CEP (8 dígitos), Número, Tipo (1=Residencial, 2=Profissional)
 
 ### 2) Orquestração (Controller)
+- **Classe**: `EnderecoController`
+- **Métodos**: `adicionar()`, `listandoTodos()`, `listarPorId()`, `atualizar()`, `deletar()`
 
-`EnderecoController` executa o fluxo:
-
-- `adicionar()`: recebe entradas da view, valida CEP e tipo, monta entidade e persiste
-- `listandoTodos()`: lista todos os endereços
-- `listarPorId(id)`: busca por ID
-- `listandoPorCidade(cidade)`: filtra por cidade
-- `atualizar(id)`: refaz validações e atualiza registro
-- `deletar(id)`: remove por ID
-
-### 3) Regras de negócio (BO)
-
-`EnderecoBO` aplica validações e integração externa:
-
-- `validarCep(cep)`: valida apenas tamanho (8)
-- `validarTipoEndereco(opc)`: aceita apenas 1 ou 2
-- `validarEndereco(cep, numero, tipo)`: consulta ViaCEP e monta o objeto `Endereco`
-- `criar`, `atualizar`, `excluir`, `listar`: encaminham para DAO após validações
+### 3) Regras de Negócio (BO)
+- **Classe**: `EnderecoBO`
+- **Validações**:
+  - `validarCep()` - Tamanho = 8
+  - `validarTipoEndereco()` - Apenas 1 ou 2
+  - `validarEndereco()` - Consulta API ViaCep, monta Endereco
 
 ### 4) Persistência (DAO)
+- **Classe**: `EnderecoDAO`
+- **Operações**: CRUD + `listarPorCidade()`
 
-`EnderecoDAO` executa CRUD no Oracle com `PreparedStatement`:
-
-- `adicionar`
-- `listarTodos`
-- `buscarPorId`
-- `listarPorCidade`
-- `atualizar`
-- `excluir`
-
-### 5) Integração ViaCEP
-
-`ViaCepController` consulta:
-
-- URL: `https://viacep.com.br/ws/{cep}/json/`
-- Parse JSON com Gson para `ViaCep`
-- Se a API retornar erro, o BO lança exceção de endereço não encontrado
-
-## Cenário Atual do Fluxo de Endereço
-
-O fluxo MVC do módulo está implementado e funcional por chamada direta do controller em teste manual.
-
-Observações importantes do estado atual:
-
-- `EnderecoTeste` está preparado para validar o CRUD manualmente
-- `MenuInicial` ainda não encaminha efetivamente para o menu de endereços
-- `EnderecoView` contém entradas e exibição, mas não possui um `menu()` próprio
+### 5) Integração Externa
+- **Classe**: `ViaCepController`
+- **API**: `https://viacep.com.br/ws/{cep}/json/`
+- **Parse**: Gson para objeto `ViaCep`
 
 ## Como Executar
 
-### 1) Configuração de banco
+### 1) Configuração de Banco
 
-1. Copie `config.properties.example` para `config.properties`
-2. Preencha:
+```bash
+# Copiar arquivo de exemplo
+cp config.properties.example config.properties
 
+# Editar com suas credenciais
+vim config.properties
+```
+
+**Conteúdo esperado**:
 ```properties
 db.driver=oracle.jdbc.OracleDriver
 db.url=jdbc:oracle:thin:@SEU_IP:1521:XE
@@ -93,40 +133,95 @@ db.user=usuario
 db.password=senha
 ```
 
-### 2) Executar teste do módulo Endereço
+### 2) Executar Testes por Módulo
 
-Classe principal recomendada no estado atual:
+Cada módulo possui uma classe de teste:
 
-- `RaizDoBem.test.EnderecoTeste`
+```bash
+java RaizDoBem.test.EnderecoTeste
+java RaizDoBem.test.DentistaTeste
+java RaizDoBem.test.ColaboradorTeste
+java RaizDoBem.test.BeneficiarioTeste
+java RaizDoBem.test.PedidoTeste
+java RaizDoBem.test.AtendimentoTeste
+```
 
-No arquivo de teste, descomente os blocos dos métodos que deseja validar (criar, listar, buscar, atualizar, excluir).
+**Nota**: Nos testes, descomente os métodos que deseja validar (criar, listar, buscar, atualizar, excluir).
 
-## Estrutura Relevante do Endereço
+### 3) Estrutura de Diretórios
 
 ```text
 src/RaizDoBem/
-  controller/
-    EnderecoController.java
-    ViaCepController.java
-  model/
-    bo/
-      EnderecoBO.java
-    dao/
-      EnderecoDAO.java
-    vo/
-      Endereco.java
-      TipoEndereco.java
-      ViaCep.java
-  view/
-    EnderecoView.java
-  test/
-    EnderecoTeste.java
+├── controller/
+│   ├── EnderecoController.java
+│   ├── DentistaController.java
+│   ├── ColaboradorController.java
+│   ├── BeneficiarioController.java
+│   ├── PedidoAjudaController.java
+│   ├── AtendimentoController.java
+│   └── ViaCepController.java
+├── model/
+│   ├── bo/
+│   │   ├── EnderecoBO.java
+│   │   ├── DentistaBO.java
+│   │   ├── ColaboradorBO.java
+│   │   ├── BeneficiarioBO.java
+│   │   ├── PedidoAjudaBO.java
+│   │   └── AtendimentoBO.java
+│   ├── dao/
+│   │   ├── EnderecoDAO.java
+│   │   ├── DentistaDAO.java
+│   │   ├── ColaboradorDAO.java
+│   │   ├── BeneficiarioDAO.java
+│   │   ├── PedidoAjudaDAO.java
+│   │   └── AtendimentoDAO.java
+│   └── vo/
+│       ├── Endereco.java
+│       ├── Dentista.java
+│       ├── Colaborador.java
+│       ├── Beneficiario.java
+│       ├── PedidoAjuda.java
+│       ├── Atendimento.java
+│       ├── Conexao.java
+│       ├── Sexo.java (enum)
+│       ├── StatusPedido.java (enum)
+│       └── TipoEndereco.java (enum)
+└── test/
+    ├── EnderecoTeste.java
+    ├── DentistaTeste.java
+    ├── ColaboradorTeste.java
+    ├── BeneficiarioTeste.java
+    ├── PedidoTeste.java
+    └── AtendimentoTeste.java
 ```
 
-## Boas Práticas já Aplicadas
+## Boas Práticas Implementadas
 
-- Separação por camadas MVC + BO/DAO
-- DAO com `PreparedStatement`
-- `try-with-resources` para conexões e statements
-- Mapeamento de `ResultSet` em método específico (`mapeamento`)
-- Tratamento de exceções com mensagem de domínio
+- ✅ Separação em camadas (View → Controller → BO → DAO)
+- ✅ Padrão DAO com PreparedStatement
+- ✅ Try-with-resources para conexões
+- ✅ Mapeamento de ResultSet em método específico
+- ✅ Tratamento de exceções com mensagens de domínio
+- ✅ Enums para valores de domínio (Sexo, StatusPedido, TipoEndereco)
+- ✅ Validações em camada BO (Business Objects)
+- ✅ Integração com API externa (ViaCep)
+
+## Requisitos Sprint 3 - Validação Final
+
+| Requisito | Status | Evidência |
+|-----------|--------|-----------|
+| 6 classes modelo | ✅ | Endereco, Dentista, Colaborador, Beneficiario, PedidoAjuda, Atendimento |
+| CRUD em DAO | ✅ | Todos implementados (Atendimento sem DELETE) |
+| +4 métodos lógica negócio | ✅ | 6+ métodos em BOs |
+| DAO → BO → Controller → View | ✅ | Fluxo MVC em todos os módulos |
+| Validações em BO | ✅ | Validação de CPF, CEP, enums, relacionamentos |
+| Teste com main() | ✅ | 6 classes de teste |
+| Conexão ao Banco | ✅ | Oracle JDBC |
+
+## Próximos Passos para Documentação
+
+1. **Diagrama de Classes**: Atualizar com 6 classes e relacionamentos
+2. **MER**: Atualizar com tabelas de atendimento, dentista, beneficiário
+3. **Protótipos**: Telas para cada CRUD
+4. **Scripts SQL**: DDL e DML para todas as tabelas
+

@@ -1,12 +1,9 @@
 package RaizDoBem.model.bo;
 
 import RaizDoBem.model.dao.DentistaDAO;
-import RaizDoBem.model.vo.Beneficiario;
-import RaizDoBem.model.vo.Colaborador;
 import RaizDoBem.model.vo.Dentista;
 import RaizDoBem.model.vo.Sexo;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class DentistaBO {
@@ -77,6 +74,7 @@ public class DentistaBO {
                 .setEmail(email)
                 .setTelefone(telefone)
                 .setCategoria(categoria)
-                .setIdEndereco(idEndereco);
+                .setIdEndereco(idEndereco)
+                .setDisponivel(disponivel);
     }
 }

@@ -61,7 +61,7 @@ public class DentistaController {
         else if(disponivel == 2 )
             disponibilidade = false;
 
-        Dentista dentista = bo.validarDentista(cro, cpf, nome, sexo, telefone, email, categoriaDentista, idEndereco, disponibilidade);
+        Dentista dentista = bo.validarDentista(cro, cpf, nome, sexo, email, telefone, categoriaDentista, idEndereco, disponibilidade);
         bo.criarDentista(dentista);
         view.exibirMensagem("Dentista criado com sucesso!!!");
     }

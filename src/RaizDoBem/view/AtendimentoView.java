@@ -26,8 +26,16 @@ import java.util.Scanner;
 public class AtendimentoView {
     Scanner sc = new Scanner(System.in);
 
+    public int inputId() {
+        System.out.println("\nDigite o id do atendimento: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        return id;
+    }
+
     public String inputCpf() {
-        System.out.println("\nDigite o cpf do colaborador(11 dígitos): ");
+        System.out.println("\nDigite o cpf do beneficiário do atendimento (11 dígitos): ");
         return sc.nextLine();
     }
 
@@ -64,7 +72,7 @@ public class AtendimentoView {
     }
 
     public int inputColaborador() {
-        System.out.println("\nDigite o ID do colaborador que está finaizando o atendimento: ");
+        System.out.println("\nDigite o ID do colaborador que está finalizando o atendimento: ");
         int idColaborador = sc.nextInt();
         sc.nextLine();
         return idColaborador;

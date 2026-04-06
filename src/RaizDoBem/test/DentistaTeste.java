@@ -20,7 +20,7 @@ public class DentistaTeste {
 
         controller.listandoTodos();
 
-//        controller.criar();
+        controller.criar();
 
 
 
@@ -35,8 +35,8 @@ public class DentistaTeste {
 //        String cpf = view.inputCpf();
 //        controller.atualizar(cpf);
 
-        String cpf = view.inputCpf();
-        controller.apagar(cpf);
+//        String cpf = view.inputCpf();
+//        controller.apagar(cpf);
 
 
 

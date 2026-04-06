@@ -8,15 +8,17 @@ public class AtendimentoTeste {
         AtendimentoView view = new AtendimentoView();
         AtendimentoController controller = new AtendimentoController(view);
 
+
+//        controller.adicionar();
+
         controller.listandoTodos();
 
-        controller.adicionar();
-
-        controller.listandoTodos();
-
-//        String cpf = view.inputCpf();
+//       String cpf = view.inputCpf();
 //        controller.listarPorCpf(cpf);
-
-
+//
+//        int id = view.inputId();
+//        controller.atualizar(id);
+//
+//        controller.listandoTodos();
     }
 }

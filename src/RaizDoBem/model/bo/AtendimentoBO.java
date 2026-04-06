@@ -23,17 +23,21 @@ public class AtendimentoBO {
         return dao.buscarPorCpf(cpf);
     }
 
+    public Atendimento buscaPorId(int id) {
+        return dao.buscarPorId(id);
+    }
+
     public List<Atendimento> listarTodos() {
         return dao.listarTodos();
     }
 
-    public void atualizar(String cpf, Atendimento novoAtendimento) {
-        Atendimento atendimento = dao.buscarPorCpf(cpf);
+    public void atualizar(int id, Atendimento novoAtendimento) {
+        Atendimento atendimento = dao.buscarPorId(id);
 
         if(atendimento == null){
             throw new RuntimeException("Atendimento não encontrado!!!");
         }
-        dao.atualizar(cpf, novoAtendimento);
+        dao.atualizar(id, novoAtendimento);
     }
 
     public Atendimento validarAtendimento(String descricao, int idBeneficiario, int idDentista){
@@ -43,5 +47,12 @@ public class AtendimentoBO {
                 idBeneficiario,
                 idDentista
         );
+    }
+
+    public Atendimento validarAtualizacao(String solucao, int idColaborador){
+
+        return new Atendimento()
+                .setSolucaoProblema(solucao)
+                .setIdColaborador(idColaborador);
     }
 }
