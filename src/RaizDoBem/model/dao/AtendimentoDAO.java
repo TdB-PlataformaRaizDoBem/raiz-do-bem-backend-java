@@ -84,7 +84,7 @@ public class AtendimentoDAO {
 
             ps.executeUpdate();
         } catch (SQLException exception) {
-            System.out.println("Erro ao adicionar novo atendimento: " + exception.getMessage());
+            throw new RuntimeException("Erro ao adicionar novo atendimento: " + exception.getMessage());
         }
     }
 

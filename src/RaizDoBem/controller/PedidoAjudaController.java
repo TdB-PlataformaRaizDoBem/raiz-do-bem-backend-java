@@ -20,31 +20,35 @@ public class PedidoAjudaController {
     }
 
     public void adicionar() {
-        String cpf;
-        do{
-            cpf = view.inputCpf();
-        } while(!bo.validarCpf(cpf));
+        try{
+            String cpf;
+            do{
+                cpf = view.inputCpf();
+            } while(!bo.validarCpf(cpf));
 
-        String nome = view.inputNome();
-        LocalDate dataNascimento = view.inputDataNasc();
-        Sexo sexoSolicitante;
-        int sexo = view.inputSexo();
-        if (sexo == 1) {
-            sexoSolicitante = Sexo.M;
-        } else if (sexo == 2) {
-            sexoSolicitante = Sexo.F;
-        } else {
-            sexoSolicitante = Sexo.O;
+            String nome = view.inputNome();
+            LocalDate dataNascimento = view.inputDataNasc();
+            Sexo sexoSolicitante;
+            int sexo = view.inputSexo();
+            if (sexo == 1) {
+                sexoSolicitante = Sexo.M;
+            } else if (sexo == 2) {
+                sexoSolicitante = Sexo.F;
+            } else {
+                sexoSolicitante = Sexo.O;
+            }
+
+            String telefone = view.inputTelefone();
+            String email = view.inputEmail();
+            String descricao = view.inputDescricao();
+            int idEndereco = view.inputEndereco();
+
+            PedidoAjuda pedido = bo.validarPedido(cpf, nome, dataNascimento, sexoSolicitante, telefone, email, descricao, idEndereco);
+
+            bo.criar(pedido);
+        } catch (RuntimeException e){
+            view.exibirMensagem(e.getMessage());
         }
-
-        String telefone = view.inputTelefone();
-        String email = view.inputEmail();
-        String descricao = view.inputDescricao();
-        int idEndereco = view.inputEndereco();
-
-        PedidoAjuda pedido = bo.validarPedido(cpf, nome, dataNascimento, sexoSolicitante, telefone, email, descricao, idEndereco);
-
-        bo.criar(pedido);
     }
 
     public void listandoTodos() {
@@ -87,25 +91,33 @@ public class PedidoAjudaController {
         }
     }
 
-    public void atualizar(String cpf) {
+    public void atualizar(int id) {
         try {
             int idStatus = view.inputStatus();
             StatusPedido status = bo.validarStatus(idStatus);
             int idDentista = view.inputIdDentista();
 
             PedidoAjuda pedido = bo.validarNovoPedido(status, idDentista);
-            bo.atualizar(cpf, pedido);
+
+            if(StatusPedido.APROVADO.equals(status)){
+                int idPrograma = view.inputPrograma();
+                bo.atualizarGerarBeneficiario(id, pedido, idPrograma);
+            }
+            else{
+                bo.atualizar(id, pedido);
+            }
+
             view.exibirMensagem("Pedido atualizado com sucesso!!!");
         } catch (RuntimeException e) {
             view.exibirMensagem(e.getMessage());
         }
     }
 
-    public void deletar(String cpf) {
-        if (cpf == null || cpf.isEmpty()) {
-            view.exibirMensagem("Cpf inválido!!!");
+    public void deletar(int id) {
+        if (id == 0) {
+            view.exibirMensagem("ID inválido!!!");
         } else {
-            bo.excluir(cpf);
+            bo.excluir(id);
             view.exibirMensagem("Pedido de ajuda excluído com sucesso!!!");
         }
     }

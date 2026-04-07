@@ -32,7 +32,7 @@ public class ColaboradorController {
             bo.criar(colaborador);
             view.exibirMensagem("Colaborador criado com sucesso!!!");
         } catch (RuntimeException e) {
-            throw new RuntimeException(e.getMessage());
+            view.exibirMensagem(e.getMessage());
         }
     }
 

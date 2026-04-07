@@ -39,7 +39,7 @@ public class ColaboradorBO {
         Colaborador colaborador = dao.buscarPorCpf(cpf);
 
         if(colaborador == null){
-            return;
+           throw new RuntimeException("Colaborador não encontrado!!!");
         }
         dao.excluir(cpf);
     }

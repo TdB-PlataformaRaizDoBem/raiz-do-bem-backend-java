@@ -98,6 +98,16 @@ public class PedidoAjudaView {
         return status;
     }
 
+    public int inputPrograma() {
+        System.out.println("\nEsse beneficiário(a) fará parte de qual programa da ONG?");
+        System.out.println("1. Dentista do Bem");
+        System.out.println("2. Apolônias do Bem");
+        int opc = sc.nextInt();
+        sc.nextLine();
+
+        return opc;
+    }
+
     public int inputIdDentista() {
         System.out.println("\nInsira o ID do dentista responsável: ");
         int id = sc.nextInt();

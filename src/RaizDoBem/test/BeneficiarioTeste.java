@@ -25,25 +25,25 @@ public class BeneficiarioTeste {
 
         //2º Metodo - Listar todos
         controller.listandoTodos();
-
-        //3º Metodo - Buscar por Cpf
-        String cpf = view.inputCpf();
-        controller.buscarPorCpf(cpf);
-
-        //4º Metodo - Listar por Programa Social
-        int programaSocial = view.inputPrograma();
-        controller.listarPorPrograma(programaSocial);
-
-        //5º Metodo - Listar por Cidade
-        String cidade = view.inputCidade();
-        controller.listarPorCidade(cidade);
-
-        //6º Metodo - Atualizar
-        cpf = view.inputCpf();
-        controller.atualizar(cpf);
+//
+//        //3º Metodo - Buscar por Cpf
+//        String cpf = view.inputCpf();
+//        controller.buscarPorCpf(cpf);
+//
+//        //4º Metodo - Listar por Programa Social
+//        int programaSocial = view.inputPrograma();
+//        controller.listarPorPrograma(programaSocial);
+//
+//        //5º Metodo - Listar por Cidade
+//        String cidade = view.inputCidade();
+//        controller.listarPorCidade(cidade);
+//
+//        //6º Metodo - Atualizar
+//        cpf = view.inputCpf();
+//        controller.atualizar(cpf);
 
         //6º Metodo - Excluir
-        cpf = view.inputCpf();
-        controller.excluir(cpf);
+//        cpf = view.inputCpf();
+//        controller.excluir(cpf);
     }
 }

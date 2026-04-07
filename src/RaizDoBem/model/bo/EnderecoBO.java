@@ -1,6 +1,5 @@
 package RaizDoBem.model.bo;
 
-import RaizDoBem.controller.ViaCepController;
 import RaizDoBem.model.dao.EnderecoDAO;
 import RaizDoBem.model.vo.Endereco;
 import RaizDoBem.model.vo.TipoEndereco;
@@ -10,7 +9,7 @@ import java.util.List;
 
 public class EnderecoBO {
     EnderecoDAO dao = new EnderecoDAO();
-    ViaCepController viaCepController = new ViaCepController();
+    ViaCepBO bo = new ViaCepBO();
 
     public void criar(Endereco endereco){
         if(endereco != null){
@@ -43,7 +42,7 @@ public class EnderecoBO {
         Endereco endereco = dao.buscarPorId(id);
 
         if(endereco == null){
-            return;
+            throw new RuntimeException("Endereço não encontrado!!!");
         }
         dao.excluir(id);
     }
@@ -54,7 +53,7 @@ public class EnderecoBO {
 
     public Endereco validarEndereco(String cep, String numero, TipoEndereco tipoEndereco){
 
-        ViaCep enderecoBuscado = viaCepController.buscarInformacoesEndereco(cep);
+        ViaCep enderecoBuscado = bo.buscarInformacoesEndereco(cep);
 
         if(enderecoBuscado == null || enderecoBuscado.isErro()){
             throw new RuntimeException("Endereço não encontrado!!!");

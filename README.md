@@ -4,10 +4,11 @@ Projeto Java (MVC puro, sem framework) desenvolvido para o Challenge FIAP em par
 
 ## Status do Projeto
 
-- **Atualizado em**: 05/04/2026
+- **Atualizado em**: 06/04/2026
 - **Sprint**: 3 (COMPLETA)
 - **Banco de dados**: Oracle via JDBC
 - **Status**: ✅ Todos os 6 CRUDs implementados e validados
+- **Ponto de entrada**: `Main` mantida para execução do sistema/menu
 
 ## Arquitetura
 
@@ -59,13 +60,14 @@ src/RaizDoBem/
 ### 4) Pedido de Ajuda
 **Status**: ✅ CRUD Completo (C-R-U-D)
 
-- **DAO**: CRUD completo + `listarPedidosData()`
-- **BO**: Validações de CPF, status, integração com Beneficiário
+- **DAO**: CRUD completo + `listarPedidosData()` + update/delete por `id_pedido`
+- **BO**: Validações de CPF/status e fluxo de aprovação com criação de beneficiário
 - **Controller/View**: Fluxo MVC completo
 - **Métodos de Negócio**:
   - `validarPedido()` - Validação com enum Sexo e StatusPedido
   - `validarStatus()` - Conversão int → enum
   - `validarCpf()` - Validação de CPF (11 dígitos)
+  - `atualizarGerarBeneficiario()` - Atualiza pedido e cria beneficiário apenas quando status = `APROVADO`
 
 ### 5) Beneficiário
 **Status**: ✅ CRUD Completo (C-R-U-D)
@@ -74,7 +76,7 @@ src/RaizDoBem/
 - **BO**: Validações + Integração com PedidoAjuda
 - **Controller/View**: Fluxo MVC completo
 - **Métodos de Negócio**:
-  - `adicionar()` - **Lógica Crítica**: Cria Beneficiário a partir de PedidoAjuda aprovado
+  - `adicionar()` - **Lógica Crítica**: Cria Beneficiário apenas a partir de PedidoAjuda com status `APROVADO`
   - `validarNovoBeneficiario()` - Validação de campos
 
 ### 6) Atendimento
@@ -86,6 +88,15 @@ src/RaizDoBem/
 - **Métodos de Negócio**:
   - `validarAtendimento()` - Validação de dados iniciais
   - `validarAtualizacao()` - Validação para finalização
+  - `toString()` robusto para atendimento em aberto (exibição sem `NullPointerException`)
+
+### 7) Módulos de Apoio (Catálogos Fixos)
+**Status**: ✅ Implementados para listagem e validação
+
+- **Especialidade**: catálogo fixo com listagem (`EspecialidadeDAO`)
+- **Programa Social**: catálogo fixo com listagem (`ProgramaSocialDAO`)
+- **Estratégia**: sem operações de criação/edição/exclusão via sistema para preservar consistência de dados de referência
+- **Uso no domínio**: apoio aos vínculos de dentistas e beneficiários
 
 ## Fluxo MVC de Exemplo: Endereço
 
@@ -109,7 +120,7 @@ src/RaizDoBem/
 - **Operações**: CRUD + `listarPorCidade()`
 
 ### 5) Integração Externa
-- **Classe**: `ViaCepController`
+- **Classe**: `ViaCepBO`
 - **API**: `https://viacep.com.br/ws/{cep}/json/`
 - **Parse**: Gson para objeto `ViaCep`
 
@@ -144,11 +155,21 @@ java RaizDoBem.test.ColaboradorTeste
 java RaizDoBem.test.BeneficiarioTeste
 java RaizDoBem.test.PedidoTeste
 java RaizDoBem.test.AtendimentoTeste
+java RaizDoBem.test.EspecialidadeTeste
+java RaizDoBem.test.ProgramaSocialTeste
 ```
 
 **Nota**: Nos testes, descomente os métodos que deseja validar (criar, listar, buscar, atualizar, excluir).
 
-### 3) Estrutura de Diretórios
+### 3) Execução principal do sistema
+
+Use a classe `Main` como ponto de entrada do menu principal:
+
+```bash
+java RaizDoBem.Main
+```
+
+### 4) Estrutura de Diretórios
 
 ```text
 src/RaizDoBem/
@@ -159,7 +180,8 @@ src/RaizDoBem/
 │   ├── BeneficiarioController.java
 │   ├── PedidoAjudaController.java
 │   ├── AtendimentoController.java
-│   └── ViaCepController.java
+│   ├── EspecialidadeController.java
+│   └── ProgramaController.java
 ├── model/
 │   ├── bo/
 │   │   ├── EnderecoBO.java
@@ -167,7 +189,8 @@ src/RaizDoBem/
 │   │   ├── ColaboradorBO.java
 │   │   ├── BeneficiarioBO.java
 │   │   ├── PedidoAjudaBO.java
-│   │   └── AtendimentoBO.java
+│   │   ├── AtendimentoBO.java
+│   │   └── ViaCepBO.java
 │   ├── dao/
 │   │   ├── EnderecoDAO.java
 │   │   ├── DentistaDAO.java
@@ -205,6 +228,7 @@ src/RaizDoBem/
 - ✅ Enums para valores de domínio (Sexo, StatusPedido, TipoEndereco)
 - ✅ Validações em camada BO (Business Objects)
 - ✅ Integração com API externa (ViaCep)
+- ✅ Catálogos fixos (Especialidade/Programa Social) como dados de referência somente leitura
 
 ## Requisitos Sprint 3 - Validação Final
 
@@ -215,7 +239,7 @@ src/RaizDoBem/
 | +4 métodos lógica negócio | ✅ | 6+ métodos em BOs |
 | DAO → BO → Controller → View | ✅ | Fluxo MVC em todos os módulos |
 | Validações em BO | ✅ | Validação de CPF, CEP, enums, relacionamentos |
-| Teste com main() | ✅ | 6 classes de teste |
+| Teste com main() | ✅ | 8 classes de teste (inclui Especialidade e Programa Social) |
 | Conexão ao Banco | ✅ | Oracle JDBC |
 
 ## Próximos Passos para Documentação

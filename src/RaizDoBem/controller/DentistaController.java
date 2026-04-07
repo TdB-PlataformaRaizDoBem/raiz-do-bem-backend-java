@@ -29,41 +29,46 @@ public class DentistaController {
     }
 
     public void criar() {
-        Sexo sexo;
-        String categoriaDentista = "";
-        boolean disponibilidade = false;
+        try{
+            Sexo sexo;
+            String categoriaDentista = "";
+            boolean disponibilidade = false;
 
-        String cro = view.inputCro();
-        String cpf = view.inputCpf();
-        String nome = view.inputNome();
-        int sexoDentista = view.inputSexo();
-        if (sexoDentista == 1) {
-            sexo = Sexo.M;
-        } else if (sexoDentista == 2) {
-            sexo = Sexo.F;
-        } else {
-            sexo = Sexo.O;
+            String cro = view.inputCro();
+            String cpf = view.inputCpf();
+            String nome = view.inputNome();
+            int sexoDentista = view.inputSexo();
+            if (sexoDentista == 1) {
+                sexo = Sexo.M;
+            } else if (sexoDentista == 2) {
+                sexo = Sexo.F;
+            } else {
+                sexo = Sexo.O;
+            }
+            String telefone  = view.inputTelefone();
+            String email = view.inputEmail();
+
+            int categ = view.inputCategoria();
+            if(categ == 1 )
+                categoriaDentista = "COORDENADOR";
+            else if(categ == 2 )
+                categoriaDentista = "CLINICO";
+
+            int idEndereco = view.inputIdEndereco();
+
+            int disponivel = view.inputDisponibilidade();
+            if(disponivel == 1 )
+                disponibilidade = true;
+            else if(disponivel == 2 )
+                disponibilidade = false;
+
+            Dentista dentista = bo.validarDentista(cro, cpf, nome, sexo, email, telefone, categoriaDentista, idEndereco, disponibilidade);
+            bo.criarDentista(dentista);
+            view.exibirMensagem("Dentista criado com sucesso!!!");
+        } catch (RuntimeException e) {
+            view.exibirMensagem(e.getMessage());
         }
-        String telefone  = view.inputTelefone();
-        String email = view.inputEmail();
 
-        int categ = view.inputCategoria();
-        if(categ == 1 )
-            categoriaDentista = "COORDENADOR";
-        else if(categ == 2 )
-            categoriaDentista = "CLINICO";
-
-        int idEndereco = view.inputIdEndereco();
-
-        int disponivel = view.inputDisponibilidade();
-        if(disponivel == 1 )
-            disponibilidade = true;
-        else if(disponivel == 2 )
-            disponibilidade = false;
-
-        Dentista dentista = bo.validarDentista(cro, cpf, nome, sexo, email, telefone, categoriaDentista, idEndereco, disponibilidade);
-        bo.criarDentista(dentista);
-        view.exibirMensagem("Dentista criado com sucesso!!!");
     }
 
 

@@ -142,14 +142,14 @@ public class PedidoAjudaDAO {
         return pedidos;
     }
 
-    public void atualizarPedido(String cpf, PedidoAjuda pedido) {
-        String querySql = "UPDATE Pedido_Ajuda SET status_pedido = ?, id_dentista = ? WHERE cpf = ?";
+    public void atualizarPedido(int id, PedidoAjuda pedido) {
+        String querySql = "UPDATE Pedido_Ajuda SET status_pedido = ?, id_dentista = ? WHERE id_pedido = ?";
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql)) {
 
             ps.setString(1, pedido.getStatus().name());
             ps.setInt(2, pedido.getIdDentista());
-            ps.setString(3, cpf);
+            ps.setInt(3, id);
 
             ps.executeUpdate();
         } catch (SQLException exception) {
@@ -157,12 +157,12 @@ public class PedidoAjudaDAO {
         }
     }
 
-    public void excluirPedido(String cpf) {
-        String querySql = "DELETE FROM pedido_ajuda WHERE cpf = ? ";
+    public void excluirPedido(int id) {
+        String querySql = "DELETE FROM pedido_ajuda WHERE id_pedido = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
-            ps.setString(1, cpf);
+            ps.setInt(1, id);
             ps.executeUpdate();
 
         } catch (SQLException exception) {

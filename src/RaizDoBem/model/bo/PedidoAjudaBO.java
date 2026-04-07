@@ -6,8 +6,6 @@ import RaizDoBem.model.vo.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import static RaizDoBem.model.vo.StatusPedido.APROVADO;
-
 public class PedidoAjudaBO {
     PedidoAjudaDAO dao = new PedidoAjudaDAO();
 
@@ -33,22 +31,34 @@ public class PedidoAjudaBO {
         return dao.listarPedidosData(data);
     }
 
-    public void atualizar(String cpf, PedidoAjuda novoPedido){
-        PedidoAjuda pedidoAjuda = dao.buscarPorCpf(cpf);
+    public void atualizar(int id, PedidoAjuda novoPedido){
+        PedidoAjuda pedidoAjuda = dao.buscarPorId(id);
 
         if(pedidoAjuda == null){
             throw new RuntimeException("Pedido não encontrado!!!");
         }
-        dao.atualizarPedido(cpf, novoPedido);
+        dao.atualizarPedido(id, novoPedido);
     }
 
-    public void excluir(String cpf){
-        PedidoAjuda pedidoAjuda = dao.buscarPorCpf(cpf);
+    public void atualizarGerarBeneficiario(int id, PedidoAjuda novoPedido, int idPrograma){
+        PedidoAjuda pedidoAjuda = dao.buscarPorId(id);
+
+        if(pedidoAjuda == null){
+            throw new RuntimeException("Pedido não encontrado!!!");
+        }
+        dao.atualizarPedido(id, novoPedido);
+
+        BeneficiarioBO bo = new BeneficiarioBO();
+        bo.adicionar(pedidoAjuda.getIdPedido(), idPrograma);
+    }
+
+    public void excluir(int id){
+        PedidoAjuda pedidoAjuda = dao.buscarPorId(id);
 
         if(pedidoAjuda == null){
            throw new RuntimeException("Pedido não encontrado!!!");
         }
-        dao.excluirPedido(cpf);
+        dao.excluirPedido(id);
     }
 
     public PedidoAjuda validarPedido(String cpf, String nome, LocalDate dataNascimento, Sexo sexo, String telefone, String email, String descricao, int idEndereco){

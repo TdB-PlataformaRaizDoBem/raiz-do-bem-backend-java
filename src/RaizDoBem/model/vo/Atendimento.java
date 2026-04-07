@@ -2,6 +2,7 @@ package RaizDoBem.model.vo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /** * Classe de valor para os atendimentos realizados pela ONG. Esta classe representa um atendimento específico, contendo informações como descrição inicial, data de início, data de término, solução do problema, e os IDs do beneficiário, dentista e colaborador envolvidos no atendimento. Ela é utilizada para transferir dados entre as camadas da aplicação, facilitando a manipulação e exibição das informações relacionadas aos atendimentos.
  * @author Paulo
@@ -120,13 +121,27 @@ public class Atendimento {
 
     @Override
     public String toString() {
+        String dataFinalString;
+        if(dataFinal == null)
+            dataFinalString = "Em aberto";
+        else
+            dataFinalString = dataFinal.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        String solucao;
+        solucao = Objects.requireNonNullElse(solucaoProblema, "Atendimento ainda sem resolução");
+
+        String colaborador;
+        if(idColaborador == 0)
+            colaborador = "Colaborador relator pendente";
+        else
+            colaborador = String.valueOf(idColaborador);
         return idAtendimento +
-                " - Descrição: " + descricaoInicial +
+                " -  Descrição: " + descricaoInicial +
                 "\n     Data inicial: " + dataInicial.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
-                " - Data Final: " + dataFinal.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
-                "\n     Solução do problema: " + solucaoProblema +
-                "\n\n     Id do beneficiário que atendido: " + idBeneficiario +
+                " - Data Final: " + dataFinalString +
+                "\n     Solução do problema: " + solucao +
+                "\n\n     Id do beneficiário atendido: " + idBeneficiario +
                 "\n     Id do dentista que atende: " + idDentista +
-                "\n     Id colaborador responsável: " + idColaborador;
+                "\n     Id colaborador responsável: " + colaborador;
     }
 }

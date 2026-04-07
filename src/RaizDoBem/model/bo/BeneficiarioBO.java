@@ -4,6 +4,7 @@ import RaizDoBem.model.dao.BeneficiarioDAO;
 import RaizDoBem.model.dao.PedidoAjudaDAO;
 import RaizDoBem.model.vo.Beneficiario;
 import RaizDoBem.model.vo.PedidoAjuda;
+import RaizDoBem.model.vo.StatusPedido;
 
 import java.util.List;
 
@@ -18,19 +19,24 @@ public class BeneficiarioBO {
         if (pedido == null) {
             throw new RuntimeException("Pedido de ajuda inválido!!!");
         }
+        if(validarAprovacaoPedido(pedido)){
+            Beneficiario beneficiario = new Beneficiario();
 
-        Beneficiario beneficiario = new Beneficiario();
+            beneficiario.setCpf(pedido.getCpf());
+            beneficiario.setNomeCompleto(pedido.getNomeCompleto());
+            beneficiario.setDataNascimento(pedido.getDataNascimento());
+            beneficiario.setTelefone(pedido.getTelefone());
+            beneficiario.setEmail(pedido.getEmail());
+            beneficiario.setIdPedidoAjuda(idPedido);
+            beneficiario.setIdEndereco(pedido.getIdEndereco());
+            beneficiario.setIdProgramaSocial(idProgramaSocial);
 
-        beneficiario.setCpf(pedido.getCpf());
-        beneficiario.setNomeCompleto(pedido.getNomeCompleto());
-        beneficiario.setDataNascimento(pedido.getDataNascimento());
-        beneficiario.setTelefone(pedido.getTelefone());
-        beneficiario.setEmail(pedido.getEmail());
-        beneficiario.setIdPedidoAjuda(idPedido);
-        beneficiario.setIdEndereco(pedido.getIdEndereco());
-        beneficiario.setIdProgramaSocial(idProgramaSocial);
+            dao.adicionar(beneficiario);
+        }
+        else{
+            throw new RuntimeException("Impossível criar beneficiário, pedido de ajuda não aprovado!!!");
+        }
 
-        dao.adicionar(beneficiario);
     }
 
     public Beneficiario buscaPorCpf(String cpf) {
@@ -58,6 +64,15 @@ public class BeneficiarioBO {
         dao.atualizar(cpf, beneficiarioAtualizado);
     }
 
+    public void excluirBeneficiario(String cpf) {
+        Beneficiario beneficiario = dao.buscarPorCpf(cpf);
+        if (beneficiario != null) {
+            dao.excluir(cpf);
+        } else {
+            throw new RuntimeException("Beneficiário não encontrado!!!");
+        }
+    }
+
     public Beneficiario validarNovoBeneficiario(String telefone, String email, int idEndereco) {
         if (telefone.isEmpty()) {
             throw new RuntimeException("Telefone inválido!!!");
@@ -75,12 +90,7 @@ public class BeneficiarioBO {
                 .setIdEndereco(idEndereco);
     }
 
-    public void excluirBeneficiario(String cpf) {
-        Beneficiario beneficiario = dao.buscarPorCpf(cpf);
-        if (beneficiario != null) {
-            dao.excluir(cpf);
-        } else {
-            throw new RuntimeException("Beneficiário não encontrado!!!");
-        }
+    public boolean validarAprovacaoPedido(PedidoAjuda pedido){
+        return StatusPedido.APROVADO.equals(pedido.getStatus());
     }
 }

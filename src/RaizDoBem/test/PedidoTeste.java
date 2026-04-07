@@ -3,8 +3,6 @@ package RaizDoBem.test;
 import RaizDoBem.controller.PedidoAjudaController;
 import RaizDoBem.view.PedidoAjudaView;
 
-import java.time.LocalDate;
-
 /**
  * Classe de teste para a funcionalidade de Pedido de Ajuda. Esta classe é responsável por testar as operações relacionadas aos pedidos de ajuda, como criação, listagem, atualização e exclusão. Ela utiliza o PedidoAjudaController para realizar as operações e o PedidoAjudaView para interagir com o usuário e exibir os resultados.
  * @author Paulo
@@ -22,29 +20,29 @@ public class PedidoTeste {
         PedidoAjudaController controller = new PedidoAjudaController(view);
 
 //      1º Metodo - Criação
-        controller.adicionar();
+//        controller.adicionar();
 
 //      2º Metodo - Listando todos
         controller.listandoTodos();
-
-//      3º Metodo - Listar por Cpf
-        String cpf = view.inputCpf();
-        controller.listarPorCpf(cpf);
-
-        int id = view.inputId();
-        controller.buscarPeloId(id);
-
-//      4º Metodo - Listar por Data
-        LocalDate data = view.inputDataNasc();
-        controller.listarPelaData(data);
+//
+////      3º Metodo - Listar por Cpf
+//        String cpf = view.inputCpf();
+//        controller.listarPorCpf(cpf);
+//
+//        int id = view.inputId();
+//        controller.buscarPeloId(id);
+//
+////      4º Metodo - Listar por Data
+//        LocalDate data = view.inputDataNasc();
+//        controller.listarPelaData(data);
 
 //      5º Metodo - Alterando
-        cpf = view.inputCpf();
-        controller.atualizar(cpf);
+        int id = view.inputId();
+        controller.atualizar(id);
 
-//      6º Metodo - Excluindo
-        cpf = view.inputCpf();
-        controller.deletar(cpf);
+////      6º Metodo - Excluindo
+//        int id = view.inputId();
+//        controller.deletar(id);
 
         controller.listandoTodos();
 

@@ -26,7 +26,7 @@ public class BeneficiarioController {
             bo.adicionar(idPedido, idProgramaSocial);
             view.exibirMensagem("Beneficiário criado com sucesso!!!");
         } catch (RuntimeException e) {
-            throw new RuntimeException(e.getMessage());
+            view.exibirMensagem(e.getMessage());
         }
     }
 
