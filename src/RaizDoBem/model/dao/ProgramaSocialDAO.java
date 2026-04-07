@@ -1,7 +1,6 @@
 package RaizDoBem.model.dao;
 
 import RaizDoBem.model.vo.Conexao;
-import RaizDoBem.model.vo.Especialidade;
 import RaizDoBem.model.vo.ProgramaSocial;
 
 import java.sql.Connection;

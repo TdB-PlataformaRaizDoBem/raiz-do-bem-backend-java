@@ -2,10 +2,7 @@ package RaizDoBem.model.bo;
 
 import RaizDoBem.model.dao.AtendimentoDAO;
 import RaizDoBem.model.vo.Atendimento;
-import RaizDoBem.model.vo.PedidoAjuda;
-import RaizDoBem.model.vo.Sexo;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class AtendimentoBO {

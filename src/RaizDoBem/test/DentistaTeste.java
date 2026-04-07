@@ -1,7 +1,6 @@
 package RaizDoBem.test;
 
 import RaizDoBem.controller.DentistaController;
-import RaizDoBem.model.vo.Dentista;
 import RaizDoBem.view.DentistaView;
 
 /**
@@ -22,8 +21,6 @@ public class DentistaTeste {
         controller.listandoTodos();
 
         controller.criar();
-
-
 
 //        String cpf = view.inputCpf();
 //        controller.buscarPorCpf(cpf);

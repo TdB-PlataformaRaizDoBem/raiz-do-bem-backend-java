@@ -4,11 +4,13 @@ Projeto Java (MVC puro, sem framework) desenvolvido para o Challenge FIAP em par
 
 ## Status do Projeto
 
-- **Atualizado em**: 06/04/2026
-- **Sprint**: 3 (COMPLETA)
-- **Banco de dados**: Oracle via JDBC
-- **Status**: ✅ Todos os 6 CRUDs implementados e validados
-- **Ponto de entrada**: `Main` mantida para execução do sistema/menu
+- **Atualizado em**: 07/04/2026
+- **Sprint**: 3 (FINALIZADO)
+- **Versão**: 1.5.3 (commit ready)
+- **Banco de dados**: Oracle via JDBC (19.0+)
+- **Status**: ✅ CRUDs validados + Documentação Sprint 3 completa
+- **Ponto de entrada**: `Main` para menu ou classes de teste (main) para validação
+- **Documentação**: PDF com UML, MER, arquitetura, protótipos e procedimentos
 
 ## Arquitetura
 
@@ -242,10 +244,202 @@ src/RaizDoBem/
 | Teste com main() | ✅ | 8 classes de teste (inclui Especialidade e Programa Social) |
 | Conexão ao Banco | ✅ | Oracle JDBC |
 
-## Próximos Passos para Documentação
+## Documentação Sprint 3 - Arquivo de Entrega
 
-1. **Diagrama de Classes**: Atualizar com 6 classes e relacionamentos
-2. **MER**: Atualizar com tabelas de atendimento, idDentista, beneficiário
-3. **Protótipos**: Telas para cada CRUD
-4. **Scripts SQL**: DDL e DML para todas as tabelas
+**Arquivo**: `Sprint03Java-Andamento.pdf`
+
+Contém obrigatoriamente:
+
+### 📋 Estrutura do PDF
+
+1. **Capa** - Nome da equipe, integrantes (RM), projeto
+2. **Sumário** - Índice com páginas
+3. **Introdução** - Contexto da ONG Turma do Bem e problema resolvido
+4. **Objetivo e Escopo** - Descrição clara da solução
+5. **Funcionalidades Implementadas** - Lista por módulo (Endereço, Dentista, Colaborador, Beneficiário, PedidoAjuda, Atendimento)
+6. **Visualização de Telas** - Screenshots do sistema com explicações
+7. **Métodos com Lógica de Negócio** - 4+ métodos com:
+   - Print do código-fonte
+   - Explicação da lógica de negócio implementada
+   - Exemplo: `validarEndereco()`, `adicionar()` (Beneficiário), `validarStatus()`, `validarAtendimento()`
+8. **MER (Modelo Entidade-Relacionamento)** - Diagrama do Oracle DB com todas as tabelas
+9. **Arquitetura em Camadas** - Diagrama mostrando View → Controller → BO → DAO → BD
+10. **Diagrama UML Completo** - Classes com atributos + métodos de lógica implementados
+11. **Procedimentos para Execução**:
+    - Ferramentas necessárias (IDE, JDK, Oracle)
+    - Versões requeridas
+    - Passo a passo de configuração
+    - Scripts SQL para banco
+12. **Demonstração do Programa** - Screenshots da execução
+
+### 📦 Arquivos de Entrega
+
+```
+RaizDoBem.zip
+├── Spring03Java-Andamento.pdf       (Documentação obrigatória)
+├── VALIDACAO_FINAL.md               (Checklist de validação)
+├── GUIA_DOCUMENTACAO.md             (Referência de funcionalidades)
+├── README.md                        (Este arquivo)
+└── src/RaizDoBem/                   (Código-fonte completo)
+    ├── controller/                  (8 Controllers)
+    ├── model/
+    │   ├── bo/                      (9 Business Objects)
+    │   ├── dao/                     (10 Data Access Objects)
+    │   └── vo/                      (Entidades + Enums)
+    ├── view/                        (Views para entrada/saída)
+    ├── test/                        (Classes de teste com main)
+    └── Main.java                    (Ponto de entrada)
+```
+
+## Métodos com Lógica de Negócio Implementados
+
+### 1️⃣ **EnderecoBO.validarEndereco()**
+```java
+public Endereco validarEndereco(String cep, String numero, TipoEndereco tipoEndereco) {
+    // Integração ViaCep: busca automática de dados
+    // Valida CEP, monta objeto com logradouro, bairro, cidade, estado
+}
+```
+**Propósito**: Reduz entrada manual do usuário, integra com API externa
+
+### 2️⃣ **BeneficiarioBO.adicionar()**
+```java
+public void adicionar(int idPedidoAjuda, int idProgramaSocial) {
+    // Busca PedidoAjuda aprovado
+    // Cria Beneficiário apenas se status == APROVADO
+    // Transfere dados pessoais e endereço
+}
+```
+**Propósito**: Automatiza fluxo de negócio (Pedido → Beneficiário)
+
+### 3️⃣ **PedidoAjudaBO.validarStatus()**
+```java
+public StatusPedido validarStatus(int status) {
+    // Converte int (1, 2, 3) para enum (PENDENTE, APROVADO, REJEITADO)
+    return StatusPedido.values()[status - 1];
+}
+```
+**Propósito**: Validação e conversão de tipo para domínio
+
+### 4️⃣ **AtendimentoBO.validarAtendimento()**
+```java
+public Atendimento validarAtendimento(String descricao, int idBeneficiario, int idDentista) {
+    // Cria Atendimento com dados iniciais
+    // Seta dataInicial = LocalDate.now()
+    return new Atendimento(descricao, idBeneficiario, idDentista);
+}
+```
+**Propósito**: Validação e criação de atendimento com dados automáticos
+
+### 5️⃣ **DentistaBO.validarDentista()**
+```java
+public Dentista validarDentista(String cro, String cpf, String nome, Sexo sexo,
+                                String email, String telefone, String categoria,
+                                int idEndereco, boolean disponivel) {
+    return new Dentista(cro, cpf, nome, sexo, email, telefone, categoria, idEndereco, disponivel);
+}
+```
+**Propósito**: Validação completa com enum Sexo e relacionamento com Endereço
+
+### 6️⃣ **ColaboradorBO.validarColaborador()**
+```java
+public Colaborador validarColaborador(String cpf, String nome, LocalDate dataNascimento,
+                                      LocalDate dataContratacao, String email) {
+    return new Colaborador(cpf, nome, dataNascimento, dataContratacao, email);
+}
+```
+**Propósito**: Validação de dados de colaborador (histórico de atendimentos)
+
+## Próximos Passos para Evolução
+
+1. **Interface Gráfica**: Migrar de console para Swing/JavaFX
+2. **Relatórios**: Gerar relatórios em PDF (JasperReports)
+3. **Dashboard**: Métricas de atendimentos por período/região
+4. **Autenticação**: Login com controle de acessos
+5. **API REST**: Expor funcionalidades via Spring Boot REST
+6. **Mobile**: App para dentistas voluntários consultarem pacientes
+
+### 5) Compilação e Execução Completa
+
+```bash
+# Diretório do projeto
+cd src
+
+# Compilar todas as classes
+javac -encoding UTF-8 RaizDoBem/**/*.java
+
+# Executar teste individual
+java RaizDoBem.test.EnderecoTeste
+
+# Executar menu principal
+java RaizDoBem.Main
+```
+
+## Tecnologias e Dependências
+
+| Tecnologia | Versão | Propósito |
+|-----------|--------|----------|
+| **Java** | 17.0+ | Linguagem principal |
+| **Oracle JDBC** | 19.0+ | Driver de banco de dados |
+| **Gson** | 2.8.9 | Parse JSON ViaCep |
+| **Eclipse/IntelliJ/NetBeans** | Latest | IDE de desenvolvimento |
+
+## Arquitetura em Camadas
+
+```
+USER
+  ↓
+┌─────────────────┐
+│  VIEW (Console) │ ← Entrada: Scanner, println
+├─────────────────┤
+│  CONTROLLER     │ ← Orquestração: chamadas a BO
+├─────────────────┤
+│  BO             │ ← Lógica: validação, conversão, fluxos
+├─────────────────┤
+│  DAO            │ ← SQL: PreparedStatement, ResultSet
+├─────────────────┤
+│  BANCO ORACLE   │ ← Persistência: tabelas, constraints
+└─────────────────┘
+```
+
+Cada camada conhece apenas a camada anterior (Dependency Inversion).
+
+## Validação de Requisitos Sprint 3
+
+✅ **Camada Modelo** (20 pts) - 6 classes + 4+ atributos cada, construtores, getters/setters
+✅ **Métodos com Lógica** (20 pts) - 6 métodos com regras de negócio (validação, conversão, integração)
+✅ **Conexão Banco** (10 pts) - Oracle JDBC com Conexao.getInstance()
+✅ **CRUD em DAO** (20 pts) - Create, Read (busca + listagem), Update, Delete (exceto Atendimento)
+✅ **Classes de Teste** (10 pts) - Classes com main() testando todas as operações
+✅ **Tratamento de Exceções** - RuntimeException com mensagens de domínio
+
+## Documentação (20 pts)
+
+✅ **Capa, Sumário, Objetivo/Escopo**
+✅ **Funcionalidades por módulo**
+✅ **Protótipos de telas** (Figma)
+✅ **4+ Métodos com print e explicação**
+✅ **MER completo** (Oracle DB)
+✅ **Diagrama UML** (atributos + métodos)
+✅ **Arquitetura em camadas**
+✅ **Procedimentos e scripts SQL**
+
+## Integrantes da Equipe
+
+- **Murilo Ayabe Severino** 
+- **Paulo Cavalcante Caroba** 
+- **Renan da Silva Paulino** 
+
+**Turma**: 1TDSPS
+**Instituição**: FIAP
+
+## Licença
+
+Projeto educacional desenvolvido para FIAP em parceria com a ONG Turma do Bem.
+
+---
+
+**Data de Finalização**: 07/04/2026
+**Versão Final**: 1.5.3
+**Status**: ✅ Pronto para submissão
 

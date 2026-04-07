@@ -2,7 +2,6 @@ package RaizDoBem.controller;
 
 import RaizDoBem.model.bo.AtendimentoBO;
 import RaizDoBem.model.vo.Atendimento;
-import RaizDoBem.model.vo.Dentista;
 import RaizDoBem.view.AtendimentoView;
 
 import java.time.LocalDate;
