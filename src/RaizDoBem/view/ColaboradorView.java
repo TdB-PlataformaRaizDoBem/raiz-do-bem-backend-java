@@ -25,18 +25,18 @@ public class ColaboradorView {
     Scanner sc = new Scanner(System.in);
 
     public String inputCpf() {
-        System.out.println("\nDigite o cpf do colaborador(11 dígitos): ");
+        exibirMensagem("\nDigite o cpf do colaborador(11 dígitos): ");
         return sc.nextLine();
     }
 
     public String inputNome() {
-        System.out.println("\nNome completo do colaborador: ");
+        exibirMensagem("\nNome completo do colaborador: ");
         return sc.nextLine();
     }
 
     public LocalDate inputDataNasc(){
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        System.out.println("\nData de nascimento do colaborador (dd/MM/yyyy): ");
+        exibirMensagem("\nData de nascimento do colaborador (dd/MM/yyyy): ");
         String data = sc.nextLine();
 
         return LocalDate.parse(data, formato);
@@ -44,14 +44,14 @@ public class ColaboradorView {
 
     public LocalDate inputDataContratacao(){
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        System.out.println("\nData de contratação do colaborador (dd/MM/yyyy): ");
+        exibirMensagem("\nData de contratação do colaborador (dd/MM/yyyy): ");
         String data = sc.nextLine();
 
         return LocalDate.parse(data, formato);
     }
 
     public String inputEmail() {
-        System.out.println("\nEmail do colaborador: ");
+        exibirMensagem("\nEmail do colaborador: ");
         return sc.nextLine();
     }
 

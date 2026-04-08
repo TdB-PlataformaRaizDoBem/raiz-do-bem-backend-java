@@ -14,7 +14,7 @@ import java.util.Scanner;
  * 1º Metodo - inputCpf: Solicita ao usuário o CPF do colaborador responsável pelo atendimento e retorna a string digitada.
  * 2º Metodo - inputBeneficiario: Solicita ao usuário o ID do beneficiário que irá receber o atendimento e retorna o valor inteiro digitado.
  * 3º Metodo - inputDentista: Solicita ao usuário o ID do dentista que irá fornecer o atendimento e retorna o valor inteiro digitado.
- * 4º Metodo - inputDescricaoInicial: Solicita ao usuário a descrição inicial do atendimento e retorna a string digitada.
+ * 4º Metodo - inputProntuario: Solicita ao usuário a descrição inicial do atendimento e retorna a string digitada.
  * 5º Metodo - inputDataFinal: Solicita ao usuário a data final do atendimento no formato "dd/MM/yyyy", converte a string para um objeto LocalDate e retorna a data.
  * 6º Metodo - inputSolucao: Solicita ao usuário a descrição da solução adotada para resolver o problema odontológico do beneficiário e retorna a string digitada.
  * 7º Metodo - inputColaborador: Solicita ao usuário o ID do colaborador responsável por registrar o atendimento e retorna o valor inteiro digitado.
@@ -27,7 +27,7 @@ public class AtendimentoView {
     Scanner sc = new Scanner(System.in);
 
     public int inputId() {
-        System.out.println("\nDigite o id do atendimento: ");
+        exibirMensagem("\nDigite o id do atendimento: ");
         int id = sc.nextInt();
         sc.nextLine();
 
@@ -35,44 +35,31 @@ public class AtendimentoView {
     }
 
     public String inputCpf() {
-        System.out.println("\nDigite o cpf do beneficiário do atendimento (11 dígitos): ");
+        exibirMensagem("\nDigite o cpf do beneficiário do atendimento (11 dígitos): ");
         return sc.nextLine();
     }
 
     public int inputBeneficiario() {
-        System.out.println("\nDigite o ID do beneficiário que irá receber o atendimento: ");
+        exibirMensagem("\nDigite o ID do beneficiário que irá receber o atendimento: ");
         int idBeneficiario = sc.nextInt();
         sc.nextLine();
         return idBeneficiario;
     }
 
     public int inputDentista() {
-        System.out.println("\nDigite o ID do dentista que irá fornecer o atendimento: ");
+        exibirMensagem("\nDigite o ID do dentista que irá fornecer o atendimento: ");
         int idDentista = sc.nextInt();
         sc.nextLine();
         return idDentista;
     }
 
-    public String inputDescricaoInicial() {
-        System.out.println("\nInsira a descrição inicial do atendimento: ");
-        return sc.nextLine();
-    }
-
-    public LocalDate inputDataFinal(){
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        System.out.println("Data final do atendimento (dd/MM/yyyy): ");
-        String data = sc.nextLine();
-
-        return LocalDate.parse(data, formato);
-    }
-
-    public String inputSolucao() {
-        System.out.println("\nInsira a solução final do atendimento: ");
+    public String inputProntuario() {
+        exibirMensagem("\nInsira o prontuário do atendimento: ");
         return sc.nextLine();
     }
 
     public int inputColaborador() {
-        System.out.println("\nDigite o ID do colaborador que está finalizando o atendimento: ");
+        exibirMensagem("\nDigite o ID do colaborador que está finalizando o atendimento: ");
         int idColaborador = sc.nextInt();
         sc.nextLine();
         return idColaborador;

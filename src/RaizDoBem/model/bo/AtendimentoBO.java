@@ -46,10 +46,10 @@ public class AtendimentoBO {
         );
     }
 
-    public Atendimento validarAtualizacao(String solucao, int idColaborador){
+    public Atendimento validarAtualizacao(String prontuario, int idColaborador){
 
         return new Atendimento()
-                .setSolucaoProblema(solucao)
+                .setProntuario(prontuario)
                 .setIdColaborador(idColaborador);
     }
 }

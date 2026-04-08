@@ -25,21 +25,21 @@ public class BeneficiarioView {
     Scanner sc = new Scanner(System.in);
 
     public String inputCpf() {
-        System.out.println("\nDigite o CPF do beneficiário: ");
+        exibirMensagem("\nDigite o CPF do beneficiário: ");
         return sc.nextLine();
     }
 
     public int inputPrograma() {
-        System.out.println("\nEsse beneficiário(a) fará parte de qual programa da ONG?");
-        System.out.println("1. Dentista do Bem");
-        System.out.println("2. Apolônias do Bem");
+        exibirMensagem("\nEsse beneficiário(a) fará parte de qual programa da ONG?");
+        exibirMensagem("1. Dentista do Bem");
+        exibirMensagem("2. Apolônias do Bem");
         int opc = sc.nextInt();
         sc.nextLine();
 
         return opc;
     }
     public int inputId() {
-        System.out.println("\nDigite o id do pedido origem para o beneficiário: ");
+        exibirMensagem("\nDigite o id do pedido origem para o beneficiário: ");
         int id = sc.nextInt();
         sc.nextLine();
 
@@ -47,22 +47,22 @@ public class BeneficiarioView {
     }
 
     public String inputCidade() {
-        System.out.println("\nDigite a cidade: ");
+        exibirMensagem("\nDigite a cidade: ");
         return sc.nextLine();
     }
 
     public String inputTelefone() {
-        System.out.println("\nDigite o novo telefone do beneficiário: ");
+        exibirMensagem("\nDigite o novo telefone do beneficiário: ");
         return sc.nextLine();
     }
 
     public String inputEmail() {
-        System.out.println("\nDigite o novo email do beneficiário: ");
+        exibirMensagem("\nDigite o novo email do beneficiário: ");
         return sc.nextLine();
     }
 
     public int inputIdEndereco() {
-        System.out.println("\nDigite o novo ID de endereço do beneficiário: ");
+        exibirMensagem("\nDigite o novo ID de endereço do beneficiário: ");
         int id = sc.nextInt();
         sc.nextLine();
         return id;

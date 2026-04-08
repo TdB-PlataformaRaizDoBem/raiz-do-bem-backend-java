@@ -29,17 +29,16 @@ public class AtendimentoDAO {
 
         return new Atendimento(
                 response.getInt("id_atendimento"),
-                response.getString("descricao_inicial"),
+                response.getString("prontuario"),
                 response.getDate("data_inicial").toLocalDate(),
                 dataFinal,
-                response.getString("solucao_problema"),
                 response.getInt("id_beneficiario"),
                 response.getInt("id_dentista"),
                 response.getInt("id_colaborador"));
     }
 
     public Atendimento buscarPorCpf(String cpf) {
-        String querySql = "SELECT a.id_atendimento, a.descricao_inicial, a.data_inicial, a.data_final, a.solucao_problema, a.id_beneficiario, a.id_dentista, a.id_colaborador FROM Atendimento a, Beneficiario b where b.cpf = ? AND a.id_beneficiario = b.id_beneficiario";
+        String querySql = "SELECT a.id_atendimento, a.prontuario, a.data_inicial, a.data_final, a.id_beneficiario, a.id_dentista, a.id_colaborador FROM Atendimento a, Beneficiario b where b.cpf = ? AND a.id_beneficiario = b.id_beneficiario";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -56,7 +55,7 @@ public class AtendimentoDAO {
     }
 
     public Atendimento buscarPorId(int id) {
-        String querySql = "SELECT id_atendimento, descricao_inicial, data_inicial, data_final, solucao_problema,id_beneficiario, id_dentista, id_colaborador FROM Atendimento where id_atendimento = ?";
+        String querySql = "SELECT id_atendimento, prontuario, data_inicial, data_final, id_beneficiario, id_dentista, id_colaborador FROM Atendimento where id_atendimento = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
              PreparedStatement ps = conexao.prepareStatement(querySql);) {
@@ -73,11 +72,11 @@ public class AtendimentoDAO {
     }
 
     public void adicionar(Atendimento atendimento) {
-        String querySql = "INSERT INTO Atendimento (descricao_inicial, data_inicial, id_beneficiario, id_dentista) VALUES (?, ?, ?, ?)";
+        String querySql = "INSERT INTO Atendimento (prontuario, data_inicial, id_beneficiario, id_dentista) VALUES (?, ?, ?, ?)";
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);) {
-            ps.setString(1, atendimento.getDescricaoInicial());
+            ps.setString(1, atendimento.getProntuario());
             ps.setDate(2, Date.valueOf(atendimento.getDataInicial()));
             ps.setInt(3, atendimento.getIdBeneficiario());
             ps.setInt(4, atendimento.getIdDentista());
@@ -89,7 +88,7 @@ public class AtendimentoDAO {
     }
 
     public List<Atendimento> listarTodos() {
-        String querySql = "SELECT id_atendimento, descricao_inicial, data_inicial, data_final, solucao_problema, id_beneficiario, id_dentista, id_colaborador FROM Atendimento";
+        String querySql = "SELECT id_atendimento, prontuario, data_inicial, data_final, id_beneficiario, id_dentista, id_colaborador FROM Atendimento";
         List<Atendimento> atendimentos = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -105,13 +104,13 @@ public class AtendimentoDAO {
         return atendimentos;
     }
     public void atualizar(int idAtendimento, Atendimento atendimento) {
-        String querySql = "UPDATE atendimento SET data_final = ?, solucao_problema = ?, id_colaborador = ? WHERE id_atendimento = ?";
+        String querySql = "UPDATE atendimento SET data_final = ?, prontuario = ?, id_colaborador = ? WHERE id_atendimento = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
              PreparedStatement ps = conexao.prepareStatement(querySql);) {
 
             ps.setDate(1, Date.valueOf(atendimento.getDataFinal()));
-            ps.setString(2, atendimento.getSolucaoProblema());
+            ps.setString(2, atendimento.getProntuario());
             ps.setInt(3, atendimento.getIdColaborador());
             ps.setInt(4, idAtendimento);
 

@@ -18,10 +18,9 @@ import java.util.Objects;
  */
 public class Atendimento {
     private int idAtendimento;
-    private String descricaoInicial;
+    private String prontuario;
     private LocalDate dataInicial;
     private LocalDate dataFinal;
-    private String solucaoProblema;
     private int idBeneficiario;
     private int idDentista;
     private int idColaborador;
@@ -35,12 +34,12 @@ public class Atendimento {
         return this;
     }
 
-    public String getDescricaoInicial() {
-        return descricaoInicial;
+    public String getProntuario() {
+        return prontuario;
     }
 
-    public Atendimento setDescricaoInicial(String descricaoInicial) {
-        this.descricaoInicial = descricaoInicial;
+    public Atendimento setProntuario(String prontuario) {
+        this.prontuario = prontuario;
         return this;
     }
 
@@ -59,15 +58,6 @@ public class Atendimento {
 
     public Atendimento setDataFinal(LocalDate dataFinal) {
         this.dataFinal = dataFinal;
-        return this;
-    }
-
-    public String getSolucaoProblema() {
-        return solucaoProblema;
-    }
-
-    public Atendimento setSolucaoProblema(String solucaoProblema) {
-        this.solucaoProblema = solucaoProblema;
         return this;
     }
 
@@ -98,19 +88,18 @@ public class Atendimento {
         return this;
     }
 
-    public Atendimento(int idAtendimento, String descricaoInicial, LocalDate dataInicial, LocalDate dataFinal, String solucaoProblema, int idBeneficiario, int idDentista, int idColaborador) {
+    public Atendimento(int idAtendimento, String prontuario, LocalDate dataInicial, LocalDate dataFinal, int idBeneficiario, int idDentista, int idColaborador) {
         this.idAtendimento = idAtendimento;
-        this.descricaoInicial = descricaoInicial;
+        this.prontuario = prontuario;
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
-        this.solucaoProblema = solucaoProblema;
         this.idBeneficiario = idBeneficiario;
         this.idDentista = idDentista;
         this.idColaborador = idColaborador;
     }
 
-    public Atendimento(String descricaoInicial, int idBeneficiario, int idDentista) {
-        this.descricaoInicial = descricaoInicial;
+    public Atendimento(String prontuario, int idBeneficiario, int idDentista) {
+        this.prontuario = prontuario;
         this.dataInicial = LocalDate.now();
         this.idBeneficiario = idBeneficiario;
         this.idDentista = idDentista;
@@ -127,19 +116,15 @@ public class Atendimento {
         else
             dataFinalString = dataFinal.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-        String solucao;
-        solucao = Objects.requireNonNullElse(solucaoProblema, "Atendimento ainda sem resolução");
-
         String colaborador;
         if(idColaborador == 0)
             colaborador = "Colaborador relator pendente";
         else
             colaborador = String.valueOf(idColaborador);
         return idAtendimento +
-                " -  Descrição: " + descricaoInicial +
+                " -  Prontuário: " + prontuario +
                 "\n     Data inicial: " + dataInicial.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
                 " - Data Final: " + dataFinalString +
-                "\n     Solução do problema: " + solucao +
                 "\n\n     Id do beneficiário atendido: " + idBeneficiario +
                 "\n     Id do dentista que atende: " + idDentista +
                 "\n     Id colaborador responsável: " + colaborador;

@@ -24,12 +24,12 @@ public class AtendimentoController {
 
     public void adicionar(){
         try {
-            String descricao = view.inputDescricaoInicial();
+            String prontuario = view.inputProntuario();
 
             int idBeneficiario = view.inputBeneficiario();
             int idDentista = view.inputDentista();
 
-            Atendimento atendimento = bo.validarAtendimento(descricao, idBeneficiario, idDentista);
+            Atendimento atendimento = bo.validarAtendimento(prontuario, idBeneficiario, idDentista);
             bo.criar(atendimento);
 
             view.exibirMensagem("Atendimento criado com sucesso!!!");
@@ -60,10 +60,10 @@ public class AtendimentoController {
     }
     public void atualizar(int idAtendimento){
         try{
-            String solucao = view.inputSolucao();
+            String prontuario = view.inputProntuario();
             int idColaborador = view.inputColaborador();
 
-            Atendimento atendimento = bo.validarAtualizacao(solucao, idColaborador);
+            Atendimento atendimento = bo.validarAtualizacao(prontuario, idColaborador);
             atendimento.setDataFinal(LocalDate.now());
 
             bo.atualizar(idAtendimento, atendimento);
