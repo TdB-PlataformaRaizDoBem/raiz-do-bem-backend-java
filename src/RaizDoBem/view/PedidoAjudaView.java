@@ -23,42 +23,37 @@ import java.util.Scanner;
  * 11º Metodo - inputIdDentista: Solicita ao usuário o ID do dentista responsável pelo pedido de ajuda e retorna o valor inteiro digitado.
  * 12º Metodo - exibirPedido: Recebe um objeto PedidoAjuda e exibe suas informações formatadas para o usuário.
  * 13º Metodo - exibirMensagem: Recebe uma string de mensagem e a exibe para o usuário.
- * 14º Metodo - exibirLista: Recebe uma lista de objetos PedidoAjuda e utiliza o método exibirPedido para exibir cada pedido de ajuda da lista para o usuário.
+ * 14º Metodo - listarTodos: Recebe uma lista de objetos PedidoAjuda e utiliza o método exibirPedido para exibir cada pedido de ajuda da lista para o usuário.
  * Esses métodos permitem que o usuário interaja com a funcionalidade de pedido de ajuda, fornecendo as informações necessárias para criar e atualizar pedidos de ajuda, e visualizando os resultados das operações realizadas.
  */
 public class PedidoAjudaView {
     Scanner sc = new Scanner(System.in);
+    GenericView view = new GenericView(sc);
 
     public int inputId() {
-        System.out.println("\nInsira o ID: ");
-        int id = sc.nextInt();
-        sc.nextLine();
-
-        return id;
+        return view.inputId("\nInsira o ID: ");
     }
     public String inputCpf() {
-        System.out.println("\nDigite o CPF do solicitante: ");
-        return sc.nextLine();
+        return view.inputCpf();
     }
 
     public String inputNome() {
-        System.out.println("\nNome completo do solicitante: ");
-        return sc.nextLine();
+        return view.inputNome();
     }
 
      public LocalDate inputDataNasc(){
          DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-         System.out.println("Data de nascimento do solicitante (dd/MM/yyyy): ");
+         view.exibirMensagem("Data de nascimento do solicitante (dd/MM/yyyy): ");
          String data = sc.nextLine();
 
         return LocalDate.parse(data, formato);
      }
 
     public int inputSexo() {
-        System.out.println("\nSelecione o sexo do solicitante: ");
-        System.out.println("1. Masculino");
-        System.out.println("2. Feminino");
-        System.out.println("3. Outros");
+        view.exibirMensagem("\nSelecione o sexo do solicitante: ");
+        view.exibirMensagem("1. Masculino");
+        view.exibirMensagem("2. Feminino");
+        view.exibirMensagem("3. Outros");
         int opc = sc.nextInt();
         sc.nextLine();
 
@@ -66,32 +61,25 @@ public class PedidoAjudaView {
     }
 
     public String inputTelefone() {
-        System.out.println("Telefone do solicitante: ");
-        return sc.nextLine();
+        return view.inputString("\nTelefone do solicitante: ");
     }
 
     public String inputEmail() {
-        System.out.println("\nEmail do solicitante: ");
-        return sc.nextLine();
+        return view.inputString("\nEmail do solicitante: ");
     }
 
     public String inputDescricao() {
-        System.out.println("\nDescrição completa do pedido de ajuda: ");
-        return sc.nextLine();
+        return view.inputString("\nDescrição completa do pedido de ajuda: ");
     }
 
     public int inputEndereco() {
-        System.out.println("\nInsira o ID do endereço do pedido: ");
-        int id = sc.nextInt();
-        sc.nextLine();
-
-        return id;
+        return view.inputId("\nInsira o ID do endereço do pedido: ");
     }
 
     public int inputStatus() {
-        System.out.println("\nSelecione o novo status do pedido: ");
-        System.out.println("1. APROVADO");
-        System.out.println("2. REJEITADO");
+        view.exibirMensagem("\nSelecione o novo status do pedido: ");
+        view.exibirMensagem("1. APROVADO");
+        view.exibirMensagem("2. REJEITADO");
         int status = sc.nextInt();
         sc.nextLine();
 
@@ -99,9 +87,9 @@ public class PedidoAjudaView {
     }
 
     public int inputPrograma() {
-        System.out.println("\nEsse beneficiário(a) fará parte de qual programa da ONG?");
-        System.out.println("1. Dentista do Bem");
-        System.out.println("2. Apolônias do Bem");
+        view.exibirMensagem("\nEsse beneficiário(a) fará parte de qual programa da ONG?");
+        view.exibirMensagem("1. Dentista do Bem");
+        view.exibirMensagem("2. Apolônias do Bem");
         int opc = sc.nextInt();
         sc.nextLine();
 
@@ -109,24 +97,14 @@ public class PedidoAjudaView {
     }
 
     public int inputIdDentista() {
-        System.out.println("\nInsira o ID do dentista responsável: ");
-        int id = sc.nextInt();
-        sc.nextLine();
-        return id;
+        return view.inputId("\nInsira o ID do dentista responsável: ");
     }
 
     public void exibirPedido(PedidoAjuda pedido) {
-        System.out.println(pedido);
+        view.exibir(pedido);
     }
 
-    public void exibirMensagem(String msg) {
-        System.out.println(msg);
-    }
-
-    public void exibirLista(List<PedidoAjuda> lista) {
-        for (PedidoAjuda elemento : lista) {
-            exibirPedido(elemento);
+    public void listarTodos(List<PedidoAjuda> pedidos) {
+        view.listarTodos(pedidos);
         }
     }
-
-}

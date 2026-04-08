@@ -16,41 +16,35 @@ import java.util.Scanner;
  * 5º Metodo - entradaTipoEndereco: Solicita ao usuário o tipo do endereço (residencial ou profissional) e retorna a opção escolhida como um valor inteiro.
  * 6º Metodo - exibirEndereco: Recebe um objeto Endereco e exibe suas informações formatadas para o usuário.
  * 7º Metodo - exibirMensagem: Recebe uma string de mensagem e a exibe para o usuário.
- * 8º Metodo - exibirLista: Recebe uma lista de objetos Endereco e utiliza o método exibirEndereco para exibir cada endereço da lista para o usuário.
+ * 8º Metodo - listarTodos: Recebe uma lista de objetos Endereco e utiliza o método exibirEndereco para exibir cada endereço da lista para o usuário.
  * Esses métodos permitem que o usuário interaja com a funcionalidade de endereço, fornecendo as informações necessárias para criar, buscar e atualizar endereços, e visualizando os resultados das operações realizadas.
  */
 public class EnderecoView {
     Scanner sc = new Scanner(System.in);
+    GenericView view = new GenericView(sc);
 
     public String entradaCep() {
-        System.out.println("\nDigite o cep (8 dígitos): ");
-        return sc.nextLine();
+        return view.inputString("\nDigite o cep (8 dígitos): ");
     }
 
     public String entradaNumero() {
-        System.out.println("\nDigite a número do endereço: ");
-        return sc.nextLine();
+        return view.inputString("\nDigite o número do endereço: ");
     }
 
     public String entradaCidade() {
-        System.out.println("vDigite a cidade: ");
-        return sc.nextLine();
+        return view.inputCidade();
     }
 
-    public int entradaId() {
-        System.out.println("\nDigite o ID: ");
-        int id = sc.nextInt();
-        sc.nextLine();
-
-        return id;
+    public int inputId() {
+        return view.inputId("\nDigite o ID: ");
     }
 
     public int entradaTipoEndereco() {
         int opc;
         do {
-            System.out.println("Endereço residencial ou Profissional?");
-            System.out.println("1. Residencial");
-            System.out.println("2. Profissional");
+            view.exibirMensagem("Endereço residencial ou Profissional?");
+            view.exibirMensagem("1. Residencial");
+            view.exibirMensagem("2. Profissional");
 
             opc = sc.nextInt();
             sc.nextLine();
@@ -63,16 +57,10 @@ public class EnderecoView {
     }
 
     public void exibirEndereco(Endereco endereco) {
-        System.out.println(endereco);
+        view.exibir(endereco);
     }
 
-    public void exibirMensagem(String msg) {
-        System.out.println(msg);
-    }
-
-    public void exibirLista(List<Endereco> lista) {
-        for (Endereco elemento : lista) {
-            exibirEndereco(elemento);
-        }
+    public void exibirLista(List<Endereco> enderecos) {
+        view.listarTodos(enderecos);
     }
 }

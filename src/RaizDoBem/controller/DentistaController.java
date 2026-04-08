@@ -78,7 +78,7 @@ public class DentistaController {
             view.exibirMensagem("Nenhum dentista encontrado!!!");
         else {
             view.exibirMensagem("Exibindo todos os dentistas: ");
-            view.exibirLista(dentistas);
+            view.listarTodos(dentistas);
         }
     }
 
@@ -88,7 +88,7 @@ public class DentistaController {
             view.exibirMensagem("Nenhum dentista encontrado na cidade!!!");
         else {
             view.exibirMensagem("Exibindo todos os dentistas da cidade " + cidade + ": ");
-            view.exibirLista(dentistas);
+            view.listarTodos(dentistas);
         }
     }
 
@@ -108,7 +108,7 @@ public class DentistaController {
             view.exibirMensagem("Nenhum dentista disponível encontrado!!!");
         } else {
             view.exibirMensagem("Exibindo todos os dentistas disponíveis: ");
-            view.exibirLista(dentista);
+            view.listarTodos(dentista);
         }
     }
 

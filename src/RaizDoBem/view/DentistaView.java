@@ -21,31 +21,29 @@ import java.util.Scanner;
  * 10º Metodo - inputDisponibilidade: Solicita ao usuário se o dentista está disponível para atendimentos e retorna a opção escolhida como um valor inteiro.
  * 11º Metodo - exibirDentista: Recebe um objeto Dentista e exibe suas informações formatadas para o usuário.
  * 12º Metodo - exibirMensagem: Recebe uma string de mensagem e a exibe para o usuário.
- * 13º Metodo - exibirLista: Recebe uma lista de objetos Dentista e utiliza o método exibirDentista para exibir cada dentista da lista para o usuário.
+ * 13º Metodo - listarTodos: Recebe uma lista de objetos Dentista e utiliza o método exibirDentista para exibir cada dentista da lista para o usuário.
  * Esses métodos permitem que o usuário interaja com a funcionalidade de dentista, fornecendo as informações necessárias para criar e buscar dentistas, e visualizando os resultados das operações realizadas.
  */
 public class DentistaView {
     Scanner sc = new Scanner(System.in);
+    GenericView view = new GenericView(sc);
 
     public String inputCpf() {
-        System.out.println("\nDigite o CPF do dentista: ");
-        return sc.nextLine();
+        return view.inputCpf();
     }
 
     public String inputCro() {
-        System.out.println("\nDigite o CRO do dentista: ");
-        return sc.nextLine();
+        return view.inputString("\nCRO do dentista: ");
     }
 
     public String inputNome() {
-        System.out.println("\nNome completo do dentista: ");
-        return sc.nextLine();
+        return view.inputNome();
     }
     public int inputSexo() {
-        System.out.println("\nSelecione o sexo do dentista: ");
-        System.out.println("1. Masculino");
-        System.out.println("2. Feminino");
-        System.out.println("3. Outros");
+        view.exibirMensagem("\nSelecione o sexo do dentista: ");
+        view.exibirMensagem("1. Masculino");
+        view.exibirMensagem("2. Feminino");
+        view.exibirMensagem("3. Outros");
         int opc = sc.nextInt();
         sc.nextLine();
 
@@ -53,19 +51,17 @@ public class DentistaView {
     }
 
     public String inputTelefone() {
-        System.out.println("\nTelefone do solicitante: ");
-        return sc.nextLine();
+        return view.inputString("\nTelefone do solicitante: ");
     }
 
     public String inputEmail() {
-        System.out.println("\nEmail do solicitante: ");
-        return sc.nextLine();
+        return view.inputString("\nEmail do solicitante: ");
     }
 
     public int inputCategoria() {
-        System.out.println("\nSelecione a categoria do dentista: ");
-        System.out.println("1. Coordenador");
-        System.out.println("2. Clínico");
+        view.exibirMensagem("\nSelecione a categoria do dentista: ");
+        view.exibirMensagem("1. Coordenador");
+        view.exibirMensagem("2. Clínico");
         int opc = sc.nextInt();
         sc.nextLine();
 
@@ -73,21 +69,17 @@ public class DentistaView {
     }
 
     public int inputIdEndereco() {
-        System.out.println("\nDigite o ID de endereço do dentista: ");
-        int id = sc.nextInt();
-        sc.nextLine();
-        return id;
+        return view.inputId("\nDigite o ID de endereço do dentista: ");
     }
 
     public String inputCidade() {
-        System.out.println("\nDigite a cidade: ");
-        return sc.nextLine();
+        return view.inputCidade();
     }
 
     public int inputDisponibilidade() {
-        System.out.println("\nDentista disponível para atendimentos: ");
-        System.out.println("1. Sim");
-        System.out.println("2. Não");
+        view.exibirMensagem("\nDentista disponível para atendimentos: ");
+        view.exibirMensagem("1. Sim");
+        view.exibirMensagem("2. Não");
         int opc = sc.nextInt();
         sc.nextLine();
 
@@ -95,16 +87,10 @@ public class DentistaView {
     }
 
     public void exibirDentista(Dentista dentista) {
-        System.out.println(dentista);
+        view.exibir(dentista);
     }
 
-    public void exibirMensagem(String msg) {
-        System.out.println(msg);
-    }
-
-    public void exibirLista(List<Dentista> lista) {
-        for (Dentista elemento : lista) {
-            exibirDentista(elemento);
-        }
+    public void listarTodos(List<Dentista> dentistas) {
+        view.listarTodos(dentistas);
     }
 }

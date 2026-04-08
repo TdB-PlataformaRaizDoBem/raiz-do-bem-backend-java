@@ -18,25 +18,24 @@ import java.util.Scanner;
  * 5º Metodo - inputEmail: Solicita ao usuário o email do colaborador e retorna a string digitada.
  * 6º Metodo - exibir: Recebe um objeto Colaborador e exibe suas informações formatadas para o usuário.
  * 7º Metodo - exibirMensagem: Recebe uma string de mensagem e a exibe para o usuário.
- * 8º Metodo - exibirLista: Recebe uma lista de objetos Colaborador e utiliza o método exibir para exibir cada colaborador da lista para o usuário.
+ * 8º Metodo - listarTodos: Recebe uma lista de objetos Colaborador e utiliza o método exibir para exibir cada colaborador da lista para o usuário.
  * Esses métodos permitem que o usuário interaja com a funcionalidade de colaborador, fornecendo as informações necessárias para criar e buscar colaboradores, e visualizando os resultados das operações realizadas.
  */
 public class ColaboradorView {
     Scanner sc = new Scanner(System.in);
+    GenericView view = new GenericView(sc);
 
     public String inputCpf() {
-        exibirMensagem("\nDigite o cpf do colaborador(11 dígitos): ");
-        return sc.nextLine();
+        return view.inputCpf();
     }
 
     public String inputNome() {
-        exibirMensagem("\nNome completo do colaborador: ");
-        return sc.nextLine();
+        return view.inputNome();
     }
 
     public LocalDate inputDataNasc(){
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        exibirMensagem("\nData de nascimento do colaborador (dd/MM/yyyy): ");
+        view.exibirMensagem("\nData de nascimento do colaborador (dd/MM/yyyy): ");
         String data = sc.nextLine();
 
         return LocalDate.parse(data, formato);
@@ -44,27 +43,21 @@ public class ColaboradorView {
 
     public LocalDate inputDataContratacao(){
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        exibirMensagem("\nData de contratação do colaborador (dd/MM/yyyy): ");
+        view.exibirMensagem("\nData de contratação do colaborador (dd/MM/yyyy): ");
         String data = sc.nextLine();
 
         return LocalDate.parse(data, formato);
     }
 
     public String inputEmail() {
-        exibirMensagem("\nEmail do colaborador: ");
-        return sc.nextLine();
+        return view.inputString("\nEmail do colaborador: ");
     }
 
-    public void exibir(Colaborador colaborador){
-        System.out.println(colaborador);
-    }
-    public void exibirMensagem(String msg){
-        System.out.println(msg);
+    public void exibirColaborador(Colaborador colaborador){
+        view.exibir(colaborador);
     }
 
-    public void exibirLista(List<Colaborador> lista){
-        for (Colaborador elemento : lista){
-            exibir(elemento);
-        }
+    public void listarTodos(List<Colaborador> colaboradores){
+        view.listarTodos(colaboradores);
     }
 }

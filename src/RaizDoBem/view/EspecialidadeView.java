@@ -5,18 +5,13 @@ import RaizDoBem.model.vo.Especialidade;
 import java.util.List;
 
 public class EspecialidadeView {
+    GenericView view = new GenericView(null);
 
-    public void exibir(Especialidade especialidade) {
-        System.out.println(especialidade);
+    public void exibirEspec(Especialidade especialidade) {
+        view.exibir(especialidade);
     }
 
-    public void exibirLista(List<Especialidade> lista) {
-        for (Especialidade elemento : lista) {
-            exibir(elemento);
-        }
+    public void exibirLista(List<Especialidade> especialidades) {
+        view.listarTodos(especialidades);
     }
-    public void exibirMensagem(String msg) {
-        System.out.println(msg);
-    }
-
 }

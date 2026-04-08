@@ -20,62 +20,42 @@ import java.util.Scanner;
  * 7º Metodo - inputColaborador: Solicita ao usuário o ID do colaborador responsável por registrar o atendimento e retorna o valor inteiro digitado.
  * 8º Metodo - exibirAtendimento: Recebe um objeto Atendimento e exibe suas informações formatadas para o usuário.
  * 9º Metodo - exibirMensagem: Recebe uma string de mensagem e a exibe para o usuário.
- * 10º Metodo - exibirLista: Recebe uma lista de objetos Atendimento e utiliza o método exibirAtendimento para exibir cada atendimento da lista para o usuário.
+ * 10º Metodo - listarTodos: Recebe uma lista de objetos Atendimento e utiliza o método exibirAtendimento para exibir cada atendimento da lista para o usuário.
  * Esses métodos permitem que o usuário interaja com a funcionalidade de atendimento, fornecendo as informações necessárias para criar e atualizar atendimentos, e visualizando os resultados das operações realizadas.
  */
 public class AtendimentoView {
     Scanner sc = new Scanner(System.in);
+    GenericView view = new GenericView(sc);
 
     public int inputId() {
-        exibirMensagem("\nDigite o id do atendimento: ");
-        int id = sc.nextInt();
-        sc.nextLine();
-
-        return id;
+        return view.inputId("\nDigite o id do atendimento: ");
     }
 
     public String inputCpf() {
-        exibirMensagem("\nDigite o cpf do beneficiário do atendimento (11 dígitos): ");
-        return sc.nextLine();
+        return view.inputCpf();
     }
 
     public int inputBeneficiario() {
-        exibirMensagem("\nDigite o ID do beneficiário que irá receber o atendimento: ");
-        int idBeneficiario = sc.nextInt();
-        sc.nextLine();
-        return idBeneficiario;
+        return view.inputId("\nDigite o ID do beneficiário que irá receber o atendimento: ");
     }
 
     public int inputDentista() {
-        exibirMensagem("\nDigite o ID do dentista que irá fornecer o atendimento: ");
-        int idDentista = sc.nextInt();
-        sc.nextLine();
-        return idDentista;
+        return view.inputId("\nDigite o ID do dentista que irá fornecer o atendimento: ");
     }
 
     public String inputProntuario() {
-        exibirMensagem("\nInsira o prontuário do atendimento: ");
-        return sc.nextLine();
+        return view.inputString("\nInsira o prontuário do atendimento: ");
     }
 
     public int inputColaborador() {
-        exibirMensagem("\nDigite o ID do colaborador que está finalizando o atendimento: ");
-        int idColaborador = sc.nextInt();
-        sc.nextLine();
-        return idColaborador;
+        return view.inputId("\nDigite o ID do colaborador que está finalizando o atendimento: ");
     }
 
-    public void exibirAtendimento(Atendimento atendimento) {
-        System.out.println(atendimento);
+    public void exibirAtendimento(Atendimento atendimento){
+        view.exibir(atendimento);
     }
 
-    public void exibirMensagem(String msg) {
-        System.out.println(msg);
-    }
-
-    public void exibirLista(List<Atendimento> lista) {
-        for (Atendimento elemento : lista) {
-            exibirAtendimento(elemento);
-        }
+    public void listarTodos(List<Atendimento> atendimentos) {
+        view.listarTodos(atendimentos);
     }
 }

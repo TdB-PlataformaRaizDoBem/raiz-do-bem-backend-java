@@ -3,20 +3,16 @@ package RaizDoBem.view;
 import RaizDoBem.model.vo.ProgramaSocial;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class ProgramaView {
+    GenericView view = new GenericView(null);
 
-    public void exibir(ProgramaSocial programa) {
-        System.out.println(programa);
+    public void exibirPrograma(ProgramaSocial programa) {
+        view.exibir(programa);
     }
 
-    public void exibirMensagem(String msg) {
-        System.out.println(msg);
-    }
-
-    public void exibirLista(List<ProgramaSocial> lista) {
-        for (ProgramaSocial elemento : lista) {
-            exibir(elemento);
-        }
+    public void listarProgramas(List<ProgramaSocial> programas) {
+        view.listarTodos(programas);
     }
 }
