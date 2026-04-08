@@ -93,4 +93,8 @@ public class DentistaView {
     public void listarTodos(List<Dentista> dentistas) {
         view.listarTodos(dentistas);
     }
+
+    public void mostrar(String msg) {
+        view.exibirMensagem(msg);
+    }
 }

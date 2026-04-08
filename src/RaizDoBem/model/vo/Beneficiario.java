@@ -4,20 +4,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Cada pessoa que passou pelo processo de solicitação de pedido de ajuda, e agora recebe atendimento da Turma do Bem. Contém informações pessoais, endereço, programa social associado, pedido de ajuda referência e colaborador responsável que o registrou.
+ * Representa um beneficiário, que é uma pessoa que recebe ajuda ou benefícios de um programa social. Esta classe contém informações pessoais do beneficiário, como CPF, nome completo, data de nascimento, telefone e email, além de referências a pedidos de ajuda, programas sociais e endereços associados ao beneficiário. Ela é utilizada para armazenar e manipular os dados dos beneficiários envolvidos nas atividades da ONG.
  * @author Paulo
  * @since 2026-03
- * @param id Identificador único do beneficiário.
- * @param cpf CPF do beneficiário, utilizado para identificação.
- * @param nomeCompleto Nome completo do beneficiário.
- * @param dataNascimento Data de nascimento do beneficiário, utilizada para calcular a idade e verificar elegibilidade para programas sociais.
- * @param telefone Número de telefone do beneficiário, utilizado para contato e comunicação.
- * @param email Endereço de e-mail do beneficiário, utilizado para comunicação e envio de informações relevantes.
- * @param idPedidoAjuda Identificador do pedido de ajuda associado ao beneficiário, referenciando a solicitação de assistência feita pelo beneficiário.
- * @param idProgramaSocial Identificador do programa social ao qual o beneficiário está associado, indicando o programa específico que oferece assistência ao beneficiário.
- * @param idEndereco Identificador do endereço do beneficiário, referenciando a localização onde o beneficiário reside ou onde os atendimentos são realizados.
- *
- */
+ * @param idBeneficiario Identificador único do beneficiário, utilizado para diferenciar cada beneficiário na base de dados e facilitar a gestão dos registros.
+ * @param cpf CPF do beneficiário, utilizado para identificação e registro dos beneficiários na base de dados, permitindo a associação de informações pessoais e a verificação de elegibilidade para programas sociais ou atendimentos.
+ * @param nomeCompleto Nome completo do beneficiário, utilizado para identificação e registro dos beneficiários na base de dados, facilitando a comunicação e o atendimento personalizado aos beneficiários.
+ * @param dataNascimento Data de nascimento do beneficiário, utilizada para calcular a idade e verificar elegibilidade para determinados programas sociais ou atendimentos, além de permitir o registro cronológico dos beneficiários na base de dados.
+ * @param telefone Número de telefone do beneficiário, utilizado para contato e comunicação com os beneficiários, facilitando a organização e logística dos atendimentos odontológicos, além de permitir o envio de informações relevantes relacionadas aos programas sociais ou atendimentos.
+ * @param email Endereço de e-mail do beneficiário, utilizado para comunicação e envio de informações relevantes relacionadas aos programas sociais ou atendimentos, facilitando a comunicação eficiente com os beneficiários e permitindo o envio de atualizações, convites para eventos ou outras informações importantes relacionadas às atividades da ONG.
+ * @param idPedidoAjuda Identificador do pedido de ajuda associado ao beneficiário, referenciando o pedido de ajuda que motivou a inclusãoo do beneficiário na base de dados, permitindo a associação entre o beneficiário e o pedido de ajuda correspondente, facilitando a gestão eficiente dos registros e a análise de histórico de pedidos para cada beneficiário.
+ * @param idProgramaSocial Identificador do programa social associado ao beneficiário, referenciando o programa social ao qual o beneficiário está vinculado, permitindo a associação entre o beneficiário e o programa social correspondente, facilitando a gestão eficiente dos registros e a análise de participação dos beneficiários em diferentes programas sociais oferecidos pela ONG.
+ * @param idEndereco Identificador do endereço associado ao beneficiário, referenciando a localização onde o beneficiário reside ou onde os atendimentos são realizados, facilitando a organização e logística dos atendimentos odontológicos, além de permitir a associação entre o beneficiário e o endereço correspondente, facilitando a gestão eficiente dos registros e a análise de localização dos beneficiários para fins de planejamento e organização das atividades da ONG.
+*/
+
 public class Beneficiario{
     private int idBeneficiario;
     private String cpf;

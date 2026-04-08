@@ -3,7 +3,6 @@ package RaizDoBem.view;
 import RaizDoBem.model.vo.ProgramaSocial;
 
 import java.util.List;
-import java.util.Scanner;
 
 public class ProgramaView {
     GenericView view = new GenericView(null);
@@ -14,5 +13,9 @@ public class ProgramaView {
 
     public void listarProgramas(List<ProgramaSocial> programas) {
         view.listarTodos(programas);
+    }
+
+    public void mostrar(String msg) {
+        view.exibirMensagem(msg);
     }
 }

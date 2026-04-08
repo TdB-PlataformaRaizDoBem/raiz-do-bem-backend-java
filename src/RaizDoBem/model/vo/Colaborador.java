@@ -3,15 +3,16 @@ package RaizDoBem.model.vo;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-/** * Cada pessoa que trabalha na Turma do Bem, seja como voluntário ou funcionário, e é responsável por registrar os beneficiários, acompanhar os atendimentos e contribuir para a missão da ONG. Contém informações pessoais, data de contratação e email para contato.
+/**
+ * Representa um colaborador da ONG Raiz do Bem, contendo informações como CPF, nome completo, data de nascimento, data de contratação e email. Esta classe é utilizada para armazenar e manipular os dados dos colaboradores envolvidos nas atividades da ONG, permitindo a criação, leitura, atualização e exclusão de registros relacionados aos colaboradores.
  * @author Paulo
  * @since 2026-03
- * @param id Identificador único do colaborador.
- * @param cpf CPF do colaborador, utilizado para identificação.
- * @param nomeCompleto Nome completo do colaborador.
- * @param dataNascimento Data de nascimento do colaborador, utilizada para calcular a idade e verificar elegibilidade para determinadas funções ou programas dentro da ONG.
- * @param dataContratacao Data de contratação do colaborador, utilizada para registrar o início do vínculo com a ONG e calcular o tempo de serviço.
- * @param email Endereço de e-mail do colaborador, utilizado para comunicação e envio de informações relevantes relacionadas às atividades da ONG.
+ * @param idColaborador O identificador único do colaborador, utilizado para diferenciar cada colaborador na base de dados e facilitar a gestão dos registros.
+ * @param cpf O CPF do colaborador, utilizado para identificação e registro do colaborador na base de dados, garantindo a unicidade do registro e facilitando a consulta e manipulação dos dados relacionados ao colaborador.
+ * @param nomeCompleto O nome completo do colaborador, utilizado para identificação e registro do colaborador na base de dados, permitindo a associação do nome ao CPF e facilitando a consulta e manipulação dos dados relacionados ao colaborador.
+ * @param dataNascimento A data de nascimento do colaborador, utilizada para calcular a idade do colaborador e verificar a elegibilidade para determinados programas sociais ou atendimentos, além de ser uma informação relevante para o registro e gestão dos colaboradores na base de dados da ONG.
+ * @param dataContratacao A data de contratação do colaborador, utilizada para registrar o início do vínculo do colaborador com a ONG, permitindo a gestão eficiente dos recursos humanos e a organização dos atendimentos realizados pelos colaboradores.
+ * @param email O endereço de e-mail do colaborador, utilizado para comunicação e envio de
  */
 public class Colaborador {
     private int idColaborador;

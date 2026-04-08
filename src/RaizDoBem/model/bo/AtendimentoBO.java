@@ -9,11 +9,10 @@ public class AtendimentoBO {
     AtendimentoDAO dao = new AtendimentoDAO();
 
     public void criar(Atendimento atendimento) {
-        if (atendimento != null) {
+        if (atendimento != null)
             dao.adicionar(atendimento);
-        } else {
+        else
             throw new RuntimeException("Atendimento inválido!!!");
-        }
     }
 
     public Atendimento buscaPorCpf(String cpf) {
@@ -38,7 +37,6 @@ public class AtendimentoBO {
     }
 
     public Atendimento validarAtendimento(String descricao, int idBeneficiario, int idDentista){
-
         return new Atendimento(
                 descricao,
                 idBeneficiario,
@@ -47,7 +45,6 @@ public class AtendimentoBO {
     }
 
     public Atendimento validarAtualizacao(String prontuario, int idColaborador){
-
         return new Atendimento()
                 .setProntuario(prontuario)
                 .setIdColaborador(idColaborador);

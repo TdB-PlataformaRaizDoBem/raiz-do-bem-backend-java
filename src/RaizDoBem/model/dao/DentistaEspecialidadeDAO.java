@@ -45,9 +45,7 @@ public class DentistaEspecialidadeDAO {
         try(Connection conexao = Conexao.conectarAoBanco();
             PreparedStatement ps = conexao.prepareStatement(querySql);
             ResultSet response = ps.executeQuery();){
-
-
-            System.out.println("Listagem dos dentistas e suas especialidades: ");
+                
             while(response.next()){
                 dentistaEspecialidades.add(mapeamento(response));
             }

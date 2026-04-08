@@ -60,4 +60,8 @@ public class ColaboradorView {
     public void listarTodos(List<Colaborador> colaboradores){
         view.listarTodos(colaboradores);
     }
+
+    public void mostrar(String msg) {
+        view.exibirMensagem(msg);
+    }
 }

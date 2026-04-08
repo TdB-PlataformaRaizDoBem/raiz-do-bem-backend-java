@@ -17,9 +17,8 @@ public class PedidoAjudaBO {
     }
 
     public void criar(PedidoAjuda pedido){
-        if(pedido != null){
+        if(pedido != null)
             dao.adicionar(pedido);
-        }
         else{
             throw new RuntimeException("Pedido inválido!!!");
         }
@@ -34,10 +33,11 @@ public class PedidoAjudaBO {
     public void atualizar(int id, PedidoAjuda novoPedido){
         PedidoAjuda pedidoAjuda = dao.buscarPorId(id);
 
-        if(pedidoAjuda == null){
+        if(pedidoAjuda == null)
             throw new RuntimeException("Pedido não encontrado!!!");
-        }
-        dao.atualizarPedido(id, novoPedido);
+        else{
+            dao.atualizarPedido(id, novoPedido);
+        }  
     }
 
     public void atualizarGerarBeneficiario(int id, PedidoAjuda novoPedido, int idPrograma){
@@ -83,13 +83,11 @@ public class PedidoAjudaBO {
     }
 
     public PedidoAjuda validarNovoPedido(StatusPedido status, int idDentista) {
-        if (status == null) {
+        if (status == null)
             throw new RuntimeException("Status inválido!!!");
-        }
 
-        if (idDentista <= 0) {
+        if (idDentista <= 0)
             throw new RuntimeException("ID do dentista obrigatório para atualização do pedido!!!");
-        }
 
         return new PedidoAjuda()
                 .setStatus(status)

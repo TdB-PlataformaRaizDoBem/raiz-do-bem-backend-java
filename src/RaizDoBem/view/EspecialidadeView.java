@@ -14,4 +14,8 @@ public class EspecialidadeView {
     public void exibirLista(List<Especialidade> especialidades) {
         view.listarTodos(especialidades);
     }
+
+    public void mostrar(String msg) {
+        view.exibirMensagem(msg);
+    }
 }

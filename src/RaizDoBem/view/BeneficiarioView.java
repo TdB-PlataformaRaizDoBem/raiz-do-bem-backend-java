@@ -11,14 +11,14 @@ import java.util.Scanner;
  * @since 2026-03
  * 1º Metodo - inputCpf: Solicita ao usuário o CPF do beneficiário e retorna a string digitada.
  * 2º Metodo - inputPrograma: Solicita ao usuário o programa da ONG ao qual o beneficiário fará parte e retorna a opção escolhida como um valor inteiro.
- * 3º Metodo - inputId: Solicita ao usuário o ID do pedido de origem para o beneficiário e retorna o valor inteiro digitado.
+ * 3º Metodo - inputId: Solicita ao usuário o ID do pedido de ajuda de origem para o beneficiário e retorna o valor inteiro digitado.
  * 4º Metodo - inputCidade: Solicita ao usuário a cidade do beneficiário e retorna a string digitada.
  * 5º Metodo - inputTelefone: Solicita ao usuário o telefone do beneficiário e retorna a string digitada.
  * 6º Metodo - inputEmail: Solicita ao usuário o email do beneficiário e retorna a string digitada.
  * 7º Metodo - inputIdEndereco: Solicita ao usuário o ID do endereço do beneficiário e retorna o valor inteiro digitado.
  * 8º Metodo - exibirBeneficiario: Recebe um objeto Beneficiario e exibe suas informações formatadas para o usuário.
- * 9º Metodo - exibirMensagem: Recebe uma string de mensagem e a exibe para o usuário.
- * 10º Metodo - listarTodos: Recebe uma lista de objetos Beneficiario e utiliza o método exibirBeneficiario para exibir cada beneficiário da lista para o usuário.
+ * 9º Metodo - listarTodos: Recebe uma lista de objetos Beneficiario e utiliza o metodo exibirBeneficiario para exibir cada beneficiário da lista para o usuário.
+ * 10º Metodo - mostrar: Recebe uma string de mensagem e a exibe para o usuário.
  * Esses métodos permitem que o usuário interaja com a funcionalidade de beneficiário, fornecendo as informações necessárias para criar e buscar beneficiários, e visualizando os resultados das operações realizadas.
  */
 public class BeneficiarioView {
@@ -64,6 +64,10 @@ public class BeneficiarioView {
 
     public void listarTodos(List<Beneficiario> beneficiarios) {
         view.listarTodos(beneficiarios);
+    }
+
+    public void mostrar(String msg) {
+        view.exibirMensagem(msg);
     }
 }
 

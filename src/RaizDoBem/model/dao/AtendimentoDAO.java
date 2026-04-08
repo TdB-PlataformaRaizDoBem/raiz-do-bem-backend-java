@@ -11,11 +11,13 @@ import java.util.List;
 /**
  * Classe de acesso a dados para a entidade Atendimento. Esta classe é responsável por realizar operações de banco de dados relacionadas aos atendimentos, como buscar por CPF, adicionar um novo atendimento, listar todos os atendimentos, atualizar um atendimento existente e encontrar atendimentos relacionados a beneficiários e dentistas. Ela utiliza a classe Conexao para estabelecer a conexão com o banco de dados e executa as consultas SQL necessárias para manipular os dados dos atendimentos.
  * @author Paulo
-* @since 2026-03
-* buscarPorCpf: Este método recebe um CPF como parâmetro e retorna um objeto Atendimento correspondente ao CPF fornecido. Ele executa uma consulta SQL para buscar o atendimento com o CPF especificado e utiliza o método mapeamento para converter o resultado da consulta em um objeto Atendimento.
-* adicionar: Este método recebe um objeto Atendimento como parâmetro e adiciona um novo atendimento ao banco de dados. Ele executa uma consulta SQL de inserção para adicionar os dados do atendimento fornecido ao banco de dados.
-* listarTodos: Este método retorna uma lista de todos os atendimentos cadastrados no banco de dados. Ele executa uma consulta SQL para recuperar todos os atendimentos e utiliza o método mapeamento para converter cada resultado da consulta em um objeto Atendimento, que é adicionado a uma lista de atendimentos.
-* atualizar: Este método recebe um CPF e um objeto Atendimento como parâmetros e atualiza os dados de um atendimento existente no banco de dados com base no CPF fornecido. Ele executa uma consulta SQL de atualização para modificar os dados do atendimento correspondente ao CPF especificado.
+ * @since 2026-03
+ * 1º Metodo - buscarPorCpf: Este método recebe um CPF como parâmetro e realiza uma consulta no banco de dados para encontrar um atendimento relacionado a esse CPF. Ele retorna um objeto Atendimento contendo as informações do atendimento encontrado ou null se nenhum atendimento for encontrado.
+ * 2º Metodo - buscarPorId: Este método recebe um ID de atendimento como parâmetro e realiza uma consulta no banco de dados para encontrar um atendimento relacionado a esse ID. Ele retorna um objeto Atendimento contendo as informações do atendimento encontrado ou null se nenhum atendimento for encontrado.
+ * 3º Metodo - adicionar: Este método recebe um objeto Atendimento como parâmetro e realiza uma inserção no banco de dados para adicionar um novo atendimento. Ele utiliza os atributos do objeto Atendimento para preencher os campos da tabela de atendimentos no banco de dados.
+ * 4º Metodo - listarTodos: Este método realiza uma consulta no banco de dados para recuperar todos os atendimentos cadastrados. Ele retorna uma lista de objetos Atendimento contendo as informações de todos os atendimentos encontrados no banco de dados.
+ * 5º Metodo - atualizar: Este método recebe um ID de atendimento e um objeto AtendimentoDAO como parâmetros e realiza uma atualização no banco de dados para modificar as informações de um atendimento existente. Ele utiliza os atributos do objeto Atendimento para preencher os campos da tabela de atendimentos no banco de dados, atualizando o atendimento correspondente ao ID fornecido.
+ * Esses métodos permitem que a aplicação interaja com a funcionalidade de atendimento, realizando operações de busca, criação, listagem e atualização de atendimentos no banco de dados, e fornecendo os resultados dessas operações para a camada de negócios ou para a interface do usuário conforme necessário.
  */
 public class AtendimentoDAO {
     private Atendimento mapeamento(ResultSet response) throws SQLException {

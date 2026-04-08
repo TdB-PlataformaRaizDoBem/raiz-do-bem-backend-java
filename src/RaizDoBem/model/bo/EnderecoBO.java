@@ -12,9 +12,8 @@ public class EnderecoBO {
     ViaCepBO bo = new ViaCepBO();
 
     public void criar(Endereco endereco){
-        if(endereco != null){
+        if(endereco != null)
             dao.adicionar(endereco);
-        }
         else{
             throw new RuntimeException("Endereço Inválido");
         }
@@ -76,5 +75,4 @@ public class EnderecoBO {
         }
         return true;
     }
-
 }

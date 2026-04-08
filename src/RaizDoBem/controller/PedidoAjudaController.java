@@ -47,47 +47,45 @@ public class PedidoAjudaController {
 
             bo.criar(pedido);
         } catch (RuntimeException e){
-            view.exibirMensagem(e.getMessage());
+            view.mostrar(e.getMessage());
         }
     }
 
     public void listandoTodos() {
         List<PedidoAjuda> pedidos = bo.listarTodos();
         if (pedidos.isEmpty())
-            view.exibirMensagem("Nenhum pedido encontrado!!!");
+            view.mostrar("\nNenhum pedido encontrado!!!");
         else {
-            view.exibirMensagem("Exibindo todos os pedidos de ajuda: ");
-            view.exibirLista(pedidos);
+            view.mostrar("\nExibindo todos os pedidos de ajuda: ");
+            view.listarTodos(pedidos);
         }
     }
 
     public void listarPorCpf(String cpf) {
         PedidoAjuda pedido = bo.buscaCpf(cpf);
         if (pedido != null) {
-            view.exibirMensagem("Pedido encontrado: ");
+            view.mostrar("\nPedido encontrado: ");
             view.exibirPedido(pedido);
-        } else {
-            view.exibirMensagem("Nenhum pedido encontrado!!!");
-        }
+        } else
+            view.mostrar("\nNenhum pedido encontrado!!!");
     }
 
     public void buscarPeloId(int id) {
         PedidoAjuda pedido = bo.buscaId(id);
         if (pedido != null) {
-            view.exibirMensagem("Pedido encontrado: ");
+            view.mostrar("\nPedido encontrado: ");
             view.exibirPedido(pedido);
-        } else {
-            view.exibirMensagem("Nenhum pedido encontrado!!!");
-        }
+        } else
+            view.mostrar("\nNenhum pedido encontrado!!!");
     }
 
     public void listarPelaData(LocalDate data) {
         List<PedidoAjuda> pedidos = bo.listarPorData(data);
-        if (pedidos.isEmpty()) {
-            view.exibirMensagem("Nenhum pedido encontrado!!!");
-        } else {
-            view.exibirMensagem("Exibindo todos os pedidos de ajuda encontrados na data inserida: ");
-            view.exibirLista(pedidos);
+        if (pedidos.isEmpty())
+            view.mostrar("\nNenhum pedido encontrado!!!");
+        else {
+            view.mostrar("\nExibindo todos os pedidos de ajuda encontrados na data inserida: ");
+            view.listarTodos(pedidos);
         }
     }
 
@@ -106,19 +104,18 @@ public class PedidoAjudaController {
             else{
                 bo.atualizar(id, pedido);
             }
-
-            view.exibirMensagem("Pedido atualizado com sucesso!!!");
+            view.mostrar("\nPedido atualizado com sucesso!!!");
         } catch (RuntimeException e) {
-            view.exibirMensagem(e.getMessage());
+            view.mostrar(e.getMessage());
         }
     }
 
     public void deletar(int id) {
-        if (id == 0) {
-            view.exibirMensagem("ID inválido!!!");
-        } else {
+        if (id == 0)
+            view.mostrar("ID inválido!!!");
+        else {
             bo.excluir(id);
-            view.exibirMensagem("Pedido de ajuda excluído com sucesso!!!");
+            view.mostrar("Pedido de ajuda excluído com sucesso!!!");
         }
     }
 }

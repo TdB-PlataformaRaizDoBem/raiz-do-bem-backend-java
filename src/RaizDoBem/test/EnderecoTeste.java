@@ -25,7 +25,7 @@ public class EnderecoTeste {
         controller.listandoTodos();
 
       //3º Metodo - Listando apenas pelo Id
-        int id = view.entradaId();
+        int id = view.inputId();
         controller.listarPorId(id);
 
       //4º Metodo - Listando por cidade
@@ -33,11 +33,11 @@ public class EnderecoTeste {
         controller.listandoPorCidade(cidade);
 
       //5º Metodo - Atualizando
-        id = view.entradaId();
+        id = view.inputId();
         controller.atualizar(id);
 
       //6º Metodo - Excluindo
-        id = view.entradaId();
+        id = view.inputId();
         controller.deletar(id);
 
         controller.listandoTodos();

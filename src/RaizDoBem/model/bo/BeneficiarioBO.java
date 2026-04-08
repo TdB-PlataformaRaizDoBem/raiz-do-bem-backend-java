@@ -13,12 +13,11 @@ public class BeneficiarioBO {
 
     public void adicionar(int idPedido, int idProgramaSocial) {
         PedidoAjudaDAO pedidoDAO = new PedidoAjudaDAO();
-
         PedidoAjuda pedido = pedidoDAO.buscarPorId(idPedido);
 
-        if (pedido == null) {
+        if (pedido == null)
             throw new RuntimeException("Pedido de ajuda inválido!!!");
-        }
+
         if(validarAprovacaoPedido(pedido)){
             Beneficiario beneficiario = new Beneficiario();
 
@@ -33,10 +32,8 @@ public class BeneficiarioBO {
 
             dao.adicionar(beneficiario);
         }
-        else{
+        else
             throw new RuntimeException("Impossível criar beneficiário, pedido de ajuda não aprovado!!!");
-        }
-
     }
 
     public Beneficiario buscaPorCpf(String cpf) {
@@ -58,19 +55,18 @@ public class BeneficiarioBO {
     public void atualizarBeneficiario(String cpf, Beneficiario beneficiarioAtualizado) {
         Beneficiario beneficiario = dao.buscarPorCpf(cpf);
 
-        if (beneficiario == null) {
+        if (beneficiario == null)
             throw new RuntimeException("Beneficiário não encontrado!!!");
-        }
-        dao.atualizar(cpf, beneficiarioAtualizado);
+        else
+            dao.atualizar(cpf, beneficiarioAtualizado);
     }
 
     public void excluirBeneficiario(String cpf) {
         Beneficiario beneficiario = dao.buscarPorCpf(cpf);
-        if (beneficiario != null) {
+        if (beneficiario != null)
             dao.excluir(cpf);
-        } else {
+        else
             throw new RuntimeException("Beneficiário não encontrado!!!");
-        }
     }
 
     public Beneficiario validarNovoBeneficiario(String telefone, String email, int idEndereco) {

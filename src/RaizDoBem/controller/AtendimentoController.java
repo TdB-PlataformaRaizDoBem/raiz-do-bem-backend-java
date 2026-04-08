@@ -7,11 +7,21 @@ import RaizDoBem.view.AtendimentoView;
 import java.time.LocalDate;
 import java.util.List;
 
-
 /**
- * Classe de controle para os atendimentos realizados pela ONG. Esta classe é responsável por gerenciar as operações relacionadas aos atendimentos, como criar, buscar e listar atendimentos. Ela atua como uma camada intermediária entre a interface do usuário e a camada de acesso a dados (DAO), garantindo que as regras de negócio sejam aplicadas corretamente.
+ * Classe responsável por controlar as operações relacionadas aos atendimentos,
+ * como criação, listagem e atualização, utilizando o AtendimentoBO para acessar os dados.
+ *
  * @author Paulo
  * @since 2026-03
+ *
+ * @see AtendimentoBO
+ * @see AtendimentoView
+ * 
+ * 1º Metodo - adicionar: Solicita ao usuário as informações necessárias para criar um novo atendimento, como prontuário, ID do beneficiário e ID do dentista. Em seguida, utiliza o AtendimentoBO para validar os dados e criar o atendimento, exibindo uma mensagem de sucesso ou erro conforme o resultado da operação.
+ * 2º Metodo - listandoTodos: Recupera a lista de todos os atendimentos utilizando o AtendimentoBO e exibe os atendimentos para o usuário. Se não houver atendimentos cadastrados, exibe uma mensagem informando que nenhum atendimento foi encontrado.
+ * 3º Metodo - listarPorCpf: Solicita ao usuário o CPF do beneficiário e utiliza o AtendimentoBO para buscar o atendimento correspondente. Se um atendimento for encontrado, exibe suas informações para o usuário; caso contrário, exibe uma mensagem informando que nenhum atendimento foi encontrado.
+ * 4º Metodo - atualizar: Solicita ao usuário o ID do atendimento a ser atualizado, bem como as informações necessárias para a atualização, como prontuário e ID do colaborador. Em seguida, utiliza o AtendimentoBO para validar os dados e atualizar o atendimento, exibindo uma mensagem de sucesso ou erro conforme o resultado da operação.
+ * Esses métodos permitem que o usuário interaja com a funcionalidade de atendimento, fornecendo as informações necessárias para criar, listar, buscar e atualizar atendimentos, e visualizando os resultados das operações realizadas.
  */
 public class AtendimentoController {
     private AtendimentoView view;
@@ -32,30 +42,30 @@ public class AtendimentoController {
             Atendimento atendimento = bo.validarAtendimento(prontuario, idBeneficiario, idDentista);
             bo.criar(atendimento);
 
-            view.exibirMensagem("Atendimento criado com sucesso!!!");
+            view.mostrar("\nAtendimento criado com sucesso!!!");
         } catch (Exception e) {
-            view.exibirMensagem(e.getMessage());
+            view.mostrar(e.getMessage());
         }
     }
 
     public void listandoTodos() {
         List<Atendimento> atendimentos = bo.listarTodos();
         if (atendimentos.isEmpty())
-            view.exibirMensagem("Nenhum atendimento encontrado!!!");
+            view.mostrar("\nNenhum atendimento encontrado!!!");
         else {
-            view.exibirMensagem("Exibindo todos os atendimentos: ");
-            view.exibirLista(atendimentos);
+            view.mostrar("\nExibindo todos os atendimentos: ");
+            view.listarTodos(atendimentos);
         }
     }
 
     public void listarPorCpf(String cpf) {
         Atendimento atendimento = bo.buscaPorCpf(cpf);
         if (atendimento != null) {
-            view.exibirMensagem("Atendimento encontrado: ");
+            view.mostrar("\nAtendimento encontrado: ");
             view.exibirAtendimento(atendimento);
         }
         else{
-            view.exibirMensagem("Nenhum atendimento encontrado!!!");
+            view.mostrar("\nNenhum atendimento encontrado!!!");
             }
     }
     public void atualizar(int idAtendimento){
@@ -67,9 +77,9 @@ public class AtendimentoController {
             atendimento.setDataFinal(LocalDate.now());
 
             bo.atualizar(idAtendimento, atendimento);
-            view.exibirMensagem("Atendimento atualizado com sucesso!!!");
+            view.mostrar("\nAtendimento atualizado com sucesso!!!");
         } catch (RuntimeException e) {
-            view.exibirMensagem(e.getMessage());
+            view.mostrar(e.getMessage());
         }
     }
 }

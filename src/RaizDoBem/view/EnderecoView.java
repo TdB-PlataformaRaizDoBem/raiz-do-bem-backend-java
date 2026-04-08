@@ -63,4 +63,8 @@ public class EnderecoView {
     public void exibirLista(List<Endereco> enderecos) {
         view.listarTodos(enderecos);
     }
+
+    public void mostrar(String msg) {
+        view.exibirMensagem(msg);
+    }
 }

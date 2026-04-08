@@ -37,39 +37,38 @@ public class EnderecoController {
         try {
             do {
                 cep = view.entradaCep();
-                System.out.println("Você digitou o cep: " + cep);
+                view.mostrar("\nVocê digitou o cep: " + cep);
                 retorno = bo.validarCep(cep);
             } while (!retorno);
 
             String numero = view.entradaNumero();
-            System.out.println("Você digitou o número: " + numero);
+            view.mostrar("\nVocê digitou o número: " + numero);
             do{
                 tipo = view.entradaTipoEndereco();
-                System.out.println("Você selecionou o tipo: " + tipo);
+                view.mostrar("\nVocê selecionou o tipo: " + tipo);
                 validacao = bo.validarTipoEndereco(tipo);
             } while(!validacao);
 
-            if (tipo == 1) {
+            if (tipo == 1)
                 tipoEndereco = TipoEndereco.RESIDENCIAL;
-            } else {
+            else
                 tipoEndereco = TipoEndereco.PROFISSIONAL;
-            }
 
             Endereco endereco = bo.validarEndereco(cep, numero, tipoEndereco);
             bo.criar(endereco);
-            view.exibirMensagem("Endereço criado com sucesso!!!");
+            view.mostrar("\nEndereço criado com sucesso!!!");
             view.exibirEndereco(endereco);
         } catch (Exception e) {
-            view.exibirMensagem(e.getMessage());
+            view.mostrar(e.getMessage());
         }
     }
 
     public void listandoTodos() {
         List<Endereco> enderecos = bo.listarTodos();
         if (enderecos.isEmpty())
-            view.exibirMensagem("Nenhum endereço encontrado!!!");
+            view.mostrar("\nNenhum endereço encontrado!!!");
         else {
-            view.exibirMensagem("Exibindo todos os endereços: ");
+            view.mostrar("\nExibindo todos os endereços: ");
             view.exibirLista(enderecos);
         }
     }
@@ -78,11 +77,11 @@ public class EnderecoController {
         if (id >= 0) {
             Endereco endereco = bo.buscaPorId(id);
             if (endereco != null) {
-                view.exibirMensagem("Endereço encontrado: ");
+                view.mostrar("\nEndereço encontrado: ");
                 view.exibirEndereco(endereco);
             }
             else{
-                view.exibirMensagem("Nenhum endereço encontrado!!!");
+                view.mostrar("\nNenhum endereço encontrado!!!");
             }
         }
     }
@@ -90,9 +89,9 @@ public class EnderecoController {
     public void listandoPorCidade(String cidade) {
         List<Endereco> enderecos = bo.listarPorCidade(cidade);
         if (enderecos.isEmpty())
-            view.exibirMensagem("Nenhum endereço encontrado!!!");
+            view.mostrar("\nNenhum endereço encontrado!!!");
         else {
-            view.exibirMensagem("Exibindo os endereços por cidade: ");
+            view.mostrar("\nExibindo os endereços por cidade: ");
             view.exibirLista(enderecos);
         }
     }
@@ -110,37 +109,35 @@ public class EnderecoController {
                 System.out.println("Você digitou o cep: " + cep);
                 retorno = bo.validarCep(cep);
             } while (!retorno);
+
             String numero = view.entradaNumero();
-            System.out.println("Você digitou o número: " + numero);
+            view.mostrar("Você digitou o número: " + numero);
             do{
                 tipo = view.entradaTipoEndereco();
-                System.out.println("Você selecionou o tipo: " + tipo);
+                view.mostrar("Você selecionou o tipo: " + tipo);
                 validacao = bo.validarTipoEndereco(tipo);
             } while(!validacao);
 
-            if (tipo == 1) {
+            if (tipo == 1)
                 tipoEndereco = TipoEndereco.RESIDENCIAL;
-            } else {
+            else
                 tipoEndereco = TipoEndereco.PROFISSIONAL;
-            }
 
             endereco = bo.validarEndereco(cep, numero, tipoEndereco);
 
             bo.atualizar(id, endereco);
-            view.exibirMensagem("Endereço " + id + " atualizado com sucesso!!!");
-
+            view.mostrar("\nEndereço " + id + " atualizado com sucesso!!!");
         } catch (Exception e) {
-            view.exibirMensagem(e.getMessage());
+            view.mostrar(e.getMessage());
         }
     }
 
     public void deletar(int id) {
-        if(id<=0){
-            view.exibirMensagem("ID inválido!!!");
-        }
+        if(id<=0)
+            view.mostrar("\nID inválido!!!");
         else{
             bo.excluir(id);
-            view.exibirMensagem("Endereço " + id + " excluído com sucesso!!!");
+            view.mostrar("\nEndereço " + id + " excluído com sucesso!!!");
         }
     }
 }

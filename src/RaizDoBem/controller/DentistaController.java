@@ -64,20 +64,18 @@ public class DentistaController {
 
             Dentista dentista = bo.validarDentista(cro, cpf, nome, sexo, email, telefone, categoriaDentista, idEndereco, disponibilidade);
             bo.criarDentista(dentista);
-            view.exibirMensagem("Dentista criado com sucesso!!!");
+            view.mostrar("\nDentista criado com sucesso!!!");
         } catch (RuntimeException e) {
-            view.exibirMensagem(e.getMessage());
+            view.mostrar(e.getMessage());
         }
-
     }
-
 
     public void listandoTodos() {
         List<Dentista> dentistas = bo.listarTodos();
         if (dentistas.isEmpty())
-            view.exibirMensagem("Nenhum dentista encontrado!!!");
+            view.mostrar("\nNenhum dentista encontrado!!!");
         else {
-            view.exibirMensagem("Exibindo todos os dentistas: ");
+            view.mostrar("\nExibindo todos os dentistas: ");
             view.listarTodos(dentistas);
         }
     }
@@ -85,9 +83,9 @@ public class DentistaController {
     public void listarPorCidade(String cidade) {
         List<Dentista> dentistas = bo.listagemPorCidade(cidade);
         if (dentistas.isEmpty())
-            view.exibirMensagem("Nenhum dentista encontrado na cidade!!!");
+            view.mostrar("\nNenhum dentista encontrado na cidade!!!");
         else {
-            view.exibirMensagem("Exibindo todos os dentistas da cidade " + cidade + ": ");
+            view.mostrar("\nExibindo todos os dentistas da cidade " + cidade + ": ");
             view.listarTodos(dentistas);
         }
     }
@@ -95,19 +93,19 @@ public class DentistaController {
     public void buscarPorCpf(String cpf) {
         Dentista dentista = bo.buscaPorCpf(cpf);
         if (dentista != null) {
-            view.exibirMensagem("Dentista encontrado: ");
+            view.mostrar("\nDentista encontrado: ");
             view.exibirDentista(dentista);
         } else {
-            view.exibirMensagem("Nenhum dentista encontrado!!!");
+            view.mostrar("\nNenhum dentista encontrado!!!");
         }
     }
 
     public void listarDisponiveis() {
         List<Dentista> dentista = bo.listarDisponiveis();
         if (dentista.isEmpty()) {
-            view.exibirMensagem("Nenhum dentista disponível encontrado!!!");
+            view.mostrar("\nNenhum dentista disponível encontrado!!!");
         } else {
-            view.exibirMensagem("Exibindo todos os dentistas disponíveis: ");
+            view.mostrar("\nExibindo todos os dentistas disponíveis: ");
             view.listarTodos(dentista);
         }
     }
@@ -126,7 +124,6 @@ public class DentistaController {
                 categoriaDentista = "CLINICO";
 
             int idEndereco = view.inputIdEndereco();
-
             int disponivel = view.inputDisponibilidade();
             if(disponivel == 1 )
                 disponibilidade = true;
@@ -136,18 +133,18 @@ public class DentistaController {
             Dentista dentista = bo.validaAtualizaDentista(email, telefone, categoriaDentista, idEndereco, disponibilidade);
 
             bo.atualizarDentista(cpf, dentista);
-            view.exibirMensagem("Dentista atualizado com sucesso!!!");
+            view.mostrar("\nDentista atualizado com sucesso!!!");
         } catch (RuntimeException e) {
-            view.exibirMensagem(e.getMessage());
+            view.mostrar(e.getMessage());
         }
     }
 
     public void apagar(String cpf) {
         if (cpf == null || cpf.isEmpty()) {
-            view.exibirMensagem("Cpf inválido!!!");
+            view.mostrar("\nCpf inválido!!!");
         } else {
             bo.excluirDentista(cpf);
-            view.exibirMensagem("Dentista excluído com sucesso!!!");
+            view.mostrar("\nDentista excluído com sucesso!!!");
         }
     }
 }

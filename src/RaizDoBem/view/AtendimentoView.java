@@ -50,6 +50,9 @@ public class AtendimentoView {
     public int inputColaborador() {
         return view.inputId("\nDigite o ID do colaborador que está finalizando o atendimento: ");
     }
+    public void mostrar(String msg) {
+        view.exibirMensagem(msg);
+    }
 
     public void exibirAtendimento(Atendimento atendimento){
         view.exibir(atendimento);

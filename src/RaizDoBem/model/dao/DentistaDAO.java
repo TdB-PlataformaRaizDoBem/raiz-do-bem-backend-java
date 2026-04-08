@@ -23,7 +23,6 @@ public class DentistaDAO {
     public Dentista mapeamento(ResultSet response) throws SQLException {
         String sexoDentista = response.getString("sexo");
         Sexo sexo = Sexo.valueOf(sexoDentista.toUpperCase());
-
         String statusDentista = response.getString("disponivel");
         boolean disponivel = statusDentista.equals("S");
 

@@ -1,25 +1,17 @@
 package RaizDoBem.model.vo;
 
 /**
- * Classe para armazenar endereços, e contém informações como logradouro, cep, número,
- * bairro, cidade, estado e tipo de endereço. Esta classe é utilizada para modelar os
- * endereços associados a colaboradores e beneficiários.
- *
- * @param id Identificador único do endereço.
- * @param logradouro Nome da rua ou avenida do endereço.
- * @param cep Código postal do endereço, composto por 8 dígitos.
- * @param numero Número do endereço, que pode incluir letras e caracteres especiais.
- * @param bairro Bairro onde o endereço está localizado.
- * @param cidade Cidade onde o endereço está localizado.
- * @param estado Estado onde o endereço está localizado.
- * @param idTipoEndereco Identificador do tipo de endereço, onde 1 representa residencial e 2 representa profissional.
- *
- * Exemplo de tipos de endereço:
- * - Residencial: Endereço onde o beneficiário reside.
- * - Profissional: Endereço onde o colaborador atua.
- *
+ * Representa um endereço, contendo informações como logradouro, cep, número, bairro, cidade, estado e tipo de endereço. Esta classe é utilizada para armazenar e manipular informações relacionadas aos endereços dos beneficiários, colaboradores ou dentistas envolvidos nas atividades da ONG.
  * @author Paulo
- * @since 2025-09
+ * @since 2026-03
+ * @param idEndereco O identificador único do endereço.
+ * @param logradouro O nome da rua ou logradouro do endereço.
+ * @param cep O código postal (CEP) associado ao endereço.
+ * @param numero O número do endereço.
+ * @param bairro O nome do bairro do endereço.
+ * @param cidade A cidade associada ao endereço.
+ * @param estado A sigla do estado (UF) associada ao endereço.
+ * @param tipo O tipo de endereço, indicando se é residencial ou profissional.
  */
 public class Endereco {
     private int idEndereco;

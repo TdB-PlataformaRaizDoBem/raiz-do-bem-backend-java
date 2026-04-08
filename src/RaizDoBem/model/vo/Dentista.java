@@ -1,18 +1,18 @@
 package RaizDoBem.model.vo;
 
-/* Classe que representa um dentista na ONG. Esta classe contém informações sobre o dentista, como seu CRO (Conselho Regional de Odontologia), CPF, nome completo, sexo, email, telefone, categoria de atendimento, disponibilidade e o ID do endereço associado. Ela é utilizada para armazenar e manipular os dados dos dentistas que prestam atendimento aos beneficiários da ONG.
+/** Representa um dentista, profissional responsável por realizar atendimentos odontológicos e contribuir para a saúde bucal dos beneficiários da ONG. Esta classe é utilizada para armazenar e manipular informações relacionadas aos dentistas, como seu identificador único, CRO, CPF, nome completo, sexo, email, telefone, categoria de atuação, disponibilidade para atendimentos e o identificador do endereço associado.
  * @author Paulo
  * @since 2026-03
- * @param idDentista Identificador único do dentista.
- * @param croDentista CRO do dentista, utilizado para identificação profissional.
- * @param cpf CPF do dentista, utilizado para identificação pessoal.
- * @param nomeCompleto Nome completo do dentista.
- * @param sexo Sexo do dentista, utilizado para registro e comunicação adequada.
- * @param email Endereço de e-mail do dentista, utilizado para comunicação e envio de informações relevantes.
- * @param telefone Número de telefone do dentista, utilizado para contato e comunicação.
- * @param categoria Categoria de atendimento do dentista, indicando sua função de Coordenador ou Clínico.
- * @param disponivel Indica se o dentista está disponível para realizar atendimentos, permitindo a gestão eficiente dos recursos humanos da ONG.
- * @param idEndereco Identificador do endereço do dentista, referenciando a localização onde o dentista reside ou onde os atendimentos são realizados, facilitando a organização e logística dos atendimentos odontológicos.
+ * @param idDentista O identificador único do dentista.
+ * @param croDentista O número do CRO (Conselho Regional de Odontologia) do dentista, utilizado para identificar sua habilitação profissional.
+ * @param cpf O CPF do dentista, utilizado para identificação pessoal e cadastro na ONG.
+ * @param nomeCompleto O nome completo do dentista, utilizado para identificação e comunicação.
+ * @param sexo O sexo do dentista, utilizado para fins de registro e comunicação.
+ * @param email O email de contato do dentista, utilizado para comunicação e envio de informações relacionadas aos atendimentos e atividades da ONG.
+ * @param telefone O telefone de contato do dentista, utilizado para comunicação e agendamento de atendimentos.
+ * @param categoria A categoria de atuação do dentista, indicando se ele é um coordenador ou clínico, o que pode influenciar suas responsabilidades e atribuições dentro da ONG.
+ * @param disponivel Indica se o dentista está disponível para realizar atendimentos, o que é importante para o agendamento e organização dos atendimentos odontológicos.
+ * @param idEndereco O identificador do endereço associado ao dentista, utilizado para armazenar e acessar informações relacionadas ao local de trabalho ou atendimento do dentista, facilitando a organização e logística dos atendimentos odontológicos realizados pela ONG.
  */
 public class Dentista{
     private int idDentista;

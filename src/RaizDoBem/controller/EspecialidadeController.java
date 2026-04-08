@@ -21,9 +21,9 @@ public class EspecialidadeController {
     public void listarTodas() {
         List<Especialidade> especialidades = bo.listarTodos();
         if (especialidades.isEmpty())
-            view.exibirMensagem("Nenhuma especialidade encontrada!!!");
+            view.mostrar("\nNenhuma especialidade encontrada!!!");
         else {
-            view.exibirMensagem("Exibindo todas as especialidades: ");
+            view.mostrar("\nExibindo todas as especialidades: ");
             view.exibirLista(especialidades);
         }
     }

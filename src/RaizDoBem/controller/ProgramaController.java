@@ -1,7 +1,6 @@
 package RaizDoBem.controller;
 
 import RaizDoBem.model.bo.ProgramaBO;
-import RaizDoBem.model.vo.Especialidade;
 import RaizDoBem.model.vo.ProgramaSocial;
 import RaizDoBem.view.ProgramaView;
 
@@ -22,10 +21,10 @@ public class ProgramaController {
     public void listarTodos(){
         List<ProgramaSocial> programas = bo.listarTodos();
         if (programas.isEmpty())
-            view.exibirMensagem("Nenhum programa social encontrado!!!");
+            view.mostrar("Nenhum programa social encontrado!!!");
         else {
-            view.exibirMensagem("Exibindo todos os programas sociais disponíveis na ONG: ");
-            view.exibirLista(programas);
+            view.mostrar("Exibindo todos os programas sociais disponíveis na ONG: ");
+            view.listarProgramas(programas);
         }
     }
 }
