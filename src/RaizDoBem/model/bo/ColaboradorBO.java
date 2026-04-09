@@ -3,7 +3,6 @@ package RaizDoBem.model.bo;
 import RaizDoBem.model.dao.ColaboradorDAO;
 import RaizDoBem.model.vo.Colaborador;
 
-
 import java.time.LocalDate;
 import java.util.List;
 

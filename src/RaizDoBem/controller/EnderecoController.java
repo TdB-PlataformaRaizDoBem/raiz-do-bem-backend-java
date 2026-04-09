@@ -29,25 +29,21 @@ public class EnderecoController {
     }
 
     public void adicionar() {
-        boolean retorno;
         String cep;
         TipoEndereco tipoEndereco;
-        boolean validacao;
         int tipo;
         try {
             do {
                 cep = view.entradaCep();
                 view.mostrar("\nVocê digitou o cep: " + cep);
-                retorno = bo.validarCep(cep);
-            } while (!retorno);
+            } while (!bo.validarCep(cep));
 
             String numero = view.entradaNumero();
             view.mostrar("\nVocê digitou o número: " + numero);
             do{
                 tipo = view.entradaTipoEndereco();
                 view.mostrar("\nVocê selecionou o tipo: " + tipo);
-                validacao = bo.validarTipoEndereco(tipo);
-            } while(!validacao);
+            } while(!bo.validarTipoEndereco(tipo));
 
             if (tipo == 1)
                 tipoEndereco = TipoEndereco.RESIDENCIAL;
@@ -99,24 +95,20 @@ public class EnderecoController {
     public void atualizar(int id) {
         try {
             Endereco endereco;
-            boolean retorno;
             String cep;
             TipoEndereco tipoEndereco;
-            boolean validacao;
             int tipo;
             do {
                 cep = view.entradaCep();
-                System.out.println("Você digitou o cep: " + cep);
-                retorno = bo.validarCep(cep);
-            } while (!retorno);
+                view.mostrar("Você digitou o cep: " + cep);
+            } while (!bo.validarCep(cep));
 
             String numero = view.entradaNumero();
             view.mostrar("Você digitou o número: " + numero);
             do{
                 tipo = view.entradaTipoEndereco();
                 view.mostrar("Você selecionou o tipo: " + tipo);
-                validacao = bo.validarTipoEndereco(tipo);
-            } while(!validacao);
+            } while(!bo.validarTipoEndereco(tipo));
 
             if (tipo == 1)
                 tipoEndereco = TipoEndereco.RESIDENCIAL;

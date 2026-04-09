@@ -93,8 +93,4 @@ public class PedidoAjudaBO {
                 .setStatus(status)
                 .setIdDentista(idDentista);
     }
-
-    public boolean validarCpf(String cpf) {
-        return (cpf != null && cpf.length() == 11);
-    }
 }

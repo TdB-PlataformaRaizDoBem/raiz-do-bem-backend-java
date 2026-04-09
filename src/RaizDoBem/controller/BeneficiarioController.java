@@ -2,6 +2,7 @@ package RaizDoBem.controller;
 
 import RaizDoBem.model.bo.BeneficiarioBO;
 import RaizDoBem.model.vo.Beneficiario;
+import RaizDoBem.model.vo.Validacao;
 import RaizDoBem.view.BeneficiarioView;
 
 import java.util.List;
@@ -88,21 +89,26 @@ public class BeneficiarioController {
 
     public void atualizar(String cpf) {
         try {
-            String telefone = view.inputTelefone();
-            String email = view.inputEmail();
-            int idEndereco = view.inputIdEndereco();
+            Validacao validacao = new Validacao();
+            if (validacao.validarCpf(cpf)) {
+                String telefone = view.inputTelefone();
+                String email = view.inputEmail();
+                int idEndereco = view.inputIdEndereco();
 
-            Beneficiario beneficiarioAtualizado = bo.validarNovoBeneficiario(telefone, email, idEndereco);
+                Beneficiario beneficiarioAtualizado = bo.validarNovoBeneficiario(telefone, email, idEndereco);
 
-            bo.atualizarBeneficiario(cpf, beneficiarioAtualizado);
-            view.mostrar("\nBeneficiário atualizado com sucesso!!!");
+                bo.atualizarBeneficiario(cpf, beneficiarioAtualizado);
+                view.mostrar("\nBeneficiário atualizado com sucesso!!!");
+            }
+            view.mostrar("\nCPF inválido!!!");
         } catch (RuntimeException e) {
             view.mostrar(e.getMessage());
         }
     }
 
     public void excluir(String cpf) {
-        if (cpf == null || cpf.isEmpty()) {
+        Validacao validacao = new Validacao();
+        if (!validacao.validarCpf(cpf)) {
             view.mostrar("\nCpf inválido!!!");
         } else {
             bo.excluirBeneficiario(cpf);

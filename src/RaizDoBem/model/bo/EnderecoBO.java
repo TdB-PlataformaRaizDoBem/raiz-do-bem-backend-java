@@ -46,10 +46,6 @@ public class EnderecoBO {
         dao.excluir(id);
     }
 
-    public boolean validarCep(String cep){
-        return ((cep!=null) && (cep.length()==8));
-    }
-
     public Endereco validarEndereco(String cep, String numero, TipoEndereco tipoEndereco){
 
         ViaCep enderecoBuscado = bo.buscarInformacoesEndereco(cep);
@@ -67,6 +63,9 @@ public class EnderecoBO {
                 enderecoBuscado.getUf(),
                 tipoEndereco
         );
+    }
+    public boolean validarCep(String cep){
+        return cep != null && cep.matches("\\d{8}");
     }
 
     public boolean validarTipoEndereco(int opc){

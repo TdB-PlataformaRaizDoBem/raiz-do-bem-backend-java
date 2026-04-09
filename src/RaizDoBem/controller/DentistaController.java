@@ -33,9 +33,14 @@ public class DentistaController {
             Sexo sexo;
             String categoriaDentista = "";
             boolean disponibilidade = false;
+            Validacao validacao = new Validacao();
 
             String cro = view.inputCro();
-            String cpf = view.inputCpf();
+            String cpf;
+            do{
+                cpf = view.inputCpf();
+            } while(!validacao.validarCpf(cpf));
+
             String nome = view.inputNome();
             int sexoDentista = view.inputSexo();
             if (sexoDentista == 1) {
@@ -49,18 +54,16 @@ public class DentistaController {
             String email = view.inputEmail();
 
             int categ = view.inputCategoria();
-            if(categ == 1 )
+            if(categ == 1)
                 categoriaDentista = "COORDENADOR";
-            else if(categ == 2 )
+            else if(categ == 2)
                 categoriaDentista = "CLINICO";
 
             int idEndereco = view.inputIdEndereco();
 
             int disponivel = view.inputDisponibilidade();
-            if(disponivel == 1 )
+            if(disponivel == 1)
                 disponibilidade = true;
-            else if(disponivel == 2 )
-                disponibilidade = false;
 
             Dentista dentista = bo.validarDentista(cro, cpf, nome, sexo, email, telefone, categoriaDentista, idEndereco, disponibilidade);
             bo.criarDentista(dentista);
@@ -113,34 +116,39 @@ public class DentistaController {
     public void atualizar(String cpf){
         String categoriaDentista = "";
         boolean disponibilidade = false;
+        Validacao validacao = new Validacao();
         try{
-            String telefone  = view.inputTelefone();
-            String email = view.inputEmail();
+            if(validacao.validarCpf(cpf)){
+                String telefone = view.inputTelefone();
+                String email = view.inputEmail();
 
-            int categ = view.inputCategoria();
-            if(categ == 1 )
-                categoriaDentista = "COORDENADOR";
-            else if(categ == 2 )
-                categoriaDentista = "CLINICO";
+                int categ = view.inputCategoria();
+                if(categ == 1 )
+                    categoriaDentista = "COORDENADOR";
+                else if(categ == 2 )
+                    categoriaDentista = "CLINICO";
 
-            int idEndereco = view.inputIdEndereco();
-            int disponivel = view.inputDisponibilidade();
-            if(disponivel == 1 )
-                disponibilidade = true;
-            else if(disponivel == 2 )
-                disponibilidade = false;
+                int idEndereco = view.inputIdEndereco();
+                int disponivel = view.inputDisponibilidade();
+                if(disponivel == 1 )
+                    disponibilidade = true;
+                else if(disponivel == 2 )
+                    disponibilidade = false;
 
-            Dentista dentista = bo.validaAtualizaDentista(email, telefone, categoriaDentista, idEndereco, disponibilidade);
+                Dentista dentista = bo.validaAtualizaDentista(email, telefone, categoriaDentista, idEndereco, disponibilidade);
 
-            bo.atualizarDentista(cpf, dentista);
-            view.mostrar("\nDentista atualizado com sucesso!!!");
+                bo.atualizarDentista(cpf, dentista);
+                view.mostrar("\nDentista atualizado com sucesso!!!");
+            }
+            view.mostrar("\nCPF inválido!!!");
         } catch (RuntimeException e) {
             view.mostrar(e.getMessage());
         }
     }
 
     public void apagar(String cpf) {
-        if (cpf == null || cpf.isEmpty()) {
+        Validacao validacao = new Validacao();
+        if (!validacao.validarCpf(cpf)) {
             view.mostrar("\nCpf inválido!!!");
         } else {
             bo.excluirDentista(cpf);

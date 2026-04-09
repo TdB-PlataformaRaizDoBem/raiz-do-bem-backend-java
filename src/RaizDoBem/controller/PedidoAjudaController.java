@@ -20,11 +20,12 @@ public class PedidoAjudaController {
     }
 
     public void adicionar() {
+        Validacao validacao = new Validacao();
         try{
             String cpf;
             do{
                 cpf = view.inputCpf();
-            } while(!bo.validarCpf(cpf));
+            } while(!validacao.validarCpf(cpf));
 
             String nome = view.inputNome();
             LocalDate dataNascimento = view.inputDataNasc();

@@ -2,6 +2,7 @@ package RaizDoBem.controller;
 
 import RaizDoBem.model.bo.ColaboradorBO;
 import RaizDoBem.model.vo.Colaborador;
+import RaizDoBem.model.vo.Validacao;
 import RaizDoBem.view.ColaboradorView;
 
 import java.time.LocalDate;
@@ -35,7 +36,12 @@ public class ColaboradorController {
 
     public void criar() {
         try{
-            String cpf = view.inputCpf();
+            Validacao validacao = new Validacao();
+            String cpf;
+            do{
+                cpf = view.inputCpf();
+            } while(!validacao.validarCpf(cpf));
+
             String nome = view.inputNome();
             LocalDate dataNascimento = view.inputDataNasc();
             LocalDate dataContratacao = view.inputDataContratacao();
@@ -84,7 +90,8 @@ public class ColaboradorController {
     }
 
     public void excluir(String cpf) {
-        if (cpf == null || cpf.isEmpty()) {
+        Validacao validacao = new Validacao();
+        if (!validacao.validarCpf(cpf)) {
             view.mostrar("\nCpf inválido!!!");
         } else {
             bo.excluir(cpf);
