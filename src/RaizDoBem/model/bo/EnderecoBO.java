@@ -47,13 +47,11 @@ public class EnderecoBO {
     }
 
     public Endereco validarEndereco(String cep, String numero, TipoEndereco tipoEndereco){
-
         ViaCep enderecoBuscado = bo.buscarInformacoesEndereco(cep);
 
         if(enderecoBuscado == null || enderecoBuscado.isErro()){
             throw new RuntimeException("Endereço não encontrado!!!");
         }
-
         return new Endereco(
                 enderecoBuscado.getLogradouro(),
                 cep,

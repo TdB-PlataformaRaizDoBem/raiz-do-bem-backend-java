@@ -100,7 +100,7 @@ public class PedidoAjudaController {
 
             if(StatusPedido.APROVADO.equals(status)){
                 int idPrograma = view.inputPrograma();
-                bo.atualizarGerarBeneficiario(id, pedido, idPrograma);
+                bo.validarGerarBeneficiario(id, pedido, idPrograma);
             }
             else{
                 bo.atualizar(id, pedido);

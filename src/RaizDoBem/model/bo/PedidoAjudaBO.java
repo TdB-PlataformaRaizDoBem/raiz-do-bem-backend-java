@@ -40,7 +40,7 @@ public class PedidoAjudaBO {
         }  
     }
 
-    public void atualizarGerarBeneficiario(int id, PedidoAjuda novoPedido, int idPrograma){
+    public void validarGerarBeneficiario(int id, PedidoAjuda novoPedido, int idPrograma){
         PedidoAjuda pedidoAjuda = dao.buscarPorId(id);
 
         if(pedidoAjuda == null){
