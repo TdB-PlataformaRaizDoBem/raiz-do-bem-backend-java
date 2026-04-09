@@ -23,3 +23,4 @@ gen/
 ### Mac/Windows sistemas ###
 .DS_Store
 Thumbs.db
+sources.txt

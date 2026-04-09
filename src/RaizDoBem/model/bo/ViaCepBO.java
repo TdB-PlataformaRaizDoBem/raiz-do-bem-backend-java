@@ -12,8 +12,9 @@ public class ViaCepBO {
     public ViaCep buscarInformacoesEndereco(String cep) {
         String urlApi = "https://viacep.com.br/ws/" + cep + "/json/";
 
-        try (HttpClient cliente = HttpClient.newHttpClient();) {
-
+        try{
+            HttpClient cliente = HttpClient.newHttpClient(); 
+            
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(urlApi))
                     .build();
