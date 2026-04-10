@@ -33,6 +33,7 @@ public class EnderecoController {
         TipoEndereco tipoEndereco;
         int tipo;
         try {
+            view.mostrar("\nCriando endereço: ");
             do {
                 cep = view.entradaCep();
                 view.mostrar("\nVocê digitou o cep: " + cep);
@@ -98,6 +99,7 @@ public class EnderecoController {
             String cep;
             TipoEndereco tipoEndereco;
             int tipo;
+            view.mostrar("\nAtualizando endereço: ");
             do {
                 cep = view.entradaCep();
                 view.mostrar("Você digitou o cep: " + cep);

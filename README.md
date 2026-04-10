@@ -1,10 +1,10 @@
 # Raiz do Bem - Challenge FIAP Sprint 3
 
-Projeto Java em console com arquitetura em camadas para gestão de atendimento odontológico social, desenvolvido com foco em persistência Oracle, regras de negócio na camada BO e documentação de entrega da Sprint 3.
+Projeto Java em console com arquitetura em camadas para gestão de atendimento odontológico social, desenvolvido com foco em persistência Oracle, regras de negócio na camada BO, melhoria de UX no fluxo do console e documentação de entrega da Sprint 3.
 
-**Versão**: 1.2.0  
-**Status**: ✅ Código funcional e documentação em fechamento final  
-**Última Validação**: 10/04/2026 - Fluxos de Dentista e Atendimento validados em console
+**Versão**: 1.6.1  
+**Status**: ✅ Projeto finalizado para submissão, com UX do código refinada  
+**Última Validação**: 10/04/2026 - Fluxos de Dentista, Atendimento e Pedido validados em console
 
 ## Status Atual do Projeto
 
@@ -18,16 +18,17 @@ Projeto Java em console com arquitetura em camadas para gestão de atendimento o
 - Módulo `Dentista` validado com ciclo completo: criação, listagem, busca por CPF, listagem por disponíveis, atualização e exclusão.
 - Módulo `Atendimento` validado com criação, listagem, busca por CPF e atualização/finalização.
 - Front-end demonstrativo publicado no Vercel com login fictício para apoio visual.
-- Documentação alinhada para fechamento da Sprint 3 e versionamento inicial no GitHub.
+- Documentação alinhada para fechamento da Sprint 3 e submissão final.
+- Mensagens de console e validações de entrada revisadas para deixar o uso mais claro durante a demonstração.
 
-**Progresso estimado atual**: 99% concluído.
+**Progresso estimado atual**: 100% concluído para entrega.
 
 ## Visão Geral
 
 - Arquitetura: `View → Controller → BO → DAO → VO` (Domain Driven Design)
 - Banco: Oracle via JDBC
 - Integração externa: ViaCep API + Gson 2.10.1
-- Foco da Sprint 3: código funcional + documentação completa + validações de fluxo
+- Foco da Sprint 3: código funcional + documentação completa + validações de fluxo + fechamento final de UX no console
 - Documento de entrega atual: `Sprint03Java-Andamento.pdf` (cópia de submissão: `Sprint3_FIAP_Java.pdf`)
 
 ## Estrutura do Projeto
@@ -102,9 +103,8 @@ src/RaizDoBem/
 
 ## O que ainda falta concluir
 
-- Revisão final de consistência entre `README`, `RELATORIO_ENTREGA_SPRINT3.md`, `VALIDACAO_FINAL.md` e o PDF final.
 - Conferência final dos prints/evidências usados na documentação.
-- Fechamento do versionamento inicial no GitHub com commit e tag de referência.
+- Fechamento do versionamento final no GitHub com commit e tag de referência.
 - Última leitura do PDF para validar capa, sumário, links e nomes de arquivo.
 - Revisão ortográfica final das legendas e textos do PDF.
 
@@ -240,7 +240,7 @@ O login disponível é fictício e não representa autenticação real de produ�
 
 ## Tempo estimado para finalização
 
-Com o código já validado e a documentação principal atualizada, o tempo restante estimado é muito baixo: sobra basicamente a revisão fina do PDF, das legendas e do empacotamento final.
+Com o código já validado e a documentação principal consolidada, o tempo restante é apenas de conferência final do PDF, links e empacotamento da entrega.
 
 ## Tecnologias
 

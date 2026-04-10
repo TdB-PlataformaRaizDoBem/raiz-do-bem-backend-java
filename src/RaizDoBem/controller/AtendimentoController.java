@@ -34,6 +34,7 @@ public class AtendimentoController {
 
     public void adicionar(){
         try {
+            view.mostrar("\nCriando atendimento: ");
             String prontuario = view.inputProntuario();
 
             int idBeneficiario = view.inputBeneficiario();

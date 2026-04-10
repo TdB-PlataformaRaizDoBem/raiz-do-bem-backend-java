@@ -38,6 +38,7 @@ public class BeneficiarioController {
 
     public void criar() {
         try{
+            view.mostrar("\nCriando beneficiário: ");
             int idPedido = view.inputId();
             int idProgramaSocial = view.inputPrograma();
 
@@ -89,6 +90,7 @@ public class BeneficiarioController {
 
     public void atualizar(String cpf) {
         try {
+            view.mostrar("Atualizando beneficiário: ");
             if (Validacao.validarCpf(cpf)) {
                 String telefone = view.inputTelefone();
                 String email = view.inputEmail();

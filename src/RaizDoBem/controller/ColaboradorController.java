@@ -36,6 +36,7 @@ public class ColaboradorController {
 
     public void criar() {
         try{
+            view.mostrar("\nCriando colaborador: ");
             String cpf;
             do{
                 cpf = view.inputCpf();
@@ -68,15 +69,16 @@ public class ColaboradorController {
     public void buscarPorCpf(String cpf) {
         Colaborador colaborador = bo.buscarPeloCpf(cpf);
         if (colaborador != null) {
-            view.mostrar("Colaborador encontrado: ");
+            view.mostrar("\nColaborador encontrado: ");
             view.exibirColaborador(colaborador);
         } else {
-            view.mostrar("Nenhum colaborador encontrado!!!");
+            view.mostrar("\nNenhum colaborador encontrado!!!");
         }
     }
 
     public void atualizar(String cpf) {
         try{
+            view.mostrar("\nAtualizando colaborador: ");
             Colaborador novoColaborador;
             String email = view.inputEmail();
             novoColaborador = bo.validarNovoColaborador(email);

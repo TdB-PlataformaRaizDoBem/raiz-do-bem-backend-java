@@ -35,6 +35,7 @@ public class DentistaController {
             boolean disponibilidade = false;
             String cro;
             String cpf;
+            view.mostrar("\nCriando dentista: ");
             do{
                 cro = view.inputCro();
             } while(bo.validarCro(cro));
@@ -119,6 +120,7 @@ public class DentistaController {
         String categoriaDentista = "";
         boolean disponibilidade = false;
         try{
+            view.mostrar("Atualizando dentista: ");
             if(Validacao.validarCpf(cpf)){
                 String telefone = view.inputTelefone();
                 String email = view.inputEmail();
