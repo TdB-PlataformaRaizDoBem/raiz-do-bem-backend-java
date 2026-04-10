@@ -30,9 +30,7 @@ public class BeneficiarioView {
     }
 
     public int inputPrograma() {
-        view.exibirMensagem("\nEsse beneficiário(a) fará parte de qual programa da ONG?");
-        view.exibirMensagem("1. Dentista do Bem");
-        view.exibirMensagem("2. Apolônias do Bem");
+        view.exibirMensagem("\nSelecione o programa da ONG: 1. Dentista do Bem | 2. Apolônias do Bem");
         int opc = sc.nextInt();
         sc.nextLine();
 

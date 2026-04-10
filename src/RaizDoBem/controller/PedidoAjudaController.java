@@ -20,12 +20,12 @@ public class PedidoAjudaController {
     }
 
     public void adicionar() {
-        Validacao validacao = new Validacao();
         try{
+            view.mostrar("\nCriando pedido de ajuda: ");
             String cpf;
             do{
                 cpf = view.inputCpf();
-            } while(!validacao.validarCpf(cpf));
+            } while(!Validacao.validarCpf(cpf));
 
             String nome = view.inputNome();
             LocalDate dataNascimento = view.inputDataNasc();
@@ -45,8 +45,13 @@ public class PedidoAjudaController {
             int idEndereco = view.inputEndereco();
 
             PedidoAjuda pedido = bo.validarPedido(cpf, nome, dataNascimento, sexoSolicitante, telefone, email, descricao, idEndereco);
-
+            if(sexoSolicitante == Sexo.M){
+                if(PedidoAjudaBO.invalidarHomens(dataNascimento)){
+                    pedido.setStatus(StatusPedido.REJEITADO);
+                }
+            }
             bo.criar(pedido);
+            view.mostrar("\nPedido de ajuda criado com sucesso!");
         } catch (RuntimeException e){
             view.mostrar(e.getMessage());
         }
@@ -92,6 +97,7 @@ public class PedidoAjudaController {
 
     public void atualizar(int id) {
         try {
+            view.mostrar("\nAtualizando pedido de ajuda: ");
             int idStatus = view.inputStatus();
             StatusPedido status = bo.validarStatus(idStatus);
             int idDentista = view.inputIdDentista();
@@ -112,6 +118,7 @@ public class PedidoAjudaController {
     }
 
     public void deletar(int id) {
+        view.mostrar("\nExcluindo pedido de ajuda: ");
         if (id == 0)
             view.mostrar("ID inválido!!!");
         else {

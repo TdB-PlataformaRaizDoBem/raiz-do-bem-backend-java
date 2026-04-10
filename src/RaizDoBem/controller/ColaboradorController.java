@@ -36,11 +36,10 @@ public class ColaboradorController {
 
     public void criar() {
         try{
-            Validacao validacao = new Validacao();
             String cpf;
             do{
                 cpf = view.inputCpf();
-            } while(!validacao.validarCpf(cpf));
+            } while(!Validacao.validarCpf(cpf));
 
             String nome = view.inputNome();
             LocalDate dataNascimento = view.inputDataNasc();
@@ -90,8 +89,7 @@ public class ColaboradorController {
     }
 
     public void excluir(String cpf) {
-        Validacao validacao = new Validacao();
-        if (!validacao.validarCpf(cpf)) {
+        if (!Validacao.validarCpf(cpf)) {
             view.mostrar("\nCpf inválido!!!");
         } else {
             bo.excluir(cpf);

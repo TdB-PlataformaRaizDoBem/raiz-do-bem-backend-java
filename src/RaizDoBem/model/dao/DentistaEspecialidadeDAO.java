@@ -55,12 +55,4 @@ public class DentistaEspecialidadeDAO {
         }
         return dentistaEspecialidades;
     }
-//    public List<Especialidade> listarEspecialidadesUnicoDentista(int idDentista){
-//        List<Especialidade> especialidades = new ArrayList<>();
-//        return especialidades;
-//    }
-//    public List<Dentista> listarDentistasComEspecialidade(String especialidade){
-//        List<Dentista> dentistas = new ArrayList<>();
-//        return dentistas;
-//    }
 }

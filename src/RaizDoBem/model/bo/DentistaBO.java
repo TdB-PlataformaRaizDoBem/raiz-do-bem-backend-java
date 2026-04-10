@@ -7,8 +7,7 @@ import RaizDoBem.model.vo.Sexo;
 import java.util.List;
 
 public class DentistaBO {
-    DentistaDAO dao = new DentistaDAO();
-    Dentista dentista = new Dentista();
+    private final DentistaDAO dao = new DentistaDAO();
 
     public Dentista buscaPorCpf(String cpf){
         return dao.buscarPorCpf(cpf);
@@ -76,5 +75,9 @@ public class DentistaBO {
                 .setCategoria(categoria)
                 .setIdEndereco(idEndereco)
                 .setDisponivel(disponivel);
+    }
+
+    public boolean validarCro(String cro){
+        return cro!=null && cro.matches("^[a-zA-Z]{2,}\\d{2}$");
     }
 }

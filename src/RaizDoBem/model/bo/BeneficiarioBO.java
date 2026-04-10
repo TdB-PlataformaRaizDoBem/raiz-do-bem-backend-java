@@ -9,7 +9,7 @@ import RaizDoBem.model.vo.StatusPedido;
 import java.util.List;
 
 public class BeneficiarioBO {
-    BeneficiarioDAO dao = new BeneficiarioDAO();
+    private final BeneficiarioDAO dao = new BeneficiarioDAO();
 
     public void adicionar(int idPedido, int idProgramaSocial) {
         PedidoAjudaDAO pedidoDAO = new PedidoAjudaDAO();

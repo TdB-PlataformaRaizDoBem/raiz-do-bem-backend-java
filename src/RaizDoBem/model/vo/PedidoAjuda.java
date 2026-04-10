@@ -180,12 +180,12 @@ public class PedidoAjuda {
         return "\n" + idPedido +
                 " - Solicitante: " + nomeCompleto +
                 " - Cpf: " + cpf +
-                "\n    Descrição: " + descricaoProblema +
-                "\n    Data de Nascimento: " + dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                "\n     Descrição: " + descricaoProblema +
+                "\n     Data de Nascimento: " + dataNascimento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
                 " - Sexo: " + sexo +
-                "\n    Telefone: " + telefone +
+                "\n     Telefone: " + telefone +
                 " - email: " + email +
-                "\n    Data do Pedido: " + dataPedido.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                "\n     Data do Pedido: " + dataPedido.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
                 " - status: " + status;
     }
 }

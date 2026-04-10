@@ -8,6 +8,7 @@ public class ProgramaSocialTeste {
         ProgramaView view = new ProgramaView();
         ProgramaController controller = new ProgramaController(view);
 
+        //Listando todos os programas sociais
         controller.listarTodos();
     }
 }

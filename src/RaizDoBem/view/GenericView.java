@@ -42,15 +42,15 @@ public class GenericView {
     }
 
     public String inputCpf(){
-        return inputString("\nDigite o CPF:");
+        return inputString("\nDigite o CPF: ");
     }
 
     public String inputNome(){
-        return inputString("\nDigite o nome:");
+        return inputString("\nDigite o nome: ");
     }
 
     public String inputCidade(){
-        return inputString("\nDigite a cidade:");
+        return inputString("\nDigite a cidade: ");
     }
     public void exibirMensagem(String msg){
         System.out.println(msg);

@@ -89,8 +89,7 @@ public class BeneficiarioController {
 
     public void atualizar(String cpf) {
         try {
-            Validacao validacao = new Validacao();
-            if (validacao.validarCpf(cpf)) {
+            if (Validacao.validarCpf(cpf)) {
                 String telefone = view.inputTelefone();
                 String email = view.inputEmail();
                 int idEndereco = view.inputIdEndereco();
@@ -100,15 +99,13 @@ public class BeneficiarioController {
                 bo.atualizarBeneficiario(cpf, beneficiarioAtualizado);
                 view.mostrar("\nBeneficiário atualizado com sucesso!!!");
             }
-            view.mostrar("\nCPF inválido!!!");
         } catch (RuntimeException e) {
             view.mostrar(e.getMessage());
         }
     }
 
     public void excluir(String cpf) {
-        Validacao validacao = new Validacao();
-        if (!validacao.validarCpf(cpf)) {
+        if (!Validacao.validarCpf(cpf)) {
             view.mostrar("\nCpf inválido!!!");
         } else {
             bo.excluirBeneficiario(cpf);

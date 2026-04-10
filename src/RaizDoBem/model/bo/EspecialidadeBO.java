@@ -6,7 +6,7 @@ import RaizDoBem.model.vo.Especialidade;
 import java.util.List;
 
 public class EspecialidadeBO {
-    EspecialidadeDAO dao = new EspecialidadeDAO();
+    private final EspecialidadeDAO dao = new EspecialidadeDAO();
     public List<Especialidade> listarTodos(){
         return dao.listarTodos();
     }

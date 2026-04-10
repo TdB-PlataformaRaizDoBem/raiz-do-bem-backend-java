@@ -6,7 +6,7 @@ import RaizDoBem.model.vo.ProgramaSocial;
 import java.util.List;
 
 public class ProgramaBO {
-    ProgramaSocialDAO dao = new ProgramaSocialDAO();
+    private final ProgramaSocialDAO dao = new ProgramaSocialDAO();
 
     public List<ProgramaSocial> listarTodos(){
         return dao.listarTodos();

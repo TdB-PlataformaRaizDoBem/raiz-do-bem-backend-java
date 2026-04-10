@@ -18,23 +18,30 @@ public class DentistaTeste {
         DentistaView view = new DentistaView();
         DentistaController controller = new DentistaController(view);
 
+        //Listando beneficiários
         controller.listandoTodos();
 
+        //1 - Criando dentista
         controller.criar();
 
-//        String cpf = view.inputCpf();
-//        controller.buscarPorCpf(cpf);
+        //2 - Buscando um dentista pelo seu Cpf
+        String cpf = view.inputCpf();
+        controller.buscarPorCpf(cpf);
 
-//        String cidade = view.inputCidade();
-//        controller.listarPorCidade(cidade);
-//
-//        controller.listarDisponiveis();
+        //3 - Listando dentistas por Cidade
+        String cidade = view.inputCidade();
+        controller.listarPorCidade(cidade);
 
-//        String cpf = view.inputCpf();
-//        controller.atualizar(cpf);
+        //4 - Listando dentistas com status disponível
+        controller.listarDisponiveis();
 
-//        String cpf = view.inputCpf();
-//        controller.apagar(cpf);
+        //5 - Atualizando dados de um dentista
+        cpf = view.inputCpf();
+        controller.atualizar(cpf);
+
+        //6 - Excluindo um dentista
+        cpf = view.inputCpf();
+        controller.apagar(cpf);
 
 
         controller.listandoTodos();

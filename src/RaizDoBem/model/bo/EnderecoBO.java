@@ -8,8 +8,8 @@ import RaizDoBem.model.vo.ViaCep;
 import java.util.List;
 
 public class EnderecoBO {
-    EnderecoDAO dao = new EnderecoDAO();
-    ViaCepBO bo = new ViaCepBO();
+    private final EnderecoDAO dao = new EnderecoDAO();
+    private final ViaCepBO bo = new ViaCepBO();
 
     public void criar(Endereco endereco){
         if(endereco != null)

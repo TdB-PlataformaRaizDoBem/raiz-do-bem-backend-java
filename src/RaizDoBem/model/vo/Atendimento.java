@@ -120,7 +120,7 @@ public class Atendimento {
             colaborador = "Colaborador relator pendente";
         else
             colaborador = String.valueOf(idColaborador);
-        return idAtendimento +
+        return "\n" + idAtendimento +
                 " -  Prontuário: " + prontuario +
                 "\n     Data inicial: " + dataInicial.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
                 " - Data Final: " + dataFinalString +

@@ -38,14 +38,21 @@ public class PedidoAjudaView {
         return view.inputNome();
     }
 
-     public LocalDate inputDataNasc(){
+     public LocalDate inputData(){
          DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-         view.exibirMensagem("Data de nascimento do solicitante (dd/MM/yyyy): ");
+         view.exibirMensagem("\nInsira a data (dd/MM/yyyy): ");
          String data = sc.nextLine();
 
         return LocalDate.parse(data, formato);
      }
 
+     public LocalDate inputDataNasc() {
+         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+         view.exibirMensagem("\nInsira a data de nascimento (dd/MM/yyyy): ");
+         String data = sc.nextLine();
+
+         return LocalDate.parse(data, formato);
+     }
     public int inputSexo() {
         view.exibirMensagem("\nSelecione o sexo do solicitante: ");
         view.exibirMensagem("1. Masculino");

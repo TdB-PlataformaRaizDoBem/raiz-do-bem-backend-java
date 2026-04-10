@@ -4,10 +4,11 @@ import RaizDoBem.model.dao.PedidoAjudaDAO;
 import RaizDoBem.model.vo.*;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 public class PedidoAjudaBO {
-    PedidoAjudaDAO dao = new PedidoAjudaDAO();
+    private final PedidoAjudaDAO dao = new PedidoAjudaDAO();
 
     public PedidoAjuda buscaCpf(String cpf){
         return dao.buscarPorCpf(cpf);
@@ -92,5 +93,9 @@ public class PedidoAjudaBO {
         return new PedidoAjuda()
                 .setStatus(status)
                 .setIdDentista(idDentista);
+    }
+    public static boolean invalidarHomens(LocalDate dataNasc){
+        Period idade = Period.between(dataNasc, LocalDate.now());
+        return idade.getYears() >= 18;
     }
 }

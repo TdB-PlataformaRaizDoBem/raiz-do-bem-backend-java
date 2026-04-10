@@ -6,7 +6,7 @@ import RaizDoBem.model.vo.Atendimento;
 import java.util.List;
 
 public class AtendimentoBO {
-    AtendimentoDAO dao = new AtendimentoDAO();
+    private final AtendimentoDAO dao = new AtendimentoDAO();
 
     public void criar(Atendimento atendimento) {
         if (atendimento != null)

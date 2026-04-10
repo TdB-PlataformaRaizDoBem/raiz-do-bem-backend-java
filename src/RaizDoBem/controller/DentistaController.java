@@ -33,13 +33,15 @@ public class DentistaController {
             Sexo sexo;
             String categoriaDentista = "";
             boolean disponibilidade = false;
-            Validacao validacao = new Validacao();
-
-            String cro = view.inputCro();
+            String cro;
             String cpf;
             do{
+                cro = view.inputCro();
+            } while(bo.validarCro(cro));
+
+            do{
                 cpf = view.inputCpf();
-            } while(!validacao.validarCpf(cpf));
+            } while(!Validacao.validarCpf(cpf));
 
             String nome = view.inputNome();
             int sexoDentista = view.inputSexo();
@@ -116,9 +118,8 @@ public class DentistaController {
     public void atualizar(String cpf){
         String categoriaDentista = "";
         boolean disponibilidade = false;
-        Validacao validacao = new Validacao();
         try{
-            if(validacao.validarCpf(cpf)){
+            if(Validacao.validarCpf(cpf)){
                 String telefone = view.inputTelefone();
                 String email = view.inputEmail();
 
@@ -140,15 +141,13 @@ public class DentistaController {
                 bo.atualizarDentista(cpf, dentista);
                 view.mostrar("\nDentista atualizado com sucesso!!!");
             }
-            view.mostrar("\nCPF inválido!!!");
         } catch (RuntimeException e) {
             view.mostrar(e.getMessage());
         }
     }
 
     public void apagar(String cpf) {
-        Validacao validacao = new Validacao();
-        if (!validacao.validarCpf(cpf)) {
+        if (!Validacao.validarCpf(cpf)) {
             view.mostrar("\nCpf inválido!!!");
         } else {
             bo.excluirDentista(cpf);

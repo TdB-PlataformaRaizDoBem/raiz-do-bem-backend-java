@@ -8,6 +8,7 @@ public class EspecialidadeTeste {
         EspecialidadeView view = new EspecialidadeView();
         EspecialidadeController controller = new EspecialidadeController(view);
 
+        //Listando todas as especialidades
         controller.listarTodas();
     }
 }

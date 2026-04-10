@@ -1,30 +1,34 @@
 # Raiz do Bem - Challenge FIAP Sprint 3
 
-Projeto Java (console) com arquitetura em camadas para gestão de atendimento odontológico social.
+Projeto Java em console com arquitetura em camadas para gestão de atendimento odontológico social, desenvolvido com foco em persistência Oracle, regras de negócio na camada BO e documentação de entrega da Sprint 3.
 
 **Versão**: 1.2.0  
-**Status**: ✅ Código 100% Funcional (Sprint 3)  
-**Última Validação**: 09/04/2026 - CRUD Endereço Completo + ViaCep + Gson
+**Status**: ✅ Código funcional e documentação em fechamento final  
+**Última Validação**: 10/04/2026 - Fluxos de Dentista e Atendimento validados em console
 
 ## Status Atual do Projeto
 
-- Código-fonte principal validado e funcional.
-- CRUD completo do módulo `Endereço` comprovado por execução no console.
+- Backend Java validado e funcional.
+- Módulo `Endereço` com CRUD completo comprovado em execução real.
 - Integração `ViaCep + Gson` validada sem conflitos.
-- Classe utilitária `Validacao` adicionada para centralizar validação de CPF.
-- PDF e UML atualizados com regras de negócio e evidências de execução.
-- Front-end demonstrativo publicado no Vercel com login fictício para apresentação visual.
-- Projeto em fase final de refinamento documental antes do versionamento definitivo.
+- Classe utilitária `Validacao` usada para centralizar validação de CPF.
+- Módulos `ProgramaSocial` e `Especialidade` validados como catálogos de apoio/listagem.
+- Nova validação de triagem no `Pedido de Ajuda`: solicitantes do sexo masculino com idade igual ou superior a 18 anos são marcados como `REJEITADO` na criação.
+- Módulo `Beneficiário` validado com listagem, busca por CPF, listagem por programa, listagem por cidade, atualização e exclusão.
+- Módulo `Dentista` validado com ciclo completo: criação, listagem, busca por CPF, listagem por disponíveis, atualização e exclusão.
+- Módulo `Atendimento` validado com criação, listagem, busca por CPF e atualização/finalização.
+- Front-end demonstrativo publicado no Vercel com login fictício para apoio visual.
+- Documentação alinhada para fechamento da Sprint 3 e versionamento inicial no GitHub.
 
-**Progresso estimado atual**: 97% a 98% concluído.
+**Progresso estimado atual**: 99% concluído.
 
 ## Visão Geral
 
-- Arquitetura: View → Controller → BO → DAO → VO (Domain Driven Design)
+- Arquitetura: `View → Controller → BO → DAO → VO` (Domain Driven Design)
 - Banco: Oracle via JDBC
-- Integração Externa: ViaCep API + Gson 2.10.1
-- Foco da Sprint 3: Código funcional + documentação completa
-- Documento de entrega atual: Sprint03Java-Andamento.pdf
+- Integração externa: ViaCep API + Gson 2.10.1
+- Foco da Sprint 3: código funcional + documentação completa + validações de fluxo
+- Documento de entrega atual: `Sprint03Java-Andamento.pdf` (cópia de submissão: `Sprint3_FIAP_Java.pdf`)
 
 ## Estrutura do Projeto
 
@@ -41,6 +45,14 @@ src/RaizDoBem/
 
 ## Módulos da Sprint 3
 
+### Núcleo da solução
+- `Endereço`
+- `Dentista`
+- `Colaborador`
+- `Pedido de Ajuda`
+- `Beneficiário`
+- `Atendimento`
+
 ### Endereço
 - CRUD completo
 - Regras BO: validarCep, validarEndereco, validarTipoEndereco
@@ -48,6 +60,7 @@ src/RaizDoBem/
 ### Dentista
 - CRUD completo
 - Regras BO: validarDentista, validaAtualizaDentista
+- Fluxos validados em console: listagem, criação, busca por CPF, listagem por disponibilidade, atualização e exclusão.
 
 ### Colaborador
 - CRUD completo
@@ -56,20 +69,44 @@ src/RaizDoBem/
 ### Pedido de Ajuda
 - CRUD completo
 - Regras BO: validarPedido, validarStatus, validarCpf, validarNovoPedido
+- Regra de triagem adicional: pedidos de homens com idade >= 18 anos podem ser automaticamente rejeitados na criação, conforme validação aplicada na controller.
 
 ### Beneficiário
 - CRUD completo
 - Regra BO crítica: criação a partir de pedido aprovado
+- Fluxos validados em console: listagem, busca por CPF, listagem por programa, listagem por cidade, atualização e exclusão.
 
 ### Atendimento
 - CRUD parcial intencional: C-R-U
 - Sem delete por regra de negócio (preservação de histórico)
+- Fluxos validados em console: criação, listagem, busca por CPF e atualização com encerramento.
 
 ### Catálogos de apoio
 - Especialidade e Programa Social: leitura/listagem
 
 ### Classes de apoio
 - `Validacao`: validações reutilizáveis, como CPF, para apoiar diferentes controllers sem duplicar regra.
+
+## Validações recentes já comprovadas
+
+- CRUD completo do módulo `Endereço` com criação, listagem, busca por ID, busca por cidade, atualização e exclusão.
+- Integração com ViaCep retornando endereço real a partir do CEP.
+- Listagem funcional dos módulos de apoio `ProgramaSocial` e `Especialidade`.
+- Fluxo MVC validado com entrada pelo console e persistência Oracle.
+- Regra adicional de negócio validada no `Pedido de Ajuda`: solicitantes do sexo masculino com 18 anos ou mais são cadastrados com status `REJEITADO`.
+- Fluxo de `Beneficiário` validado com listagem, busca por CPF, listagem por programa, listagem por cidade, atualização e exclusão.
+- Fluxo de `PedidoTeste` validado com criação, listagem, atualização, exclusão e confirmação por query.
+- Fluxo de `Dentista` validado com ciclo completo de CRUD em console.
+- Fluxo de `Atendimento` validado com criação, busca por CPF e finalização via update.
+- Fluxo central `PedidoAjuda -> Beneficiário -> Atendimento` consolidado com evidências no PDF.
+
+## O que ainda falta concluir
+
+- Revisão final de consistência entre `README`, `RELATORIO_ENTREGA_SPRINT3.md`, `VALIDACAO_FINAL.md` e o PDF final.
+- Conferência final dos prints/evidências usados na documentação.
+- Fechamento do versionamento inicial no GitHub com commit e tag de referência.
+- Última leitura do PDF para validar capa, sumário, links e nomes de arquivo.
+- Revisão ortográfica final das legendas e textos do PDF.
 
 ## Execução
 
@@ -143,6 +180,34 @@ Banco Oracle JDBC: ✅ CONECTADO
 Fluxo MVC: ✅ COMPLETO
 ```
 
+### 5) Validação do Fluxo de Pedido de Ajuda (Comprovado 09/04/2026)
+
+**Classe**: `PedidoTeste.java`
+
+```
+✅ CREATE - Novo pedido de ajuda
+   Input: CPF 88899983867, nome Ian Souza Mota, nascimento 19/10/1972, sexo masculino
+   Output: Pedido de ajuda criado com status REJEITADO pela regra de triagem
+
+✅ READ - Listar todos os pedidos
+   Registros exibidos com status, data, CPF e descrição
+
+✅ READ - Consulta de confirmação via query
+   Verificado pedido específico no banco após criação/atualização
+
+✅ UPDATE - Atualizar pedido por ID
+   ID 61 atualizado para status APROVADO com dentista responsável
+
+✅ DELETE - Excluir pedido por ID
+   ID 5 removido com sucesso
+
+✅ READ - Listagem final
+   Pedido excluído não aparece mais; pedido 62 permanece com REJEITADO
+
+Regra de triagem: ✅ aplicada na criação
+Fluxo console: ✅ validado no terminal da IDE
+```
+
 ## Links e Ambiente de Demonstração
 
 - Repositório GitHub: incluir o link do projeto final aqui.
@@ -156,11 +221,11 @@ O login disponível é fictício e não representa autenticação real de produ�
 
 | Requisito | Status atual | Evidência |
 |-----------|--------------|-----------|
-| Minimo de 6 classes modelo | ✅ Atendido (8 classes) | EnderecoTeste.java |
-| Minimo de 4 métodos de negócio | ✅ Atendido (8 métodos) | Validações confirmadas |
+| Minimo de 6 classes modelo | ✅ Atendido | Classes VO principais do domínio |
+| Minimo de 4 métodos de negócio | ✅ Atendido | Validações confirmadas nas BOs |
 | Classe de conexão com banco | ✅ Atendido | Conexao.java funcionando |
-| Camada DAO com CRUD funcional | ✅ Atendido (7 DAOs) | CRUD Endereço validado 09/04 |
-| Classes de teste com main | ✅ Atendido (8 testes) | Execução console OK |
+| Camada DAO com CRUD funcional | ✅ Atendido | CRUD Endereço e Pedido validados 09/04 |
+| Classes de teste com main | ✅ Atendido | Execução console OK |
 | Integração ViaCep + Gson | ✅ Atendido | CEP 01310900 → Avenida Paulista |
 
 ## Métodos de Negócio para Evidência no PDF
@@ -170,10 +235,12 @@ O login disponível é fictício e não representa autenticação real de produ�
 - PedidoAjudaBO.validarStatus
 - AtendimentoBO.validarAtendimento
 - Validacao.validarCpf
+- PedidoAjudaController.adicionar (triagem por idade/sexo na criação)
+- PedidoTeste.java (criação, listagem, atualização, exclusão e confirmação por query)
 
 ## Tempo estimado para finalização
 
-Com o código já validado e a documentação principal atualizada, o tempo restante estimado é curto: entre 2 e 4 horas para revisão final, conferência de consistência entre PDF/README/relatório e fechamento do ZIP de entrega.
+Com o código já validado e a documentação principal atualizada, o tempo restante estimado é muito baixo: sobra basicamente a revisão fina do PDF, das legendas e do empacotamento final.
 
 ## Tecnologias
 

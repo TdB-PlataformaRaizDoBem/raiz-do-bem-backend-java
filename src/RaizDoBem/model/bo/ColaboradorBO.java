@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class ColaboradorBO {
-    ColaboradorDAO dao = new ColaboradorDAO();
+    private final ColaboradorDAO dao = new ColaboradorDAO();
 
     public void criar(Colaborador colaborador){
         if(colaborador != null){
