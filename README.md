@@ -2,9 +2,9 @@
 
 Projeto Java em console com arquitetura em camadas para gestão de atendimento odontológico social, desenvolvido com foco em persistência Oracle, regras de negócio na camada BO, melhoria de UX no fluxo do console e documentação de entrega da Sprint 3.
 
-**Versão**: 1.6.1  
-**Status**: ✅ Projeto finalizado para submissão, com UX do código refinada  
-**Última Validação**: 10/04/2026 - Fluxos de Dentista, Atendimento e Pedido validados em console
+**Versão**: 1.6.2  
+**Status**: ✅ Projeto finalizado para submissão, com documentação e fluxo principal validados  
+**Última Validação**: 10/04/2026 - PDF final, fluxo central e testes de console consolidados
 
 ## Status Atual do Projeto
 
@@ -18,8 +18,9 @@ Projeto Java em console com arquitetura em camadas para gestão de atendimento o
 - Módulo `Dentista` validado com ciclo completo: criação, listagem, busca por CPF, listagem por disponíveis, atualização e exclusão.
 - Módulo `Atendimento` validado com criação, listagem, busca por CPF e atualização/finalização.
 - Front-end demonstrativo publicado no Vercel com login fictício para apoio visual.
-- Documentação alinhada para fechamento da Sprint 3 e submissão final.
+- Documentação final alinhada ao PDF `Sprint03Java.pdf`.
 - Mensagens de console e validações de entrada revisadas para deixar o uso mais claro durante a demonstração.
+- Fluxo central `PedidoAjuda -> Beneficiário -> Atendimento` incorporado no `Main` para apoio à apresentação.
 
 **Progresso estimado atual**: 100% concluído para entrega.
 
@@ -29,7 +30,7 @@ Projeto Java em console com arquitetura em camadas para gestão de atendimento o
 - Banco: Oracle via JDBC
 - Integração externa: ViaCep API + Gson 2.10.1
 - Foco da Sprint 3: código funcional + documentação completa + validações de fluxo + fechamento final de UX no console
-- Documento de entrega atual: `Sprint03Java-Andamento.pdf` (cópia de submissão: `Sprint3_FIAP_Java.pdf`)
+- Documento de entrega atual: `Sprint03Java.pdf`
 
 ## Estrutura do Projeto
 
@@ -101,12 +102,12 @@ src/RaizDoBem/
 - Fluxo de `Atendimento` validado com criação, busca por CPF e finalização via update.
 - Fluxo central `PedidoAjuda -> Beneficiário -> Atendimento` consolidado com evidências no PDF.
 
-## O que ainda falta concluir
+## Últimas melhorias aplicadas
 
-- Conferência final dos prints/evidências usados na documentação.
-- Fechamento do versionamento final no GitHub com commit e tag de referência.
-- Última leitura do PDF para validar capa, sumário, links e nomes de arquivo.
-- Revisão ortográfica final das legendas e textos do PDF.
+- PDF consolidado como `Sprint03Java.pdf`, com validação textual final revisada.
+- Fluxo central de `PedidoAjuda -> Beneficiário -> Atendimento` incluído no `Main` para demonstração integrada.
+- Organização dos testes preservada no pacote `test`, com `main` por módulo para evidenciar regras de negócio.
+- README ajustado para refletir o estado final da entrega.
 
 ## Execução
 
@@ -147,6 +148,14 @@ java RaizDoBem.test.ProgramaSocialTeste
 ```
 
 **Observação**: As classes de teste foram usadas como ponto de entrada da validação da Sprint 3.
+
+### 3.1) Executar fluxo principal integrado
+
+```bash
+java RaizDoBem.Main
+```
+
+Esse fluxo demonstra o encadeamento `PedidoAjuda -> Beneficiário -> Atendimento` para apoio à apresentação final.
 
 ### 4) Validação de Integração ViaCep + Gson (Comprovado 09/04/2026)
 
@@ -224,7 +233,7 @@ O login disponível é fictício e não representa autenticação real de produ�
 | Minimo de 6 classes modelo | ✅ Atendido | Classes VO principais do domínio |
 | Minimo de 4 métodos de negócio | ✅ Atendido | Validações confirmadas nas BOs |
 | Classe de conexão com banco | ✅ Atendido | Conexao.java funcionando |
-| Camada DAO com CRUD funcional | ✅ Atendido | CRUD Endereço e Pedido validados 09/04 |
+| Camada DAO com CRUD funcional | ✅ Atendido | CRUD principal validado em execução real |
 | Classes de teste com main | ✅ Atendido | Execução console OK |
 | Integração ViaCep + Gson | ✅ Atendido | CEP 01310900 → Avenida Paulista |
 
@@ -237,6 +246,13 @@ O login disponível é fictício e não representa autenticação real de produ�
 - Validacao.validarCpf
 - PedidoAjudaController.adicionar (triagem por idade/sexo na criação)
 - PedidoTeste.java (criação, listagem, atualização, exclusão e confirmação por query)
+
+## Status Final de Entrega
+
+- PDF final ajustado como `Sprint03Java.pdf`.
+- Fluxo principal integrado no `Main` para demonstração.
+- Classes de teste mantidas no pacote `test` para validação individual dos módulos.
+- Documentação alinhada com o estado real do código e pronta para envio.
 
 ## Tempo estimado para finalização
 
