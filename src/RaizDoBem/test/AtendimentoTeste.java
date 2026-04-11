@@ -27,5 +27,7 @@ public class AtendimentoTeste {
 
         //5 - Listando novamente para verificar a atualização
         controller.listandoTodos();
+
+        controller.excluir(id);
     }
 }
