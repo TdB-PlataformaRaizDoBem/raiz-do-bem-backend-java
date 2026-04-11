@@ -1,17 +1,8 @@
 package RaizDoBem.model.vo;
 
 /**
- * Representa um endereço, contendo informações como logradouro, cep, número, bairro, cidade, estado e tipo de endereço. Esta classe é utilizada para armazenar e manipular informações relacionadas aos endereços dos beneficiários, colaboradores ou dentistas envolvidos nas atividades da ONG.
- * @author Paulo
- * @since 2026-03
- * @param idEndereco O identificador único do endereço.
- * @param logradouro O nome da rua ou logradouro do endereço.
- * @param cep O código postal (CEP) associado ao endereço.
- * @param numero O número do endereço.
- * @param bairro O nome do bairro do endereço.
- * @param cidade A cidade associada ao endereço.
- * @param estado A sigla do estado (UF) associada ao endereço.
- * @param tipo O tipo de endereço, indicando se é residencial ou profissional.
+ * Classe VO que representa os dados de dominio de Endereco.
+ * Camada: VO.
  */
 public class Endereco {
     private int idEndereco;
@@ -116,13 +107,9 @@ public class Endereco {
         this.tipo = tipo;
     }
 
-    public Endereco() {
-    }
-
     @Override
     public String toString() {
         return "\n" + idEndereco + " - " + logradouro + ", " + numero + " - Cep: " + cep +
                 "\n    " + cidade + " - " + estado + "\n    Tipo de endereço: " + tipo;
-
     }
 }

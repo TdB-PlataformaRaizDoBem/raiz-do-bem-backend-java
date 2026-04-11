@@ -7,6 +7,10 @@ import RaizDoBem.view.PedidoAjudaView;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Controller responsavel por orquestrar o fluxo de PedidoAjudaController entre View e BO.
+ * Camada: Controller.
+ */
 public class PedidoAjudaController {
     private PedidoAjudaView view;
     private PedidoAjudaBO bo;
@@ -19,6 +23,9 @@ public class PedidoAjudaController {
     public PedidoAjudaController() {
     }
 
+    /**
+     * Cria um novo registro aplicando as validacoes necessarias do modulo.
+     */
     public void adicionar() {
         try{
             view.mostrar("\nCriando pedido de ajuda: ");
@@ -57,6 +64,9 @@ public class PedidoAjudaController {
         }
     }
 
+    /**
+     * Orquestra o fluxo entre View e BO para esta operacao.
+     */
     public void listandoTodos() {
         List<PedidoAjuda> pedidos = bo.listarTodos();
         if (pedidos.isEmpty())
@@ -67,6 +77,10 @@ public class PedidoAjudaController {
         }
     }
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @param cpf parametro da operacao.
+     */
     public void listarPorCpf(String cpf) {
         PedidoAjuda pedido = bo.buscaCpf(cpf);
         if (pedido != null) {
@@ -76,6 +90,10 @@ public class PedidoAjudaController {
             view.mostrar("\nNenhum pedido encontrado!!!");
     }
 
+    /**
+     * Realiza a busca de dados conforme o criterio recebido.
+     * @param id parametro da operacao.
+     */
     public void buscarPeloId(int id) {
         PedidoAjuda pedido = bo.buscaId(id);
         if (pedido != null) {
@@ -85,6 +103,10 @@ public class PedidoAjudaController {
             view.mostrar("\nNenhum pedido encontrado!!!");
     }
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @param data parametro da operacao.
+     */
     public void listarPelaData(LocalDate data) {
         List<PedidoAjuda> pedidos = bo.listarPorData(data);
         if (pedidos.isEmpty())
@@ -95,6 +117,10 @@ public class PedidoAjudaController {
         }
     }
 
+    /**
+     * Atualiza dados existentes conforme as regras do modulo.
+     * @param id parametro da operacao.
+     */
     public void atualizar(int id) {
         try {
             view.mostrar("\nAtualizando pedido de ajuda: ");
@@ -117,13 +143,20 @@ public class PedidoAjudaController {
         }
     }
 
+    /**
+     * Orquestra o fluxo entre View e BO para esta operacao.
+     * @param id parametro da operacao.
+     */
     public void deletar(int id) {
-        view.mostrar("\nExcluindo pedido de ajuda: ");
-        if (id == 0)
-            view.mostrar("ID inválido!!!");
-        else {
-            bo.excluir(id);
-            view.mostrar("Pedido de ajuda excluído com sucesso!!!");
+        try{
+            if (id == 0)
+                view.mostrar("ID inválido!!!");
+            else {
+                bo.excluir(id);
+                view.mostrar("Pedido de ajuda excluído com sucesso!!!");
+            }
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

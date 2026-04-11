@@ -2,29 +2,32 @@ package RaizDoBem;
 
 import RaizDoBem.controller.AtendimentoController;
 import RaizDoBem.controller.BeneficiarioController;
-import RaizDoBem.controller.EnderecoController;
 import RaizDoBem.controller.PedidoAjudaController;
 import RaizDoBem.view.AtendimentoView;
 import RaizDoBem.view.BeneficiarioView;
-import RaizDoBem.view.EnderecoView;
 import RaizDoBem.view.PedidoAjudaView;
 
+/**
+ * Fluxo principal integrado da aplicacao: demonstra o encadeamento
+ * PedidoAjuda -> Beneficiario -> Atendimento.
+ * Para testes detalhados de cada modulo, consulte as classes em src/RaizDoBem/test/.
+ */
 public class Main {
     public static void main(String[] args) {
         PedidoAjudaView pedidoView = new PedidoAjudaView();
-        PedidoAjudaController pedidoControlller = new PedidoAjudaController(pedidoView);
+        PedidoAjudaController pedidoController = new PedidoAjudaController(pedidoView);
         BeneficiarioView beneficiarioView = new BeneficiarioView();
         BeneficiarioController beneficiarioController = new BeneficiarioController(beneficiarioView);
         AtendimentoView atendimentoView = new AtendimentoView();
         AtendimentoController atendimentoController = new AtendimentoController(atendimentoView);
 
         //Criando pedido de ajuda
-        pedidoControlller.adicionar();
+        pedidoController.adicionar();
         //Listando pedidos de ajuda
-        pedidoControlller.listandoTodos();
+        pedidoController.listandoTodos();
         //Atualizando pedido de ajuda
         int id = pedidoView.inputId();
-        pedidoControlller.atualizar(id);
+        pedidoController.atualizar(id);
         //Listando os beneficiários para verificar pedido aprovado => beneficiário criado
         beneficiarioController.listandoTodos();
         //Criando atendimento
@@ -36,9 +39,5 @@ public class Main {
         atendimentoController.atualizar(id);
         //Listando atendimentos
         atendimentoController.listandoTodos();
-
-//        EnderecoView enderecoView = new EnderecoView();
-//        EnderecoController enderecoController =  new EnderecoController(enderecoView);
-//        enderecoController.adicionar();
     }
 }

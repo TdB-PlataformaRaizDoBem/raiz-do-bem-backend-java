@@ -8,34 +8,21 @@ import RaizDoBem.view.BeneficiarioView;
 import java.util.List;
 
 /**
- * Classe responsável por controlar as operações relacionadas aos beneficiários,
- * como criação, listagem, busca, atualização e exclusão, utilizando o BeneficiarioBO para acessar os dados.
- *
- * @author Paulo
- * @since 2026-03
- *
- * 1º Metodo - criar: Solicita ao usuário as informações necessárias para criar um novo beneficiário, como ID do pedido e ID do programa social. Em seguida, utiliza o BeneficiarioBO para validar os dados e criar o beneficiário, exibindo uma mensagem de sucesso ou erro conforme o resultado da operação.
- * 2º Metodo - listandoTodos: Recupera a lista de todos os beneficiários utilizando o BeneficiarioBO e exibe os beneficiários para o usuário. Se não houver beneficiários cadastrados, exibe uma mensagem informando que nenhum beneficiário foi encontrado.
- * 3º Metodo - buscarPorCpf: Solicita ao usuário o CPF do beneficiário e utiliza o BeneficiarioBO para buscar o beneficiário correspondente. Se um beneficiário for encontrado, exibe suas informações para o usuário; caso contrário, exibe uma mensagem informando que nenhum beneficiário foi encontrado.
- * 4º Metodo - listarPorPrograma: Solicita ao usuário o ID do programa social e utiliza o BeneficiarioBO para buscar os beneficiários correspondentes a esse programa. Se beneficiários forem encontrados, exibe suas informações para o usuário; caso contrário, exibe uma mensagem informando que nenhum beneficiário foi encontrado.
- * 5º Metodo - listarPorCidade: Solicita ao usuário o nome da cidade e utiliza o BeneficiarioBO para buscar os beneficiários correspondentes a essa cidade. Se beneficiários forem encontrados, exibe suas informações para o usuário; caso contrário, exibe uma mensagem informando que nenhum beneficiário foi encontrado.
- * 6º Metodo - atualizar: Solicita ao usuário o CPF do beneficiário a ser atualizado, bem como as informações necessárias para a atualização, como telefone, email e ID do endereço. Em seguida, utiliza o BeneficiarioBO para validar os dados e atualizar o beneficiário, exibindo uma mensagem de sucesso ou erro conforme o resultado da operação.
- * 7º Metodo - excluir: Solicita ao usuário o CPF do beneficiário a ser excluído. Se o CPF for válido, utiliza o BeneficiarioBO para excluir o beneficiário correspondente e exibe uma mensagem de sucesso. Caso contrário, exibe uma mensagem informando que o CPF é inválido.
- * Esses métodos permitem que o usuário interaja com a funcionalidade de beneficiário, fornecendo as informações necessárias para criar, listar, buscar, atualizar e excluir beneficiários, e visualizando os resultados das operações realizadas.
- *
+ * Controller responsavel por orquestrar o fluxo de BeneficiarioController entre View e BO.
+ * Camada: Controller.
  */
 public class BeneficiarioController {
-    private BeneficiarioView view;
-    private BeneficiarioBO bo;
+    private final BeneficiarioView view;
+    private final BeneficiarioBO bo;
 
     public BeneficiarioController(BeneficiarioView view) {
         this.view = view;
         this.bo = new BeneficiarioBO();
     }
 
-    public BeneficiarioController() {
-    }
-
+    /**
+     * Cria um novo registro aplicando as validacoes necessarias do modulo.
+     */
     public void criar() {
         try{
             view.mostrar("\nCriando beneficiário: ");
@@ -49,6 +36,9 @@ public class BeneficiarioController {
         }
     }
 
+    /**
+     * Orquestra o fluxo entre View e BO para esta operacao.
+     */
     public void listandoTodos(){
         List<Beneficiario> beneficiarios = bo.listarBeneficiarios();
         if (beneficiarios.isEmpty())
@@ -59,6 +49,10 @@ public class BeneficiarioController {
         }
     }
 
+    /**
+     * Realiza a busca de dados conforme o criterio recebido.
+     * @param cpf parametro da operacao.
+     */
     public void buscarPorCpf(String cpf) {
         Beneficiario beneficiario = bo.buscaPorCpf(cpf);
         if (beneficiario != null) {
@@ -68,6 +62,10 @@ public class BeneficiarioController {
             view.mostrar("\nNenhum beneficiário encontrado!!!");
     }
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @param id parametro da operacao.
+     */
     public void listarPorPrograma(int id) {
         List<Beneficiario> beneficiarios = bo.listagemPorPrograma(id);
         if (beneficiarios.isEmpty())
@@ -78,6 +76,10 @@ public class BeneficiarioController {
         }
     }
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @param cidade parametro da operacao.
+     */
     public void listarPorCidade(String cidade) {
         List<Beneficiario> beneficiarios = bo.listagemPorCidade(cidade);
         if (beneficiarios.isEmpty())
@@ -88,6 +90,10 @@ public class BeneficiarioController {
         }
     }
 
+    /**
+     * Atualiza dados existentes conforme as regras do modulo.
+     * @param cpf parametro da operacao.
+     */
     public void atualizar(String cpf) {
         try {
             view.mostrar("Atualizando beneficiário: ");
@@ -106,12 +112,20 @@ public class BeneficiarioController {
         }
     }
 
+    /**
+     * Remove um registro existente conforme validacoes aplicadas.
+     * @param cpf parametro da operacao.
+     */
     public void excluir(String cpf) {
-        if (!Validacao.validarCpf(cpf)) {
-            view.mostrar("\nCpf inválido!!!");
-        } else {
-            bo.excluirBeneficiario(cpf);
-            view.mostrar("\nBeneficiário excluído com sucesso!!!");
+        try{
+            if (!Validacao.validarCpf(cpf)) {
+                view.mostrar("\nCpf inválido!!!");
+            } else {
+                bo.excluirBeneficiario(cpf);
+                view.mostrar("\nBeneficiário excluído com sucesso!!!");
+            }
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

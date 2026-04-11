@@ -8,7 +8,16 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * Classe BO responsavel pelas validacoes e regras de negocio de ViaCepBO.
+ * Camada: BO.
+ */
 public class ViaCepBO {
+    /**
+     * Realiza a busca de dados conforme o criterio recebido.
+     * @param cep parametro da operacao.
+     * @return resultado da operacao.
+     */
     public ViaCep buscarInformacoesEndereco(String cep) {
         String urlApi = "https://viacep.com.br/ws/" + cep + "/json/";
 

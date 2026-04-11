@@ -8,30 +8,21 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Classe responsável por controlar as operações relacionadas aos atendimentos,
- * como criação, listagem e atualização, utilizando o AtendimentoBO para acessar os dados.
- *
- * @author Paulo
- * @since 2026-03
- *
- * @see AtendimentoBO
- * @see AtendimentoView
- * 
- * 1º Metodo - adicionar: Solicita ao usuário as informações necessárias para criar um novo atendimento, como prontuário, ID do beneficiário e ID do dentista. Em seguida, utiliza o AtendimentoBO para validar os dados e criar o atendimento, exibindo uma mensagem de sucesso ou erro conforme o resultado da operação.
- * 2º Metodo - listandoTodos: Recupera a lista de todos os atendimentos utilizando o AtendimentoBO e exibe os atendimentos para o usuário. Se não houver atendimentos cadastrados, exibe uma mensagem informando que nenhum atendimento foi encontrado.
- * 3º Metodo - listarPorCpf: Solicita ao usuário o CPF do beneficiário e utiliza o AtendimentoBO para buscar o atendimento correspondente. Se um atendimento for encontrado, exibe suas informações para o usuário; caso contrário, exibe uma mensagem informando que nenhum atendimento foi encontrado.
- * 4º Metodo - atualizar: Solicita ao usuário o ID do atendimento a ser atualizado, bem como as informações necessárias para a atualização, como prontuário e ID do colaborador. Em seguida, utiliza o AtendimentoBO para validar os dados e atualizar o atendimento, exibindo uma mensagem de sucesso ou erro conforme o resultado da operação.
- * Esses métodos permitem que o usuário interaja com a funcionalidade de atendimento, fornecendo as informações necessárias para criar, listar, buscar e atualizar atendimentos, e visualizando os resultados das operações realizadas.
+ * Controller responsavel por orquestrar o fluxo de AtendimentoController entre View e BO.
+ * Camada: Controller.
  */
 public class AtendimentoController {
-    private AtendimentoView view;
-    private AtendimentoBO bo;
+    private final AtendimentoView view;
+    private final AtendimentoBO bo;
 
     public AtendimentoController(AtendimentoView view) {
         this.view = view;
         this.bo = new AtendimentoBO();
     }
 
+    /**
+     * Cria um novo registro aplicando as validacoes necessarias do modulo.
+     */
     public void adicionar(){
         try {
             view.mostrar("\nCriando atendimento: ");
@@ -49,6 +40,9 @@ public class AtendimentoController {
         }
     }
 
+    /**
+     * Orquestra o fluxo entre View e BO para esta operacao.
+     */
     public void listandoTodos() {
         List<Atendimento> atendimentos = bo.listarTodos();
         if (atendimentos.isEmpty())
@@ -59,6 +53,10 @@ public class AtendimentoController {
         }
     }
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @param cpf parametro da operacao.
+     */
     public void listarPorCpf(String cpf) {
         Atendimento atendimento = bo.buscaPorCpf(cpf);
         if (atendimento != null) {
@@ -69,6 +67,11 @@ public class AtendimentoController {
             view.mostrar("\nNenhum atendimento encontrado!!!");
             }
     }
+
+    /**
+     * Atualiza dados existentes conforme as regras do modulo.
+     * @param idAtendimento parametro da operacao.
+     */
     public void atualizar(int idAtendimento){
         try{
             String prontuario = view.inputProntuario();
@@ -82,5 +85,23 @@ public class AtendimentoController {
         } catch (RuntimeException e) {
             view.mostrar(e.getMessage());
         }
+    }
+
+    /**
+     * Remove um registro existente conforme validacoes aplicadas.
+     * @param id parametro da operacao.
+     */
+    public void excluir(int id) {
+        try{
+            if(id<=0 || bo.buscaPorId(id) == null)
+                view.mostrar("\nID inválido!!!");
+            else{
+                bo.excluir(id);
+                view.mostrar("\nAtendimento " + id + " excluído com sucesso!!!");
+            }
+        } catch (RuntimeException e) {
+            view.mostrar(e.getMessage());
+        }
+
     }
 }

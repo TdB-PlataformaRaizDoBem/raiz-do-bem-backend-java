@@ -1,14 +1,8 @@
 package RaizDoBem.model.vo;
 
 /**
- * Representa a relação entre um dentista e uma especialidade. Cada dentista pode ter várias especialidades, e cada especialidade pode ser associada a vários dentistas. Esta classe é utilizada para modelar essa relação muitos-para-muitos.
- * @author Paulo
- * @since 2025-09
- * @see DentistaEspecialidadeDAO
- * 
- * Exemplo:
- * - O dentista João pode ter as seguintes especialidades: Ortodontia, Endodontia e Odontopediatria.
- * - A especialidade de Ortodontia pode ser associada a vários dentistas, como o Dr. João, a Dra. Maria e o Dr. Carlos, que oferecem tratamentos ortodônticos para correção de dentes e mandíbula.
+ * Classe VO que representa os dados de dominio de DentistaEspecialidade.
+ * Camada: VO.
  */
 public class DentistaEspecialidade {
     private int idDentista;

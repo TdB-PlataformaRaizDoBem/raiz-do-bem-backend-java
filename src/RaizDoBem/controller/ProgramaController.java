@@ -6,18 +6,22 @@ import RaizDoBem.view.ProgramaView;
 
 import java.util.List;
 
+/**
+ * Controller responsavel por orquestrar o fluxo de ProgramaController entre View e BO.
+ * Camada: Controller.
+ */
 public class ProgramaController {
-    private ProgramaView view;
-    private ProgramaBO bo;
+    private final ProgramaView view;
+    private final ProgramaBO bo;
 
     public ProgramaController(ProgramaView view) {
         this.view = view;
         this.bo = new ProgramaBO();
     }
 
-    public ProgramaController() {
-    }
-
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     */
     public void listarTodos(){
         List<ProgramaSocial> programas = bo.listarTodos();
         if (programas.isEmpty())

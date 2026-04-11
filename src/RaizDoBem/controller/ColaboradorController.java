@@ -9,31 +9,21 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Classe responsável por controlar as operações relacionadas aos colaboradores,
- * como criação, listagem, busca, atualização e exclusão, utilizando o ColaboradorBO para acessar os dados.
- * @author Paulo
- * @since 2026-03
- * @see ColaboradorBO
- * @see ColaboradorView
- * 1º Metodo - criar: Solicita ao usuário as informações necessárias para criar um novo colaborador, como CPF, nome, data de nascimento, data de contratação e email. Em seguida, utiliza o ColaboradorBO para validar os dados e criar o colaborador, exibindo uma mensagem de sucesso ou erro conforme o resultado da operação.
- * 2º Metodo - listandoTodos: Recupera a lista de todos os colaboradores utilizando o ColaboradorBO e exibe os colaboradores para o usuário. Se não houver colaboradores cadastrados, exibe uma mensagem informando que nenhum colaborador foi encontrado.
- * 3º Metodo - buscarPorCpf: Solicita ao usuário o CPF do colaborador e utiliza o ColaboradorBO para buscar o colaborador correspondente. Se um colaborador for encontrado, exibe suas informações para o usuário; caso contrário, exibe uma mensagem informando que nenhum colaborador foi encontrado.
- * 4º Metodo - atualizar: Solicita ao usuário o CPF do colaborador a ser atualizado, bem como as informações necessárias para a atualização, como email. Em seguida, utiliza o ColaboradorBO para validar os dados e atualizar o colaborador, exibindo uma mensagem de sucesso ou erro conforme o resultado da operação.
- * 5º Metodo - excluir: Solicita ao usuário o CPF do colaborador a ser excluído. Se o CPF for válido, utiliza o ColaboradorBO para excluir o colaborador e exibe uma mensagem de sucesso. Caso contrário, exibe uma mensagem informando que o CPF é inválido.
- * Esses métodos permitem que o usuário interaja com a funcionalidade de colaborador, fornecendo as informações necessárias para criar, listar, buscar, atualizar e excluir colaboradores, e visualizando os resultados das operações realizadas.
+ * Controller responsavel por orquestrar o fluxo de ColaboradorController entre View e BO.
+ * Camada: Controller.
  */
 public class ColaboradorController {
-    private ColaboradorView view;
-    private ColaboradorBO bo;
+    private final ColaboradorView view;
+    private final ColaboradorBO bo;
 
     public ColaboradorController(ColaboradorView view) {
         this.view = view;
         this.bo = new ColaboradorBO();
     }
 
-    public ColaboradorController() {
-    }
-
+    /**
+     * Cria um novo registro aplicando as validacoes necessarias do modulo.
+     */
     public void criar() {
         try{
             view.mostrar("\nCriando colaborador: ");
@@ -56,6 +46,9 @@ public class ColaboradorController {
         }
     }
 
+    /**
+     * Orquestra o fluxo entre View e BO para esta operacao.
+     */
     public void listandoTodos() {
         List<Colaborador> colaboradores = bo.listarTodos();
         if (colaboradores.isEmpty())
@@ -66,6 +59,10 @@ public class ColaboradorController {
         }
     }
 
+    /**
+     * Realiza a busca de dados conforme o criterio recebido.
+     * @param cpf parametro da operacao.
+     */
     public void buscarPorCpf(String cpf) {
         Colaborador colaborador = bo.buscarPeloCpf(cpf);
         if (colaborador != null) {
@@ -76,6 +73,10 @@ public class ColaboradorController {
         }
     }
 
+    /**
+     * Atualiza dados existentes conforme as regras do modulo.
+     * @param cpf parametro da operacao.
+     */
     public void atualizar(String cpf) {
         try{
             view.mostrar("\nAtualizando colaborador: ");
@@ -90,12 +91,20 @@ public class ColaboradorController {
         }
     }
 
+    /**
+     * Remove um registro existente conforme validacoes aplicadas.
+     * @param cpf parametro da operacao.
+     */
     public void excluir(String cpf) {
-        if (!Validacao.validarCpf(cpf)) {
-            view.mostrar("\nCpf inválido!!!");
-        } else {
-            bo.excluir(cpf);
-            view.mostrar("\nColaborador excluído com sucesso!!!");
+        try{
+            if (!Validacao.validarCpf(cpf)) {
+                view.mostrar("\nCpf inválido!!!");
+            } else {
+                bo.excluir(cpf);
+                view.mostrar("\nColaborador excluído com sucesso!!!");
+            }
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

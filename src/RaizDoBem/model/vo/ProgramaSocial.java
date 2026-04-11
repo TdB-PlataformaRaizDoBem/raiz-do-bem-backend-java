@@ -1,11 +1,8 @@
 package RaizDoBem.model.vo;
 
 /**
- * Representa um programa social oferecido pela ONG. Cada programa social tem um identificador único e um nome que descreve o programa. Esta classe é utilizada para armazenar e manipular informações sobre os programas sociais disponíveis para os beneficiários da ONG.
- * @author Paulo
- * @since 2026-03
- * @param idPrograma O identificador único do programa social.
- * @param programa O nome do programa social, que descreve o tipo de assistência ou serviço oferecido pela ONG aos beneficiários.
+ * Classe VO que representa os dados de dominio de ProgramaSocial.
+ * Camada: VO.
  */
 public class ProgramaSocial {
     private int idPrograma;
@@ -39,7 +36,6 @@ public class ProgramaSocial {
 
     @Override
     public String toString() {
-        return idPrograma +
-                " - " + programa;
+        return idPrograma + " - " + programa;
     }
 }

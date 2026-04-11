@@ -4,22 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Requisito para poder criar um beneficiário. Contém informações sobre o problema descrito, dados de contato da pessoa alv, data do pedido e status do pedido.
- * @author Paulo
- * @since 2026-03
- * @param idPedido O identificador único do pedido de ajuda.
- * @param cpf O CPF do solicitante do pedido de ajuda.
- * @param nomeCompleto O nome completo do solicitante do pedido de ajuda.
- * @param dataNascimento A data de nascimento do solicitante do pedido de ajuda.
- * @param sexo O sexo do solicitante do pedido de ajuda.
- * @param telefone O telefone de contato do solicitante do pedido de ajuda.
- * @param email O email de contato do solicitante do pedido de ajuda.
- * @param descricaoProblema A descrição detalhada do problema ou necessidade do solicitante do pedido de ajuda.
- * @param dataPedido A data em que o pedido de ajuda foi criado.
- * @param status O status atual do pedido de ajuda, indicando se está pendente, em andamento ou concluído.
- * @param idEndereco O identificador do endereço associado ao pedido de ajuda.
- * @param idDentista O identificador do dentista responsável pelo atendimento do pedido de ajuda
-
+ * Classe VO que representa os dados de dominio de PedidoAjuda.
+ * Camada: VO.
  */
 public class PedidoAjuda {
     private int idPedido;

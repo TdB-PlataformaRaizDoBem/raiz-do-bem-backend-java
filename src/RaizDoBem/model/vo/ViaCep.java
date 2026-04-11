@@ -1,15 +1,8 @@
 package RaizDoBem.model.vo;
 
 /**
- * Representa a resposta da API ViaCep, contendo informações sobre o endereço associado a um CEP. Esta classe é utilizada para modelar os dados retornados pela API, facilitando a integração e o acesso às informações de endereço.
- * @author Paulo
- * @since 2025-09
- * @param cep O código postal (CEP) associado ao endereço.
- * @param logradouro O nome da rua ou logradouro do endereço.
- * @param bairro O nome do bairro do endereço.
- * @param localidade A cidade associada ao endereço.
- * @param uf A sigla do estado (UF) associada ao endereço.
- * @param erro Indica se houve um erro na consulta do CEP (true se houve erro, false caso contrário).
+ * Classe VO que representa os dados de dominio de ViaCep.
+ * Camada: VO.
  */
 public class ViaCep {
         private String cep;
@@ -26,7 +19,11 @@ public class ViaCep {
         public String getUf() { return uf; }
         public boolean isErro() { return erro; }
 
+        /**
+ * Construtor com ID para listagem e consultas.
+ */
         public ViaCep(String cep, String logradouro, String bairro, String localidade, String uf, boolean erro) {
+
                 this.cep = cep;
                 this.logradouro = logradouro;
                 this.bairro = bairro;
@@ -35,13 +32,20 @@ public class ViaCep {
                 this.erro = erro;
         }
 
+        /**
+ * Construtor com ID para listagem e consultas.
+ */
         public ViaCep(String logradouro, String bairro, String localidade, String uf) {
+
                 this.logradouro = logradouro;
                 this.bairro = bairro;
                 this.localidade = localidade;
                 this.uf = uf;
         }
 
+        /**
+         * Inicializa a classe com as dependencias necessarias para o fluxo do modulo.
+         */
         public ViaCep() {
         }
 }

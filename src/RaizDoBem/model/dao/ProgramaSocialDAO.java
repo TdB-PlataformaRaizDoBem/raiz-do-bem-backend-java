@@ -10,14 +10,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe DAO responsavel pelas operacoes de persistencia e mapeamento de ProgramaSocialDAO.
+ * Camada: DAO.
+ */
 public class ProgramaSocialDAO {
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @return resultado da operacao.
+     */
     public List<ProgramaSocial> listarTodos() {
         String querySql = "SELECT id_programa, programa FROM programa_social";
         List<ProgramaSocial> programas = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
              PreparedStatement ps = conexao.prepareStatement(querySql);
-             ResultSet response = ps.executeQuery();) {
+             ResultSet response = ps.executeQuery()) {
 
             while (response.next()) {
                 int id = response.getInt("id_programa");

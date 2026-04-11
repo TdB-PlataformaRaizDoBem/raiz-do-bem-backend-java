@@ -8,26 +8,21 @@ import RaizDoBem.view.EnderecoView;
 import java.util.List;
 
 /**
- * Classe responsável por controlar as operações relacionadas aos endereços,
- * como atualização, utilizando o EnderecoDAO para acessar os dados.
- *
- * @author Paulo
- * @since 2026-03
- *
- *
+ * Controller responsavel por orquestrar o fluxo de EnderecoController entre View e BO.
+ * Camada: Controller.
  */
 public class EnderecoController {
-    private EnderecoView view;
-    private EnderecoBO bo;
+    private final EnderecoView view;
+    private final EnderecoBO bo;
 
     public EnderecoController(EnderecoView view) {
         this.view = view;
         this.bo = new EnderecoBO();
     }
 
-    public EnderecoController() {
-    }
-
+    /**
+     * Cria um novo registro aplicando as validacoes necessarias do modulo.
+     */
     public void adicionar() {
         String cep;
         TipoEndereco tipoEndereco;
@@ -60,6 +55,9 @@ public class EnderecoController {
         }
     }
 
+    /**
+     * Orquestra o fluxo entre View e BO para esta operacao.
+     */
     public void listandoTodos() {
         List<Endereco> enderecos = bo.listarTodos();
         if (enderecos.isEmpty())
@@ -70,6 +68,10 @@ public class EnderecoController {
         }
     }
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @param id parametro da operacao.
+     */
     public void listarPorId(int id) {
         if (id >= 0) {
             Endereco endereco = bo.buscaPorId(id);
@@ -83,6 +85,10 @@ public class EnderecoController {
         }
     }
 
+    /**
+     * Orquestra o fluxo entre View e BO para esta operacao.
+     * @param cidade parametro da operacao.
+     */
     public void listandoPorCidade(String cidade) {
         List<Endereco> enderecos = bo.listarPorCidade(cidade);
         if (enderecos.isEmpty())
@@ -93,6 +99,10 @@ public class EnderecoController {
         }
     }
 
+    /**
+     * Atualiza dados existentes conforme as regras do modulo.
+     * @param id parametro da operacao.
+     */
     public void atualizar(int id) {
         try {
             Endereco endereco;
@@ -126,12 +136,20 @@ public class EnderecoController {
         }
     }
 
+    /**
+     * Orquestra o fluxo entre View e BO para esta operacao.
+     * @param id parametro da operacao.
+     */
     public void deletar(int id) {
-        if(id<=0)
-            view.mostrar("\nID inválido!!!");
-        else{
-            bo.excluir(id);
-            view.mostrar("\nEndereço " + id + " excluído com sucesso!!!");
+        try{
+            if(id<=0)
+                view.mostrar("\nID inválido!!!");
+            else{
+                bo.excluir(id);
+                view.mostrar("\nEndereço " + id + " excluído com sucesso!!!");
+            }
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

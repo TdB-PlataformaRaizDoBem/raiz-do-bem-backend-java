@@ -1,18 +1,8 @@
 package RaizDoBem.model.vo;
 
-/** Representa um dentista, profissional responsável por realizar atendimentos odontológicos e contribuir para a saúde bucal dos beneficiários da ONG. Esta classe é utilizada para armazenar e manipular informações relacionadas aos dentistas, como seu identificador único, CRO, CPF, nome completo, sexo, email, telefone, categoria de atuação, disponibilidade para atendimentos e o identificador do endereço associado.
- * @author Paulo
- * @since 2026-03
- * @param idDentista O identificador único do dentista.
- * @param croDentista O número do CRO (Conselho Regional de Odontologia) do dentista, utilizado para identificar sua habilitação profissional.
- * @param cpf O CPF do dentista, utilizado para identificação pessoal e cadastro na ONG.
- * @param nomeCompleto O nome completo do dentista, utilizado para identificação e comunicação.
- * @param sexo O sexo do dentista, utilizado para fins de registro e comunicação.
- * @param email O email de contato do dentista, utilizado para comunicação e envio de informações relacionadas aos atendimentos e atividades da ONG.
- * @param telefone O telefone de contato do dentista, utilizado para comunicação e agendamento de atendimentos.
- * @param categoria A categoria de atuação do dentista, indicando se ele é um coordenador ou clínico, o que pode influenciar suas responsabilidades e atribuições dentro da ONG.
- * @param disponivel Indica se o dentista está disponível para realizar atendimentos, o que é importante para o agendamento e organização dos atendimentos odontológicos.
- * @param idEndereco O identificador do endereço associado ao dentista, utilizado para armazenar e acessar informações relacionadas ao local de trabalho ou atendimento do dentista, facilitando a organização e logística dos atendimentos odontológicos realizados pela ONG.
+/**
+ * Classe VO que representa os dados de dominio de Dentista.
+ * Camada: VO.
  */
 public class Dentista{
     private int idDentista;
@@ -119,6 +109,9 @@ public class Dentista{
         return this;
     }
 
+    /**
+ * Construtor com ID para listagem e consultas.
+ */
     public Dentista(int idDentista, String croDentista, String cpf, String nomeCompleto, Sexo sexo, String email, String telefone, String categoria, int idEndereco, boolean disponivel) {
         this.idDentista = idDentista;
         this.croDentista = croDentista;

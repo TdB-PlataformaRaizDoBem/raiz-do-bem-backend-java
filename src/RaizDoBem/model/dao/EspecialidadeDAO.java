@@ -11,23 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe de acesso a dados para a entidade Especialidade, que representam as
- * áreas odontológicas.
- * Responsável por realizar apenas operações de listagem, não teriam as outras
- * operações, pois Especialidades seriam mais fixas no sistema.
- * 
- * @author Paulo
- * @since 2026-03
- *
+ * Classe DAO responsavel pelas operacoes de persistencia e mapeamento de EspecialidadeDAO.
+ * Camada: DAO.
  */
 public class EspecialidadeDAO {
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @return resultado da operacao.
+     */
     public List<Especialidade> listarTodos() {
         String querySql = "SELECT id_especialidade, descricao FROM especialidade";
         List<Especialidade> especialidades = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);
-                ResultSet response = ps.executeQuery();) {
+                ResultSet response = ps.executeQuery()) {
 
             while (response.next()) {
                 int id = response.getInt("id_especialidade");

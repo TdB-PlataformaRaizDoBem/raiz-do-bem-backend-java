@@ -7,32 +7,24 @@ import RaizDoBem.view.DentistaView;
 import java.util.List;
 
 /**
- * Classe de controle para os dentistas que prestarão serviço a ONG. Esta classe
- * é responsável por gerenciar as operações relacionadas aos dentistas, como
- * criar, buscar e listar dentistas. Ela atua como uma camada intermediária
- * entre a interface do usuário e a camada de acesso a dados (DAO), garantindo
- * que as regras de negócio sejam aplicadas corretamente.
- * 
- * @author Paulo
- * @since 2026-03
+ * Controller responsavel por orquestrar o fluxo de DentistaController entre View e BO.
+ * Camada: Controller.
  */
 public class DentistaController {
-    private DentistaView view;
-    private DentistaBO bo;
+    private final DentistaView view;
+    private final DentistaBO bo;
 
     public DentistaController(DentistaView view) {
         this.view = view;
         this.bo = new DentistaBO();
     }
 
-    public DentistaController() {
-    }
-
+    /**
+     * Cria um novo registro aplicando as validacoes necessarias do modulo.
+     */
     public void criar() {
         try{
             Sexo sexo;
-            String categoriaDentista = "";
-            boolean disponibilidade = false;
             String cro;
             String cpf;
             view.mostrar("\nCriando dentista: ");
@@ -46,27 +38,22 @@ public class DentistaController {
 
             String nome = view.inputNome();
             int sexoDentista = view.inputSexo();
-            if (sexoDentista == 1) {
+            if (sexoDentista == 1)
                 sexo = Sexo.M;
-            } else if (sexoDentista == 2) {
+            else if (sexoDentista == 2)
                 sexo = Sexo.F;
-            } else {
+            else
                 sexo = Sexo.O;
-            }
+
             String telefone  = view.inputTelefone();
             String email = view.inputEmail();
 
             int categ = view.inputCategoria();
-            if(categ == 1)
-                categoriaDentista = "COORDENADOR";
-            else if(categ == 2)
-                categoriaDentista = "CLINICO";
+            String categoriaDentista = categ == 1 ? "COORDENADOR" : "CLINICO";
 
             int idEndereco = view.inputIdEndereco();
-
             int disponivel = view.inputDisponibilidade();
-            if(disponivel == 1)
-                disponibilidade = true;
+            boolean disponibilidade = (disponivel == 1);
 
             Dentista dentista = bo.validarDentista(cro, cpf, nome, sexo, email, telefone, categoriaDentista, idEndereco, disponibilidade);
             bo.criarDentista(dentista);
@@ -76,6 +63,9 @@ public class DentistaController {
         }
     }
 
+    /**
+     * Orquestra o fluxo entre View e BO para esta operacao.
+     */
     public void listandoTodos() {
         List<Dentista> dentistas = bo.listarTodos();
         if (dentistas.isEmpty())
@@ -86,6 +76,10 @@ public class DentistaController {
         }
     }
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @param cidade parametro da operacao.
+     */
     public void listarPorCidade(String cidade) {
         List<Dentista> dentistas = bo.listagemPorCidade(cidade);
         if (dentistas.isEmpty())
@@ -96,6 +90,10 @@ public class DentistaController {
         }
     }
 
+    /**
+     * Realiza a busca de dados conforme o criterio recebido.
+     * @param cpf parametro da operacao.
+     */
     public void buscarPorCpf(String cpf) {
         Dentista dentista = bo.buscaPorCpf(cpf);
         if (dentista != null) {
@@ -106,6 +104,9 @@ public class DentistaController {
         }
     }
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     */
     public void listarDisponiveis() {
         List<Dentista> dentista = bo.listarDisponiveis();
         if (dentista.isEmpty()) {
@@ -116,27 +117,22 @@ public class DentistaController {
         }
     }
 
+    /**
+     * Atualiza dados existentes conforme as regras do modulo.
+     * @param cpf parametro da operacao.
+     */
     public void atualizar(String cpf){
-        String categoriaDentista = "";
-        boolean disponibilidade = false;
         try{
             view.mostrar("Atualizando dentista: ");
             if(Validacao.validarCpf(cpf)){
                 String telefone = view.inputTelefone();
                 String email = view.inputEmail();
-
                 int categ = view.inputCategoria();
-                if(categ == 1 )
-                    categoriaDentista = "COORDENADOR";
-                else if(categ == 2 )
-                    categoriaDentista = "CLINICO";
+                String categoriaDentista = categ == 1 ? "COORDENADOR" : "CLINICO";
 
                 int idEndereco = view.inputIdEndereco();
                 int disponivel = view.inputDisponibilidade();
-                if(disponivel == 1 )
-                    disponibilidade = true;
-                else if(disponivel == 2 )
-                    disponibilidade = false;
+                boolean disponibilidade = (disponivel == 1);
 
                 Dentista dentista = bo.validaAtualizaDentista(email, telefone, categoriaDentista, idEndereco, disponibilidade);
 
@@ -148,12 +144,20 @@ public class DentistaController {
         }
     }
 
+    /**
+     * Orquestra o fluxo entre View e BO para esta operacao.
+     * @param cpf parametro da operacao.
+     */
     public void apagar(String cpf) {
-        if (!Validacao.validarCpf(cpf)) {
-            view.mostrar("\nCpf inválido!!!");
-        } else {
-            bo.excluirDentista(cpf);
-            view.mostrar("\nDentista excluído com sucesso!!!");
+        try{
+            if (!Validacao.validarCpf(cpf)) {
+                view.mostrar("\nCpf inválido!!!");
+            } else {
+                bo.excluirDentista(cpf);
+                view.mostrar("\nDentista excluído com sucesso!!!");
+            }
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

@@ -9,17 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe de acesso a dados para a entidade Dentista. Esta classe é responsável por realizar operações de banco de dados relacionadas aos dentistas, como adicionar um novo dentista, listar todos os dentistas, buscar um dentista por CPF, atualizar as informações de um dentista e excluir um dentista do sistema. Ela utiliza a classe Conexao para estabelecer a conexão com o banco de dados e executa as consultas SQL necessárias para manipular os dados dos dentistas.
- * @author Paulo
- * @since 2026-03
- * adicionar: Este método recebe um objeto Dentista como parâmetro e adiciona um novo dentista ao banco de dados. Ele executa uma consulta SQL de inserção para adicionar os dados do dentista fornecido ao banco de dados.
- * listarTodos: Este método retorna uma lista de todos os dentistas cadastrados no banco de dados. Ele executa uma consulta SQL para recuperar todos os dentistas e utiliza o método mapeamento para converter cada resultado da consulta em um objeto Dentista, que é adicionado a uma lista de dentistas.
- * buscarPorCpf: Este método recebe um CPF como parâmetro e retorna um objeto DentistaDAO correspondente ao CPF fornecido. Ele executa uma consulta SQL para buscar o dentista com o CPF especificado e utiliza o método mapeamento para converter o resultado da consulta em um objeto Dentista.
- * atualizar: Este método recebe um CPF e um objeto Dentista como parâmetros e atualiza os dados de um dentista existente no banco de dados com base no CPF fornecido. Ele executa uma consulta SQL de atualização para modificar os dados do dentista correspondente ao CPF especificado.
- * excluir: Este método recebe um CPF como parâmetro e remove o dentista correspondente a esse CPF do banco de dados. Ele executa uma consulta SQL de exclusão para remover o dentista com o CPF especificado do banco de dados.
- * Esses métodos permitem que o sistema manipule os dados dos dentistas de forma eficiente, realizando operações de criação, leitura, atualização e exclusão conforme necessário, e garantindo a integridade dos dados no banco de dados.
+ * Classe DAO responsavel pelas operacoes de persistencia e mapeamento de DentistaDAO.
+ * Camada: DAO.
  */
 public class DentistaDAO {
+    /**
+     * Mapeia dados de origem para o objeto de dominio correspondente.
+     * @param response parametro da operacao.
+     * @return resultado da operacao.
+     */
     public Dentista mapeamento(ResultSet response) throws SQLException {
         String sexoDentista = response.getString("sexo");
         Sexo sexo = Sexo.valueOf(sexoDentista.toUpperCase());
@@ -40,14 +38,19 @@ public class DentistaDAO {
         );
     }
 
+    /**
+     * Realiza a busca de dados conforme o criterio recebido.
+     * @param cpf parametro da operacao.
+     * @return resultado da operacao.
+     */
     public Dentista buscarPorCpf(String cpf) {
         String querySql = "SELECT id_dentista, cro, cpf, nome_completo, sexo, email, telefone, categoria, id_endereco, disponivel FROM Dentista WHERE cpf = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
-                PreparedStatement ps = conexao.prepareStatement(querySql);) {
+                PreparedStatement ps = conexao.prepareStatement(querySql)) {
             ps.setString(1, cpf);
 
-            try (ResultSet response = ps.executeQuery();) {
+            try (ResultSet response = ps.executeQuery()) {
                 if (response.next())
                     return mapeamento(response);
             }
@@ -57,11 +60,15 @@ public class DentistaDAO {
         return null;
     }
 
+    /**
+     * Cria um novo registro aplicando as validacoes necessarias do modulo.
+     * @param dentista parametro da operacao.
+     */
     public void adicionar(Dentista dentista) {
         String querySql = "INSERT INTO Dentista (cro, cpf, nome_completo, sexo, email, telefone, categoria, id_endereco, disponivel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conexao = Conexao.conectarAoBanco();
-                PreparedStatement ps = conexao.prepareStatement(querySql);) {
+                PreparedStatement ps = conexao.prepareStatement(querySql)) {
             ps.setString(1, dentista.getCroDentista());
             ps.setString(2, dentista.getCpf());
             ps.setString(3, dentista.getNomeCompleto());
@@ -79,13 +86,17 @@ public class DentistaDAO {
         }
     }
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @return resultado da operacao.
+     */
     public List<Dentista> listarTodos() {
         String querySql = "SELECT id_dentista, cro, cpf, nome_completo, sexo, email, telefone, categoria, id_endereco, disponivel FROM Dentista";
         List<Dentista> dentistas = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
                 PreparedStatement ps = conexao.prepareStatement(querySql);
-                ResultSet response = ps.executeQuery();) {
+                ResultSet response = ps.executeQuery()) {
 
             while (response.next())
                 dentistas.add(mapeamento(response));
@@ -95,16 +106,21 @@ public class DentistaDAO {
         return dentistas;
     }
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @param cidade parametro da operacao.
+     * @return resultado da operacao.
+     */
     public List<Dentista> listarPorCidade(String cidade) {
         String querySql = "SELECT d.id_dentista, d.cro, d.cpf, d.nome_completo, d.sexo, d.email, d.telefone, d.categoria, d.disponivel, d.id_endereco FROM Dentista d, endereco e WHERE e.cidade = ? AND d.id_endereco = e.id_endereco";
         List<Dentista> dentistas = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
-                PreparedStatement ps = conexao.prepareStatement(querySql);) {
+                PreparedStatement ps = conexao.prepareStatement(querySql)) {
 
             ps.setString(1, cidade);
 
-            try (ResultSet response = ps.executeQuery();) {
+            try (ResultSet response = ps.executeQuery()) {
                 while (response.next()) {
                     dentistas.add(mapeamento(response));
                 }
@@ -116,14 +132,18 @@ public class DentistaDAO {
         return dentistas;
     }
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @return resultado da operacao.
+     */
     public List<Dentista> listarDisponiveis() {
         String querySql = "SELECT id_dentista, cro, cpf, nome_completo, sexo, email, telefone, categoria, disponivel, id_endereco FROM Dentista WHERE disponivel = 'S'";
         List<Dentista> dentistas = new ArrayList<>();
 
         try (Connection conexao = Conexao.conectarAoBanco();
-                PreparedStatement ps = conexao.prepareStatement(querySql);) {
+                PreparedStatement ps = conexao.prepareStatement(querySql)) {
 
-            try (ResultSet response = ps.executeQuery();) {
+            try (ResultSet response = ps.executeQuery()) {
                 while (response.next()) {
                     dentistas.add(mapeamento(response));
                 }
@@ -134,11 +154,16 @@ public class DentistaDAO {
         return dentistas;
     }
 
+    /**
+     * Atualiza dados existentes conforme as regras do modulo.
+     * @param cpf parametro da operacao.
+     * @param dentista parametro da operacao.
+     */
     public void atualizar(String cpf, Dentista dentista) {
         String querySql = "UPDATE Dentista SET email = ?, telefone = ?, categoria = ?, disponivel = ?,  id_endereco = ? WHERE cpf = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
-                PreparedStatement ps = conexao.prepareStatement(querySql);) {
+                PreparedStatement ps = conexao.prepareStatement(querySql)) {
 
             ps.setString(1, dentista.getEmail());
             ps.setString(2, dentista.getTelefone());
@@ -153,11 +178,15 @@ public class DentistaDAO {
         }
     }
 
+    /**
+     * Remove um registro existente conforme validacoes aplicadas.
+     * @param cpf parametro da operacao.
+     */
     public void excluir(String cpf) {
         String querySql = "DELETE FROM dentista WHERE cpf = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
-                PreparedStatement ps = conexao.prepareStatement(querySql);) {
+                PreparedStatement ps = conexao.prepareStatement(querySql)) {
 
             ps.setString(1, cpf);
             ps.executeUpdate();

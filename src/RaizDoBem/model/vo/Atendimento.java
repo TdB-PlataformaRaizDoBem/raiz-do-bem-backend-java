@@ -4,16 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Classe de valor (VO) que representa um atendimento realizado por um dentista a um beneficiário. Esta classe contém informações como o ID do atendimento, prontuário, datas de início e término do atendimento, IDs do beneficiário, dentista e colaborador responsável. Ela inclui métodos getters e setters para acessar e modificar os atributos, além de construtores para criar objetos Atendimento e um método toString para exibir as informações do atendimento de forma formatada.
- * @author Paulo
- * @since 2026-03
- * @param idAtendimento O ID do atendimento, um valor inteiro que identifica unicamente cada atendimento.
- * @param prontuario Uma string que contém o prontuário do atendimento, descrevendo os detalhes do caso odontológico do beneficiário.
- * @param dataInicial A data de início do atendimento, representada por um objeto LocalDate.
- * @param dataFinal A data de término do atendimento, representada por um objeto LocalDate. Pode ser nula se o atendimento ainda estiver em andamento.
- * @param idBeneficiario O ID do beneficiário que recebeu o atendimento, um valor inteiro que identifica unicamente cada beneficiário.
- * @param idDentista O ID do dentista que realizou o atendimento, um valor inteiro que identifica unicamente cada dentista.
- * @param idColaborador O ID do colaborador responsável por registrar o atendimento, um valor inteiro que identifica unicamente cada colaborador. Pode ser zero se o colaborador ainda não tiver sido designado para o atendimento.
+ * Classe VO que representa os dados de dominio de Atendimento.
+ * Camada: VO.
  */
 public class Atendimento {
     private int idAtendimento;

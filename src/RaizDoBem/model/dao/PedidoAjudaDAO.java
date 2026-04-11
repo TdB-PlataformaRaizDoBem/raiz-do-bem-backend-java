@@ -11,20 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe de acesso a dados para a entidade PedidoAjuda. Esta classe é responsável por realizar as operações de banco de dados relacionadas aos pedidos de ajuda, como criação, listagem, busca por CPF, busca por ID, listagem por data, atualização e exclusão. Ela utiliza a classe Conexao para estabelecer a conexão com o banco de dados e executa as consultas SQL necessárias para manipular os dados dos pedidos de ajuda.
- * @author Paulo
- * @since 2026-03
- * 1º Metodo - mapeamento: Recebe um objeto ResultSet contendo os dados de um pedido de ajuda e realiza o mapeamento desses dados para criar e retornar um objeto PedidoAjuda correspondente.
- * 2º Metodo - adicionar: Recebe um objeto PedidoAjuda e insere seus dados no banco de dados, utilizando uma consulta SQL INSERT.
- * 3º Metodo - listarTodos: Recupera todos os pedidos de ajuda cadastrados no banco de dados, utilizando uma consulta SQL SELECT, e retorna uma lista de objetos PedidoAjuda correspondentes.
- * 4º Metodo - buscarPorCpf: Recebe um CPF e busca no banco de dados o pedido de ajuda correspondente, utilizando uma consulta SQL SELECT com cláusula WHERE, e retorna um objeto PedidoAjuda com os dados encontrados.
- * 5º Metodo - buscarPorId: Recebe um ID de pedido de ajuda e busca no banco de dados o pedido correspondente, utilizando uma consulta SQL SELECT com cláusula WHERE, e retorna um objeto PedidoAjuda com os dados encontrados.
- * 6º Metodo - listarPedidosData: Recebe uma data e busca no banco de dados os pedidos de ajuda criados nessa data, utilizando uma consulta SQL SELECT com cláusula WHERE, e retorna uma lista de objetos PedidoAjuda correspondentes.
- * 7º Metodo - atualizarPedido: Recebe um CPF e um objeto PedidoAjuda com as novas informações, e atualiza os dados do pedido de ajuda correspondente no banco de dados, utilizando uma consulta SQL UPDATE.
- * 8º Metodo - excluirPedido: Recebe um CPF e remove o pedido de ajuda correspondente do banco de dados, utilizando uma consulta SQL DELETE.
- * esses métodos permitem que a aplicação realize as operações necessárias para gerenciar os pedidos de ajuda, garantindo a persistência dos dados e a integridade das informações relacionadas aos pedidos de ajuda cadastrados no sistema.
+ * Classe DAO responsavel pelas operacoes de persistencia e mapeamento de PedidoAjudaDAO.
+ * Camada: DAO.
  */
 public class PedidoAjudaDAO {
+    /**
+     * Mapeia dados de origem para o objeto de dominio correspondente.
+     * @param response parametro da operacao.
+     * @return resultado da operacao.
+     */
     public PedidoAjuda mapeamento(ResultSet response) throws SQLException {
         String sexoSolicitante = response.getString("sexo");
         Sexo sexo = Sexo.valueOf(sexoSolicitante.toUpperCase());
@@ -47,11 +42,15 @@ public class PedidoAjudaDAO {
         );
     }
 
+    /**
+     * Cria um novo registro aplicando as validacoes necessarias do modulo.
+     * @param pedido parametro da operacao.
+     */
     public void adicionar(PedidoAjuda pedido) {
         String querySql = "INSERT INTO Pedido_Ajuda (cpf, nome_completo, data_nascimento, sexo, telefone, email, descricao_problema, data_pedido, status_pedido, id_endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conexao = Conexao.conectarAoBanco();
-                PreparedStatement ps = conexao.prepareStatement(querySql);) {
+                PreparedStatement ps = conexao.prepareStatement(querySql)) {
 
             ps.setString(1, pedido.getCpf());
             ps.setString(2, pedido.getNomeCompleto());
@@ -70,6 +69,10 @@ public class PedidoAjudaDAO {
         }
     }
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @return resultado da operacao.
+     */
     public List<PedidoAjuda> listarTodos() {
         String querySql = "SELECT id_pedido, cpf, nome_completo, data_nascimento, sexo, telefone, email, descricao_problema, data_pedido, status_pedido, id_endereco, id_dentista FROM Pedido_Ajuda";
         List<PedidoAjuda> pedidos = new ArrayList<>();
@@ -87,14 +90,19 @@ public class PedidoAjudaDAO {
         return pedidos;
     }
 
+    /**
+     * Realiza a busca de dados conforme o criterio recebido.
+     * @param cpf parametro da operacao.
+     * @return resultado da operacao.
+     */
     public PedidoAjuda buscarPorCpf(String cpf) {
         String querySql = "SELECT id_pedido, cpf, nome_completo, data_nascimento, sexo, telefone, email, descricao_problema, data_pedido, status_pedido, id_endereco,id_dentista FROM Pedido_Ajuda where cpf = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
-                PreparedStatement ps = conexao.prepareStatement(querySql);) {
+                PreparedStatement ps = conexao.prepareStatement(querySql)) {
             ps.setString(1, cpf);
 
-            try (ResultSet response = ps.executeQuery();) {
+            try (ResultSet response = ps.executeQuery()) {
                 if (response.next())
                     return mapeamento(response);
             }
@@ -104,14 +112,19 @@ public class PedidoAjudaDAO {
         return null;
     }
 
+    /**
+     * Realiza a busca de dados conforme o criterio recebido.
+     * @param id parametro da operacao.
+     * @return resultado da operacao.
+     */
     public PedidoAjuda buscarPorId(int id) {
         String querySql = "SELECT id_pedido, cpf, nome_completo, data_nascimento, sexo, telefone, email, descricao_problema, data_pedido, status_pedido,id_endereco, id_dentista FROM Pedido_Ajuda where id_pedido = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
-             PreparedStatement ps = conexao.prepareStatement(querySql);) {
+             PreparedStatement ps = conexao.prepareStatement(querySql)) {
             ps.setInt(1, id);
 
-            try (ResultSet response = ps.executeQuery();) {
+            try (ResultSet response = ps.executeQuery()) {
                 if (response.next())
                     return mapeamento(response);
             }
@@ -122,6 +135,11 @@ public class PedidoAjudaDAO {
     }
 
 
+    /**
+     * Lista registros conforme o criterio informado pelo fluxo atual.
+     * @param data parametro da operacao.
+     * @return resultado da operacao.
+     */
     public List<PedidoAjuda> listarPedidosData(LocalDate data) {
         String querySql = "SELECT id_pedido, cpf, nome_completo, data_nascimento, sexo, telefone, email, descricao_problema, data_pedido, status_pedido, id_endereco ,id_dentista FROM Pedido_Ajuda WHERE data_pedido = ?";
         List<PedidoAjuda> pedidos = new ArrayList<>();
@@ -142,6 +160,11 @@ public class PedidoAjudaDAO {
         return pedidos;
     }
 
+    /**
+     * Atualiza dados existentes conforme as regras do modulo.
+     * @param id parametro da operacao.
+     * @param pedido parametro da operacao.
+     */
     public void atualizarPedido(int id, PedidoAjuda pedido) {
         String querySql = "UPDATE Pedido_Ajuda SET status_pedido = ?, id_dentista = ? WHERE id_pedido = ?";
         try (Connection conexao = Conexao.conectarAoBanco();
@@ -157,11 +180,15 @@ public class PedidoAjudaDAO {
         }
     }
 
+    /**
+     * Remove um registro existente conforme validacoes aplicadas.
+     * @param id parametro da operacao.
+     */
     public void excluirPedido(int id) {
         String querySql = "DELETE FROM pedido_ajuda WHERE id_pedido = ?";
 
         try (Connection conexao = Conexao.conectarAoBanco();
-                PreparedStatement ps = conexao.prepareStatement(querySql);) {
+                PreparedStatement ps = conexao.prepareStatement(querySql)) {
             ps.setInt(1, id);
             ps.executeUpdate();
 

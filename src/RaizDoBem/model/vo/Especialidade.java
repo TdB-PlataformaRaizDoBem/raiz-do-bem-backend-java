@@ -1,11 +1,8 @@
 package RaizDoBem.model.vo;
 
 /**
- * Representa as especialidades odontológicas, contendo informações como idEspecialidade e descrição. Esta classe é utilizada para modelar as especialidades associadas aos dentistas.
- * @author Paulo
- * @since 2025-09
- * @param id Identificador único da especialidade.
- * @param descricao Descrição da especialidade odontológica.
+ * Classe VO que representa os dados de dominio de Especialidade.
+ * Camada: VO.
  */
 public class Especialidade {
     private int idEspecialidade;
@@ -26,7 +23,6 @@ public class Especialidade {
 
     @Override
     public String toString() {
-        return idEspecialidade +
-                " - " + descricao;
+        return idEspecialidade + " - " + descricao;
     }
 }
