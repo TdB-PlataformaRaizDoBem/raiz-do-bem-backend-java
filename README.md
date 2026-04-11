@@ -2,9 +2,9 @@
 
 Projeto Java em console com arquitetura em camadas para gestão de atendimento odontológico social, desenvolvido com foco em persistência Oracle, regras de negócio na camada BO, melhoria de UX no fluxo do console e documentação de entrega da Sprint 3.
 
-**Versão**: 1.6.2  
+**Versão**: 1.6.3  
 **Status**: ✅ Projeto finalizado para submissão, com documentação e fluxo principal validados  
-**Última Validação**: 10/04/2026 - PDF final, fluxo central e testes de console consolidados
+**Última Validação**: 10/04/2026 - Ajuste final da conexão Oracle conforme rubrica + fluxo central e testes de console consolidados
 
 ## Status Atual do Projeto
 
@@ -21,6 +21,7 @@ Projeto Java em console com arquitetura em camadas para gestão de atendimento o
 - Documentação final alinhada ao PDF `Sprint03Java.pdf`.
 - Mensagens de console e validações de entrada revisadas para deixar o uso mais claro durante a demonstração.
 - Fluxo central `PedidoAjuda -> Beneficiário -> Atendimento` incorporado no `Main` para apoio à apresentação.
+- Classe `Conexao` atualizada para manter URL, usuário e senha no código, conforme exigência explícita da Sprint 3.
 
 **Progresso estimado atual**: 100% concluído para entrega.
 
@@ -111,30 +112,20 @@ src/RaizDoBem/
 
 ## Execução
 
-### 1) Configuração do banco
+### Conexão com Banco (Rubrica Sprint 3)
 
-Copie o arquivo de exemplo e ajuste credenciais:
+- A conexão JDBC está centralizada em `src/RaizDoBem/model/vo/Conexao.java`.
+- Por requisito da avaliação, os dados de conexão (URL, usuário e senha) permanecem inseridos diretamente no código.
+- Para reduzir risco em versionamento, foi adotada a prática de usar credencial técnica de baixo privilégio e rotação de senha após submissões públicas.
+- Em repositório público, utilizar credencial temporária/revogável e nunca credenciais administrativas (`SYS`/`SYSTEM`).
 
-```bash
-cp config.properties.example config.properties
-```
-
-Conteúdo esperado:
-
-```properties
-db.driver=oracle.jdbc.OracleDriver
-db.url=jdbc:oracle:thin:@SEU_IP:1521:XE
-db.user=usuario
-db.password=senha
-```
-
-### 2) Compilar
+### 1) Compilar
 
 ```bash
 javac -encoding UTF-8 src/RaizDoBem/**/*.java
 ```
 
-### 3) Executar por classe de teste
+### 2) Executar por classe de teste
 
 ```bash
 java RaizDoBem.test.EnderecoTeste
@@ -232,7 +223,7 @@ O login disponível é fictício e não representa autenticação real de produ�
 |-----------|--------------|-----------|
 | Minimo de 6 classes modelo | ✅ Atendido | Classes VO principais do domínio |
 | Minimo de 4 métodos de negócio | ✅ Atendido | Validações confirmadas nas BOs |
-| Classe de conexão com banco | ✅ Atendido | Conexao.java funcionando |
+| Classe de conexão com banco | ✅ Atendido | `Conexao.java` com lógica JDBC e credenciais em código (conforme rubrica) |
 | Camada DAO com CRUD funcional | ✅ Atendido | CRUD principal validado em execução real |
 | Classes de teste com main | ✅ Atendido | Execução console OK |
 | Integração ViaCep + Gson | ✅ Atendido | CEP 01310900 → Avenida Paulista |

@@ -2,9 +2,11 @@ package RaizDoBem;
 
 import RaizDoBem.controller.AtendimentoController;
 import RaizDoBem.controller.BeneficiarioController;
+import RaizDoBem.controller.EnderecoController;
 import RaizDoBem.controller.PedidoAjudaController;
 import RaizDoBem.view.AtendimentoView;
 import RaizDoBem.view.BeneficiarioView;
+import RaizDoBem.view.EnderecoView;
 import RaizDoBem.view.PedidoAjudaView;
 
 public class Main {
@@ -34,5 +36,9 @@ public class Main {
         atendimentoController.atualizar(id);
         //Listando atendimentos
         atendimentoController.listandoTodos();
+
+//        EnderecoView enderecoView = new EnderecoView();
+//        EnderecoController enderecoController =  new EnderecoController(enderecoView);
+//        enderecoController.adicionar();
     }
 }

@@ -1,4 +1,0 @@
-db.driver=oracle.jdbc.OracleDriver
-db.url=jdbc:oracle:thin:@SEU_IP:1521:XE
-db.user=usuario
-db.password=senha

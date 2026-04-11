@@ -12,12 +12,10 @@ import java.util.Properties;
 public class Conexao {
     public static Connection conectarAoBanco() {
         try {
-            Properties prop = new Properties();
-            prop.load(new FileInputStream("config.properties"));
 
-            String url = prop.getProperty("db.url");
-            String usuario = prop.getProperty("db.user");
-            String senha = prop.getProperty("db.password");
+            String url = "jdbc:oracle:thin:@//oracle.fiap.com.br:1521/orcl";
+            String usuario = "usuario";
+            String senha ="****";
 
             return DriverManager.getConnection(url, usuario, senha);
         } catch (Exception exception) {
